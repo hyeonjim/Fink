@@ -1,7 +1,7 @@
 # F!NK
 ## AI 기반 금융 상품 추천 서비스
 
-> **SSAFY 1학기 최종 프로젝트**  
+> **SSAFY 14기 1학기 최종 프로젝트**  
 > AI 기술을 활용한 맞춤형 금융 상품 추천 및 종합 금융 정보 제공 플랫폼
 
 ![F!NK 메인 이미지](docs/images/main.png)
@@ -279,7 +279,7 @@ SYSTEM_PROMPT = """
 ### 알고리즘 흐름도
 
 <p align="center">
-  <img src="docs/images/algorithm_flow.png" alt="알고리즘 흐름도" width="720" />
+  <img src="docs/images/algorithm_flow.png" alt="알고리즘 흐름도" width="320" />
 </p>
 
 ---
