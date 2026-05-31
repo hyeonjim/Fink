@@ -4,7 +4,7 @@
 > **SSAFY 14기 1학기 최종 프로젝트**  
 > AI 기술을 활용한 맞춤형 금융 상품 추천 및 종합 금융 정보 제공 플랫폼
 
-![F!NK 메인 이미지](docs/images/main.png)
+## 🎬 시연 영상
 [![F!NK 시연 영상](https://img.youtube.com/vi/CFEsFPi50_U/maxresdefault.jpg)](https://youtu.be/CFEsFPi50_U?si=EywwI5TVTFvAwxRx)
 
 ## 목차
