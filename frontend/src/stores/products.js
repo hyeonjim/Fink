@@ -12,6 +12,8 @@
 import { defineStore } from "pinia"
 import { ref } from "vue"
 import axios from "axios"
+import { USE_MOCK, delay, clone } from "@/mocks/config"
+import { mockDeposits, mockSavings } from "@/mocks/products"
 
 export const useProductStore = defineStore('products', () => {
   // ========================================
@@ -36,6 +38,14 @@ export const useProductStore = defineStore('products', () => {
    * @description 금융감독원 API에서 가져온 예금 상품 데이터를 조회합니다
    */
   const getDeposits = function () {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      return delay(clone(mockDeposits)).then((data) => {
+        deposits.value = data
+      })
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     axios({
       method: 'get',
       url: `${API_URL}/api/products/deposits/`
@@ -53,6 +63,14 @@ export const useProductStore = defineStore('products', () => {
    * @description 금융감독원 API에서 가져온 적금 상품 데이터를 조회합니다
    */
   const getSavings = function () {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      return delay(clone(mockSavings)).then((data) => {
+        savings.value = data
+      })
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     axios({
       method: 'get',
       url: `${API_URL}/api/products/savings/`

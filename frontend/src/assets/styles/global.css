@@ -133,9 +133,9 @@
   --n-text: #292930;
   --n-text-body: #44403c;
   --n-text-muted: #78716c;
-  --n-accent: #7469B6;
+  --n-accent: #a398e4;
   --n-accent-hover: #5B4E9E;
-  --n-accent-wash: #f4f2fa;
+  --n-accent-wash: #fcf5f9;
   --n-ink: #dfdceb;
   --n-ink-text: #3a393d;
 
@@ -1259,7 +1259,7 @@ h6 { font-size: 1rem; }
   --shadow-purple: 0 10px 40px -10px rgba(116, 105, 182, 0.4);
 
   /* Neutral Redesign Tokens - Dark */
-  --n-bg: #121212;
+  --n-bg: #272727;
   --n-bg-subtle: #191919;
   --n-bg-sunken: #202020;
   --n-border: #2a2a2a;

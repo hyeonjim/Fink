@@ -140,8 +140,14 @@
         </div>
       </aside>
 
-      <!-- Map Container -->
-      <div class="map-wrapper">
+      <!-- Map Container — 데모 모드에서는 지도 대신 결과 목록을 보여준다 -->
+      <MapPlaceholder
+        v-if="USE_MOCK"
+        :results="kakaoMapStore.searchResults"
+        :selected="kakaoMapStore.selectedPlace"
+        @select="kakaoMapStore.selectBank"
+      />
+      <div v-else class="map-wrapper">
         <div id="map"></div>
         <div class="map-overlay">
           <span class="overlay-badge">Kakao Map</span>
@@ -154,6 +160,8 @@
 <script setup>
 import { onMounted, watch } from 'vue';
 import { useKakaoMapStore } from '@/stores/kakaomap';
+import { USE_MOCK } from '@/mocks/config';
+import MapPlaceholder from '@/components/kakaomap/MapPlaceholder.vue';
 
 const kakaoMapStore = useKakaoMapStore();
 
@@ -422,6 +430,11 @@ onMounted(() => {
   font-size: 0.8125rem;
   color: var(--n-text-body);
   line-height: 1.5;
+}
+
+/* 데모 모드 플레이스홀더도 지도와 같은 자리를 차지하게 한다 */
+.map-placeholder {
+  flex: 1;
 }
 
 /* Map Wrapper */

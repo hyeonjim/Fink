@@ -248,11 +248,6 @@
         <!-- Exchange Rate Info (여행 목적) - 이자 포함 금액 환산 -->
         <div v-if="analysisStore.result?.exchange_rate_info" class="exchange-card">
           <h3 class="section-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="2" y1="12" x2="22" y2="12"/>
-              <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-            </svg>
             💱 환율 환산 정보
           </h3>
           
@@ -656,7 +651,7 @@ const formatDate = (dateString) => {
   display: flex;
   gap: 20px;
   padding: 24px;
-  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%);
+  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%;
   border-radius: 20px;
   margin-bottom: 24px;
   margin-top: -40px;
@@ -806,7 +801,7 @@ const formatDate = (dateString) => {
   align-items: center;
   gap: 12px;
   padding: 16px;
-  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%);
+  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%;
   border-radius: 16px;
   margin-bottom: 20px;
   flex-wrap: wrap;
@@ -972,14 +967,6 @@ const formatDate = (dateString) => {
   border: 1px solid var(--n-border);
   flex: 1;
   min-width: 180px;
-}
-
-.strategy-product.deposit {
-  border-left: 3px solid var(--n-info-text);
-}
-
-.strategy-product.saving {
-  border-left: 3px solid var(--n-ok-text);
 }
 
 .sp-badge {
@@ -1311,7 +1298,7 @@ const formatDate = (dateString) => {
 
 /* Exchange Card */
 .exchange-card {
-  background: var(--n-info-bg);
+  background: #f2f2f8;
   border-radius: 20px;
   padding: 24px;
   margin-bottom: 24px;
@@ -1439,7 +1426,7 @@ const formatDate = (dateString) => {
 
 /* Destinations Card */
 .destinations-card {
-  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%);
+  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%;
   border-radius: 20px;
   padding: 24px;
   margin-bottom: 24px;

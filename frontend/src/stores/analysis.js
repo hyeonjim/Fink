@@ -16,6 +16,8 @@ import axios from "axios";
 import { ref, computed } from "vue";
 import { useAccountStore } from "@/stores/accounts";
 import { useRouter } from "vue-router";
+import { USE_MOCK, delay } from "@/mocks/config";
+import { getAnalysisResult, MOCK_ANALYSIS_ID } from "@/mocks/analysis";
 
 export const useAnalysisStore = defineStore('analysis', () => {
   // ========================================
@@ -69,6 +71,19 @@ export const useAnalysisStore = defineStore('analysis', () => {
     loading.value = true
     error.value = null
 
+    // === 목업 모드 분기 ===
+    // 실제로는 GPT 호출이라 시간이 걸리는 작업이므로 지연을 조금 길게 준다
+    if (USE_MOCK) {
+      return delay(null, 1200)
+        .then(() => {
+          router.push(`/analysis/${MOCK_ANALYSIS_ID}/result`)
+        })
+        .finally(() => {
+          loading.value = false
+        })
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     axios({
       method: 'post',
       url: `${API_URL}/api/v1/analysis/`,
@@ -102,6 +117,19 @@ export const useAnalysisStore = defineStore('analysis', () => {
     loading.value = true
     error.value = null
 
+    // === 목업 모드 분기 ===
+    // 목업은 결과가 한 건뿐이라 analysisId 와 무관하게 같은 결과를 보여준다
+    if (USE_MOCK) {
+      return delay(getAnalysisResult())
+        .then((data) => {
+          result.value = data
+        })
+        .finally(() => {
+          loading.value = false
+        })
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     axios({
       method: 'get',
       url: `${API_URL}/api/v1/analysis/${analysisId}/result/`,

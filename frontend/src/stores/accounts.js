@@ -21,6 +21,8 @@ import { ref, computed } from "vue"
 import { useRouter } from "vue-router"
 import axios from "axios"
 import { useNewsStore } from "@/stores/news"
+import { USE_MOCK, delay } from "@/mocks/config"
+import { DEMO_ACCOUNT, MOCK_TOKEN } from "@/mocks/accounts"
 
 
 export const useAccountStore = defineStore('account', () => {
@@ -62,6 +64,15 @@ export const useAccountStore = defineStore('account', () => {
    * @returns {Promise} API 응답 Promise
    */
   const getUserInfo = function () {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      return delay(null).then(() => {
+        // 데모에서 변경한 닉네임이 있으면 그대로 둔다
+        nickname.value = nickname.value || DEMO_ACCOUNT.nickname
+      })
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     return axios({
       method: 'get',
       url: `${API_URL}/accounts/user/`,
@@ -89,6 +100,16 @@ export const useAccountStore = defineStore('account', () => {
     const password1 = payload.password1
     const password2 = payload.password2
 
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      alert(
+        `데모 모드에서는 회원가입을 사용할 수 없습니다.\n아이디 "${DEMO_ACCOUNT.username}" 으로 로그인해주세요. (비밀번호는 아무 값이나 입력)`
+      )
+      router.push({ name: 'LogInView' })
+      return
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     axios({
       method: 'post',
       url: `${API_URL}/accounts/signup/`,
@@ -120,6 +141,25 @@ export const useAccountStore = defineStore('account', () => {
     const username = payload.username
     const password = payload.password
 
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      // 비밀번호는 검사하지 않는다. 아이디만 데모 계정과 일치하면 통과
+      if (username !== DEMO_ACCOUNT.username) {
+        alert(
+          `데모 모드입니다.\n아이디 "${DEMO_ACCOUNT.username}" 으로 로그인해주세요. (비밀번호는 아무 값이나 입력)`
+        )
+        return
+      }
+
+      return delay(null).then(() => {
+        token.value = MOCK_TOKEN
+        nickname.value = DEMO_ACCOUNT.nickname
+
+        router.push({ name: 'home' })
+      })
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     axios({
       method: 'post',
       url: `${API_URL}/accounts/login/`,
@@ -145,23 +185,34 @@ export const useAccountStore = defineStore('account', () => {
    * @description 서버에 로그아웃 요청 후 로컬 상태를 초기화합니다
    */
   const logOut = function () {
+    /** 로그아웃 후 프론트 상태 정리 (목업/실제 공통) */
+    const clearSession = () => {
+      // 상태 초기화
+      token.value = null
+      nickname.value = null
+
+      // 다른 store들 초기화 (뉴스 store 초기화)
+      const newsStore = useNewsStore()
+      newsStore.clearAllData()
+
+      // 로컬 스토리지에서 news store 데이터 제거
+      localStorage.removeItem('news')
+
+      router.push({ name: 'home' })
+    }
+
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      return delay(null).then(clearSession)
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     axios({
       method: 'post',
       url: `${API_URL}/accounts/logout/`
     })
     .then((res) => {
-      // 상태 초기화
-      token.value = null
-      nickname.value = null
-      
-      // 다른 store들 초기화 (뉴스 store 초기화)
-      const newsStore = useNewsStore()
-      newsStore.clearAllData()
-      
-      // 로컬 스토리지에서 news store 데이터 제거
-      localStorage.removeItem('news')
-      
-      router.push({ name: 'home' })
+      clearSession()
     })
     .catch((err) => {
       console.error('로그아웃 실패:', err)
@@ -173,13 +224,19 @@ export const useAccountStore = defineStore('account', () => {
    * @description 확인 후 계정을 영구 삭제합니다
    */
   const deleteUser = function () {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      alert('데모 모드에서는 회원탈퇴를 사용할 수 없습니다.')
+      return
+    }
+
     // 사용자 실수 방지용 확인창
     const ok = window.confirm('정말 회원탈퇴 하시겠습니까?\n삭제 후 복구할 수 없습니다.')
 
     // 취소 시 아무 것도 안 함
     if (!ok) return
 
-    // 확인 시 삭제 요청
+    // === 실제 API 호출 (백엔드 연결 시) ===
     axios({
       method: 'delete',
       url: `${API_URL}/accounts/delete/`,
@@ -213,6 +270,16 @@ export const useAccountStore = defineStore('account', () => {
       return
     }
 
+    // === 목업 모드 분기 ===
+    // 데모에서도 닉네임 변경은 즉시 반영해 준다 (persist 되어 새로고침 후에도 유지)
+    if (USE_MOCK) {
+      await delay(null)
+      nickname.value = newNickname
+      alert('닉네임이 수정되었습니다.')
+      return
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     try {
       await axios({
         method: 'patch',
@@ -247,6 +314,13 @@ export const useAccountStore = defineStore('account', () => {
 
     const { old_password, new_password1, new_password2 } = payload
 
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      alert('데모 모드에서는 비밀번호를 변경할 수 없습니다.')
+      return
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     try {
       await axios({
         method: 'post',

@@ -4,8 +4,9 @@
     <header class="n-page-header">
       <div class="n-page-header-content">
         <div class="n-page-header-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v10M15 9.5c0-1.4-1.3-2.5-3-2.5s-3 1.1-3 2.3c0 1.2 1.2 1.9 3 2.2s3 1 3 2.3-1.3 2.2-3 2.2-3-.9-3-2.2"/>
           </svg>
         </div>
         <div class="n-page-header-text">
@@ -15,23 +16,25 @@
       </div>
     </header>
 
-    <div class="container">
+    <!-- Filter Zone — 탭과 필터를 옅은 면으로 묶어 상단 블록을 만든다 -->
+    <div class="filter-zone">
+      <div class="filter-zone-inner">
 
       <!-- Tab Navigation -->
       <div class="tabs-container">
         <div class="tabs tabs-pill">
-          <button 
+          <button
             :class="['tab', { active: active === 'deposits' }]"
             @click="active = 'deposits'"
           >
-            <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <path d="M3 9h18"/>
-              <path d="M9 21V9"/>
+            <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18M4 21V9l8-6 8 6v12M9 21v-6h6v6"/>
+              <line x1="9" y1="12" x2="9" y2="12.01"/>
+              <line x1="15" y1="12" x2="15" y2="12.01"/>
             </svg>
             예금
           </button>
-          <button 
+          <button
             :class="['tab', { active: active === 'savings' }]"
             @click="active = 'savings'"
           >
@@ -46,104 +49,107 @@
       </div>
 
       <!-- Filter Section -->
-      <div class="filter-section">
-        <div class="filter-card">
-          <div class="filter-grid">
-            <!-- Bank Filter -->
-            <div class="filter-group">
-              <label class="filter-label">
-                <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M3 21h18"/>
-                  <path d="M3 10h18"/>
-                  <path d="M5 6l7-3 7 3"/>
-                  <path d="M4 10v11"/>
-                  <path d="M20 10v11"/>
-                  <path d="M8 14v3"/>
-                  <path d="M12 14v3"/>
-                  <path d="M16 14v3"/>
-                </svg>
-                은행
-              </label>
-              <select v-model="selectedBank" class="filter-select">
-                <option value="">전체 은행</option>
-                <option v-for="bank in bankOptions" :key="bank" :value="bank">
-                  {{ bank }}
-                </option>
-              </select>
-            </div>
+      <div class="filter-card">
+        <div class="filter-grid">
+          <!-- Bank Filter -->
+          <div class="filter-group">
+            <label class="filter-label">
+              <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 21h18"/>
+                <path d="M3 10h18"/>
+                <path d="M5 6l7-3 7 3"/>
+                <path d="M4 10v11"/>
+                <path d="M20 10v11"/>
+                <path d="M8 14v3"/>
+                <path d="M12 14v3"/>
+                <path d="M16 14v3"/>
+              </svg>
+              은행
+            </label>
+            <select v-model="selectedBank" class="filter-select">
+              <option value="">전체 은행</option>
+              <option v-for="bank in bankOptions" :key="bank" :value="bank">
+                {{ bank }}
+              </option>
+            </select>
+          </div>
 
-            <!-- Term Filter -->
-            <div class="filter-group">
-              <label class="filter-label">
-                <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
-                기간
-              </label>
-              <select v-model.number="selectedTerm" class="filter-select">
-                <option :value="0">전체 기간</option>
-                <option v-for="term in termOptions" :key="term" :value="term">
-                  {{ term }}개월
-                </option>
-              </select>
-            </div>
+          <!-- Term Filter -->
+          <div class="filter-group">
+            <label class="filter-label">
+              <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              기간
+            </label>
+            <select v-model.number="selectedTerm" class="filter-select">
+              <option :value="0">전체 기간</option>
+              <option v-for="term in termOptions" :key="term" :value="term">
+                {{ term }}개월
+              </option>
+            </select>
+          </div>
 
-            <!-- Search -->
-            <div class="filter-group filter-group-search">
-              <label class="filter-label">
-                <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="11" cy="11" r="8"/>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          <!-- Search -->
+          <div class="filter-group filter-group-search">
+            <label class="filter-label">
+              <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              검색
+            </label>
+            <div class="search-input-wrapper">
+              <input 
+                v-model.trim="keyword" 
+                type="text" 
+                class="filter-input"
+                placeholder="은행명, 상품명으로 검색" 
+              />
+              <button v-if="keyword" @click="keyword = ''" class="search-clear">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
                 </svg>
-                검색
-              </label>
-              <div class="search-input-wrapper">
-                <input 
-                  v-model.trim="keyword" 
-                  type="text" 
-                  class="filter-input"
-                  placeholder="은행명, 상품명으로 검색" 
-                />
-                <button v-if="keyword" @click="keyword = ''" class="search-clear">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="18" y1="6" x2="6" y2="18"/>
-                    <line x1="6" y1="6" x2="18" y2="18"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            <!-- Reset Button -->
-            <div class="filter-group filter-group-reset">
-              <button @click="resetFilter" class="btn btn-secondary">
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M1 4v6h6"/>
-                  <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
-                </svg>
-                초기화
               </button>
             </div>
           </div>
 
-          <!-- Active Filters -->
-          <div v-if="hasActiveFilters" class="active-filters">
-            <span class="active-filters-label">적용된 필터:</span>
-            <span v-if="selectedBank" class="filter-tag">
-              {{ selectedBank }}
-              <button @click="selectedBank = ''" class="filter-tag-remove">×</button>
-            </span>
-            <span v-if="selectedTerm !== 0" class="filter-tag">
-              {{ selectedTerm }}개월
-              <button @click="selectedTerm = 0" class="filter-tag-remove">×</button>
-            </span>
-            <span v-if="keyword" class="filter-tag">
-              "{{ keyword }}"
-              <button @click="keyword = ''" class="filter-tag-remove">×</button>
-            </span>
+          <!-- Reset Button -->
+          <div class="filter-group filter-group-reset">
+            <button @click="resetFilter" class="btn btn-secondary">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 4v6h6"/>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+              </svg>
+              초기화
+            </button>
           </div>
         </div>
+
+        <!-- Active Filters -->
+        <div v-if="hasActiveFilters" class="active-filters">
+          <span class="active-filters-label">적용된 필터:</span>
+          <span v-if="selectedBank" class="filter-tag">
+            {{ selectedBank }}
+            <button @click="selectedBank = ''" class="filter-tag-remove">×</button>
+          </span>
+          <span v-if="selectedTerm !== 0" class="filter-tag">
+            {{ selectedTerm }}개월
+            <button @click="selectedTerm = 0" class="filter-tag-remove">×</button>
+          </span>
+          <span v-if="keyword" class="filter-tag">
+            "{{ keyword }}"
+            <button @click="keyword = ''" class="filter-tag-remove">×</button>
+          </span>
+        </div>
       </div>
+
+      </div>
+    </div>
+
+    <div class="container">
 
       <!-- Results Info -->
       <div class="results-info">
@@ -272,24 +278,31 @@ const resetFilter = () => {
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 40px 24px 72px;
+  padding: 28px 24px 72px;
+}
+
+/* ── 필터 존 ─────────────────────────────────────────────────────
+   탭과 필터를 옅은 면으로 묶어 상단 블록을 만든다.
+   흰 상품 목록 영역과 갈라져 층위가 생긴다. */
+
+
+.filter-zone-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 24px 20px;
 }
 
 /* ── 탭 ──────────────────────────────────────────────────────────── */
 .tabs-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 
 .tabs-pill {
   display: inline-flex;
   gap: 4px;
   padding: 4px;
-  border: 1px solid var(--n-border);
-  border-radius: 10px;
-  background: var(--n-bg-subtle);
-  box-shadow: none;
 }
 
 .tab {
@@ -297,7 +310,7 @@ const resetFilter = () => {
   align-items: center;
   gap: 8px;
   padding: 10px 24px;
-  font-size: 0.9375rem;
+  font-size: 18px;
   font-weight: 500;
   color: var(--n-text-muted);
   background: transparent;
@@ -309,12 +322,13 @@ const resetFilter = () => {
 
 .tab:hover:not(.active) {
   color: var(--n-text);
+  background: #fff;
 }
 
 .tab.active {
-  background: var(--n-bg);
-  color: var(--n-text);
-  border: 1px solid var(--n-border);
+  background: #b69ddd;
+  color: #fff;
+  border: 1px solid transparent;
   box-shadow: none;
   font-weight: 600;
 }
@@ -324,17 +338,10 @@ const resetFilter = () => {
   height: 16px;
 }
 
-/* ── 필터 ────────────────────────────────────────────────────────── */
-.filter-section {
-  margin-bottom: 20px;
-}
-
+/* ── 필터 ────────────────────────────────────────────────────────
+   존 위에 카드를 또 띄우지 않는다. 입력 필드만 흰 면으로 떠오른다. */
 .filter-card {
-  padding: 20px;
-  border: 1px solid var(--n-border);
-  border-radius: 12px;
-  background: var(--n-bg);
-  box-shadow: none;
+  padding: 0;
 }
 
 .filter-grid {
@@ -476,8 +483,7 @@ const resetFilter = () => {
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--n-text-body);
-  background: var(--n-bg-sunken);
-  border: 1px solid var(--n-border);
+  background: var(--n-bg);
   border-radius: 6px;
 }
 
@@ -590,7 +596,11 @@ const resetFilter = () => {
 
 @media (max-width: 600px) {
   .container {
-    padding: 28px 16px 56px;
+    padding: 24px 16px 56px;
+  }
+
+  .filter-zone-inner {
+    padding: 20px 16px 16px;
   }
 
   .filter-grid {

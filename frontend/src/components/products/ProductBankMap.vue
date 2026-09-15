@@ -134,8 +134,17 @@
         </div>
       </div>
 
-      <!-- Map Area -->
-      <div class="map-wrapper">
+      <!-- Map Area — 데모 모드에서는 지도 대신 안내를 보여준다
+           (지점 목록은 왼쪽 사이드바에 이미 표시된다) -->
+      <div v-if="USE_MOCK" class="map-wrapper map-demo">
+        <svg class="demo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        <p class="demo-title">지도는 데모 모드에서 표시되지 않습니다</p>
+        <p class="demo-text">지역을 선택하면 왼쪽에 지점 목록이 나타납니다.</p>
+      </div>
+      <div v-else class="map-wrapper">
         <div id="product-bank-map" class="map-area"></div>
         <div class="map-overlay">
           <span class="overlay-badge">Kakao Map</span>
@@ -148,6 +157,7 @@
 <script setup>
 import { onMounted, onUnmounted } from 'vue'
 import { useKakaoMapStore } from '@/stores/kakaomap'
+import { USE_MOCK } from '@/mocks/config'
 
 const props = defineProps({
   bankName: {
@@ -625,6 +635,38 @@ onUnmounted(() => {
 .map-area {
   width: 100%;
   height: 100%;
+}
+
+/* 데모 모드 안내 — 지도 자리를 채우되 장식은 두지 않는다 */
+.map-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 24px;
+  text-align: center;
+  background: var(--n-bg-subtle);
+}
+
+.demo-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
+  color: var(--n-border-strong);
+}
+
+.demo-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--n-text);
+}
+
+.demo-text {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--n-text-muted);
 }
 
 .map-overlay {

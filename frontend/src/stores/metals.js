@@ -12,6 +12,8 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 import axios from 'axios'
+import { USE_MOCK, delay } from '@/mocks/config'
+import { getMetalPrices } from '@/mocks/metals'
 
 export const useMetalsStore = defineStore('metals', () => {
   // ========================================
@@ -103,6 +105,16 @@ export const useMetalsStore = defineStore('metals', () => {
     errorMessage.value = null
 
     try {
+      // === 목업 모드 분기 ===
+      // try 블록 안이므로 finally 가 로딩 플래그를 꺼준다
+      if (USE_MOCK) {
+        prices.value = await delay(
+          getMetalPrices(metal.value, startDate.value, endDate.value)
+        )
+        return
+      }
+
+      // === 실제 API 호출 (백엔드 연결 시) ===
       const res = await axios.get(`${API_URL}/api/metals/`, {
         params: {
           metal: metal.value,

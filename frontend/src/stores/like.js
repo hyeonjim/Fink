@@ -13,6 +13,9 @@ import { defineStore } from "pinia"
 import { ref } from "vue"
 import axios from "axios"
 import { useAccountStore } from "./accounts"
+import { USE_MOCK, delay } from "@/mocks/config"
+import { getLikeList } from "@/mocks/likes"
+import { toggleLike as mockToggleLike } from "@/mocks/likesState"
 
 export const useLikeStore = defineStore("like", () => {
   // ========================================
@@ -55,6 +58,24 @@ export const useLikeStore = defineStore("like", () => {
     const fin_prdt_cd = payload.fin_prdt_cd
     const product_type = payload.product_type
 
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      if (!accountStore.token) {
+        alert("로그인이 필요합니다.")
+        return Promise.reject(new Error("로그인이 필요합니다."))
+      }
+
+      const result = mockToggleLike(product_type, fin_prdt_cd)
+      liked.value = result.liked
+      likesCount.value = result.likes_count
+
+      // 마이페이지 목록도 최신화
+      likes.value = getLikeList()
+
+      return Promise.resolve(result)
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     return axios({
       method: "post",
       url: `${API_URL}/api/products/likes/toggle/`,
@@ -96,6 +117,15 @@ export const useLikeStore = defineStore("like", () => {
       return
     }
 
+    // === 목업 모드 분기 ===
+    // 목업은 은행명·상품명·options 까지 완성된 목록을 주므로 N+1 상세조회가 필요 없다
+    if (USE_MOCK) {
+      return delay(getLikeList()).then((data) => {
+        likes.value = data
+      })
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     return axios({
       method: "get",
       url: `${API_URL}/api/products/likes/me/`,

@@ -23,6 +23,8 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 import axios from "axios";
+import { USE_MOCK, delay } from "@/mocks/config";
+import * as mockStocks from "@/mocks/stocks";
 
 export const useStocksStore = defineStore(
   "stocks",
@@ -125,6 +127,15 @@ export const useStocksStore = defineStore(
     const fetchMarketIndices = async (period = '5d') => {
       indicesLoading.value = true;
       try {
+        // === 목업 모드 분기 ===
+        // try 블록 안이므로 finally 가 로딩 플래그를 꺼준다
+        if (USE_MOCK) {
+          const data = await delay(mockStocks.getMarketIndices());
+          marketIndices.value = data.indices;
+          return;
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         const response = await axios.get(`${API_URL}/api/stocks/indices/`, {
           params: { period }
         });
@@ -142,6 +153,13 @@ export const useStocksStore = defineStore(
      */
     const fetchUpdateStatus = async () => {
       try {
+        // === 목업 모드 분기 ===
+        if (USE_MOCK) {
+          updateStatus.value = mockStocks.getUpdateStatus();
+          return;
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         const response = await axios.get(`${API_URL}/api/stocks/update-status/`);
         updateStatus.value = response.data;
       } catch (error) {
@@ -159,6 +177,21 @@ export const useStocksStore = defineStore(
       errorMessage.value = null;
 
       try {
+        // === 목업 모드 분기 ===
+        if (USE_MOCK) {
+          const data = await delay(mockStocks.getKrStocks(page, size));
+          krStocks.value = data.stocks;
+
+          if (selectedMarket.value === 'KR') {
+            stockList.value = krStocks.value;
+            totalCount.value = data.total_count;
+            totalPages.value = data.total_pages;
+            currentPage.value = data.page;
+          }
+          return;
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         const response = await axios.get(`${API_URL}/api/stocks/kr/`, {
           params: { page, size }
         });
@@ -194,6 +227,21 @@ export const useStocksStore = defineStore(
       errorMessage.value = null;
 
       try {
+        // === 목업 모드 분기 ===
+        if (USE_MOCK) {
+          const data = await delay(mockStocks.getUsStocks(page, size));
+          usStocks.value = data.stocks;
+
+          if (selectedMarket.value === 'US') {
+            stockList.value = usStocks.value;
+            totalCount.value = data.total_count;
+            totalPages.value = data.total_pages;
+            currentPage.value = data.page;
+          }
+          return;
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         const response = await axios.get(`${API_URL}/api/stocks/us/`, {
           params: { page, size }
         });
@@ -229,6 +277,13 @@ export const useStocksStore = defineStore(
       errorMessage.value = null;
 
       try {
+        // === 목업 모드 분기 ===
+        // 목업은 고정 데이터라 갱신할 원본이 없다
+        if (USE_MOCK) {
+          return { success: false, message: '데모 모드에서는 시세를 갱신할 수 없습니다.' };
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         const response = await axios.post(`${API_URL}/api/stocks/refresh/`, {
           market: market.toUpperCase()
         });
@@ -264,6 +319,20 @@ export const useStocksStore = defineStore(
           return;
         }
 
+        // === 목업 모드 분기 ===
+        if (USE_MOCK) {
+          const data = await delay(mockStocks.getBookmarks());
+          bookmarkedStocks.value = data.stocks;
+
+          if (selectedMarket.value === 'BOOKMARK') {
+            stockList.value = bookmarkedStocks.value;
+            totalCount.value = bookmarkedStocks.value.length;
+            totalPages.value = 1;
+          }
+          return;
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         const response = await axios.get(`${API_URL}/api/stocks/bookmarks/`, {
           headers: { Authorization: `Token ${token}` }
         });
@@ -295,6 +364,12 @@ export const useStocksStore = defineStore(
           return { success: false, message: '로그인이 필요합니다.' };
         }
 
+        // === 목업 모드 분기 ===
+        if (USE_MOCK) {
+          return { success: false, message: '데모 모드에서는 시세를 갱신할 수 없습니다.' };
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         const response = await axios.post(
           `${API_URL}/api/stocks/bookmarks/refresh/`,
           {},
@@ -326,12 +401,20 @@ export const useStocksStore = defineStore(
           return false;
         }
 
+        // === 목업 모드 분기 ===
+        if (USE_MOCK) {
+          mockStocks.addBookmark(symbol);
+          await fetchBookmarkedStocks();
+          return true;
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         await axios.post(
           `${API_URL}/api/stocks/bookmarks/`,
           { symbol, name },
           { headers: { Authorization: `Token ${token}` } }
         );
-        
+
         // 북마크 목록 새로고침
         await fetchBookmarkedStocks();
         return true;
@@ -351,11 +434,19 @@ export const useStocksStore = defineStore(
           return false;
         }
 
+        // === 목업 모드 분기 ===
+        if (USE_MOCK) {
+          mockStocks.removeBookmark(symbol);
+          await fetchBookmarkedStocks();
+          return true;
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         await axios.delete(`${API_URL}/api/stocks/bookmarks/`, {
           data: { symbol },
           headers: { Authorization: `Token ${token}` }
         });
-        
+
         // 북마크 목록 새로고침
         await fetchBookmarkedStocks();
         return true;
@@ -372,6 +463,12 @@ export const useStocksStore = defineStore(
         const token = getToken();
         if (!token) return false;
 
+        // === 목업 모드 분기 ===
+        if (USE_MOCK) {
+          return mockStocks.isBookmarked(symbol);
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         const response = await axios.get(
           `${API_URL}/api/stocks/bookmarks/${symbol}/check/`,
           { headers: { Authorization: `Token ${token}` } }
@@ -438,6 +535,14 @@ export const useStocksStore = defineStore(
       errorMessage.value = null;
 
       try {
+        // === 목업 모드 분기 ===
+        if (USE_MOCK) {
+          const data = await delay(mockStocks.searchStocks(query), 150);
+          searchResults.value = data.results;
+          return;
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         const response = await axios.get(`${API_URL}/api/stocks/search/`, {
           params: { query: query.trim() },
         });
@@ -456,6 +561,17 @@ export const useStocksStore = defineStore(
       errorMessage.value = null;
 
       try {
+        // === 목업 모드 분기 ===
+        if (USE_MOCK) {
+          selectedStock.value = await delay(mockStocks.getStockDetail(symbol));
+
+          // 차트 데이터도 함께 로드
+          await fetchChartData(symbol);
+          await fetchStockNews(symbol);
+          return;
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         const response = await axios.get(`${API_URL}/api/stocks/${symbol}/`);
         selectedStock.value = response.data;
 
@@ -479,6 +595,15 @@ export const useStocksStore = defineStore(
       const _interval = interval || chartInterval.value;
 
       try {
+        // === 목업 모드 분기 ===
+        if (USE_MOCK) {
+          chartData.value = await delay(mockStocks.getChartData(symbol, _period, _interval));
+          chartPeriod.value = _period;
+          chartInterval.value = _interval;
+          return;
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         const response = await axios.get(
           `${API_URL}/api/stocks/${symbol}/chart/`,
           {
@@ -501,6 +626,13 @@ export const useStocksStore = defineStore(
 
     const fetchStockNews = async (symbol) => {
       try {
+        // === 목업 모드 분기 ===
+        if (USE_MOCK) {
+          stockNews.value = mockStocks.getStockNews(symbol).news;
+          return;
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         const response = await axios.get(
           `${API_URL}/api/stocks/${symbol}/news/`
         );
@@ -523,6 +655,13 @@ export const useStocksStore = defineStore(
 
       translating.value = true;
       try {
+        // === 목업 모드 분기 ===
+        if (USE_MOCK) {
+          translatedDescription.value = await delay(mockStocks.translateDescription(text), 400);
+          return;
+        }
+
+        // === 실제 API 호출 (백엔드 연결 시) ===
         const response = await axios.post(`${API_URL}/api/stocks/translate/`, {
           text: text,
         });

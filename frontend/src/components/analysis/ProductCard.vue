@@ -3,7 +3,14 @@
     <!-- Card Header -->
     <div class="card-header">
       <div class="bank-badge">
-        <span class="bank-initial">{{ d.bank?.charAt(0) || 'B' }}</span>
+        <img
+          v-if="bankLogoSrc"
+          :src="bankLogoSrc"
+          :alt="d.bank"
+          class="bank-logo-img"
+          loading="lazy"
+        />
+        <span v-else class="bank-initial">{{ d.bank?.charAt(0) || 'B' }}</span>
       </div>
       <div class="header-content">
         <span class="bank-name">{{ d.bank }}</span>
@@ -163,6 +170,66 @@ const emit = defineEmits(['product-selected'])
 
 const d = props.item.detail
 const plan = props.item.plan
+
+/**
+ * ✅ 폴더 전체를 "한 번에 import" 하는 Vite 방식
+ * - src/assets/banks/ 폴더에 있는 png들을 자동으로 가져옴
+ * - key는 "/src/assets/banks/파일명.png" 형태로 만들어짐
+ */
+const bankLogos = import.meta.glob('@/assets/banks/*.png', {
+  eager: true,
+  import: 'default',
+})
+
+/**
+ * ✅ 은행명(bank) -> 로고 파일명 매핑
+ * - ProductListItem.vue 의 BANK_FILE_MAP 과 동일한 키 형식을 쓴다
+ */
+const BANK_FILE_MAP = {
+  // 시중은행
+  국민은행: '국민은행.png',
+  신한은행: '신한은행.png',
+  우리은행: '우리은행.png',
+  농협은행주식회사: '농협은행.png',
+  중소기업은행: '기업은행.png',
+  한국산업은행: '산업은행.png',
+  '주식회사 하나은행': '하나은행.png',
+  씨티뱅크: '씨티뱅크.png',
+  한국씨티은행: 'citi.png',
+
+  // 인터넷은행
+  '주식회사 카카오뱅크': '카카오뱅크.png',
+  '주식회사 케이뱅크': '케이뱅크.png',
+  '토스뱅크 주식회사': '토스뱅크.png',
+
+  // 지방은행
+  부산은행: '부산은행.png',
+  경남은행: '경남은행.png',
+  아이엠뱅크: '아이엠뱅크.png',
+  광주은행: '광주은행.png',
+  제주은행: '제주은행.png',
+  전북은행: '전북은행.png',
+  수협은행: '수협은행.png',
+  한국스탠다드차타드은행: 'sc제일은행.png',
+}
+
+/**
+ * ✅ 은행명으로 로고 src 찾기
+ * - 매핑이 없으면 null → 이니셜 배지로 폴백
+ */
+const bankLogoSrc = computed(() => {
+  const name = (d?.bank || '').trim()
+  if (!name) return null
+
+  const fileName = BANK_FILE_MAP[name]
+  if (!fileName) return null
+
+  return (
+    bankLogos[`/src/assets/banks/${fileName}`] ||
+    bankLogos[`@/assets/banks/${fileName}`] ||
+    null
+  )
+})
 
 const likeStore = useLikeStore()
 const accountStore = useAccountStore()
@@ -363,18 +430,38 @@ const scoreClass = computed(() => {
 .bank-badge {
   width: 40px;
   height: 40px;
-  background: var(--n-accent);
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* 로고가 없는 은행은 accent 배경 + 이니셜로 폴백한다 */
+.bank-badge:has(.bank-initial) {
+  background: var(--n-accent);
+  border-color: var(--n-accent);
 }
 
 .bank-initial {
   color: white;
   font-size: 1rem;
   font-weight: 700;
+}
+
+.bank-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
+}
+
+/* 은행 로고 — 흰 배경 전제 이미지라 다크모드에서도 밝은 타일을 유지한다 */
+[data-theme='dark'] .bank-logo-img {
+  background: #f5f5f4;
 }
 
 .header-content {
@@ -460,14 +547,14 @@ const scoreClass = computed(() => {
 .rate-number {
   font-size: 2rem;
   font-weight: 800;
-  color: var(--n-accent);
+  color: #da5252;
   line-height: 1;
 }
 
 .rate-unit {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--n-accent);
+  color: #da5252;
   margin-left: 2px;
 }
 
@@ -479,7 +566,7 @@ const scoreClass = computed(() => {
 
 .rate-type {
   font-size: 0.75rem;
-  color: var(--n-accent);
+  color: #da5252;
   font-weight: 600;
 }
 
@@ -534,13 +621,13 @@ const scoreClass = computed(() => {
   flex-direction: column;
   gap: 8px;
   padding: 12px;
-  background: var(--n-ok-bg);
+  background: #f9f9fa;
   border-radius: 10px;
   margin-bottom: 12px;
 }
 
 .simulation-box.deposit {
-  background: var(--n-info-bg);
+  background: #f9f9fa;
 }
 
 .sim-header {
@@ -698,12 +785,12 @@ const scoreClass = computed(() => {
 
 .action-btn.like.active {
   background: var(--n-accent-wash);
-  color: var(--n-accent);
+  color: #d46363;
 }
 
 .action-btn.select {
   flex: 1;
-  background: var(--n-accent);
+  background: #cececf;
   color: white;
 }
 
@@ -712,7 +799,7 @@ const scoreClass = computed(() => {
 }
 
 .action-btn.select.active {
-  background: var(--n-ok-text);
+  background: #bba7eb;
 }
 
 .action-btn.detail {

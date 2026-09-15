@@ -15,6 +15,8 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import axios from 'axios'
+import { USE_MOCK, delay } from '@/mocks/config'
+import * as mockChatbot from '@/mocks/chatbot'
 
 export const useChatbotStore = defineStore('chatbot', () => {
   // ========================================
@@ -72,6 +74,13 @@ export const useChatbotStore = defineStore('chatbot', () => {
    */
   const fetchSuggestions = async () => {
     try {
+      // === 목업 모드 분기 ===
+      if (USE_MOCK) {
+        suggestions.value = mockChatbot.getSuggestions().suggestions
+        return
+      }
+
+      // === 실제 API 호출 (백엔드 연결 시) ===
       const response = await axios.get(`${API_URL}/api/chatbot/suggestions/`)
       suggestions.value = response.data.suggestions
     } catch (error) {
@@ -99,13 +108,30 @@ export const useChatbotStore = defineStore('chatbot', () => {
     isLoading.value = true
     
     try {
+      // === 목업 모드 분기 ===
+      // AI 가 생각하는 시간을 흉내 내려고 지연을 조금 길게 준다
+      if (USE_MOCK) {
+        const data = await delay(mockChatbot.getReply(message), 700)
+
+        messages.value.push({
+          id: Date.now() + 1,
+          type: 'bot',
+          content: data.message,
+          data,
+          intent: data.intent,
+          timestamp: new Date()
+        })
+        return
+      }
+
+      // === 실제 API 호출 (백엔드 연결 시) ===
       const requestData = { message: message }
-      
+
       // 위치 정보가 있으면 추가
       if (location) {
         requestData.location = location
       }
-      
+
       const response = await axios.post(`${API_URL}/api/chatbot/`, requestData)
       
       // AI 응답 추가
@@ -148,6 +174,21 @@ export const useChatbotStore = defineStore('chatbot', () => {
     isLoading.value = true
     
     try {
+      // === 목업 모드 분기 ===
+      if (USE_MOCK) {
+        const data = await delay(mockChatbot.searchBankWithLocation(bankName), 500)
+
+        messages.value.push({
+          id: Date.now() + 1,
+          type: 'bot',
+          content: data.message,
+          data,
+          timestamp: new Date()
+        })
+        return
+      }
+
+      // === 실제 API 호출 (백엔드 연결 시) ===
       const response = await axios.post(`${API_URL}/api/chatbot/bank-search/`, {
         bank_name: bankName,
         lat: lat,

@@ -4,10 +4,12 @@
     <header class="n-page-header">
       <div class="n-page-header-content">
         <div class="n-page-header-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="7" width="16" height="12" rx="2"/>
+            <path d="M9 7V5a3 3 0 016 0v2"/>
+            <line x1="9" y1="12" x2="9" y2="13"/>
+            <line x1="15" y1="12" x2="15" y2="13"/>
+            <path d="M2 12h2M20 12h2"/>
           </svg>
         </div>
         <div class="n-page-header-text">
@@ -426,11 +428,7 @@
       <div class="info-cards">
         <div class="info-card">
           <div class="info-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="12" y1="16" x2="12" y2="12"/>
-              <line x1="12" y1="8" x2="12.01" y2="8"/>
-            </svg>
+            <img src="../../assets/gpt.svg" alt="GPT 아이콘" />
           </div>
           <h4 class="info-title">GPT 기반 분석</h4>
           <p class="info-text">AI가 수백 개의 금융상품 중 최적의 상품을 추천합니다</p>
@@ -705,7 +703,7 @@ const submit = () => {
   justify-content: center;
   gap: 24px;
   margin-bottom: 24px;
-  margin-top: -20px;
+  margin-top: 20px;
 }
 
 .step-item {

@@ -13,12 +13,6 @@
       <div v-if="product" class="product-detail-container">
         <!-- Header Card -->
         <div class="product-header-card">
-          <div class="product-badge-row">
-            <span class="product-type-badge" :class="route.params.type === 'deposit' ? 'deposit' : 'saving'">
-              {{ route.params.type === 'deposit' ? '예금' : '적금' }}
-            </span>
-          </div>
-          
           <div class="product-bank-info">
             <div class="bank-logo-large">
               <img
@@ -32,39 +26,6 @@
           </div>
           
           <h1 class="product-title">{{ product.fin_prdt_nm }}</h1>
-
-        <!-- Details Card -->
-        <div class="details-card">
-          <h2 class="card-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-              <path d="M14 2v6h6"/>
-              <path d="M16 13H8"/>
-              <path d="M16 17H8"/>
-              <path d="M10 9H8"/>
-            </svg>
-            상품 상세정보
-          </h2>
-          
-          <div class="detail-grid">
-            <div class="detail-item">
-              <span class="detail-label">가입 대상</span>
-              <span class="detail-value">{{ product.join_member || '-' }}</span>
-            </div>
-            <div class="detail-item">
-              <span class="detail-label">가입 방법</span>
-              <span class="detail-value">{{ product.join_way || '-' }}</span>
-            </div>
-            <div class="detail-item detail-full">
-              <span class="detail-label">우대조건</span>
-              <span class="detail-value">{{ product.spcl_cnd || '-' }}</span>
-            </div>
-            <div class="detail-item detail-full">
-              <span class="detail-label">기타 사항</span>
-              <span class="detail-value">{{ product.etc_note || '-' }}</span>
-            </div>
-          </div>
-        </div>
 
           <!-- Action Buttons -->
           <div class="action-buttons">
@@ -96,6 +57,39 @@
               </svg>
               {{ showMap ? '지도 닫기' : '은행 위치 찾기' }}
             </button>
+          </div>
+        </div>
+
+        <!-- Details Card — 헤더 카드 밖 독립 카드로 분리 -->
+        <div class="details-card">
+          <h2 class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <path d="M14 2v6h6"/>
+              <path d="M16 13H8"/>
+              <path d="M16 17H8"/>
+              <path d="M10 9H8"/>
+            </svg>
+            상품 상세정보
+          </h2>
+
+          <div class="detail-grid">
+            <div class="detail-item">
+              <span class="detail-label">가입 대상</span>
+              <span class="detail-value">{{ product.join_member || '-' }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">가입 방법</span>
+              <span class="detail-value">{{ product.join_way || '-' }}</span>
+            </div>
+            <div class="detail-item detail-full">
+              <span class="detail-label">우대조건</span>
+              <span class="detail-value">{{ product.spcl_cnd || '-' }}</span>
+            </div>
+            <div class="detail-item detail-full">
+              <span class="detail-label">기타 사항</span>
+              <span class="detail-value">{{ product.etc_note || '-' }}</span>
+            </div>
           </div>
         </div>
 
@@ -159,6 +153,8 @@ import { useProductStore } from '@/stores/products'
 import { useLikeStore } from '@/stores/like'
 import { useAccountStore } from '@/stores/accounts'
 import ProductBankMap from '@/components/products/ProductBankMap.vue'
+import { USE_MOCK, delay } from '@/mocks/config'
+import { getProductDetail } from '@/mocks/products'
 
 
 /* banks 폴더 png 전체 import */
@@ -244,6 +240,25 @@ watch(() => likeStore.liked, (newVal) => {
 })
 
 onMounted(() => {
+  // === 목업 모드 분기 ===
+  // 이 화면은 스토어를 거치지 않고 뷰에서 직접 axios 를 호출하므로 여기서 분기한다
+  if (USE_MOCK) {
+    delay(getProductDetail(route.params.type, route.params.fin_prdt_cd))
+      .then((data) => {
+        if (!data) {
+          console.error('상품 정보 로드 실패: 해당 상품을 찾을 수 없습니다.')
+          return
+        }
+
+        product.value = data
+        options.value = data.options
+        likeStore.liked = data.is_liked ?? false
+        likeStore.likesCount = data.likes_count ?? 0
+      })
+    return
+  }
+
+  // === 실제 API 호출 (백엔드 연결 시) ===
   axios({
     method: 'get',
     url: `${store.API_URL}/api/products/${route.params.type}/${route.params.fin_prdt_cd}/`,
@@ -444,13 +459,11 @@ onMounted(() => {
   height: 17px;
 }
 
-/* ── 카드 ────────────────────────────────────────────────────────── */
-.details-card {
-  margin-bottom: 40px;
-}
-
+/* ── 카드 ────────────────────────────────────────────────────────
+   헤더·상세·금리옵션 세 카드가 같은 규격으로 균등하게 쌓인다. */
+.details-card,
 .options-card {
-  margin: 24px 0 40px;
+  margin-bottom: 20px;
   padding: 28px;
   border: 1px solid var(--n-border);
   border-radius: 12px;
@@ -528,8 +541,8 @@ onMounted(() => {
 }
 
 .rate-cell.rate-max {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.0625rem;
+  font-weight: 700;
   color: var(--n-accent);
 }
 
@@ -594,6 +607,7 @@ onMounted(() => {
   }
 
   .product-header-card,
+  .details-card,
   .options-card {
     padding: 22px;
   }

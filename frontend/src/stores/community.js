@@ -23,6 +23,8 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import axios from 'axios'
 import { useAccountStore } from '@/stores/accounts'
+import { USE_MOCK, delay } from '@/mocks/config'
+import * as mockCommunity from '@/mocks/community'
 
 export const useCommunityStore = defineStore('community', () => {
   // ========================================
@@ -63,6 +65,16 @@ export const useCommunityStore = defineStore('community', () => {
    * @returns {Promise} API 응답 Promise
    */
   const getArticles = (page = 1) => {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      return delay(mockCommunity.getArticles(page)).then((data) => {
+        articles.value = data.results
+        totalPages.value = data.total_pages
+        currentPage.value = data.current_page
+      })
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     return axios.get(`${API_URL}/api/v1/articles/`, { params: { page } })
       .then((res) => {
         articles.value = res.data.results ?? []
@@ -82,6 +94,12 @@ export const useCommunityStore = defineStore('community', () => {
    * @returns {Promise<Object>} 생성된 게시글 데이터
    */
   const createArticle = (payload) => {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      return delay(mockCommunity.createArticle(payload))
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     return axios({
       method: 'post',
       url: `${API_URL}/api/v1/articles/`,
@@ -100,6 +118,14 @@ export const useCommunityStore = defineStore('community', () => {
    * @returns {Promise} API 응답 Promise
    */
   const getArticleDetail = (id) => {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      return delay(mockCommunity.getArticleDetail(id)).then((data) => {
+        article.value = data
+      })
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     return axios({
       method: 'get',
       url: `${API_URL}/api/v1/articles/${id}/`,
@@ -124,6 +150,15 @@ export const useCommunityStore = defineStore('community', () => {
    * @returns {Promise<Object>} 수정된 게시글 데이터
    */
   const updateArticle = (id, payload) => {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      return delay(mockCommunity.updateArticle(id, payload)).then((data) => {
+        article.value = data
+        return data
+      })
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     return axios({
       method: 'patch',
       url: `${API_URL}/api/v1/articles/${id}/`,
@@ -145,6 +180,13 @@ export const useCommunityStore = defineStore('community', () => {
    * @returns {Promise} API 응답 Promise
    */
   const deleteArticle = (id) => {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      mockCommunity.deleteArticle(id)
+      return delay(null).then(() => { article.value = null })
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     return axios({
       method: 'delete',
       url: `${API_URL}/api/v1/articles/${id}/`,
@@ -162,6 +204,18 @@ export const useCommunityStore = defineStore('community', () => {
    * @returns {Promise} API 응답 Promise
    */
   const toggleArticleLike = function (articleId) {
+    // === 목업 모드 분기 ===
+    // 좋아요는 즉시 반응하는 편이 자연스러워 지연을 주지 않는다
+    if (USE_MOCK) {
+      const result = mockCommunity.toggleArticleLike(articleId)
+      if (article.value) {
+        article.value.is_liked = result.liked
+        article.value.likes_count = result.likes_count
+      }
+      return Promise.resolve(result)
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     return axios({
       method: "post",
       url: `${API_URL}/api/v1/articles/${articleId}/like/`,
@@ -187,6 +241,14 @@ export const useCommunityStore = defineStore('community', () => {
    * @returns {Promise} API 응답 Promise
    */
   const getComments = (articleId) => {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      return delay(mockCommunity.getComments(articleId)).then((data) => {
+        comments.value = data
+      })
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     return axios({
       method: 'get',
       url: `${API_URL}/api/v1/articles/${articleId}/comments/`,
@@ -211,6 +273,15 @@ export const useCommunityStore = defineStore('community', () => {
    * @returns {Promise<Object>} 생성된 댓글 데이터
    */
   const createComment = (articleId, content) => {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      const created = mockCommunity.createComment(articleId, content)
+      // 기존 동작대로 새 댓글을 목록 맨 앞에 추가
+      comments.value.unshift(created)
+      return Promise.resolve(created)
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     return axios({
       method: 'post',
       url: `${API_URL}/api/v1/articles/${articleId}/comments/create/`,
@@ -234,6 +305,17 @@ export const useCommunityStore = defineStore('community', () => {
    * @returns {Promise<Object>} 수정된 댓글 데이터
    */
   const updateComment = (commentId, content) => {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      const updated = mockCommunity.updateComment(commentId, content)
+      const idx = comments.value.findIndex((c) => c.id === commentId)
+      if (idx !== -1) {
+        comments.value[idx] = updated
+      }
+      return Promise.resolve(updated)
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     return axios({
       method: 'patch',
       url: `${API_URL}/api/v1/comments/${commentId}/`,
@@ -259,6 +341,14 @@ export const useCommunityStore = defineStore('community', () => {
    * @returns {Promise} API 응답 Promise
    */
   const deleteComment = (commentId) => {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      mockCommunity.deleteComment(commentId)
+      comments.value = comments.value.filter((c) => c.id !== commentId)
+      return Promise.resolve()
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     return axios({
       method: 'delete',
       url: `${API_URL}/api/v1/comments/${commentId}/`,
@@ -283,6 +373,18 @@ export const useCommunityStore = defineStore('community', () => {
    * @returns {Promise} API 응답 Promise
    */
   const toggleCommentLike = function (commentId) {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      const result = mockCommunity.toggleCommentLike(commentId)
+      const target = comments.value.find((c) => c.id === commentId)
+      if (target) {
+        target.is_liked = result.liked
+        target.likes_count = result.likes_count
+      }
+      return Promise.resolve(result)
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     return axios({
       method: "post",
       url: `${API_URL}/api/v1/comments/${commentId}/like/`,

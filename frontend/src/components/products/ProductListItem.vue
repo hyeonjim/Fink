@@ -192,15 +192,15 @@ const uniqueTerms = computed(() => {
   font-weight: 500;
   border: 1px solid var(--n-border);
   border-radius: 6px;
-  background: var(--n-bg-subtle);
-  color: var(--n-text-body);
+  background: #efeff8;
+  color: #54599c;
 }
 
 /* 예금/적금 구분은 색 대신 굵기·배경 농도의 차이로만 준다 */
 .product-type-badge.saving {
   background: var(--n-accent-wash);
   border-color: var(--n-accent-wash);
-  color: var(--n-accent);
+  color: #8e75bd;
 }
 
 .product-bank {
@@ -233,43 +233,60 @@ const uniqueTerms = computed(() => {
   overflow: hidden;
 }
 
+/* 보더 중첩을 걷어내고 하나의 면 위에 두 값을 나란히 둔다.
+   구분은 가운데 세로선 하나로만 준다. */
 .product-rates {
   display: flex;
-  gap: 10px;
+  gap: 0;
   margin-bottom: 16px;
+  background: #f7f7f8;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
+/* 라벨은 위쪽 기준으로 맞추고, 값은 남는 공간에서 세로 중앙 정렬한다.
+   두 칸의 폰트 크기가 달라도(기본금리 1.125rem / 최고금리 1.625rem)
+   라벨 위치와 값 중심이 각각 일치한다. */
 .rate-item {
   flex: 1;
-  padding: 12px;
-  border: 1px solid var(--n-border);
-  border-radius: 8px;
-  background: var(--n-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 12px;
   text-align: center;
+  white-space: nowrap;
 }
 
-.rate-item.rate-max {
-  border-color: var(--n-accent);
-  background: var(--n-accent-wash);
+/* 두 값 사이 구분선 — 보더 박스가 아니라 선 하나 */
+.rate-item + .rate-item {
+  border-left: 1px solid var(--n-border);
 }
 
 .rate-label {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   font-size: 0.6875rem;
   font-weight: 500;
   color: var(--n-text-muted);
 }
 
 .rate-value {
-  font-size: 1.25rem;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 1.125rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: var(--n-text);
+  font-variant-numeric: tabular-nums;
+  color: var(--n-text-body);
 }
 
+/* 최고금리 — 시선이 먼저 가는 자리.
+   글자색·크기로만 강조한다. 보더나 배경을 겹치면 오히려 뭉개진다. */
 .rate-max .rate-value {
-  color: var(--n-accent);
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: #df4b4b;
 }
 
 .product-terms {
@@ -283,7 +300,7 @@ const uniqueTerms = computed(() => {
   font-size: 0.6875rem;
   font-weight: 500;
   color: var(--n-text-muted);
-  border: 1px solid var(--n-border);
+  background: var(--n-bg-subtle);
   border-radius: 5px;
 }
 
@@ -302,7 +319,7 @@ const uniqueTerms = computed(() => {
   gap: 7px;
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--n-accent);
+  color: #353536;
   text-decoration: none;
   transition: color 0.18s ease;
 }

@@ -17,6 +17,8 @@
 
 import { defineStore } from "pinia";
 import { ref, reactive } from "vue";
+import { USE_MOCK } from "@/mocks/config";
+import { searchBanks } from "@/mocks/kakaomap";
 
 export const useKakaoMapStore = defineStore("kakaomap", () => {
   // ========================================
@@ -91,6 +93,17 @@ export const useKakaoMapStore = defineStore("kakaomap", () => {
    * @param {boolean} options.showCurrentLocationMarker - 현재 위치 마커 표시 여부
    */
   const loadKakaoScript = (containerId = 'map', options = {}) => {
+    // === 목업 모드 분기 ===
+    // SDK 를 띄우지 않고, 화면은 MapPlaceholder 로 지도 자리를 대신한다.
+    // 자동 검색 옵션이 있으면 목업 검색 결과만 채운다.
+    if (USE_MOCK) {
+      if (options.autoSearch && options.bankName) {
+        searchBankNearby(options.bankName);
+      }
+      return;
+    }
+
+    // === 실제 SDK 로드 (카카오 API 키 설정 시) ===
     // 이미 카카오 스크립트가 로드되어 있으면 바로 초기화
     if (window.kakao && window.kakao.maps) {
       initializeMap(containerId, options);
@@ -447,6 +460,23 @@ export const useKakaoMapStore = defineStore("kakaomap", () => {
    * @description 선택된 시/도, 시/군/구, 은행명으로 검색합니다
    */
   const handleSearch = () => {
+    // === 목업 모드 분기 ===
+    // 지도는 없지만 시/도·은행 선택과 결과 리스트는 그대로 동작한다
+    if (USE_MOCK) {
+      if (!selectedCity.value || !selectedBank.value) {
+        alert('시/도와 은행명을 선택해주세요.');
+        return;
+      }
+      searchResults.value = searchBanks(
+        selectedCity.value,
+        selectedDistrict.value,
+        selectedBank.value
+      );
+      selectedPlace.value = null;
+      return;
+    }
+
+    // === 실제 SDK 검색 (카카오 API 키 설정 시) ===
     // 지도가 초기화되지 않았으면 경고
     if (!places.value) {
       alert('지도가 아직 로딩 중입니다. 잠시 후 다시 시도해주세요.');
@@ -614,6 +644,14 @@ export const useKakaoMapStore = defineStore("kakaomap", () => {
    * @param {number} lng - 중심 경도
    */
   const searchBankNearby = (bankName, lat, lng) => {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      searchResults.value = searchBanks(null, null, bankName);
+      selectedPlace.value = null;
+      return;
+    }
+
+    // === 실제 SDK 검색 (카카오 API 키 설정 시) ===
     if (!places.value) {
       console.error('Places 객체가 초기화되지 않았습니다.');
       return;
@@ -645,11 +683,23 @@ export const useKakaoMapStore = defineStore("kakaomap", () => {
    * @param {string} bankName - 검색할 은행명
    */
   const searchBankByRegion = (bankName) => {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      if (!selectedCity.value) {
+        alert('검색 지역을 선택해주세요.');
+        return;
+      }
+      searchResults.value = searchBanks(selectedCity.value, selectedDistrict.value, bankName);
+      selectedPlace.value = null;
+      return;
+    }
+
+    // === 실제 SDK 검색 (카카오 API 키 설정 시) ===
     if (!places.value) {
       alert('지도가 아직 로딩 중입니다.');
       return;
     }
-    
+
     if (!selectedCity.value) {
       alert('검색 지역을 선택해주세요.');
       return;
@@ -751,7 +801,12 @@ export const useKakaoMapStore = defineStore("kakaomap", () => {
    */
   const selectBank = (place) => {
     selectedPlace.value = place;
-    
+
+    // === 목업 모드 분기 ===
+    // 지도가 없으므로 선택 상태만 남긴다 (화면은 선택된 지점 카드를 보여준다)
+    if (USE_MOCK) return;
+
+    // === 실제 SDK 동작 (카카오 API 키 설정 시) ===
     const position = new window.kakao.maps.LatLng(place.y, place.x);
     map.value.setCenter(position);
     
@@ -777,6 +832,15 @@ export const useKakaoMapStore = defineStore("kakaomap", () => {
    * @description 컴포넌트 언마운트 시 모든 지도 관련 자원을 정리합니다
    */
   const cleanup = () => {
+    // === 목업 모드 분기 ===
+    // 정리할 지도 자원이 없다. 검색 상태만 비운다
+    if (USE_MOCK) {
+      searchResults.value = [];
+      selectedPlace.value = null;
+      return;
+    }
+
+    // === 실제 SDK 정리 (카카오 API 키 설정 시) ===
     clearMarkers();
     if (originMarker.value) {
       originMarker.value.setMap(null);

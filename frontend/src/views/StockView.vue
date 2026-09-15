@@ -922,30 +922,30 @@ const formatNewsDate = (dateStr) => {
 }
 
 .stock-item:hover {
-  background: #fafbfc;
+  background: #ebedf0;
 }
 
 .stock-item.active {
-  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%);
+  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%;
   border-left: 3px solid var(--n-accent);
 }
 
 .stock-rank {
   width: 24px;
   height: 24px;
-  background: var(--n-border);
+  background: #f3f1f7;
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--n-text-muted);
   flex-shrink: 0;
 }
 
 .stock-item.active .stock-rank {
-  background: var(--n-accent);
+  background: #bbaee7;
   color: white;
 }
 
@@ -956,7 +956,7 @@ const formatNewsDate = (dateStr) => {
 
 .stock-name {
   display: block;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--n-text);
   white-space: nowrap;
@@ -977,7 +977,7 @@ const formatNewsDate = (dateStr) => {
 
 .stock-price {
   display: block;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--n-text);
   margin-bottom: 1px;
@@ -1091,7 +1091,7 @@ const formatNewsDate = (dateStr) => {
 .empty-icon {
   width: 100px;
   height: 100px;
-  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%);
+  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%;
   border-radius: 28px;
   display: flex;
   align-items: center;
@@ -1241,7 +1241,6 @@ const formatNewsDate = (dateStr) => {
 
 /* Chart Section */
 .chart-section {
-  background: var(--n-bg-subtle);
   border-radius: 20px;
   padding: 24px;
   margin-top: 24px;
@@ -1271,8 +1270,8 @@ const formatNewsDate = (dateStr) => {
 }
 
 .chart-tab.active {
-  background: var(--n-accent);
-  color: white;
+  background: #e7e7e7;
+  color: black;
   box-shadow: none;
 }
 
@@ -1332,7 +1331,7 @@ const formatNewsDate = (dateStr) => {
 }
 
 .stat-value.up { color: var(--n-danger-text); }
-.stat-value.down { color: var(--n-accent); }
+.stat-value.down { color: #7052f5; }
 
 /* Info Section */
 .info-section {
@@ -1358,10 +1357,10 @@ const formatNewsDate = (dateStr) => {
   align-items: center;
   gap: 6px;
   padding: 10px 16px;
-  background: var(--n-accent);
+  background: #dfe8f1;
   border: none;
   border-radius: 10px;
-  color: white;
+  color: #5a5a5e;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;

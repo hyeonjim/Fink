@@ -435,8 +435,8 @@ const onToggleCommentLike = (commentId) => {
   font-size: 0.9375rem;
   font-weight: 600;
   background: var(--n-bg);
-  color: var(--n-text-muted);
-  border: 2px solid var(--n-border);
+  color: #b34d4d;
+  border: 2px solid #ecd3d3;
   border-radius: 24px;
   cursor: pointer;
   transition: all 0.2s;
@@ -448,12 +448,11 @@ const onToggleCommentLike = (commentId) => {
 }
 
 .like-btn:hover {
-  border-color: var(--n-accent);
-  color: var(--n-accent);
+  border-color: #b34d4d;
 }
 
 .like-btn.liked {
-  background: var(--n-accent);
+  background: #f39696;
   border-color: transparent;
   color: white;
 }

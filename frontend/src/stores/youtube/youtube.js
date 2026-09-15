@@ -11,6 +11,8 @@
  */
 
 import axios from 'axios'
+import { USE_MOCK, delay } from '@/mocks/config'
+import * as mockYoutube from '@/mocks/youtube'
 
 // YouTube Data API v3 Axios 인스턴스
 const api = axios.create({
@@ -27,6 +29,12 @@ const api = axios.create({
  * @returns {Promise<Array>} 검색 결과 동영상 배열 (최대 12개)
  */
 export async function searchVideos(q) {
+  // === 목업 모드 분기 ===
+  if (USE_MOCK) {
+    return delay(mockYoutube.searchVideos(q))
+  }
+
+  // === 실제 API 호출 (YouTube API 키 설정 시) ===
   const { data } = await api.get('/search', {
     params: {
       part: 'snippet',
@@ -45,6 +53,12 @@ export async function searchVideos(q) {
  * @returns {Promise<Object|null>} 동영상 상세 정보 (snippet, contentDetails, statistics)
  */
 export async function fetchVideoDetail(id) {
+  // === 목업 모드 분기 ===
+  if (USE_MOCK) {
+    return delay(mockYoutube.fetchVideoDetail(id))
+  }
+
+  // === 실제 API 호출 (YouTube API 키 설정 시) ===
   const { data } = await api.get('/videos', {
     params: {
       part: 'snippet,contentDetails,statistics',

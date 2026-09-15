@@ -14,12 +14,31 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 import App from './App.vue'
 import router from './router'
+import { USE_MOCK } from './mocks/config'
 
 // F!NK 디자인 시스템 - 전역 CSS
 import './assets/styles/global.css'
 
 // Pretendard 폰트 (한글 최적화 웹폰트)
 import "pretendard/dist/web/variable/pretendardvariable.css"
+
+// ========================================
+// 목업 모드 — 낡은 persist 데이터 정리
+// ========================================
+
+/**
+ * persist 스토어에 남아 있는 이전 데이터가 목업을 덮어쓰는 것을 막는다.
+ * 스키마 버전이 바뀌면 캐시성 스토어만 비우고, 사용자 데이터는 보존한다.
+ *   - 보존: account(로그인 상태), video/channel(유튜브 저장함), theme(테마)
+ */
+const MOCK_SCHEMA_VERSION = 'fink-mock-v1'
+
+if (USE_MOCK && localStorage.getItem('__fink_schema') !== MOCK_SCHEMA_VERSION) {
+  ;['products', 'stocks', 'metals', 'analysis', 'news'].forEach((key) => {
+    localStorage.removeItem(key)
+  })
+  localStorage.setItem('__fink_schema', MOCK_SCHEMA_VERSION)
+}
 
 // ========================================
 // 앱 초기화

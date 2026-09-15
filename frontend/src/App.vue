@@ -335,7 +335,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   padding: 8px 12px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--n-text-muted);
   border-radius: 8px;

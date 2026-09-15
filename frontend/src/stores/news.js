@@ -18,6 +18,8 @@ import { ref } from "vue"
 import { useRouter } from "vue-router"
 import axios from "axios"
 import { useAccountStore } from "@/stores/accounts"
+import { USE_MOCK, delay } from "@/mocks/config"
+import * as mockNews from "@/mocks/news"
 
 export const useNewsStore = defineStore('news', () => {
   // ========================================
@@ -53,6 +55,14 @@ export const useNewsStore = defineStore('news', () => {
       params.mode = 'bookmark'
     }
 
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      return delay(mockNews.getNewsList(mode.value)).then((data) => {
+        newsList.value = data
+      })
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     axios({
       method: 'get',
       url: `${API_URL}/api/news/`,
@@ -76,6 +86,14 @@ export const useNewsStore = defineStore('news', () => {
    * @param {number} newsId - 뉴스 ID
    */
   const getNewsDetail = function (newsId) {
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      return delay(mockNews.getNewsDetail(newsId)).then((data) => {
+        newsDetail.value = data
+      })
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     axios({
       method: 'get',
       url: `${API_URL}/api/news/${newsId}/`,
@@ -98,6 +116,20 @@ export const useNewsStore = defineStore('news', () => {
    * @param {string} query - 검색 키워드
    */
   const fetchNews = function (query) {
+    // === 목업 모드 분기 ===
+    // 백엔드는 네이버 API 로 새 뉴스를 받아오지만, 목업은 보유 뉴스를 키워드로 걸러 상단에 올린다
+    if (USE_MOCK) {
+      const matched = mockNews.searchNews(query)
+      alert(
+        matched > 0
+          ? `"${query}" 관련 뉴스 ${matched}건을 찾았습니다.`
+          : `"${query}" 관련 뉴스를 찾지 못했습니다.`
+      )
+      mode.value = 'all'
+      return getNewsList()
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     axios({
       method: 'post',
       url: `${API_URL}/api/news/fetch/`,
@@ -130,6 +162,30 @@ export const useNewsStore = defineStore('news', () => {
       return
     }
 
+    // === 목업 모드 분기 ===
+    if (USE_MOCK) {
+      const updated = mockNews.toggleBookmark(newsId)
+      if (!updated) return
+
+      // 상세 페이지 데이터 갱신
+      if (newsDetail.value && newsDetail.value.id === updated.id) {
+        newsDetail.value = updated
+      }
+
+      // 목록에서도 해당 뉴스 정보 갱신
+      const idx = newsList.value.findIndex(n => n.id === updated.id)
+      if (idx !== -1) {
+        newsList.value[idx] = updated
+      }
+
+      // 북마크 모드에서는 목록 다시 조회 (북마크 해제된 항목 제거)
+      if (mode.value === 'bookmark') {
+        getNewsList()
+      }
+      return
+    }
+
+    // === 실제 API 호출 (백엔드 연결 시) ===
     axios({
       method: 'post',
       url: `${API_URL}/api/news/${newsId}/bookmark/`,

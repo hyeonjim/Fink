@@ -229,7 +229,7 @@ const onToggleCommentLike = (commentId) => {
 .header-icon {
   width: 40px;
   height: 40px;
-  background: var(--n-accent);
+  color: var(--n-accent);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -239,7 +239,7 @@ const onToggleCommentLike = (commentId) => {
 .header-icon svg {
   width: 20px;
   height: 20px;
-  color: white;
+  color: #616064;
 }
 
 .comments-header h3 {
@@ -250,7 +250,7 @@ const onToggleCommentLike = (commentId) => {
 }
 
 .comments-header .count {
-  color: var(--n-accent);
+  color: #929294;
   margin-left: 4px;
 }
 
@@ -287,8 +287,8 @@ const onToggleCommentLike = (commentId) => {
 }
 
 .sort-btn.active {
-  color: white;
-  background: var(--n-accent);
+  color: rgb(97, 96, 99);
+  background: #e7e8e9;
   border-color: transparent;
 }
 
@@ -337,7 +337,7 @@ const onToggleCommentLike = (commentId) => {
   justify-content: center;
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--n-accent);
+  color: #fff;
   flex-shrink: 0;
 }
 

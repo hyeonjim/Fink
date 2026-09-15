@@ -37,10 +37,6 @@
     <div class="search-section">
       <div class="search-card">
         <h3 class="search-title">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
           비디오 검색
         </h3>
         <form class="search-form" @submit.prevent="onSearch">
@@ -179,8 +175,8 @@ onMounted(() => {
   padding: 9px 14px;
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--n-text-muted);
-  background: transparent;
+  color: var(--n-accent);
+  background: #fff;
   border: 1px solid var(--n-border);
   border-radius: 8px;
   text-decoration: none;
@@ -196,20 +192,20 @@ onMounted(() => {
 }
 
 .nav-tab:hover {
-  color: var(--n-text);
+  color: #824cb1;
   border-color: var(--n-border-strong);
+  background: #f4edfa;
 }
 
 .nav-tab.router-link-active {
   color: var(--n-accent);
-  background: var(--n-accent-wash);
-  border-color: var(--n-accent);
+  background: #fff;
 }
 
 /* Search Section */
 .search-section {
   max-width: 1400px;
-  margin: -24px auto 0;
+  margin: 32px auto 0;
   padding: 0 24px;
 }
 
