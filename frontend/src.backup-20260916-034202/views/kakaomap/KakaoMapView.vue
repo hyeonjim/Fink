@@ -1,0 +1,485 @@
+<template>
+  <div class="kakao-map-page">
+    <!-- Header Section -->
+    <header class="n-page-header">
+      <div class="n-page-header-content">
+        <div class="n-page-header-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="n-page-header-text">
+          <h1 class="n-page-title">은행 찾기</h1>
+          <p class="n-page-subtitle">가까운 은행 지점을 검색해보세요</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+      <!-- Search Sidebar -->
+      <aside class="search-sidebar">
+        <div class="search-card">
+          <!-- Origin Section -->
+          <div class="input-section">
+            <label class="input-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              출발지
+            </label>
+            <div class="origin-row">
+              <input 
+                type="text" 
+                v-model="kakaoMapStore.originSearchKeyword" 
+                placeholder="출발지 검색"
+                @keyup.enter="kakaoMapStore.searchOrigin"
+                class="input-field"
+              />
+              <button class="btn-origin-search" @click="kakaoMapStore.searchOrigin">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"/>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+              </button>
+            </div>
+            <button class="btn-current-location" @click="kakaoMapStore.setOriginToCurrentLocation">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+              </svg>
+              현재 위치로 설정
+            </button>
+            <div v-if="kakaoMapStore.originLocation" class="origin-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              {{ kakaoMapStore.originLocation.name }}
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <!-- Location Filters -->
+          <div class="input-section">
+            <label class="input-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              지역 선택
+            </label>
+            
+            <div class="select-wrapper">
+              <select v-model="kakaoMapStore.selectedCity" class="select-field">
+                <option value="">광역시/도 선택</option>
+                <option v-for="city in kakaoMapStore.cityOptions" :key="city" :value="city">{{ city }}</option>
+              </select>
+              <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+
+            <div class="select-wrapper">
+              <select v-model="kakaoMapStore.selectedDistrict" class="select-field">
+                <option value="">시/군/구 선택</option>
+                <option v-for="district in kakaoMapStore.districtOptions" :key="district" :value="district">{{ district }}</option>
+              </select>
+              <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <!-- Bank Selection -->
+          <div class="input-section">
+            <label class="input-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+              </svg>
+              은행 선택
+            </label>
+            
+            <div class="select-wrapper">
+              <select v-model="kakaoMapStore.selectedBank" class="select-field">
+                <option value="">은행을 선택하세요</option>
+                <option v-for="bank in kakaoMapStore.bankOptions" :key="bank" :value="bank">{{ bank }}</option>
+              </select>
+              <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Search Button -->
+          <button class="btn-search" @click="kakaoMapStore.handleSearch">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            은행 찾기
+          </button>
+        </div>
+
+        <!-- Info Card -->
+        <div class="info-card">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="16" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+          </div>
+          <div class="info-text">
+            <p>지도를 클릭하면 해당 위치의 상세 정보를 확인할 수 있습니다.</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Map Container — 데모 모드에서는 지도 대신 결과 목록을 보여준다 -->
+      <MapPlaceholder
+        v-if="USE_MOCK"
+        :results="kakaoMapStore.searchResults"
+        :selected="kakaoMapStore.selectedPlace"
+        @select="kakaoMapStore.selectBank"
+      />
+      <div v-else class="map-wrapper">
+        <div id="map"></div>
+        <div class="map-overlay">
+          <span class="overlay-badge">Kakao Map</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { onMounted, watch } from 'vue';
+import { useKakaoMapStore } from '@/stores/kakaomap';
+import { USE_MOCK } from '@/mocks/config';
+import MapPlaceholder from '@/components/kakaomap/MapPlaceholder.vue';
+
+const kakaoMapStore = useKakaoMapStore();
+
+// 시/도 선택 시 시/군/구 옵션 업데이트
+watch(() => kakaoMapStore.selectedCity, () => {
+  kakaoMapStore.updateDistrictOptions();
+});
+
+onMounted(() => {
+  // data.json 로드
+  fetch("/data.json")
+    .then((response) => response.json())
+    .then((data) => kakaoMapStore.loadData(data));
+
+  // 카카오 API 키 로드
+  kakaoMapStore.loadKakaoScript();
+});
+</script>
+
+<style scoped>
+.kakao-map-page {
+  min-height: 100vh;
+  background: var(--n-bg);
+}
+
+
+/* Main Container */
+.main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  gap: 24px;
+  min-height: calc(100vh - 140px);
+}
+
+/* Search Sidebar */
+.search-sidebar {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.search-card {
+  background: var(--n-bg);
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid var(--n-border);
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--n-text);
+}
+
+.input-label svg {
+  width: 16px;
+  height: 16px;
+  color: var(--n-accent);
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.875rem;
+  border: 1px solid var(--n-border);
+  border-radius: 12px;
+  background: var(--n-bg-subtle);
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--n-accent);
+  background: var(--n-bg);
+  box-shadow: 0 0 0 3px var(--n-accent-wash);
+}
+
+.origin-row {
+  display: flex;
+  gap: 8px;
+}
+
+.origin-row .input-field {
+  flex: 1;
+}
+
+.btn-origin-search {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--n-info-text);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-origin-search svg {
+  width: 18px;
+  height: 18px;
+  color: white;
+}
+
+.btn-origin-search:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.btn-current-location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
+  border: 1px solid var(--n-accent);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-current-location svg {
+  width: 14px;
+  height: 14px;
+}
+
+.btn-current-location:hover {
+  background: var(--n-accent-wash);
+  border-color: var(--n-accent);
+}
+
+.origin-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--n-ok-text);
+  background: var(--n-ok-bg);
+  border-radius: 10px;
+}
+
+.origin-badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+.section-divider {
+  height: 1px;
+  background: var(--n-border);
+  margin: 16px 0;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-field {
+  width: 100%;
+  padding: 12px 40px 12px 14px;
+  font-size: 0.875rem;
+  border: 1px solid var(--n-border);
+  border-radius: 12px;
+  background: var(--n-bg-subtle);
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.select-field:focus {
+  outline: none;
+  border-color: var(--n-accent);
+  background: var(--n-bg);
+  box-shadow: 0 0 0 3px var(--n-accent-wash);
+}
+
+.select-arrow {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--n-text-muted);
+  pointer-events: none;
+}
+
+.btn-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: white;
+  background: var(--n-accent);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.2s;
+}
+
+.btn-search svg {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-search:hover {
+  box-shadow: none;
+}
+
+/* Info Card */
+.info-card {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: var(--n-bg);
+  border-radius: 14px;
+  border: 1px solid var(--n-border);
+}
+
+.info-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--n-warn-bg);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-icon svg {
+  width: 18px;
+  height: 18px;
+  color: var(--n-warn-text);
+}
+
+.info-text p {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--n-text-body);
+  line-height: 1.5;
+}
+
+/* 데모 모드 플레이스홀더도 지도와 같은 자리를 차지하게 한다 */
+.map-placeholder {
+  flex: 1;
+}
+
+/* Map Wrapper */
+.map-wrapper {
+  flex: 1;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+}
+
+.map-overlay {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.overlay-badge {
+  padding: 8px 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .search-sidebar {
+    width: 100%;
+  }
+
+  .map-wrapper {
+    min-height: 400px;
+  }
+}
+
+</style>

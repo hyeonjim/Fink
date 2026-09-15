@@ -450,7 +450,7 @@ onMounted(() => {
 .chatbot-fab {
   width: 52px;
   height: 52px;
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   background: var(--n-accent);
   display: flex;
   align-items: center;
@@ -485,7 +485,7 @@ onMounted(() => {
   min-width: 19px;
   height: 19px;
   padding: 0 5px;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -498,7 +498,7 @@ onMounted(() => {
   height: 560px;
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   box-shadow: 0 24px 60px -24px rgba(28, 25, 23, 0.3);
   display: flex;
   flex-direction: column;
@@ -525,7 +525,7 @@ onMounted(() => {
   width: 34px;
   height: 34px;
   background: var(--n-accent);
-  border-radius: 9px;
+  border-radius: var(--n-radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -566,7 +566,7 @@ onMounted(() => {
 .header-btn {
   width: 30px;
   height: 30px;
-  border-radius: 7px;
+  border-radius: var(--n-radius-sm);
   border: none;
   background: transparent;
   cursor: pointer;
@@ -621,7 +621,7 @@ onMounted(() => {
 
 .message-bubble {
   padding: 10px 14px;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   font-size: 13.5px;
   line-height: 1.55;
   word-break: break-word;
@@ -668,7 +668,7 @@ onMounted(() => {
   background: var(--n-bg);
   border: 1px solid var(--n-border);
   padding: 11px 12px;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -705,7 +705,7 @@ onMounted(() => {
   background: var(--n-accent);
   color: #fff;
   border: 1px solid var(--n-accent);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   font-size: 12.5px;
   font-weight: 500;
   text-decoration: none;
@@ -746,7 +746,7 @@ onMounted(() => {
   padding: 12px;
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
 }
 
 .bank-icon {
@@ -791,7 +791,7 @@ onMounted(() => {
   background: var(--n-bg);
   border: 1px solid var(--n-border);
   border-left: 2px solid var(--n-accent);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   text-decoration: none;
   transition: background-color 0.18s ease, border-color 0.18s ease;
 }
@@ -829,7 +829,7 @@ onMounted(() => {
   padding: 8px;
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   text-decoration: none;
   transition: background-color 0.18s ease, border-color 0.18s ease;
 }
@@ -842,7 +842,7 @@ onMounted(() => {
 .youtube-thumb {
   width: 58px;
   height: 43px;
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   object-fit: cover;
 }
 
@@ -859,7 +859,7 @@ onMounted(() => {
   padding: 12px 14px;
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   border-bottom-left-radius: 4px;
 }
 
@@ -908,7 +908,7 @@ onMounted(() => {
   padding: 7px 12px;
   background: transparent;
   border: 1px solid var(--n-border);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   font-size: 11.5px;
   color: var(--n-text-muted);
   cursor: pointer;
@@ -935,7 +935,7 @@ onMounted(() => {
   flex: 1;
   padding: 10px 13px;
   border: 1px solid var(--n-border);
-  border-radius: 9px;
+  border-radius: var(--n-radius-sm);
   font-size: 13px;
   background: var(--n-bg);
   color: var(--n-text);
@@ -955,7 +955,7 @@ onMounted(() => {
   width: 40px;
   height: 40px;
   flex-shrink: 0;
-  border-radius: 9px;
+  border-radius: var(--n-radius-sm);
   border: 1px solid var(--n-accent);
   background: var(--n-accent);
   cursor: pointer;
@@ -1056,7 +1056,7 @@ onMounted(() => {
 .sentiment-analysis {
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   padding: 14px;
   margin-top: 12px;
 }
@@ -1077,7 +1077,7 @@ onMounted(() => {
 /* 매수/매도는 의미가 있는 색이라 구분은 유지하되 그라데이션은 걷어낸다 */
 .recommendation-badge {
   padding: 4px 10px;
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   font-size: 11.5px;
   font-weight: 600;
   border: 1px solid transparent;
@@ -1115,7 +1115,7 @@ onMounted(() => {
 .sentiment-summary {
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   padding: 11px;
 }
 

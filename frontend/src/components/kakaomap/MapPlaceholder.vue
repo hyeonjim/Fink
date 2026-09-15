@@ -94,7 +94,7 @@ const formatDistance = (distance) => {
   min-height: 500px;
   background: var(--n-bg-subtle);
   border: 1px solid var(--n-border);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   overflow: hidden;
 }
 
@@ -175,7 +175,7 @@ const formatDistance = (distance) => {
   gap: 5px;
   padding: 14px 16px;
   border: 1px solid transparent;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: background-color 0.18s ease, border-color 0.18s ease;
 }

@@ -397,7 +397,7 @@ const formatCurrency = (value) => {
   width: 48px;
   height: 48px;
   background: var(--n-accent);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -438,7 +438,7 @@ const formatCurrency = (value) => {
   padding: 80px 24px;
   background: var(--n-bg-subtle);
   border: 2px dashed var(--n-border);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   text-align: center;
 }
 
@@ -481,7 +481,7 @@ const formatCurrency = (value) => {
   background: var(--n-accent);
   color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
@@ -519,7 +519,7 @@ const formatCurrency = (value) => {
   padding: 16px;
   background: var(--n-bg);
   border: 2px solid var(--n-border);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -544,7 +544,7 @@ const formatCurrency = (value) => {
   padding: 4px 8px;
   font-size: 0.75rem;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
 }
 
 .product-type-badge.deposit {
@@ -562,7 +562,7 @@ const formatCurrency = (value) => {
   height: 24px;
   background: var(--n-danger-bg);
   border: none;
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -618,7 +618,7 @@ const formatCurrency = (value) => {
 /* Simulation Section */
 .simulation-section {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   border: 1px solid var(--n-border);
 }
@@ -654,7 +654,7 @@ const formatCurrency = (value) => {
   color: white;
   font-size: 1rem;
   font-weight: 700;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
 }
 
 /* Monthly Input */
@@ -681,7 +681,7 @@ const formatCurrency = (value) => {
   max-width: 200px;
   padding: 12px 16px;
   border: 2px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   font-size: 1rem;
   font-weight: 600;
   transition: all 0.2s;
@@ -704,7 +704,7 @@ const formatCurrency = (value) => {
   gap: 16px;
   padding: 20px;
   background: var(--n-accent-wash);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   margin-bottom: 24px;
 }
 
@@ -739,7 +739,7 @@ const formatCurrency = (value) => {
 /* Chart Container */
 .chart-container {
   border: 1px solid var(--n-border);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   padding: 20px;
 }
 
@@ -765,7 +765,7 @@ const formatCurrency = (value) => {
   gap: 12px;
   padding: 16px;
   background: var(--n-warn-bg);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
 }
 
 .deposit-notice svg {
@@ -793,7 +793,7 @@ const formatCurrency = (value) => {
   background: var(--n-danger-bg);
   color: var(--n-danger-text);
   border: none;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;

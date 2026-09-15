@@ -28,7 +28,7 @@
     </div>
 
     <!-- Empty State -->
-    <div v-if="!videoStore.savedVideos.length" class="empty-state">
+    <div v-if="!videoStore.savedVideos.length" class="empty-state empty-state--danger">
       <div class="empty-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <rect x="2" y="4" width="20" height="16" rx="2"/>
@@ -132,7 +132,7 @@ const videoStore = useVideoStore()
   width: 44px;
   height: 44px;
   background: var(--n-accent);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,7 +166,7 @@ const videoStore = useVideoStore()
   color: var(--n-danger-text);
   background: var(--n-bg);
   border: 1px solid var(--n-danger-bg);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -186,45 +186,11 @@ const videoStore = useVideoStore()
   cursor: not-allowed;
 }
 
-/* Empty State */
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60px 24px;
-  text-align: center;
-  background: var(--n-bg);
-  border-radius: 20px;
-  border: 1px solid var(--n-border);
-}
-
-.empty-icon {
-  width: 72px;
-  height: 72px;
-  background: var(--n-danger-bg);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.empty-icon svg {
-  width: 36px;
-  height: 36px;
-  color: var(--n-danger-text);
-}
-
-.empty-title {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  color: var(--n-text);
-  margin: 0 0 6px;
-}
-
+/* 빈 상태는 global.css 22번 섹션이 담당한다.
+   이 화면은 "저장 해제됨" 이라 빨강 색조를 쓰므로 마크업에
+   .empty-state--danger 를 덧붙였다.
+   CTA 링크와의 간격만 여기 남긴다. */
 .empty-text {
-  font-size: 0.875rem;
-  color: var(--n-text-muted);
   margin-bottom: 20px;
 }
 
@@ -237,7 +203,7 @@ const videoStore = useVideoStore()
   font-weight: 600;
   color: white;
   background: var(--n-accent);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   text-decoration: none;
   transition: all 0.2s;
 }
@@ -260,7 +226,7 @@ const videoStore = useVideoStore()
 
 .video-card {
   background: var(--n-bg);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   display: flex;
@@ -381,7 +347,7 @@ const videoStore = useVideoStore()
   padding: 10px 12px;
   font-size: 0.8125rem;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   text-decoration: none;
   transition: all 0.2s;

@@ -315,19 +315,19 @@ const resetFilter = () => {
   color: var(--n-text-muted);
   background: transparent;
   border: none;
-  border-radius: 7px;
+  border-radius: var(--n-radius-sm);
   cursor: pointer;
   transition: background-color 0.18s ease, color 0.18s ease;
 }
 
 .tab:hover:not(.active) {
   color: var(--n-text);
-  background: #fff;
+  background: var(--n-bg);
 }
 
 .tab.active {
-  background: #b69ddd;
-  color: #fff;
+  background: var(--n-accent);
+  color: var(--n-on-accent);
   border: 1px solid transparent;
   box-shadow: none;
   font-weight: 600;
@@ -380,7 +380,7 @@ const resetFilter = () => {
   color: var(--n-text);
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   outline: none;
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
@@ -416,7 +416,7 @@ const resetFilter = () => {
   padding: 0;
   background: var(--n-bg-sunken);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--n-radius-sm);
   cursor: pointer;
   transition: background-color 0.18s ease;
 }
@@ -439,7 +439,7 @@ const resetFilter = () => {
 .filter-group-reset :deep(.btn-secondary) {
   height: 40px;
   padding: 0 18px;
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   border: 1px solid var(--n-border-strong);
   background: transparent;
   color: var(--n-text);
@@ -484,7 +484,7 @@ const resetFilter = () => {
   font-weight: 500;
   color: var(--n-text-body);
   background: var(--n-bg);
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
 }
 
 .filter-tag-remove {
@@ -532,7 +532,7 @@ const resetFilter = () => {
   height: 56px;
   margin: 0 auto 20px;
   border: 1px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg-subtle);
 }
 
@@ -559,7 +559,7 @@ const resetFilter = () => {
 .empty-state :deep(.btn-primary) {
   height: 40px;
   padding: 0 18px;
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   background: var(--n-accent);
   background-image: none;
   border: 1px solid var(--n-accent);

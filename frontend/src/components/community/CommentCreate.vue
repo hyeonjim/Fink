@@ -45,7 +45,7 @@ const submit = () => {
   margin-top: 12px;
   padding: 16px;
   border: 1px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg);
   box-shadow: none;
 }
@@ -63,7 +63,7 @@ const submit = () => {
   flex-shrink: 0;
   width: 40px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   background: var(--n-accent);
 }
 
@@ -83,7 +83,7 @@ const submit = () => {
   font-size: 0.9375rem;
   color: var(--n-text);
   border: 1px solid var(--n-border);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   background: var(--n-bg);
   box-sizing: border-box;
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
@@ -111,7 +111,7 @@ const submit = () => {
   width: 42px;
   height: 42px;
   border: 1px solid var(--n-accent);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   background: var(--n-accent);
   cursor: pointer;
   transition: background-color 0.18s ease, border-color 0.18s ease;

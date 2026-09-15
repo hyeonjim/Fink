@@ -132,7 +132,7 @@ const onSubmit = () => {
 /* Create Card */
 .create-card {
   background: var(--n-bg);
-  border-radius: 24px;
+  border-radius: var(--n-radius-xl);
   border: 1px solid var(--n-border);
   overflow: hidden;
 }
@@ -188,7 +188,7 @@ const onSubmit = () => {
   font-size: 1rem;
   background: var(--n-bg-subtle);
   border: 2px solid var(--n-border);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   outline: none;
   transition: all 0.2s ease;
 }
@@ -216,50 +216,8 @@ const onSubmit = () => {
   flex-wrap: wrap;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 24px;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  border-radius: 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
-}
-
-.btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.btn-primary {
-  background: var(--n-accent);
-  color: white;
-  border: none;
-}
-
-.btn-primary:hover:not(:disabled) {
-  box-shadow: none;
-}
-
-.btn-primary:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.btn-secondary {
-  background: var(--n-bg);
-  color: var(--n-text-body);
-  border: 2px solid var(--n-border);
-}
-
-.btn-secondary:hover {
-  border-color: var(--n-accent);
-  color: var(--n-accent);
-}
+/* 버튼 스타일은 global.css 의 .btn 계열이 전부 담당한다.
+   (예전에는 이 블록이 전역 그라데이션을 취소하려고 존재했다.) */
 
 /* Responsive */
 @media (max-width: 768px) {

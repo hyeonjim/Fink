@@ -257,7 +257,7 @@ onUnmounted(() => {
 <style scoped>
 .product-bank-map {
   margin-top: 20px;
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   overflow: hidden;
   background: var(--n-bg);
   box-shadow: none;
@@ -283,7 +283,7 @@ onUnmounted(() => {
   width: 44px;
   height: 44px;
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -316,7 +316,7 @@ onUnmounted(() => {
   justify-content: center;
   background: rgba(255, 255, 255, 0.15);
   border: none;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -372,7 +372,7 @@ onUnmounted(() => {
   padding: 10px 12px;
   font-size: 0.8125rem;
   border: 1px solid var(--n-border);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg);
   transition: all 0.2s;
   box-sizing: border-box;
@@ -401,7 +401,7 @@ onUnmounted(() => {
   justify-content: center;
   background: var(--n-info-text);
   border: none;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -429,7 +429,7 @@ onUnmounted(() => {
   color: var(--n-accent);
   background: var(--n-accent-wash);
   border: 1px solid var(--n-accent);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -452,7 +452,7 @@ onUnmounted(() => {
   font-weight: 600;
   color: var(--n-ok-text);
   background: var(--n-ok-bg);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
 }
 
 .origin-badge svg {
@@ -475,7 +475,7 @@ onUnmounted(() => {
   padding: 10px 36px 10px 12px;
   font-size: 0.8125rem;
   border: 1px solid var(--n-border);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg);
   appearance: none;
   cursor: pointer;
@@ -512,7 +512,7 @@ onUnmounted(() => {
   color: white;
   background: var(--n-accent);
   border: none;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   margin-top: 16px;
   transition: all 0.2s;
@@ -551,7 +551,7 @@ onUnmounted(() => {
   color: var(--n-accent);
   background: var(--n-accent-wash);
   padding: 4px 10px;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
 }
 
 .results-list {
@@ -572,7 +572,7 @@ onUnmounted(() => {
   padding: 12px;
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -682,7 +682,7 @@ onUnmounted(() => {
   color: white;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(8px);
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
 }
 /* Responsive */
 @media (max-width: 768px) {

@@ -751,7 +751,7 @@ const submit = () => {
 /* Analysis Card */
 .analysis-card {
   background: var(--n-bg);
-  border-radius: 24px;
+  border-radius: var(--n-radius-xl);
   padding: 32px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   position: relative;
@@ -770,7 +770,7 @@ const submit = () => {
   width: 48px;
   height: 48px;
   background: var(--n-accent-wash);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -806,7 +806,7 @@ const submit = () => {
 .purpose-card {
   padding: 24px 16px;
   border: 2px solid var(--n-border);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   text-align: center;
   cursor: pointer;
   transition: all 0.2s;
@@ -825,7 +825,7 @@ const submit = () => {
 .purpose-icon {
   width: 64px;
   height: 64px;
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -863,7 +863,7 @@ const submit = () => {
 .option-card {
   padding: 16px 12px;
   border: 2px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   text-align: center;
   cursor: pointer;
   transition: all 0.2s;
@@ -929,7 +929,7 @@ const submit = () => {
   padding: 14px 60px 14px 16px;
   font-size: 1rem;
   border: 2px solid var(--n-border);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg);
   transition: all 0.2s;
 }
@@ -973,7 +973,7 @@ const submit = () => {
   padding: 14px 44px 14px 16px;
   font-size: 1rem;
   border: 2px solid var(--n-border);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg);
   cursor: pointer;
   appearance: none;
@@ -1008,7 +1008,7 @@ const submit = () => {
 .period-option {
   padding: 12px 20px;
   border: 2px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--n-text-body);
@@ -1040,7 +1040,7 @@ const submit = () => {
 /* Preview Card */
 .preview-card {
   background: var(--n-bg-subtle);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   padding: 20px;
   margin-top: 8px;
 }
@@ -1110,7 +1110,7 @@ const submit = () => {
   gap: 6px;
   padding: 16px 12px;
   border: 2px solid var(--n-border);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
   text-align: center;
@@ -1130,7 +1130,7 @@ const submit = () => {
   width: 40px;
   height: 30px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: var(--n-radius-sm);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -1152,7 +1152,7 @@ const submit = () => {
   gap: 12px;
   padding: 16px;
   background: var(--n-warn-bg);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   margin-top: 8px;
 }
 
@@ -1190,7 +1190,7 @@ const submit = () => {
   color: white;
   background: var(--n-accent);
   border: none;
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -1221,7 +1221,7 @@ const submit = () => {
   color: var(--n-text-muted);
   background: var(--n-bg);
   border: 2px solid var(--n-border);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -1245,10 +1245,6 @@ const submit = () => {
   animation: spin 0.8s linear infinite;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
 /* Info Cards */
 .info-cards {
   display: grid;
@@ -1259,7 +1255,7 @@ const submit = () => {
 
 .info-card {
   background: var(--n-bg);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   padding: 24px 20px;
   text-align: center;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
@@ -1269,7 +1265,7 @@ const submit = () => {
   width: 48px;
   height: 48px;
   background: var(--n-info-bg);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1320,7 +1316,7 @@ const submit = () => {
 
   .analysis-card {
     padding: 24px;
-    border-radius: 20px;
+    border-radius: var(--n-radius-xl);
   }
 
   .purpose-grid {

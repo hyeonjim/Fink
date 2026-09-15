@@ -100,7 +100,7 @@ const formatPercent = (percent) => {
 <style scoped>
 .stock-card {
   background: var(--n-bg);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   padding: 20px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   cursor: pointer;

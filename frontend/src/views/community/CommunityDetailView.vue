@@ -286,7 +286,7 @@ const onToggleCommentLike = (commentId) => {
 /* Article Card */
 .article-card {
   background: var(--n-bg);
-  border-radius: 24px;
+  border-radius: var(--n-radius-xl);
   border: 1px solid var(--n-border);
   overflow: hidden;
   margin-bottom: 24px;
@@ -332,7 +332,7 @@ const onToggleCommentLike = (commentId) => {
   width: 44px;
   height: 44px;
   background: var(--n-accent);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -370,7 +370,7 @@ const onToggleCommentLike = (commentId) => {
   padding: 8px 14px;
   font-size: 0.8125rem;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -437,7 +437,7 @@ const onToggleCommentLike = (commentId) => {
   background: var(--n-bg);
   color: #b34d4d;
   border: 2px solid #ecd3d3;
-  border-radius: 24px;
+  border-radius: var(--n-radius-xl);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -461,7 +461,7 @@ const onToggleCommentLike = (commentId) => {
   padding: 2px 8px;
   font-size: 0.8125rem;
   background: rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
 }
 
 .like-btn:not(.liked) .like-count {
@@ -492,7 +492,7 @@ const onToggleCommentLike = (commentId) => {
   font-size: 1rem;
   background: var(--n-bg-subtle);
   border: 2px solid var(--n-border);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   outline: none;
   transition: all 0.2s;
 }
@@ -515,48 +515,8 @@ const onToggleCommentLike = (commentId) => {
   flex-wrap: wrap;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.btn-primary {
-  background: var(--n-accent);
-  color: white;
-  border: none;
-}
-
-.btn-primary:hover:not(:disabled) {
-  box-shadow: none;
-}
-
-.btn-primary:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.btn-secondary {
-  background: var(--n-bg);
-  color: var(--n-text-body);
-  border: 2px solid var(--n-border);
-}
-
-.btn-secondary:hover {
-  border-color: var(--n-accent);
-  color: var(--n-accent);
-}
+/* 버튼 스타일은 global.css 의 .btn 계열이 전부 담당한다.
+   (예전에는 이 블록이 전역 그라데이션을 취소하려고 존재했다.) */
 
 /* Loading State */
 .loading-state {
@@ -572,10 +532,6 @@ const onToggleCommentLike = (commentId) => {
   border-top-color: var(--n-accent);
   border-radius: 50%;
   animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
 
 /* Responsive */

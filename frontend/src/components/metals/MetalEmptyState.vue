@@ -1,6 +1,6 @@
 <template>
-  <div class="empty-state">
-    <div class="empty-card">
+  <div class="empty-wrap">
+    <div class="empty-state empty-state--warn">
       <div class="empty-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <circle cx="12" cy="12" r="10"/>
@@ -20,50 +20,15 @@ defineProps({
 </script>
 
 <style scoped>
-.empty-state {
+/* 빈 상태 자체의 모양은 global.css 22번 섹션이 담당한다.
+   여기에는 이 컴포넌트를 가운데에 놓는 배치만 남긴다. */
+.empty-wrap {
   display: flex;
   justify-content: center;
   padding: 40px 0;
 }
 
-.empty-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60px 40px;
-  text-align: center;
-  background: var(--n-bg);
-  border-radius: 20px;
-  border: 1px solid var(--n-border);
+.empty-state {
   max-width: 400px;
-}
-
-.empty-icon {
-  width: 72px;
-  height: 72px;
-  background: var(--n-warn-bg);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.empty-icon svg {
-  width: 36px;
-  height: 36px;
-  color: var(--n-warn-text);
-}
-
-.empty-title {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  color: var(--n-text);
-  margin: 0 0 8px;
-}
-
-.empty-text {
-  font-size: 0.875rem;
-  color: var(--n-text-muted);
-  line-height: 1.5;
+  padding: 60px 40px;
 }</style>

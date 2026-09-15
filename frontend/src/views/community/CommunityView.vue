@@ -183,7 +183,7 @@ const formatDate = (iso) => {
   color: #fff;
   background: var(--n-accent);
   border: 1px solid var(--n-accent);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   text-decoration: none;
   transition: background-color 0.18s ease, border-color 0.18s ease;
   flex-shrink: 0;
@@ -212,7 +212,7 @@ const formatDate = (iso) => {
 
 .board-card {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   border: 1px solid var(--n-border);
   overflow: hidden;
 }
@@ -285,7 +285,7 @@ const formatDate = (iso) => {
   color: var(--n-accent);
   background: var(--n-accent-wash);
   padding: 3px 8px;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
 }
 
 .comment-count svg {
@@ -366,7 +366,7 @@ const formatDate = (iso) => {
   color: var(--n-text-body);
   background: var(--n-bg);
   border: 2px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }

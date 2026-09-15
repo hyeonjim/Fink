@@ -103,7 +103,7 @@ const applyDates = () => {
   align-items: flex-end;
   padding: 20px;
   border: 1px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg);
   box-shadow: none;
 }
@@ -147,7 +147,7 @@ const applyDates = () => {
   font-size: 0.875rem;
   color: var(--n-text);
   border: 1px solid var(--n-border);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   background: var(--n-bg);
   cursor: pointer;
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
@@ -174,50 +174,18 @@ const applyDates = () => {
   gap: 8px;
 }
 
+/* 버튼의 색·테두리·상태는 global.css 의 .btn/.btn-primary/.btn-secondary 가
+   담당한다. 여기에는 이 필터바 높이(40px)에 맞추는 치수만 남긴다. */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
   height: 40px;
   padding: 0 16px;
   font-size: 0.875rem;
-  font-weight: 500;
-  border-radius: 8px;
-  cursor: pointer;
-  transition:
-    background-color 0.18s ease,
-    border-color 0.18s ease,
-    color 0.18s ease;
+  gap: 7px;
 }
 
 .btn svg {
   width: 15px;
   height: 15px;
-}
-
-.btn-primary {
-  color: #fff;
-  background: var(--n-accent);
-  border: 1px solid var(--n-accent);
-}
-
-.btn-primary:hover {
-  background: var(--n-accent-hover);
-  border-color: var(--n-accent-hover);
-  transform: none;
-  box-shadow: none;
-}
-
-.btn-secondary {
-  color: var(--n-text);
-  background: transparent;
-  border: 1px solid var(--n-border-strong);
-}
-
-.btn-secondary:hover {
-  background: var(--n-bg-subtle);
-  border-color: var(--n-text-muted);
-  color: var(--n-text);
 }
 
 /* ── 금/은 토글 ──────────────────────────────────────────────────── */
@@ -237,7 +205,7 @@ const applyDates = () => {
   color: var(--n-text-body);
   background: transparent;
   border: 1px solid var(--n-border);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   cursor: pointer;
   transition:
     background-color 0.18s ease,
@@ -273,7 +241,7 @@ const applyDates = () => {
   place-items: center;
   width: 24px;
   height: 24px;
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   font-size: 0.6875rem;
   font-weight: 600;
 }

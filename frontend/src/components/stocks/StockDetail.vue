@@ -258,7 +258,7 @@ const formatMarketCap = (cap, currency) => {
 <style scoped>
 .stock-detail {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   border: 1px solid var(--n-border);
   overflow: hidden;
 }
@@ -295,7 +295,7 @@ const formatMarketCap = (cap, currency) => {
 .stock-sector {
   background: rgba(255, 255, 255, 0.2);
   padding: 4px 12px;
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   font-size: 13px;
   backdrop-filter: blur(10px);
 }
@@ -370,7 +370,7 @@ const formatMarketCap = (cap, currency) => {
   padding: 6px 14px;
   border: 1px solid var(--n-border);
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   font-size: 13px;
   font-weight: 500;
   color: var(--n-text-muted);
@@ -403,10 +403,6 @@ const formatMarketCap = (cap, currency) => {
   border-top-color: var(--n-accent);
   border-radius: 50%;
   animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
 
 .chart-container {
@@ -443,7 +439,7 @@ const formatMarketCap = (cap, currency) => {
 .stat-item {
   background: var(--n-bg-subtle);
   padding: 16px;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
 }
 
 .stat-label {
@@ -523,7 +519,7 @@ const formatMarketCap = (cap, currency) => {
   gap: 16px;
   padding: 16px;
   background: var(--n-bg-subtle);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   text-decoration: none;
   transition: all 0.2s ease;
 }

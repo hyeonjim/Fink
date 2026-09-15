@@ -204,7 +204,7 @@ const onToggleCommentLike = (commentId) => {
 <style scoped>
 .comments-section {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   border: 1px solid var(--n-border);
   margin-top: 16px;
@@ -230,7 +230,7 @@ const onToggleCommentLike = (commentId) => {
   width: 40px;
   height: 40px;
   color: var(--n-accent);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -270,7 +270,7 @@ const onToggleCommentLike = (commentId) => {
   color: var(--n-text-muted);
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -313,7 +313,7 @@ const onToggleCommentLike = (commentId) => {
   gap: 12px;
   padding: 16px;
   background: var(--n-bg-subtle);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   transition: background 0.2s;
 }
 
@@ -331,7 +331,7 @@ const onToggleCommentLike = (commentId) => {
   width: 40px;
   height: 40px;
   background: var(--n-accent);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -385,7 +385,7 @@ const onToggleCommentLike = (commentId) => {
   color: var(--n-text-muted);
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -422,7 +422,7 @@ const onToggleCommentLike = (commentId) => {
   justify-content: center;
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -464,7 +464,7 @@ const onToggleCommentLike = (commentId) => {
   padding: 12px 14px;
   font-size: 0.9375rem;
   border: 1px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg);
   transition: all 0.2s;
   box-sizing: border-box;
@@ -489,7 +489,7 @@ const onToggleCommentLike = (commentId) => {
   padding: 8px 14px;
   font-size: 0.8125rem;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }

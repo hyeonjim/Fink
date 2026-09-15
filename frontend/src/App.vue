@@ -338,7 +338,7 @@ onUnmounted(() => {
   font-size: 18px;
   font-weight: 600;
   color: var(--n-text-muted);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   text-decoration: none;
   transition: color 0.18s ease, background-color 0.18s ease;
 }
@@ -392,7 +392,7 @@ onUnmounted(() => {
   margin: 0 16px;
   overflow: hidden;
   background: var(--n-bg-sunken);
-  border-radius: 17px;
+  border-radius: var(--n-radius-lg);
   padding: 0 16px;
   border: 1px solid var(--n-border);
 }
@@ -473,7 +473,7 @@ onUnmounted(() => {
   justify-content: center;
   width: 38px;
   height: 38px;
-  border-radius: 9px;
+  border-radius: var(--n-radius-sm);
   background: transparent;
   border: 1px solid var(--n-border);
   color: var(--n-text-muted);
@@ -507,45 +507,12 @@ onUnmounted(() => {
   gap: 8px;
 }
 
-/* 전역 .btn-primary / .btn-ghost 는 그라데이션이라 네비바 안에서만 무채색으로 덮는다.
-   (다른 페이지의 버튼은 그대로 둔다) */
+/* 버튼의 색·상태는 global.css 가 담당한다. 여기에는 52px 네비바 안에
+   들어맞도록 높이를 줄이는 "배치"만 남긴다. */
 .navbar-actions :deep(.btn) {
   height: 36px;
   padding: 0 16px;
-  border-radius: 8px;
   font-size: 0.875rem;
-  font-weight: 500;
-  box-shadow: none;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-
-.navbar-actions :deep(.btn-ghost) {
-  color: var(--n-text-muted);
-  background: transparent;
-}
-
-.navbar-actions :deep(.btn-ghost:hover) {
-  color: var(--n-text);
-  background: var(--n-bg-subtle);
-  transform: none;
-}
-
-.navbar-actions :deep(.btn-primary) {
-  background: var(--n-accent);
-  background-image: none;
-  border: 1px solid var(--n-accent);
-  color: #fff;
-}
-
-.navbar-actions :deep(.btn-primary:hover) {
-  background: var(--n-accent-hover);
-  border-color: var(--n-accent-hover);
-  transform: none;
-  box-shadow: none;
-}
-
-.navbar-actions :deep(.btn-primary::before) {
-  display: none;
 }
 
 .user-menu {
@@ -554,7 +521,7 @@ onUnmounted(() => {
   gap: 9px;
   padding: 4px 12px 4px 4px;
   background: transparent;
-  border-radius: 9px;
+  border-radius: var(--n-radius-sm);
   text-decoration: none;
   transition: background-color 0.18s ease, border-color 0.18s ease;
   border: 1px solid var(--n-border);
@@ -583,7 +550,7 @@ onUnmounted(() => {
   width: 30px;
   height: 30px;
   flex-shrink: 0;
-  border-radius: 7px;
+  border-radius: var(--n-radius-sm);
   background: var(--n-accent);
   color: #fff;
   display: flex;
@@ -611,7 +578,7 @@ onUnmounted(() => {
   height: 38px;
   padding: 0 12px;
   border: 1px solid var(--n-border);
-  border-radius: 9px;
+  border-radius: var(--n-radius-sm);
   background: transparent;
   color: var(--n-text-muted);
   font-size: 0.8125rem;
@@ -649,7 +616,7 @@ onUnmounted(() => {
   height: 44px;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   color: var(--n-text-muted);
   background: transparent;
   border: none;
@@ -683,7 +650,7 @@ onUnmounted(() => {
   font-weight: 500;
   color: var(--n-text-body);
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   transition: background-color 0.2s ease, color 0.2s ease;
   background: transparent;
   border: none;
@@ -723,7 +690,7 @@ onUnmounted(() => {
   color: var(--n-text-body);
   background: transparent;
   border: 1px solid var(--n-border);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
 }

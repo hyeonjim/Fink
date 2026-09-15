@@ -97,7 +97,7 @@ const onDeleteAccount = async () => {
   margin-bottom: 30px;
   padding: 30px;
   background: var(--n-bg);
-  border-radius: 24px;
+  border-radius: var(--n-radius-xl);
   border: 1px solid var(--n-border);
 }
 
@@ -105,7 +105,7 @@ const onDeleteAccount = async () => {
   width: 60px;
   height: 60px;
   background: var(--n-accent);
-  border-radius: 24px;
+  border-radius: var(--n-radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,7 +143,7 @@ const onDeleteAccount = async () => {
 /* Sidebar Menu */
 .sidebar-menu {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 15px;
   border: 1px solid var(--n-border);
   height: fit-content;
@@ -176,7 +176,7 @@ const onDeleteAccount = async () => {
   font-weight: 500;
   color: var(--n-text-body);
   text-decoration: none;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   transition: all 0.2s ease;
   background: transparent;
   border: none;
@@ -219,7 +219,7 @@ const onDeleteAccount = async () => {
 /* Content Area */
 .content-area {
   background: var(--n-bg);
-  border-radius: 24px;
+  border-radius: var(--n-radius-xl);
   padding: 32px;
   border: 1px solid var(--n-border);
   min-height: 600px;

@@ -215,7 +215,7 @@ const signUp = function () {
   width: 100%;
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   overflow: hidden;
 }
 
@@ -280,7 +280,7 @@ const signUp = function () {
   flex-shrink: 0;
   width: 22px;
   height: 22px;
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   background: rgba(41, 41, 48, 0.08);
   font-size: 0.75rem;
   color: var(--n-accent);
@@ -323,83 +323,13 @@ const signUp = function () {
   gap: 20px;
 }
 
-.input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+/* 입력폼(.input-group/.input-label/.input-wrapper/.input-icon/.input)은
+   global.css 의 7번 섹션이 담당한다. 로그인·프로필수정과 똑같은 55줄이
+   이 파일에 복사돼 있던 것을 지웠다. */
 
-.input-label {
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--n-text-muted);
-}
-
-.input-wrapper {
-  position: relative;
-}
-
-.input-icon {
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  color: var(--n-text-muted);
-  pointer-events: none;
-}
-
-input.input-with-icon,
-.input.input-with-icon {
-  padding-left: 42px;
-}
-
-.input {
-  width: 100%;
-  padding: 12px 14px;
-  font-size: 0.9375rem;
-  color: var(--n-text);
-  background: var(--n-bg);
-  border: 1px solid var(--n-border);
-  border-radius: 8px;
-  transition: border-color 0.18s ease, box-shadow 0.18s ease;
-  outline: none;
-}
-
-.input:hover:not(:focus) {
-  border-color: var(--n-border-strong);
-}
-
-.input:focus {
-  border-color: var(--n-accent);
-  box-shadow: 0 0 0 3px var(--n-accent-wash);
-}
-
-.input::placeholder {
-  color: var(--n-text-muted);
-}
-
-/* 전역 .btn-primary 가 그라데이션이라 이 화면에서만 무채색으로 덮는다 */
+/* 버튼의 색·상태는 global.css 가 담당한다. 폼 안에서의 높이만 남긴다. */
 .auth-form :deep(.btn-primary) {
   height: 46px;
-  padding: 0 20px;
-  border-radius: 8px;
-  background: var(--n-accent);
-  background-image: none;
-  border: 1px solid var(--n-accent);
-  color: #fff;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  box-shadow: none;
-  transition: background-color 0.18s ease, border-color 0.18s ease;
-}
-
-.auth-form :deep(.btn-primary:hover) {
-  background: var(--n-accent-hover);
-  border-color: var(--n-accent-hover);
-  transform: none;
-  box-shadow: none;
 }
 
 .auth-divider {

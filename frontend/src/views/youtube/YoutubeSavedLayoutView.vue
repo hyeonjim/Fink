@@ -138,7 +138,7 @@ const onSearch = () => {
   padding: 12px 14px 12px 44px;
   font-size: 0.9375rem;
   border: none;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   background: rgba(255, 255, 255, 0.95);
   transition: all 0.2s;
 }
@@ -163,7 +163,7 @@ const onSearch = () => {
   color: var(--n-danger-text);
   background: var(--n-bg);
   border: none;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -200,7 +200,7 @@ const onSearch = () => {
   color: var(--n-text-muted);
   background: transparent;
   border: 1px solid var(--n-border);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   text-decoration: none;
   transition:
     background-color 0.18s ease,

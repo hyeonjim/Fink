@@ -95,18 +95,12 @@ onMounted(() => {
   animation: spin 0.7s linear infinite;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 /* ── 차트 ────────────────────────────────────────────────────────── */
 .chart-wrapper {
   margin-top: 20px;
   padding: 22px;
   border: 1px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg);
   box-shadow: none;
 }

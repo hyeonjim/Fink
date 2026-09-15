@@ -380,7 +380,7 @@ const getChangeClass = (change) => {
   width: 48px;
   height: 48px;
   background: var(--n-accent);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -418,7 +418,7 @@ const getChangeClass = (change) => {
   gap: 8px;
   background: var(--n-bg-sunken);
   padding: 6px;
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   width: fit-content;
 }
 
@@ -432,7 +432,7 @@ const getChangeClass = (change) => {
   color: var(--n-text-muted);
   background: transparent;
   border: none;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -466,7 +466,7 @@ const getChangeClass = (change) => {
   color: var(--n-text-muted);
   background: var(--n-bg);
   border: 2px solid var(--n-border);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -486,7 +486,7 @@ const getChangeClass = (change) => {
 .content-section {
   padding: 24px;
   background: var(--n-bg-subtle);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
 }
 
 /* Content Header */
@@ -513,7 +513,7 @@ const getChangeClass = (change) => {
   color: var(--n-danger-text);
   background: var(--n-bg);
   border: 1px solid var(--n-danger-bg);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -602,7 +602,7 @@ const getChangeClass = (change) => {
 
 .video-card {
   background: var(--n-bg);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
@@ -693,7 +693,7 @@ const getChangeClass = (change) => {
   padding: 8px 14px;
   font-size: 0.8125rem;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   cursor: pointer;
   transition: all 0.2s;
   text-decoration: none;
@@ -736,7 +736,7 @@ const getChangeClass = (change) => {
   gap: 16px;
   padding: 16px;
   background: var(--n-bg);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
@@ -800,7 +800,7 @@ const getChangeClass = (change) => {
 
 .stock-card {
   background: var(--n-bg);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   padding: 18px;
   cursor: pointer;
   transition: all 0.2s;
@@ -821,7 +821,7 @@ const getChangeClass = (change) => {
 
 .stock-badge {
   padding: 4px 10px;
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   font-size: 0.75rem;
   font-weight: 700;
 }
@@ -841,7 +841,7 @@ const getChangeClass = (change) => {
   height: 32px;
   border: none;
   background: transparent;
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -894,7 +894,7 @@ const getChangeClass = (change) => {
   font-size: 0.875rem;
   font-weight: 600;
   padding: 4px 10px;
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
 }
 
 .stock-card-change.up {
@@ -919,7 +919,7 @@ const getChangeClass = (change) => {
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   transition: all 0.2s;
 }
 
@@ -949,6 +949,4 @@ const getChangeClass = (change) => {
   animation: spin 0.8s linear infinite;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}</style>
+</style>

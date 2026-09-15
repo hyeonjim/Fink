@@ -116,7 +116,7 @@ const goBookmark = function () {
   gap: 0;
   padding: 3px;
   border: 1px solid var(--n-border);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   background: var(--n-bg);
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
@@ -155,7 +155,7 @@ const goBookmark = function () {
   color: #fff;
   background: var(--n-accent);
   border: 1px solid var(--n-accent);
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   cursor: pointer;
   transition: background-color 0.18s ease, border-color 0.18s ease;
 }
@@ -181,7 +181,7 @@ const goBookmark = function () {
   color: var(--n-text-muted);
   background: transparent;
   border: 1px solid var(--n-border);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   cursor: pointer;
   transition:
     background-color 0.18s ease,

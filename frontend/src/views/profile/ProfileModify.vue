@@ -44,7 +44,7 @@
             />
           </div>
         </div>
-        <button class="btn-primary" type="submit" :disabled="!newNickname">
+        <button class="btn btn-primary" type="submit" :disabled="!newNickname">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="20 6 9 17 4 12"/>
           </svg>
@@ -117,7 +117,7 @@
           </div>
         </div>
 
-        <button class="btn-primary" type="submit" :disabled="!canSubmitPw">
+        <button class="btn btn-primary" type="submit" :disabled="!canSubmitPw">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
             <path d="M7 11V7a5 5 0 0110 0v4"/>
@@ -204,7 +204,7 @@ const onChangePassword = () => {
   width: 48px;
   height: 48px;
   background: var(--n-accent);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -239,7 +239,7 @@ const onChangePassword = () => {
 /* Card */
 .card {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   border: 1px solid var(--n-border);
 }
@@ -256,7 +256,7 @@ const onChangePassword = () => {
 .card-icon {
   width: 44px;
   height: 44px;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -305,85 +305,12 @@ const onChangePassword = () => {
   max-width: 400px;
 }
 
-.input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.input-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--n-text-body);
-}
-
-.input-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.input-icon {
-  position: absolute;
-  left: 16px;
-  width: 18px;
-  height: 18px;
-  color: var(--n-text-muted);
-  pointer-events: none;
-}
-
-.input {
-  width: 100%;
-  padding: 14px 16px 14px 48px;
-  font-size: 0.9375rem;
-  border: 2px solid var(--n-border);
-  border-radius: 14px;
-  background: var(--n-bg);
-  transition: all 0.2s;
-}
-
-.input::placeholder {
-  color: var(--n-text-muted);
-}
-
-.input:focus {
-  outline: none;
-  border-color: var(--n-accent);
-  box-shadow: 0 0 0 4px var(--n-accent-wash);
-}
-
-/* Button */
+/* 입력폼과 버튼은 global.css 가 담당한다.
+   이 파일에 있던 사본은 로그인·회원가입 것에서 값이 흘러내린 세 번째
+   복사본이었다(반경 14px, 테두리 2px, 포커스링 4px). 전역 값으로 통일했다.
+   버튼이 폼 너비를 다 차지하지 않도록 하는 것만 배치 문제이므로 남긴다. */
 .btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 24px;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: white;
-  background: var(--n-accent);
-  border: none;
-  border-radius: 14px;
-  cursor: pointer;
-  transition: all 0.2s;
   width: fit-content;
-}
-
-.btn-primary svg {
-  width: 18px;
-  height: 18px;
-}
-
-.btn-primary:hover:not(:disabled) {
-  box-shadow: none;
-}
-
-.btn-primary:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
 }
 
 /* Hint Box */
@@ -394,7 +321,7 @@ const onChangePassword = () => {
   margin-top: 20px;
   padding: 14px 16px;
   background: var(--n-warn-bg);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   border: 1px solid var(--n-warn-bg);
 }
 

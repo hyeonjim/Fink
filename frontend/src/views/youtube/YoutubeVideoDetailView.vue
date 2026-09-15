@@ -199,10 +199,6 @@ watch(() => props.id, load)
   margin-bottom: 16px;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
 /* Empty State */
 .empty-state {
   display: flex;
@@ -246,7 +242,7 @@ watch(() => props.id, load)
   font-weight: 600;
   color: var(--n-accent);
   background: var(--n-accent-wash);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   text-decoration: none;
   transition: all 0.2s;
 }
@@ -277,7 +273,7 @@ watch(() => props.id, load)
   width: 100%;
   aspect-ratio: 16 / 9;
   background: #000;
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
@@ -350,7 +346,7 @@ watch(() => props.id, load)
   color: var(--n-text-body);
   background: var(--n-bg);
   border: 2px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -374,7 +370,7 @@ watch(() => props.id, load)
 /* Description Card */
 .description-card {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   border: 1px solid var(--n-border);
 }
@@ -410,7 +406,7 @@ watch(() => props.id, load)
   }
 
   .player-wrapper {
-    border-radius: 16px;
+    border-radius: var(--n-radius-lg);
   }
 
   .video-title {

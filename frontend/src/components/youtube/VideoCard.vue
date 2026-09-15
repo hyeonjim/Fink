@@ -68,7 +68,7 @@ const thumb = computed(() =>
 <style scoped>
 .video-card {
   background: var(--n-bg);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   display: flex;
@@ -184,7 +184,7 @@ const thumb = computed(() =>
   font-weight: 600;
   color: var(--n-accent);
   background: var(--n-accent-wash);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   text-decoration: none;
   text-align: center;
   justify-content: center;

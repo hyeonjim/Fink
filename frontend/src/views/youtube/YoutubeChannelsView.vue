@@ -103,7 +103,7 @@ const channelStore = useChannelStore()
   width: 44px;
   height: 44px;
   background: var(--n-accent);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,7 +137,7 @@ const channelStore = useChannelStore()
   color: var(--n-danger-text);
   background: var(--n-bg);
   border: 1px solid var(--n-danger-bg);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -157,45 +157,9 @@ const channelStore = useChannelStore()
   cursor: not-allowed;
 }
 
-/* Empty State */
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60px 24px;
-  text-align: center;
-  background: var(--n-bg);
-  border-radius: 20px;
-  border: 1px solid var(--n-border);
-}
-
-.empty-icon {
-  width: 72px;
-  height: 72px;
-  background: var(--n-accent-wash);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.empty-icon svg {
-  width: 36px;
-  height: 36px;
-  color: var(--n-accent);
-}
-
-.empty-title {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  color: var(--n-text);
-  margin: 0 0 6px;
-}
-
+/* 빈 상태는 global.css 22번 섹션이 담당한다(기본 accent 색조 그대로).
+   CTA 링크와의 간격만 여기 남긴다. */
 .empty-text {
-  font-size: 0.875rem;
-  color: var(--n-text-muted);
   margin-bottom: 20px;
 }
 
@@ -208,7 +172,7 @@ const channelStore = useChannelStore()
   font-weight: 600;
   color: white;
   background: var(--n-danger-text);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   text-decoration: none;
   transition: all 0.2s;
 }
@@ -238,7 +202,7 @@ const channelStore = useChannelStore()
   gap: 16px;
   padding: 16px 20px;
   background: var(--n-bg);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   transition: all 0.2s ease;
 }
@@ -293,7 +257,7 @@ const channelStore = useChannelStore()
   color: var(--n-danger-text);
   background: var(--n-bg);
   border: 1px solid var(--n-danger-bg);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }

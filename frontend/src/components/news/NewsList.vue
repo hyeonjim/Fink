@@ -67,7 +67,7 @@ const toggleBookmark = (id) => {
 <style scoped>
 .news-list-section {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   border: 1px solid var(--n-border);
   overflow: hidden;
   display: flex;
@@ -96,7 +96,7 @@ const toggleBookmark = (id) => {
   color: var(--n-accent);
   background: var(--n-accent-wash);
   padding: 4px 10px;
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
 }
 
 .news-list {
@@ -138,7 +138,7 @@ const toggleBookmark = (id) => {
   align-items: center;
   gap: 12px;
   padding: 16px;
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s ease;
 }

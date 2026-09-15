@@ -403,7 +403,7 @@ const scoreClass = computed(() => {
 <style scoped>
 .product-card {
   background: var(--n-bg);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   padding: 20px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   border: 2px solid transparent;
@@ -416,7 +416,7 @@ const scoreClass = computed(() => {
 
 .product-card.selected {
   border-color: var(--n-accent);
-  background: var(--n-accent-wash), white;
+  background: var(--n-accent-wash);
 }
 
 /* Header */
@@ -432,7 +432,7 @@ const scoreClass = computed(() => {
   height: 40px;
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -490,7 +490,7 @@ const scoreClass = computed(() => {
   flex-direction: column;
   align-items: center;
   padding: 6px 10px;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   flex-shrink: 0;
 }
 
@@ -535,7 +535,7 @@ const scoreClass = computed(() => {
   gap: 12px;
   padding: 14px 16px;
   background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   margin-bottom: 12px;
 }
 
@@ -589,7 +589,7 @@ const scoreClass = computed(() => {
   gap: 4px;
   padding: 5px 10px;
   background: var(--n-bg-sunken);
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--n-text-body);
@@ -622,7 +622,7 @@ const scoreClass = computed(() => {
   gap: 8px;
   padding: 12px;
   background: #f9f9fa;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   margin-bottom: 12px;
 }
 
@@ -641,7 +641,7 @@ const scoreClass = computed(() => {
   color: var(--n-ok-text);
   background: var(--n-bg);
   padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: var(--n-radius-sm);
 }
 
 .simulation-box.deposit .sim-title {
@@ -689,7 +689,7 @@ const scoreClass = computed(() => {
 .sim-interest {
   padding: 4px 8px;
   background: var(--n-bg);
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--n-ok-text);
@@ -728,14 +728,14 @@ const scoreClass = computed(() => {
   color: var(--n-text-muted);
   background: var(--n-bg-sunken);
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: var(--n-radius-sm);
 }
 
 /* Reason Box */
 .reason-box {
   padding: 12px;
   background: var(--n-warn-bg);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   margin-bottom: 12px;
 }
 
@@ -759,7 +759,7 @@ const scoreClass = computed(() => {
   justify-content: center;
   gap: 6px;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
@@ -843,7 +843,7 @@ const scoreClass = computed(() => {
 .detail-tag {
   padding: 4px 8px;
   background: var(--n-bg-sunken);
-  border-radius: 4px;
+  border-radius: var(--n-radius-sm);
   font-size: 0.75rem;
   color: var(--n-text-body);
 }

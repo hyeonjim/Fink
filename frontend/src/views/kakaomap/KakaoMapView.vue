@@ -209,7 +209,7 @@ onMounted(() => {
 
 .search-card {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   border: 1px solid var(--n-border);
 }
@@ -240,7 +240,7 @@ onMounted(() => {
   padding: 12px 14px;
   font-size: 0.875rem;
   border: 1px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg-subtle);
   transition: all 0.2s;
   box-sizing: border-box;
@@ -270,7 +270,7 @@ onMounted(() => {
   justify-content: center;
   background: var(--n-info-text);
   border: none;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -298,7 +298,7 @@ onMounted(() => {
   color: var(--n-accent);
   background: var(--n-accent-wash);
   border: 1px solid var(--n-accent);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -322,7 +322,7 @@ onMounted(() => {
   font-weight: 600;
   color: var(--n-ok-text);
   background: var(--n-ok-bg);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
 }
 
 .origin-badge svg {
@@ -345,7 +345,7 @@ onMounted(() => {
   padding: 12px 40px 12px 14px;
   font-size: 0.875rem;
   border: 1px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg-subtle);
   appearance: none;
   cursor: pointer;
@@ -383,7 +383,7 @@ onMounted(() => {
   color: white;
   background: var(--n-accent);
   border: none;
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   margin-top: 20px;
   transition: all 0.2s;
@@ -404,7 +404,7 @@ onMounted(() => {
   gap: 12px;
   padding: 16px;
   background: var(--n-bg);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   border: 1px solid var(--n-border);
 }
 
@@ -412,7 +412,7 @@ onMounted(() => {
   width: 36px;
   height: 36px;
   background: var(--n-warn-bg);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -441,7 +441,7 @@ onMounted(() => {
 .map-wrapper {
   flex: 1;
   position: relative;
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   overflow: hidden;
   box-shadow: none;
 }
@@ -464,7 +464,7 @@ onMounted(() => {
   font-weight: 600;
   color: white;
   background: rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
 }
 
 /* Responsive */

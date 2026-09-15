@@ -535,7 +535,7 @@ const formatDate = (dateString) => {
   align-items: center;
   padding: 48px 40px;
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   border: 1px solid var(--n-border);
 }
 
@@ -547,10 +547,6 @@ const formatDate = (dateString) => {
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   margin-bottom: 20px;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
 
 .loading-title {
@@ -578,7 +574,7 @@ const formatDate = (dateString) => {
   align-items: center;
   padding: 48px 40px;
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   border: 1px solid var(--n-border);
   text-align: center;
 }
@@ -620,7 +616,7 @@ const formatDate = (dateString) => {
   color: white;
   background: var(--n-accent);
   border: none;
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -652,7 +648,7 @@ const formatDate = (dateString) => {
   gap: 20px;
   padding: 24px;
   background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%;
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   margin-bottom: 24px;
   margin-top: -40px;
   position: relative;
@@ -662,7 +658,7 @@ const formatDate = (dateString) => {
   width: 48px;
   height: 48px;
   background: var(--n-bg);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -696,7 +692,7 @@ const formatDate = (dateString) => {
 /* Goal Card */
 .goal-card {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   margin-bottom: 24px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
@@ -714,7 +710,7 @@ const formatDate = (dateString) => {
   gap: 4px;
   padding: 16px;
   background: var(--n-bg-subtle);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
 }
 
 .goal-stat.success {
@@ -747,7 +743,7 @@ const formatDate = (dateString) => {
 /* Strategy Card */
 .strategy-card {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   margin-bottom: 24px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
@@ -763,7 +759,7 @@ const formatDate = (dateString) => {
 /* Combination Card */
 .combination-card {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   margin-bottom: 24px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
@@ -780,7 +776,7 @@ const formatDate = (dateString) => {
   color: var(--n-accent);
   background: var(--n-accent-wash);
   padding: 12px 16px;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   margin-bottom: 20px;
   border-left: 4px solid var(--n-accent);
 }
@@ -791,7 +787,7 @@ const formatDate = (dateString) => {
   color: var(--n-text-muted);
   background: var(--n-bg-sunken);
   padding: 4px 8px;
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   margin-left: auto;
 }
 
@@ -802,7 +798,7 @@ const formatDate = (dateString) => {
   gap: 12px;
   padding: 16px;
   background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%;
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   margin-bottom: 20px;
   flex-wrap: wrap;
   justify-content: center;
@@ -814,7 +810,7 @@ const formatDate = (dateString) => {
   gap: 12px;
   padding: 12px 16px;
   background: var(--n-bg);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   flex: 1;
   min-width: 200px;
@@ -831,7 +827,7 @@ const formatDate = (dateString) => {
 
 .rp-badge {
   padding: 4px 10px;
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   font-size: 0.75rem;
   font-weight: 700;
   flex-shrink: 0;
@@ -903,7 +899,7 @@ const formatDate = (dateString) => {
 .combination-item {
   padding: 20px;
   border: 2px solid var(--n-border);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   transition: all 0.2s;
 }
 
@@ -931,7 +927,7 @@ const formatDate = (dateString) => {
   color: white;
   font-size: 0.75rem;
   font-weight: 600;
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
 }
 
 .achievable-badge {
@@ -940,7 +936,7 @@ const formatDate = (dateString) => {
   color: var(--n-ok-text);
   font-size: 0.75rem;
   font-weight: 600;
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
 }
 
 .combination-desc {
@@ -963,7 +959,7 @@ const formatDate = (dateString) => {
   gap: 10px;
   padding: 10px 14px;
   background: var(--n-bg);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   border: 1px solid var(--n-border);
   flex: 1;
   min-width: 180px;
@@ -971,7 +967,7 @@ const formatDate = (dateString) => {
 
 .sp-badge {
   padding: 3px 8px;
-  border-radius: 4px;
+  border-radius: var(--n-radius-sm);
   font-size: 0.6875rem;
   font-weight: 700;
   flex-shrink: 0;
@@ -1058,7 +1054,7 @@ const formatDate = (dateString) => {
 /* Alternatives Card */
 .alternatives-card {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   margin-bottom: 24px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
@@ -1079,7 +1075,7 @@ const formatDate = (dateString) => {
 .alternative-item {
   padding: 20px;
   background: var(--n-bg-subtle);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -1109,7 +1105,7 @@ const formatDate = (dateString) => {
   font-size: 0.8125rem;
   font-weight: 600;
   padding: 4px 10px;
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   background: var(--n-bg);
 }
 
@@ -1150,7 +1146,7 @@ const formatDate = (dateString) => {
   font-weight: 600;
   padding: 2px 8px;
   background: var(--n-ok-bg);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
 }
 
 /* 예상 금액 정보 */
@@ -1160,7 +1156,7 @@ const formatDate = (dateString) => {
   gap: 4px;
   padding: 10px 12px;
   background: var(--n-bg);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   border: 1px solid var(--n-border);
 }
 
@@ -1189,7 +1185,7 @@ const formatDate = (dateString) => {
 .alt-product {
   padding: 12px;
   background: var(--n-bg);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   border: 1px solid var(--n-border);
   display: flex;
   flex-direction: column;
@@ -1206,7 +1202,7 @@ const formatDate = (dateString) => {
   font-size: 0.6875rem;
   font-weight: 600;
   padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: var(--n-radius-sm);
 }
 
 .alt-product-badge.saving {
@@ -1224,7 +1220,7 @@ const formatDate = (dateString) => {
   color: var(--n-text-muted);
   background: var(--n-bg-sunken);
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: var(--n-radius-sm);
 }
 
 .alt-product-info {
@@ -1299,7 +1295,7 @@ const formatDate = (dateString) => {
 /* Exchange Card */
 .exchange-card {
   background: #f2f2f8;
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   margin-bottom: 24px;
 }
@@ -1313,7 +1309,7 @@ const formatDate = (dateString) => {
 
 .exchange-box {
   background: rgba(255, 255, 255, 0.7);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   padding: 20px;
 }
 
@@ -1357,13 +1353,13 @@ const formatDate = (dateString) => {
 .exchange-stat.big {
   padding: 12px;
   background: var(--n-info-bg);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
 }
 
 .exchange-stat.highlight {
   padding: 12px 20px;
   background: var(--n-bg);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
 }
 
 .exchange-label {
@@ -1427,7 +1423,7 @@ const formatDate = (dateString) => {
 /* Destinations Card */
 .destinations-card {
   background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%;
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   margin-bottom: 24px;
 }
@@ -1450,7 +1446,7 @@ const formatDate = (dateString) => {
   gap: 6px;
   padding: 10px 16px;
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--n-accent);
@@ -1464,7 +1460,7 @@ const formatDate = (dateString) => {
 /* Collapsible Card (접을 수 있는 섹션) */
 .collapsible-card {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 0;
   margin-bottom: 24px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
@@ -1517,7 +1513,7 @@ const formatDate = (dateString) => {
   align-items: center;
   padding: 12px 16px;
   background: var(--n-bg-subtle);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   text-decoration: none;
   transition: all 0.2s;
 }
@@ -1565,7 +1561,7 @@ const formatDate = (dateString) => {
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
 }
 
 .video-info {
@@ -1592,7 +1588,7 @@ const formatDate = (dateString) => {
 /* Verdict Card */
 .verdict-card {
   background: var(--n-warn-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   margin-bottom: 24px;
 }
@@ -1621,7 +1617,7 @@ const formatDate = (dateString) => {
   color: var(--n-accent);
   background: var(--n-bg);
   border: 2px solid var(--n-border);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }

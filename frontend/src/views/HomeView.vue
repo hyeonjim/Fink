@@ -380,7 +380,7 @@ const getBankLogo = (bankName) =>
   justify-content: center;
   height: 44px;
   padding: 0 22px;
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   font-size: 0.9375rem;
   font-weight: 500;
   text-decoration: none;
@@ -463,7 +463,7 @@ const getBankLogo = (bankName) =>
 
 .mockup {
   border: 1px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg);
   box-shadow: 0 24px 60px -32px rgba(28, 25, 23, 0.28);
   overflow: hidden;
@@ -525,7 +525,7 @@ const getBankLogo = (bankName) =>
 .mk-chip {
   padding: 5px 10px;
   border: 1px solid var(--n-border);
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   font-size: 0.75rem;
   color: var(--n-text-muted);
 }
@@ -539,7 +539,7 @@ const getBankLogo = (bankName) =>
 .mk-field {
   padding: 9px 11px;
   border: 1px solid var(--n-border);
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   font-size: 0.8125rem;
   color: var(--n-text-body);
 }
@@ -577,7 +577,7 @@ const getBankLogo = (bankName) =>
 .mk-card {
   padding: 15px 16px;
   border: 1px solid var(--n-border);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg);
 }
 
@@ -593,7 +593,7 @@ const getBankLogo = (bankName) =>
   flex-shrink: 0;
   width: 30px;
   height: 30px;
-  border-radius: 7px;
+  border-radius: var(--n-radius-sm);
   background: var(--n-bg-sunken);
   font-size: 0.8125rem;
   font-weight: 600;
@@ -682,7 +682,7 @@ const getBankLogo = (bankName) =>
 .mk-tag {
   padding: 3px 8px;
   border: 1px solid var(--n-border);
-  border-radius: 5px;
+  border-radius: var(--n-radius-sm);
   font-size: 0.6875rem;
   color: var(--n-text-muted);
 }
@@ -745,7 +745,7 @@ const getBankLogo = (bankName) =>
   gap: 14px;
   padding: 28px;
   border: 1px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg);
 }
 
@@ -792,7 +792,7 @@ const getBankLogo = (bankName) =>
   display: block;
   padding: 28px;
   border: 1px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg);
   text-decoration: none;
   transition:
@@ -835,7 +835,7 @@ const getBankLogo = (bankName) =>
 
 .service-tag {
   padding: 2px 7px;
-  border-radius: 4px;
+  border-radius: var(--n-radius-sm);
   background: var(--n-accent-wash);
   font-size: 0.6875rem;
   font-weight: 500;
@@ -897,7 +897,9 @@ const getBankLogo = (bankName) =>
   padding: 12px 20px;
   object-fit: contain;
   border: 1px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
+  /* 은행 로고는 흰 배경을 전제로 만들어진 이미지라 다크모드에서도 흰색을
+     유지한다. 토큰(--n-bg)을 쓰면 로고가 어두운 배경에 묻힌다. */
   background: #fff;
   transition: transform 0.2s ease, border-color 0.2s ease;
 }

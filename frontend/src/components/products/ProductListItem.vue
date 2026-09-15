@@ -167,7 +167,7 @@ const uniqueTerms = computed(() => {
   flex-direction: column;
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   overflow: hidden;
   transition: border-color 0.18s ease;
 }
@@ -191,7 +191,7 @@ const uniqueTerms = computed(() => {
   font-size: 0.75rem;
   font-weight: 500;
   border: 1px solid var(--n-border);
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   background: #efeff8;
   color: #54599c;
 }
@@ -240,7 +240,7 @@ const uniqueTerms = computed(() => {
   gap: 0;
   margin-bottom: 16px;
   background: #f7f7f8;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   overflow: hidden;
 }
 
@@ -301,7 +301,7 @@ const uniqueTerms = computed(() => {
   font-weight: 500;
   color: var(--n-text-muted);
   background: var(--n-bg-subtle);
-  border-radius: 5px;
+  border-radius: var(--n-radius-sm);
 }
 
 .term-more {
@@ -355,7 +355,7 @@ const uniqueTerms = computed(() => {
    ═══════════════════════════════════════════════════════════════════ */
 [data-theme='dark'] .bank-logo-img {
   padding: 2px 4px;
-  border-radius: 5px;
+  border-radius: var(--n-radius-sm);
   background: #f5f5f4;
 }
 </style>

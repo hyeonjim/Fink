@@ -82,7 +82,7 @@ const toggle = function () {
 <style scoped>
 .news-detail-section {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   border: 1px solid var(--n-border);
   height: 100%;
   overflow-y: auto;
@@ -152,7 +152,7 @@ const toggle = function () {
   font-weight: 600;
   color: var(--n-text-muted);
   background: var(--n-bg-sunken);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
 }
 
 .bookmark-badge svg {
@@ -189,7 +189,7 @@ const toggle = function () {
 .detail-body {
   padding: 24px;
   background: var(--n-bg-subtle);
-  border-radius: 16px;
+  border-radius: var(--n-radius-lg);
   margin-bottom: 24px;
 }
 
@@ -207,43 +207,10 @@ const toggle = function () {
   flex-wrap: wrap;
 }
 
+/* 버튼 스타일은 global.css 의 .btn 계열이 담당한다.
+   <a> 태그에 .btn 을 붙이는 자리가 있어 밑줄만 지운다. */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.2s ease;
   text-decoration: none;
-}
-
-.btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.btn-primary {
-  background: var(--n-accent);
-  color: white;
-  border: none;
-}
-
-.btn-primary:hover {
-  box-shadow: none;
-}
-
-.btn-secondary {
-  background: var(--n-bg);
-  color: var(--n-text-body);
-  border: 2px solid var(--n-border);
-}
-
-.btn-secondary:hover {
-  border-color: var(--n-accent);
-  color: var(--n-accent);
 }
 
 @media (max-width: 768px) {

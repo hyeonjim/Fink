@@ -176,9 +176,9 @@ onMounted(() => {
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--n-accent);
-  background: #fff;
+  background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   text-decoration: none;
   transition:
     background-color 0.18s ease,
@@ -192,14 +192,14 @@ onMounted(() => {
 }
 
 .nav-tab:hover {
-  color: #824cb1;
+  color: var(--n-accent-hover);
   border-color: var(--n-border-strong);
-  background: #f4edfa;
+  background: var(--n-accent-wash);
 }
 
 .nav-tab.router-link-active {
   color: var(--n-accent);
-  background: #fff;
+  background: var(--n-bg);
 }
 
 /* Search Section */
@@ -211,7 +211,7 @@ onMounted(() => {
 
 .search-card {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   border: 1px solid var(--n-border);
 }
@@ -258,7 +258,7 @@ onMounted(() => {
   padding: 14px 16px 14px 48px;
   font-size: 0.9375rem;
   border: 2px solid var(--n-border);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   background: var(--n-bg-subtle);
   transition: all 0.2s;
 }
@@ -284,7 +284,7 @@ onMounted(() => {
   color: white;
   background: var(--n-accent);
   border: none;
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -316,11 +316,6 @@ onMounted(() => {
   animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 .error-message {
   display: flex;
   align-items: center;
@@ -328,7 +323,7 @@ onMounted(() => {
   margin: 16px 0 0;
   padding: 12px 16px;
   background: var(--n-danger-bg);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   color: var(--n-danger-text);
   font-size: 0.875rem;
 }

@@ -705,7 +705,7 @@ const formatNewsDate = (dateStr) => {
   color: var(--n-text-muted);
   background: var(--n-bg);
   border: 1px solid var(--n-border);
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -747,7 +747,7 @@ const formatNewsDate = (dateStr) => {
    ═══════════════════════════════════════════════════════════════ */
 .stock-sidebar {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   display: flex;
   flex-direction: column;
   height: calc(100vh - 200px);
@@ -770,7 +770,7 @@ const formatNewsDate = (dateStr) => {
   align-items: center;
   gap: 0;
   background: var(--n-bg-subtle);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   padding: 4px;
   border: 1px solid var(--n-border);
   transition: all 0.2s;
@@ -809,7 +809,7 @@ const formatNewsDate = (dateStr) => {
   left: 14px;
   right: 14px;
   background: var(--n-bg);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   z-index: 100;
   max-height: 280px;
@@ -867,7 +867,7 @@ const formatNewsDate = (dateStr) => {
   padding: 6px 10px;
   border: 1px solid var(--n-border);
   background: var(--n-bg);
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   font-size: 11px;
   font-weight: 500;
   color: var(--n-text-muted);
@@ -892,11 +892,6 @@ const formatNewsDate = (dateStr) => {
 
 .refresh-btn svg.spin {
   animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 /* Stock List */
@@ -934,7 +929,7 @@ const formatNewsDate = (dateStr) => {
   width: 24px;
   height: 24px;
   background: #f3f1f7;
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -998,7 +993,7 @@ const formatNewsDate = (dateStr) => {
 
 .market-badge {
   padding: 3px 8px;
-  border-radius: 6px;
+  border-radius: var(--n-radius-sm);
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
@@ -1037,7 +1032,7 @@ const formatNewsDate = (dateStr) => {
   height: 32px;
   border: 1px solid var(--n-border);
   background: var(--n-bg);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   font-size: 16px;
   color: var(--n-text-muted);
   cursor: pointer;
@@ -1084,15 +1079,17 @@ const formatNewsDate = (dateStr) => {
   text-align: center;
   padding: 40px;
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   border: 1px solid var(--n-border);
 }
 
 .empty-icon {
   width: 100px;
   height: 100px;
-  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%;
-  border-radius: 28px;
+  /* 그라데이션을 지우다 만 흔적으로 "var(--n-accent-wash) 0%, ... 100%" 라는
+     문법이 깨진 값이 들어 있어 배경이 아예 적용되지 않았다. */
+  background: var(--n-accent-wash);
+  border-radius: var(--n-radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1122,7 +1119,7 @@ const formatNewsDate = (dateStr) => {
 /* Stock Detail */
 .stock-detail {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 28px;
   border: 1px solid var(--n-border);
 }
@@ -1156,7 +1153,7 @@ const formatNewsDate = (dateStr) => {
   height: 30px;
   border: 1px solid var(--n-border);
   background: var(--n-bg);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1209,7 +1206,7 @@ const formatNewsDate = (dateStr) => {
 .detail-exchange {
   padding: 5px 12px;
   background: var(--n-bg-subtle);
-  border-radius: 8px;
+  border-radius: var(--n-radius-sm);
   font-size: 12px;
   color: var(--n-text-muted);
 }
@@ -1241,7 +1238,7 @@ const formatNewsDate = (dateStr) => {
 
 /* Chart Section */
 .chart-section {
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   margin-top: 24px;
 }
@@ -1256,7 +1253,7 @@ const formatNewsDate = (dateStr) => {
   padding: 10px 18px;
   border: none;
   background: transparent;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   font-size: 14px;
   font-weight: 600;
   color: var(--n-text-muted);
@@ -1292,7 +1289,7 @@ const formatNewsDate = (dateStr) => {
 /* Stats Section */
 .stats-section {
   background: var(--n-bg-subtle);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   margin-top: 20px;
 }
@@ -1312,7 +1309,7 @@ const formatNewsDate = (dateStr) => {
 
 .stat-card {
   background: var(--n-bg);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   padding: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
@@ -1336,7 +1333,7 @@ const formatNewsDate = (dateStr) => {
 /* Info Section */
 .info-section {
   background: var(--n-bg-subtle);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   margin-top: 20px;
 }
@@ -1359,7 +1356,7 @@ const formatNewsDate = (dateStr) => {
   padding: 10px 16px;
   background: #dfe8f1;
   border: none;
-  border-radius: 10px;
+  border-radius: var(--n-radius-md);
   color: #5a5a5e;
   font-size: 13px;
   font-weight: 600;
@@ -1391,7 +1388,7 @@ const formatNewsDate = (dateStr) => {
   margin: 0 0 18px;
   background: var(--n-bg);
   padding: 20px;
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
 }
 
 .company-meta {
@@ -1403,7 +1400,7 @@ const formatNewsDate = (dateStr) => {
 .meta-tag {
   padding: 8px 14px;
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   font-size: 13px;
   font-weight: 500;
   color: var(--n-accent);
@@ -1413,7 +1410,7 @@ const formatNewsDate = (dateStr) => {
 /* News Section */
 .news-section {
   background: var(--n-bg-subtle);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px;
   margin-top: 20px;
 }
@@ -1430,7 +1427,7 @@ const formatNewsDate = (dateStr) => {
   gap: 8px;
   padding: 16px;
   background: var(--n-bg);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
   text-decoration: none;
   transition: all 0.15s;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -1497,7 +1494,7 @@ const formatNewsDate = (dateStr) => {
   color: var(--n-text-muted);
   font-size: 15px;
   background: var(--n-bg);
-  border-radius: 14px;
+  border-radius: var(--n-radius-md);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1505,7 +1502,7 @@ const formatNewsDate = (dateStr) => {
    ═══════════════════════════════════════════════════════════════ */
 .market-sidebar {
   background: var(--n-bg);
-  border-radius: 20px;
+  border-radius: var(--n-radius-xl);
   padding: 24px 20px;
   height: calc(100vh - 200px);
   position: sticky;
@@ -1544,7 +1541,7 @@ const formatNewsDate = (dateStr) => {
   align-items: center;
   padding: 12px 14px;
   background: var(--n-bg-subtle);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   transition: all 0.15s;
 }
 
@@ -1597,7 +1594,7 @@ const formatNewsDate = (dateStr) => {
 
 .index-card {
   background: var(--n-bg-subtle);
-  border-radius: 12px;
+  border-radius: var(--n-radius-md);
   padding: 12px 14px;
   transition: all 0.15s;
 }
@@ -1671,10 +1668,6 @@ const formatNewsDate = (dateStr) => {
   width: 16px;
   height: 16px;
   border-width: 2px;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
 
 .loading-state {
@@ -1755,7 +1748,7 @@ const formatNewsDate = (dateStr) => {
   .stats-section,
   .info-section,
   .news-section {
-    border-radius: 14px;
+    border-radius: var(--n-radius-md);
     padding: 16px;
   }
 }</style>
