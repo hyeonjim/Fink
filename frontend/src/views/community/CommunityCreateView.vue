@@ -99,7 +99,7 @@ const onSubmit = () => {
 .create-page {
   min-height: calc(100vh - 72px);
   padding: 48px 24px;
-  background: linear-gradient(180deg, #FDFBFD 0%, #FFF5F8 50%, #FAFAFA 100%);
+  background: var(--n-bg);
 }
 
 .container {
@@ -114,14 +114,14 @@ const onSubmit = () => {
   gap: 8px;
   font-size: 0.9375rem;
   font-weight: 500;
-  color: #71717a;
+  color: var(--n-text-muted);
   text-decoration: none;
   margin-bottom: 24px;
   transition: color 0.2s;
 }
 
 .back-link:hover {
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .back-link svg {
@@ -131,15 +131,15 @@ const onSubmit = () => {
 
 /* Create Card */
 .create-card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
   overflow: hidden;
 }
 
 .card-header {
   padding: 32px 32px 24px;
-  border-bottom: 1px solid #f4f4f5;
+  border-bottom: 1px solid var(--n-bg-sunken);
 }
 
 .card-title {
@@ -148,19 +148,19 @@ const onSubmit = () => {
   gap: 12px;
   font-size: 1.5rem;
   font-weight: 800;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 8px;
 }
 
 .card-title svg {
   width: 28px;
   height: 28px;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .card-description {
   font-size: 0.9375rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   margin: 0;
 }
 
@@ -177,7 +177,7 @@ const onSubmit = () => {
   display: block;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #52525b;
+  color: var(--n-text-body);
   margin-bottom: 8px;
 }
 
@@ -186,8 +186,8 @@ const onSubmit = () => {
   width: 100%;
   padding: 14px 18px;
   font-size: 1rem;
-  background: #fafafa;
-  border: 2px solid #e4e4e7;
+  background: var(--n-bg-subtle);
+  border: 2px solid var(--n-border);
   border-radius: 14px;
   outline: none;
   transition: all 0.2s ease;
@@ -195,14 +195,14 @@ const onSubmit = () => {
 
 .form-input:focus,
 .form-textarea:focus {
-  border-color: #7469B6;
-  background: white;
-  box-shadow: 0 0 0 4px rgba(116, 105, 182, 0.1);
+  border-color: var(--n-accent);
+  background: var(--n-bg);
+  box-shadow: 0 0 0 4px var(--n-accent-wash);
 }
 
 .form-input::placeholder,
 .form-textarea::placeholder {
-  color: #a1a1aa;
+  color: var(--n-text-muted);
 }
 
 .form-textarea {
@@ -236,14 +236,13 @@ const onSubmit = () => {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   color: white;
   border: none;
 }
 
 .btn-primary:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(116, 105, 182, 0.3);
+  box-shadow: none;
 }
 
 .btn-primary:disabled {
@@ -252,14 +251,14 @@ const onSubmit = () => {
 }
 
 .btn-secondary {
-  background: white;
-  color: #52525b;
-  border: 2px solid #e4e4e7;
+  background: var(--n-bg);
+  color: var(--n-text-body);
+  border: 2px solid var(--n-border);
 }
 
 .btn-secondary:hover {
-  border-color: #7469B6;
-  color: #7469B6;
+  border-color: var(--n-accent);
+  color: var(--n-accent);
 }
 
 /* Responsive */
@@ -285,68 +284,4 @@ const onSubmit = () => {
   .btn {
     width: 100%;
   }
-}
-
-/* Dark Mode */
-[data-theme="dark"] .create-page {
-  background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 50%, #0a0a0a 100%);
-}
-
-[data-theme="dark"] .back-link {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .back-link:hover {
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .create-card {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .card-header {
-  border-bottom-color: #27272a;
-}
-
-[data-theme="dark"] .card-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .card-description {
-  color: #71717a;
-}
-
-[data-theme="dark"] .form-label {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .form-input,
-[data-theme="dark"] .form-textarea {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .form-input:focus,
-[data-theme="dark"] .form-textarea:focus {
-  background: #18181b;
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .form-input::placeholder,
-[data-theme="dark"] .form-textarea::placeholder {
-  color: #71717a;
-}
-
-[data-theme="dark"] .btn-secondary {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .btn-secondary:hover {
-  border-color: #7469B6;
-  color: #E1AFD1;
-}
-</style>
+}</style>

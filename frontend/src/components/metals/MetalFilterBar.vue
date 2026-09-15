@@ -88,6 +88,10 @@ const applyDates = () => {
 </script>
 
 <style scoped>
+/* ═══════════════════════════════════════════════════════════════════
+   현물 필터 바 — 무채색.
+   금/은은 실제로 다른 자산이라 구분은 남기되, 채도를 낮춰 절제한다.
+   ═══════════════════════════════════════════════════════════════════ */
 .filter-bar {
   margin-bottom: 0;
 }
@@ -95,27 +99,28 @@ const applyDates = () => {
 .filter-card {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 20px;
   align-items: flex-end;
-  background: white;
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+  border: 1px solid var(--n-border);
+  border-radius: 12px;
+  background: var(--n-bg);
+  box-shadow: none;
 }
 
 .filter-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .filter-label {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: #71717a;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
 }
 
-/* Date Inputs */
+/* ── 날짜 입력 ───────────────────────────────────────────────────── */
 .date-inputs {
   display: flex;
   align-items: center;
@@ -130,35 +135,40 @@ const applyDates = () => {
 
 .input-icon {
   position: absolute;
-  left: 12px;
-  width: 16px;
-  height: 16px;
-  color: #a1a1aa;
+  left: 11px;
+  width: 15px;
+  height: 15px;
+  color: var(--n-text-muted);
   pointer-events: none;
 }
 
 .date-input {
-  padding: 12px 12px 12px 40px;
+  padding: 10px 12px 10px 34px;
   font-size: 0.875rem;
-  border: 2px solid #e4e4e7;
-  border-radius: 12px;
-  background: white;
+  color: var(--n-text);
+  border: 1px solid var(--n-border);
+  border-radius: 8px;
+  background: var(--n-bg);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.date-input:hover:not(:focus) {
+  border-color: var(--n-border-strong);
 }
 
 .date-input:focus {
   outline: none;
-  border-color: #f59e0b;
-  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
+  border-color: var(--n-accent);
+  box-shadow: 0 0 0 3px var(--n-accent-wash);
 }
 
 .date-separator {
   font-size: 0.875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
-/* Action Buttons */
+/* ── 버튼 ────────────────────────────────────────────────────────── */
 .action-buttons {
   display: flex;
   gap: 8px;
@@ -167,43 +177,50 @@ const applyDates = () => {
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 18px;
+  gap: 7px;
+  height: 40px;
+  padding: 0 16px;
   font-size: 0.875rem;
-  font-weight: 600;
-  border-radius: 12px;
+  font-weight: 500;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
 }
 
 .btn svg {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
 }
 
 .btn-primary {
-  color: white;
-  background: linear-gradient(135deg, #c9b9d1 0%, #cda9d4 100%);
-  border: 2px solid #d7aee6;
+  color: #fff;
+  background: var(--n-accent);
+  border: 1px solid var(--n-accent);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.35);
+  background: var(--n-accent-hover);
+  border-color: var(--n-accent-hover);
+  transform: none;
+  box-shadow: none;
 }
 
 .btn-secondary {
-  color: #52525b;
-  background: white;
-  border: 2px solid #e4e4e7;
+  color: var(--n-text);
+  background: transparent;
+  border: 1px solid var(--n-border-strong);
 }
 
 .btn-secondary:hover {
-  border-color: #f59e0b;
-  color: #f59e0b;
+  background: var(--n-bg-subtle);
+  border-color: var(--n-text-muted);
+  color: var(--n-text);
 }
 
-/* Metal Toggle */
+/* ── 금/은 토글 ──────────────────────────────────────────────────── */
 .metal-toggle {
   display: flex;
   gap: 8px;
@@ -213,83 +230,73 @@ const applyDates = () => {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 20px;
+  height: 40px;
+  padding: 0 16px;
   font-size: 0.875rem;
-  font-weight: 600;
-  color: #52525b;
-  background: white;
-  border: 2px solid #c3c3ce;
-  border-radius: 12px;
+  font-weight: 500;
+  color: var(--n-text-body);
+  background: transparent;
+  border: 1px solid var(--n-border);
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
 }
 
 .metal-btn:hover {
-  border-color: #9e9c98;
+  border-color: var(--n-border-strong);
 }
 
-.metal-btn.active {
-  background: linear-gradient(135deg, #f1efed 0%, #bdbdc7 100%);
-  border-color: #c2c2cc;
-  color: rgb(70, 63, 63);
+.metal-btn.active,
+.metal-btn.metal-btn-gold.active {
+  background: var(--n-bg-sunken);
+  border-color: var(--n-text-muted);
+  color: var(--n-text);
+  font-weight: 600;
 }
 
+.metal-btn.metal-btn-gold {
+  border-color: var(--n-border);
+  background: transparent;
+  color: var(--n-text-body);
+}
+
+.metal-btn.metal-btn-gold:hover {
+  border-color: var(--n-border-strong);
+}
+
+/* 원소기호 칩 — 금/은의 실제 톤만 아주 옅게 남긴다 */
 .metal-icon {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 800;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  font-size: 0.6875rem;
+  font-weight: 600;
 }
 
 .metal-icon.gold {
-  background: #fef3c7;
-  color: #b45309;
-}
-/* ✅ 금 버튼 기본 색(비활성) */
-.metal-btn.metal-btn-gold {
-  border-color: rgba(245, 158, 11, 0.4);
-  background: rgba(245, 158, 11, 0.08);
-  color: #92400e;
-}
-
-/* ✅ 금 버튼 hover */
-.metal-btn.metal-btn-gold:hover {
-  border-color: #e6dac7;
-}
-
-/* ✅ 금 버튼 active(선택됨) */
-.metal-btn.metal-btn-gold.active {
-  background: linear-gradient(135deg, #ffda9a 0%, #e7a456 100%);
-  border-color: #f59e0b;
-  color: white;
-}
-
-.metal-btn.active .metal-icon.gold {
-  background: rgba(194, 184, 184, 0.25);
-  color: white;
+  background: #f3ead6;
+  color: #8a6d3b;
 }
 
 .metal-icon.silver {
-  background: #f4f4f5;
-  color: #7c7c88;
+  background: var(--n-bg-sunken);
+  color: var(--n-text-muted);
 }
 
-.metal-btn.active .metal-icon.silver {
-  background: rgba(255, 255, 255, 0.25);
-  color: white;
-}
-
-/* Responsive */
+/* ═══════════════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   .filter-card {
     flex-direction: column;
     align-items: stretch;
-    gap: 20px;
-    padding: 20px;
+    gap: 18px;
+    padding: 18px;
   }
 
   .date-inputs {
@@ -301,77 +308,23 @@ const applyDates = () => {
     text-align: center;
   }
 
-  .action-buttons {
-    width: 100%;
-  }
-
-  .btn {
-    flex: 1;
-    justify-content: center;
-  }
-
+  .action-buttons,
   .metal-toggle {
     width: 100%;
   }
 
+  .btn,
   .metal-btn {
     flex: 1;
     justify-content: center;
   }
 }
 
-/* Dark Mode */
-[data-theme="dark"] .filter-card {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .filter-label {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .date-input {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .date-input:focus {
-  border-color: #f59e0b;
-}
-
-[data-theme="dark"] .date-separator {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .btn-secondary {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .btn-secondary:hover {
-  border-color: #f59e0b;
-  color: #f59e0b;
-}
-
-[data-theme="dark"] .metal-btn {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .metal-btn:hover {
-  border-color: #d97706;
-}
-
-[data-theme="dark"] .metal-icon.gold {
-  background: #422006;
-  color: #fbbf24;
-}
-
-[data-theme="dark"] .metal-icon.silver {
-  background: #27272a;
-  color: #a1a1aa;
+/* ═══════════════════════════════════════════════════════════════════
+   Dark mode — 토큰이 대부분 처리한다. 금 칩만 어두운 톤으로 보정.
+   ═══════════════════════════════════════════════════════════════════ */
+[data-theme='dark'] .metal-icon.gold {
+  background: #3a3118;
+  color: #d8c08a;
 }
 </style>

@@ -1,16 +1,16 @@
 <template>
   <div class="result-page">
     <!-- Page Header -->
-    <header class="page-header">
-      <div class="header-content">
-        <div class="header-icon">
+    <header class="n-page-header">
+      <div class="n-page-header-content">
+        <div class="n-page-header-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
           </svg>
         </div>
-        <div class="header-text">
-          <h1 class="page-title">추천 결과</h1>
-          <p class="page-subtitle">AI가 분석한 맞춤 금융상품입니다</p>
+        <div class="n-page-header-text">
+          <h1 class="n-page-title">추천 결과</h1>
+          <p class="n-page-subtitle">AI가 분석한 맞춤 금융상품입니다</p>
         </div>
       </div>
     </header>
@@ -517,57 +517,7 @@ const formatDate = (dateString) => {
 <style scoped>
 .result-page {
   min-height: calc(100vh - 200px);
-  background: linear-gradient(180deg, #FDFBFD 0%, #FFF5F8 50%, #FAFAFA 100%);
-}
-
-/* Page Header */
-.page-header {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
-  padding: 40px 24px;
-}
-
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.header-icon {
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(10px);
-}
-
-.header-icon svg {
-  width: 32px;
-  height: 32px;
-  color: white;
-}
-
-.header-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.page-title {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: white;
-  margin: 0;
-}
-
-.page-subtitle {
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0;
+  background: var(--n-bg);
 }
 
 /* Main Content */
@@ -589,16 +539,16 @@ const formatDate = (dateString) => {
   flex-direction: column;
   align-items: center;
   padding: 48px 40px;
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
 }
 
 .loading-spinner {
   width: 48px;
   height: 48px;
-  border: 3px solid #e4e4e7;
-  border-top-color: #7469B6;
+  border: 3px solid var(--n-border);
+  border-top-color: var(--n-accent);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   margin-bottom: 20px;
@@ -611,13 +561,13 @@ const formatDate = (dateString) => {
 .loading-title {
   font-size: 1rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 6px;
 }
 
 .loading-text {
   font-size: 0.875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 /* Error State */
@@ -632,16 +582,16 @@ const formatDate = (dateString) => {
   flex-direction: column;
   align-items: center;
   padding: 48px 40px;
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
   text-align: center;
 }
 
 .error-icon {
   width: 64px;
   height: 64px;
-  background: #fef2f2;
+  background: var(--n-danger-bg);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -652,19 +602,19 @@ const formatDate = (dateString) => {
 .error-icon svg {
   width: 32px;
   height: 32px;
-  color: #dc2626;
+  color: var(--n-danger-text);
 }
 
 .error-title {
   font-size: 1rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 6px;
 }
 
 .error-text {
   font-size: 0.875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   margin-bottom: 20px;
 }
 
@@ -673,7 +623,7 @@ const formatDate = (dateString) => {
   font-size: 0.875rem;
   font-weight: 600;
   color: white;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -681,8 +631,7 @@ const formatDate = (dateString) => {
 }
 
 .retry-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(116, 105, 182, 0.35);
+  box-shadow: none;
 }
 
 /* Section Title */
@@ -692,14 +641,14 @@ const formatDate = (dateString) => {
   gap: 10px;
   font-size: 1.125rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 16px;
 }
 
 .section-title svg {
   width: 22px;
   height: 22px;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 /* Summary Card */
@@ -707,7 +656,7 @@ const formatDate = (dateString) => {
   display: flex;
   gap: 20px;
   padding: 24px;
-  background: linear-gradient(135deg, rgba(116, 105, 182, 0.1) 0%, rgba(225, 175, 209, 0.2) 100%);
+  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%);
   border-radius: 20px;
   margin-bottom: 24px;
   margin-top: -40px;
@@ -717,7 +666,7 @@ const formatDate = (dateString) => {
 .summary-icon {
   width: 48px;
   height: 48px;
-  background: white;
+  background: var(--n-bg);
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -728,7 +677,7 @@ const formatDate = (dateString) => {
 .summary-icon svg {
   width: 24px;
   height: 24px;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .summary-content {
@@ -738,7 +687,7 @@ const formatDate = (dateString) => {
 .summary-title {
   font-size: 1rem;
   font-weight: 700;
-  color: #7469B6;
+  color: var(--n-accent);
   margin: 0 0 8px;
 }
 
@@ -751,7 +700,7 @@ const formatDate = (dateString) => {
 
 /* Goal Card */
 .goal-card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
   padding: 24px;
   margin-bottom: 24px;
@@ -769,27 +718,27 @@ const formatDate = (dateString) => {
   flex-direction: column;
   gap: 4px;
   padding: 16px;
-  background: #f8f8f8;
+  background: var(--n-bg-subtle);
   border-radius: 12px;
 }
 
 .goal-stat.success {
-  background: #f0fdf4;
+  background: var(--n-ok-bg);
 }
 
 .goal-stat.warning {
-  background: #fffbeb;
+  background: var(--n-warn-bg);
 }
 
 .stat-label {
   font-size: 0.8125rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .stat-value {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
 }
 
 .goal-stat.success .stat-value {
@@ -797,12 +746,12 @@ const formatDate = (dateString) => {
 }
 
 .goal-stat.warning .stat-value {
-  color: #f59e0b;
+  color: var(--n-warn-text);
 }
 
 /* Strategy Card */
 .strategy-card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
   padding: 24px;
   margin-bottom: 24px;
@@ -811,14 +760,14 @@ const formatDate = (dateString) => {
 
 .strategy-text {
   font-size: 0.9375rem;
-  color: #3f3f46;
+  color: var(--n-text-body);
   line-height: 1.7;
   margin: 0;
 }
 
 /* Combination Card */
 .combination-card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
   padding: 24px;
   margin-bottom: 24px;
@@ -827,25 +776,25 @@ const formatDate = (dateString) => {
 
 /* 대안 전략 카드 스타일 */
 .combination-card.alternatives-as-strategies {
-  background: linear-gradient(135deg, #FDFBFD 0%, #FFF5F8 100%);
-  border: 2px solid rgba(116, 105, 182, 0.1);
+  background: var(--n-accent-wash);
+  border: 1px solid var(--n-accent);
 }
 
 .alternatives-notice {
   font-size: 0.875rem;
-  color: #7469B6;
-  background: rgba(116, 105, 182, 0.05);
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
   padding: 12px 16px;
   border-radius: 10px;
   margin-bottom: 20px;
-  border-left: 4px solid #7469B6;
+  border-left: 4px solid var(--n-accent);
 }
 
 /* 상품 기간 표시 */
 .sp-term {
   font-size: 0.75rem;
-  color: #71717a;
-  background: #f4f4f5;
+  color: var(--n-text-muted);
+  background: var(--n-bg-sunken);
   padding: 4px 8px;
   border-radius: 6px;
   margin-left: auto;
@@ -857,7 +806,7 @@ const formatDate = (dateString) => {
   align-items: center;
   gap: 12px;
   padding: 16px;
-  background: linear-gradient(135deg, rgba(116, 105, 182, 0.05) 0%, rgba(225, 175, 209, 0.1) 100%);
+  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%);
   border-radius: 16px;
   margin-bottom: 20px;
   flex-wrap: wrap;
@@ -869,7 +818,7 @@ const formatDate = (dateString) => {
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
-  background: white;
+  background: var(--n-bg);
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   flex: 1;
@@ -878,11 +827,11 @@ const formatDate = (dateString) => {
 }
 
 .recommended-product.deposit {
-  border-left: 4px solid #2563eb;
+  border-left: 4px solid var(--n-info-text);
 }
 
 .recommended-product.saving {
-  border-left: 4px solid #16a34a;
+  border-left: 4px solid var(--n-ok-text);
 }
 
 .rp-badge {
@@ -894,13 +843,13 @@ const formatDate = (dateString) => {
 }
 
 .recommended-product.deposit .rp-badge {
-  background: #dbeafe;
-  color: #2563eb;
+  background: var(--n-info-bg);
+  color: var(--n-info-text);
 }
 
 .recommended-product.saving .rp-badge {
-  background: #dcfce7;
-  color: #16a34a;
+  background: var(--n-ok-bg);
+  color: var(--n-ok-text);
 }
 
 .rp-info {
@@ -913,13 +862,13 @@ const formatDate = (dateString) => {
 
 .rp-bank {
   font-size: 0.6875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .rp-name {
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -935,18 +884,18 @@ const formatDate = (dateString) => {
 .rp-rate-value {
   font-size: 1.125rem;
   font-weight: 800;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .rp-rate-label {
   font-size: 0.625rem;
-  color: #a1a1aa;
+  color: var(--n-text-muted);
 }
 
 .rp-plus {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #7469B6;
+  color: var(--n-accent);
   flex-shrink: 0;
 }
 
@@ -958,14 +907,14 @@ const formatDate = (dateString) => {
 
 .combination-item {
   padding: 20px;
-  border: 2px solid #e4e4e7;
+  border: 2px solid var(--n-border);
   border-radius: 16px;
   transition: all 0.2s;
 }
 
 .combination-item.best {
-  border-color: #7469B6;
-  background: rgba(116, 105, 182, 0.05);
+  border-color: var(--n-accent);
+  background: var(--n-accent-wash);
 }
 
 .combination-header {
@@ -978,12 +927,12 @@ const formatDate = (dateString) => {
 .combination-name {
   font-size: 1rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
 }
 
 .best-badge {
   padding: 4px 10px;
-  background: #7469B6;
+  background: var(--n-accent);
   color: white;
   font-size: 0.75rem;
   font-weight: 600;
@@ -992,8 +941,8 @@ const formatDate = (dateString) => {
 
 .achievable-badge {
   padding: 4px 10px;
-  background: #dcfce7;
-  color: #16a34a;
+  background: var(--n-ok-bg);
+  color: var(--n-ok-text);
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: 20px;
@@ -1001,7 +950,7 @@ const formatDate = (dateString) => {
 
 .combination-desc {
   font-size: 0.875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   margin: 0 0 12px;
 }
 
@@ -1018,19 +967,19 @@ const formatDate = (dateString) => {
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
-  background: white;
+  background: var(--n-bg);
   border-radius: 10px;
-  border: 1px solid #e4e4e7;
+  border: 1px solid var(--n-border);
   flex: 1;
   min-width: 180px;
 }
 
 .strategy-product.deposit {
-  border-left: 3px solid #2563eb;
+  border-left: 3px solid var(--n-info-text);
 }
 
 .strategy-product.saving {
-  border-left: 3px solid #16a34a;
+  border-left: 3px solid var(--n-ok-text);
 }
 
 .sp-badge {
@@ -1042,13 +991,13 @@ const formatDate = (dateString) => {
 }
 
 .strategy-product.deposit .sp-badge {
-  background: #dbeafe;
-  color: #2563eb;
+  background: var(--n-info-bg);
+  color: var(--n-info-text);
 }
 
 .strategy-product.saving .sp-badge {
-  background: #dcfce7;
-  color: #16a34a;
+  background: var(--n-ok-bg);
+  color: var(--n-ok-text);
 }
 
 .sp-info {
@@ -1061,13 +1010,13 @@ const formatDate = (dateString) => {
 
 .sp-bank {
   font-size: 0.625rem;
-  color: #a1a1aa;
+  color: var(--n-text-muted);
 }
 
 .sp-name {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1076,7 +1025,7 @@ const formatDate = (dateString) => {
 .sp-rate {
   font-size: 1rem;
   font-weight: 800;
-  color: #7469B6;
+  color: var(--n-accent);
   flex-shrink: 0;
 }
 
@@ -1093,35 +1042,35 @@ const formatDate = (dateString) => {
 }
 
 .combo-stat.shortfall {
-  color: #dc2626;
+  color: var(--n-danger-text);
 }
 
 .combo-label {
   font-size: 0.75rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .combo-value {
   font-size: 1rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
 }
 
 .combo-value.highlight {
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .combo-value.achievable {
-  color: #16a34a;
+  color: var(--n-ok-text);
 }
 
 .combo-stat.shortfall .combo-value {
-  color: #dc2626;
+  color: var(--n-danger-text);
 }
 
 /* Alternatives Card */
 .alternatives-card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
   padding: 24px;
   margin-bottom: 24px;
@@ -1130,7 +1079,7 @@ const formatDate = (dateString) => {
 
 .alternatives-subtitle {
   font-size: 0.875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   margin: -8px 0 16px;
 }
 
@@ -1142,7 +1091,7 @@ const formatDate = (dateString) => {
 
 .alternative-item {
   padding: 20px;
-  background: #f8f8f8;
+  background: var(--n-bg-subtle);
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -1151,7 +1100,7 @@ const formatDate = (dateString) => {
 }
 
 .alternative-item.has-product {
-  background: linear-gradient(135deg, #fefefe 0%, #f4f0ff 100%);
+  background: var(--n-accent-wash);
   border: 1px solid #e9e4f5;
 }
 
@@ -1174,36 +1123,36 @@ const formatDate = (dateString) => {
   font-weight: 600;
   padding: 4px 10px;
   border-radius: 20px;
-  background: white;
+  background: var(--n-bg);
 }
 
 .alt-type.extend_period { 
-  color: #3b82f6; 
-  background: #eff6ff;
+  color: var(--n-info-text); 
+  background: var(--n-info-bg);
 }
 .alt-type.extend_period::before { content: '📅'; }
 
 .alt-type.increase_monthly { 
-  color: #f59e0b;
-  background: #fffbeb;
+  color: var(--n-warn-text);
+  background: var(--n-warn-bg);
 }
 .alt-type.increase_monthly::before { content: '💰'; }
 
 .alt-type.reduce_target { 
-  color: #10b981;
+  color: var(--n-ok-text);
   background: #ecfdf5;
 }
 .alt-type.reduce_target::before { content: '🎯'; }
 
 .alt-type.combined { 
-  color: #AD88C6;
-  background: rgba(116, 105, 182, 0.08);
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
 }
 .alt-type.combined::before { content: '🔄'; }
 
 .alt-desc {
   font-size: 0.9375rem;
-  color: #3f3f46;
+  color: var(--n-text-body);
   margin: 0;
   line-height: 1.5;
 }
@@ -1213,7 +1162,7 @@ const formatDate = (dateString) => {
   color: #22c55e;
   font-weight: 600;
   padding: 2px 8px;
-  background: #dcfce7;
+  background: var(--n-ok-bg);
   border-radius: 10px;
 }
 
@@ -1223,9 +1172,9 @@ const formatDate = (dateString) => {
   flex-direction: column;
   gap: 4px;
   padding: 10px 12px;
-  background: white;
+  background: var(--n-bg);
   border-radius: 8px;
-  border: 1px solid #e4e4e7;
+  border: 1px solid var(--n-border);
 }
 
 .alt-expected-row {
@@ -1236,13 +1185,13 @@ const formatDate = (dateString) => {
 
 .alt-expected-label {
   font-size: 0.75rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .alt-expected-value {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
 }
 
 .alt-expected-row.interest .alt-expected-value {
@@ -1252,9 +1201,9 @@ const formatDate = (dateString) => {
 /* 추천 상품 정보 */
 .alt-product {
   padding: 12px;
-  background: white;
+  background: var(--n-bg);
   border-radius: 10px;
-  border: 1px solid #e4e4e7;
+  border: 1px solid var(--n-border);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -1274,19 +1223,19 @@ const formatDate = (dateString) => {
 }
 
 .alt-product-badge.saving {
-  background: #dcfce7;
-  color: #16a34a;
+  background: var(--n-ok-bg);
+  color: var(--n-ok-text);
 }
 
 .alt-product-badge.deposit {
-  background: #dbeafe;
-  color: #2563eb;
+  background: var(--n-info-bg);
+  color: var(--n-info-text);
 }
 
 .alt-product-term {
   font-size: 0.75rem;
-  color: #71717a;
-  background: #f4f4f5;
+  color: var(--n-text-muted);
+  background: var(--n-bg-sunken);
   padding: 2px 6px;
   border-radius: 4px;
 }
@@ -1299,13 +1248,13 @@ const formatDate = (dateString) => {
 
 .alt-product-bank {
   font-size: 0.6875rem;
-  color: #a1a1aa;
+  color: var(--n-text-muted);
 }
 
 .alt-product-name {
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1316,18 +1265,18 @@ const formatDate = (dateString) => {
   align-items: center;
   justify-content: space-between;
   padding-top: 8px;
-  border-top: 1px dashed #e4e4e7;
+  border-top: 1px dashed var(--n-border);
 }
 
 .alt-product-rate .rate-label {
   font-size: 0.6875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .alt-product-rate .rate-value {
   font-size: 1rem;
   font-weight: 700;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 /* Products Section */
@@ -1345,13 +1294,13 @@ const formatDate = (dateString) => {
 .results-title {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0;
 }
 
 .results-count {
   font-size: 0.875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .product-grid {
@@ -1362,7 +1311,7 @@ const formatDate = (dateString) => {
 
 /* Exchange Card */
 .exchange-card {
-  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  background: var(--n-info-bg);
   border-radius: 20px;
   padding: 24px;
   margin-bottom: 24px;
@@ -1382,8 +1331,8 @@ const formatDate = (dateString) => {
 }
 
 .exchange-box.highlight {
-  background: white;
-  border: 2px solid #3b82f6;
+  background: var(--n-bg);
+  border: 2px solid var(--n-info-text);
 }
 
 .exchange-box-title {
@@ -1392,7 +1341,7 @@ const formatDate = (dateString) => {
   gap: 8px;
   font-size: 0.9375rem;
   font-weight: 700;
-  color: #1e40af;
+  color: var(--n-info-text);
   margin: 0 0 16px;
 }
 
@@ -1420,19 +1369,19 @@ const formatDate = (dateString) => {
 
 .exchange-stat.big {
   padding: 12px;
-  background: #eff6ff;
+  background: var(--n-info-bg);
   border-radius: 10px;
 }
 
 .exchange-stat.highlight {
   padding: 12px 20px;
-  background: white;
+  background: var(--n-bg);
   border-radius: 12px;
 }
 
 .exchange-label {
   font-size: 0.8125rem;
-  color: #1e40af;
+  color: var(--n-info-text);
 }
 
 .exchange-value {
@@ -1447,12 +1396,12 @@ const formatDate = (dateString) => {
 }
 
 .exchange-value.highlight-text {
-  color: #16a34a;
+  color: var(--n-ok-text);
 }
 
 .exchange-value.primary {
   font-size: 1.5rem;
-  color: #3b82f6;
+  color: var(--n-info-text);
 }
 
 .exchange-note {
@@ -1478,7 +1427,7 @@ const formatDate = (dateString) => {
 .exchange-error-message {
   font-size: 1rem;
   font-weight: 600;
-  color: #dc2626;
+  color: var(--n-danger-text);
   margin: 0 0 20px;
 }
 
@@ -1490,7 +1439,7 @@ const formatDate = (dateString) => {
 
 /* Destinations Card */
 .destinations-card {
-  background: linear-gradient(135deg, rgba(116, 105, 182, 0.15) 0%, rgba(225, 175, 209, 0.2) 100%);
+  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%);
   border-radius: 20px;
   padding: 24px;
   margin-bottom: 24px;
@@ -1498,7 +1447,7 @@ const formatDate = (dateString) => {
 
 .destinations-subtitle {
   font-size: 0.875rem;
-  color: #7469B6;
+  color: var(--n-accent);
   margin: -8px 0 16px;
 }
 
@@ -1513,12 +1462,12 @@ const formatDate = (dateString) => {
   align-items: center;
   gap: 6px;
   padding: 10px 16px;
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #7469B6;
-  box-shadow: 0 2px 8px rgba(116, 105, 182, 0.15);
+  color: var(--n-accent);
+  border: 1px solid var(--n-border);
 }
 
 .destination-icon {
@@ -1527,7 +1476,7 @@ const formatDate = (dateString) => {
 
 /* Collapsible Card (접을 수 있는 섹션) */
 .collapsible-card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
   padding: 0;
   margin-bottom: 24px;
@@ -1555,7 +1504,7 @@ const formatDate = (dateString) => {
 .collapsible-header .chevron {
   width: 20px;
   height: 20px;
-  color: #71717a;
+  color: var(--n-text-muted);
   transition: transform 0.2s;
 }
 
@@ -1580,19 +1529,19 @@ const formatDate = (dateString) => {
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  background: #f8f8f8;
+  background: var(--n-bg-subtle);
   border-radius: 10px;
   text-decoration: none;
   transition: all 0.2s;
 }
 
 .news-item:hover {
-  background: rgba(116, 105, 182, 0.1);
+  background: var(--n-accent-wash);
 }
 
 .news-title {
   font-size: 0.9375rem;
-  color: #18181b;
+  color: var(--n-text);
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1601,7 +1550,7 @@ const formatDate = (dateString) => {
 
 .news-date {
   font-size: 0.75rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   margin-left: 16px;
   flex-shrink: 0;
 }
@@ -1640,7 +1589,7 @@ const formatDate = (dateString) => {
 
 .video-title {
   font-size: 0.8125rem;
-  color: #18181b;
+  color: var(--n-text);
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -1650,12 +1599,12 @@ const formatDate = (dateString) => {
 
 .video-channel {
   font-size: 0.75rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 /* Verdict Card */
 .verdict-card {
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  background: var(--n-warn-bg);
   border-radius: 20px;
   padding: 24px;
   margin-bottom: 24px;
@@ -1663,7 +1612,7 @@ const formatDate = (dateString) => {
 
 .verdict-text {
   font-size: 0.9375rem;
-  color: #92400e;
+  color: var(--n-warn-text);
   line-height: 1.7;
   margin: 0;
 }
@@ -1682,9 +1631,9 @@ const formatDate = (dateString) => {
   padding: 14px 28px;
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #7469B6;
-  background: white;
-  border: 2px solid #e4e4e7;
+  color: var(--n-accent);
+  background: var(--n-bg);
+  border: 2px solid var(--n-border);
   border-radius: 14px;
   cursor: pointer;
   transition: all 0.2s;
@@ -1696,16 +1645,12 @@ const formatDate = (dateString) => {
 }
 
 .back-btn:hover {
-  border-color: #7469B6;
-  background: rgba(116, 105, 182, 0.05);
+  border-color: var(--n-accent);
+  background: var(--n-accent-wash);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .page-header {
-    padding: 32px 16px;
-  }
-
   .main-content {
     padding: 24px 16px 40px;
   }
@@ -1732,191 +1677,4 @@ const formatDate = (dateString) => {
     flex-direction: column;
     gap: 12px;
   }
-}
-
-/* Dark Mode */
-[data-theme="dark"] .result-page {
-  background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 50%, #0a0a0a 100%);
-}
-
-[data-theme="dark"] .loading-card,
-[data-theme="dark"] .error-card {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .loading-title,
-[data-theme="dark"] .error-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .loading-text,
-[data-theme="dark"] .error-text {
-  color: #71717a;
-}
-
-[data-theme="dark"] .loading-spinner {
-  border-color: #3f3f46;
-  border-top-color: #7469B6;
-}
-
-[data-theme="dark"] .error-icon {
-  background: rgba(220, 38, 38, 0.1);
-}
-
-[data-theme="dark"] .summary-card {
-  background: rgba(116, 105, 182, 0.1);
-}
-
-[data-theme="dark"] .summary-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .summary-text {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .goal-card,
-[data-theme="dark"] .strategy-card,
-[data-theme="dark"] .products-section,
-[data-theme="dark"] .collapsible-card {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .section-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .goal-stat {
-  background: #27272a;
-}
-
-[data-theme="dark"] .stat-label {
-  color: #71717a;
-}
-
-[data-theme="dark"] .stat-value {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .strategy-text {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .combination-card {
-  background: rgba(116, 105, 182, 0.1);
-}
-
-[data-theme="dark"] .combination-item {
-  background: #18181b;
-}
-
-[data-theme="dark"] .combination-name {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .combination-desc {
-  color: #71717a;
-}
-
-[data-theme="dark"] .strategy-product {
-  background: #27272a;
-}
-
-[data-theme="dark"] .sp-bank {
-  color: #71717a;
-}
-
-[data-theme="dark"] .sp-name {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .combo-stat {
-  background: #27272a;
-}
-
-[data-theme="dark"] .combo-label {
-  color: #71717a;
-}
-
-[data-theme="dark"] .combo-value {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .product-card {
-  background: #18181b;
-  border-color: #3f3f46;
-}
-
-[data-theme="dark"] .product-card:hover {
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .product-name {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .product-bank {
-  color: #71717a;
-}
-
-[data-theme="dark"] .exchange-card {
-  background: rgba(37, 99, 235, 0.1);
-}
-
-[data-theme="dark"] .exchange-box {
-  background: rgba(59, 130, 246, 0.15);
-}
-
-[data-theme="dark"] .destinations-card {
-  background: rgba(116, 105, 182, 0.1);
-}
-
-[data-theme="dark"] .destination-chip {
-  background: #18181b;
-}
-
-[data-theme="dark"] .news-item {
-  background: #27272a;
-}
-
-[data-theme="dark"] .news-item:hover {
-  background: rgba(116, 105, 182, 0.15);
-}
-
-[data-theme="dark"] .news-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .news-date {
-  color: #71717a;
-}
-
-[data-theme="dark"] .video-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .video-channel {
-  color: #71717a;
-}
-
-[data-theme="dark"] .verdict-card {
-  background: rgba(245, 158, 11, 0.15);
-}
-
-[data-theme="dark"] .verdict-text {
-  color: #fbbf24;
-}
-
-[data-theme="dark"] .back-btn {
-  background: #18181b;
-  border-color: #3f3f46;
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .back-btn:hover {
-  border-color: #7469B6;
-  background: rgba(116, 105, 182, 0.1);
-}
-</style>
+}</style>

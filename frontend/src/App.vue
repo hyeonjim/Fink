@@ -5,7 +5,20 @@
       <div class="navbar-container">
         <!-- Logo -->
         <RouterLink :to="{ name: 'home' }" class="navbar-brand">
-          F!NK
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect width="24" height="24" rx="7" fill="currentColor" />
+              <path
+                d="M8.5 17V7.8c0-.5.4-.9.9-.9h5.3"
+                stroke="#fff"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <path d="M8.5 12.2h4.6" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+              <circle cx="16.1" cy="16.4" r="1.35" fill="#fff" />
+            </svg>
+          </span>
+          <span class="brand-text">F!NK</span>
         </RouterLink>
         <!-- Main Navigation -->
         <nav class="navbar-menu">
@@ -65,31 +78,19 @@
         </nav>
 
                 <!-- Exchange Rate Ticker -->
-        <div v-if="accountStore.isLogin && exchangeStore.rates.length > 0" class="exchange-ticker">
+        <div v-if="exchangeStore.rates.length > 0" class="exchange-ticker">
+          <span class="ticker-badge">환율</span>
           <div class="ticker-wrapper">
-            <div 
-              v-for="(rate, index) in exchangeStore.rates" 
+            <div
+              v-for="(rate, index) in exchangeStore.rates"
               :key="rate.cur_unit"
               class="ticker-item"
-              :class="{ active: index === currentRateIndex }"
+              :class="{ active: index === currentRateIndex, prev: index === prevRateIndex }"
             >
               <span class="ticker-name">{{ rate.cur_unit }}</span>
               <span class="ticker-rate">{{ formatRate(rate.deal_bas_r) }}</span>
             </div>
           </div>
-        </div>
-
-        <!-- Theme Toggle Button -->
-        <div class="navbar-settings">
-          <button class="settings-btn" @click="themeStore.toggleTheme" :title="themeStore.isDark ? '라이트 모드' : '다크 모드'">
-            <svg v-if="themeStore.isDark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="5"/>
-              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-            </svg>
-            <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
-            </svg>
-          </button>
         </div>
 
         <!-- User Actions -->
@@ -104,15 +105,34 @@
           </template>
           <template v-else>
             <RouterLink :to="{ name: 'ProfileView' }" class="user-menu">
-              <div class="user-avatar">
+              <span class="user-avatar">
                 {{ accountStore.nickname?.charAt(0) || 'U' }}
-              </div>
-              <span class="user-name">{{ accountStore.nickname }}</span>
+              </span>
+              <span class="user-meta">
+                <span class="user-name">{{ accountStore.nickname }}</span>
+              </span>
             </RouterLink>
-            <button @click="accountStore.logOut" class="btn btn-ghost btn-sm">
-              로그아웃
+            <button @click="accountStore.logOut" class="logout-btn" title="로그아웃">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                <path d="M16 17l5-5-5-5M21 12H9"/>
+              </svg>
+              <span class="logout-text">로그아웃</span>
             </button>
           </template>
+        </div>
+
+        <!-- Theme Toggle Button (우측 끝) -->
+        <div class="navbar-settings">
+          <button class="settings-btn" @click="themeStore.toggleTheme" :title="themeStore.isDark ? '라이트 모드' : '다크 모드'">
+            <svg v-if="themeStore.isDark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"/>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+            <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+          </button>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -207,6 +227,7 @@ const themeStore = useThemeStore()
 
 const mobileMenuOpen = ref(false)
 const currentRateIndex = ref(0)
+const prevRateIndex = ref(-1)
 
 let tickerInterval = null
 
@@ -217,16 +238,17 @@ const formatRate = (rate) => {
   return numRate.toLocaleString('ko-KR', { maximumFractionDigits: 2 })
 }
 
-// 3초마다 환율 자동 전환
+// 3초마다 환율 자동 전환 (아래에서 위로 올라오며 교체)
 const startTicker = () => {
   if (exchangeStore.rates.length === 0) return
   tickerInterval = setInterval(() => {
+    prevRateIndex.value = currentRateIndex.value
     currentRateIndex.value = (currentRateIndex.value + 1) % exchangeStore.rates.length
   }, 3000)
 }
 
 onMounted(() => {
-  if (accountStore.isLogin && exchangeStore.rates.length > 0) {
+  if (exchangeStore.rates.length > 0) {
     startTicker()
   }
 })
@@ -241,7 +263,7 @@ onUnmounted(() => {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #FDFBFD;
+  background: var(--n-bg);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -251,11 +273,8 @@ onUnmounted(() => {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(116, 105, 182, 0.08);
-  transition: all 0.3s ease;
+  background: var(--n-bg);
+  border-bottom: 1px solid var(--n-border);
 }
 
 .navbar-container {
@@ -269,20 +288,40 @@ onUnmounted(() => {
 }
 
 .navbar-brand {
-  font-size: 2.6rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, #FFE6E6 0%, #E1AFD1 35%, #AD88C6 70%, #7469B6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -0.04em;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+  /* position:relative + left 로 이동시켜야 레이아웃 폭(공간 자체)은 그대로 유지되고
+     시각적 위치만 왼쪽으로 옮겨진다. margin-left를 쓰면 space-between 컨테이너라
+     뒤따르는 메뉴/티커/버튼까지 같이 딸려와 전체가 밀린 것처럼 보인다. */
+  position: relative;
+  left: -20px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  /* global.css 의 .navbar-brand 가 그라데이션 텍스트(-webkit-text-fill-color:
+     transparent)를 걸어두기 때문에 여기서 되돌려야 color 가 실제로 먹는다. */
+  background: none;
+  -webkit-text-fill-color: currentColor;
 }
 
-.navbar-brand:hover {
-  filter: brightness(1.1);
-  transform: scale(1.02);
+.brand-mark {
+  display: block;
+  width: 38px;
+  height: 38px;
+  color: #bb8ec7;
+}
+
+.brand-mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.brand-text {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: #bb8ec7;
 }
 
 .navbar-menu {
@@ -292,83 +331,90 @@ onUnmounted(() => {
 }
 
 .navbar-link {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px 14px;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: #6e6e73;
-  border-radius: 12px;
+  padding: 8px 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--n-text-muted);
+  border-radius: 8px;
   text-decoration: none;
-  transition: all 0.25s ease;
-  position: relative;
+  transition: color 0.18s ease, background-color 0.18s ease;
 }
 
+/* 하단 인디케이터 — 가운데에서 양쪽으로 펼쳐진다 */
 .navbar-link::after {
   content: '';
   position: absolute;
-  bottom: 6px;
-  left: 50%;
-  width: 0;
+  left: 12px;
+  right: 12px;
+  bottom: 2px;
   height: 2px;
-  background: linear-gradient(90deg, #E1AFD1, #7469B6);
   border-radius: 1px;
-  transform: translateX(-50%);
-  transition: width 0.3s ease;
+  background: var(--n-accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .navbar-link:hover {
-  color: #7469B6;
-  background: rgba(116, 105, 182, 0.06);
+  color: var(--n-text);
+  background: var(--n-bg-sunken);
 }
 
 .navbar-link:hover::after {
-  width: 60%;
+  transform: scaleX(1);
 }
 
 .navbar-link.router-link-active {
-  color: #7469B6;
-  background: rgba(116, 105, 182, 0.1);
+  color: var(--n-accent);
   font-weight: 600;
 }
 
 .navbar-link.router-link-active::after {
-  width: 60%;
+  transform: scaleX(1);
 }
 
+/* 메뉴가 8개라 아이콘까지 두면 밀도가 높다. 마크업은 유지하고 표시만 끈다. */
 .nav-icon {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-.navbar-link:hover .nav-icon,
-.navbar-link.router-link-active .nav-icon {
-  opacity: 1;
+  display: none;
 }
 
 /* Exchange Rate Ticker */
 .exchange-ticker {
   position: relative;
-  min-width: 140px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 180px;
   height: 34px;
   margin: 0 16px;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(255, 230, 230, 0.5) 0%, rgba(225, 175, 209, 0.3) 100%);
+  background: var(--n-bg-sunken);
   border-radius: 17px;
-  padding: 0 14px;
-  border: 1px solid rgba(116, 105, 182, 0.15);
-  box-shadow: 0 2px 10px rgba(116, 105, 182, 0.08);
+  padding: 0 16px;
+  border: 1px solid var(--n-border);
+}
+
+.ticker-badge {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--n-accent);
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: #fdfdfd;
 }
 
 .ticker-wrapper {
   position: relative;
+  flex: 1;
   height: 100%;
 }
 
+/* 대기 중인 항목: 아래에 숨어서 순서를 기다린다 */
 .ticker-item {
   position: absolute;
   top: 0;
@@ -377,38 +423,48 @@ onUnmounted(() => {
   height: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   opacity: 0;
-  transform: translateY(12px);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(16px);
+  transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1), transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* 현재 표시 중: 제자리에서 보임 */
 .ticker-item.active {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* 방금 밀려난 항목: 위로 빠져나간다 */
+.ticker-item.prev {
+  opacity: 0;
+  transform: translateY(-16px);
+}
+
 .ticker-name {
   font-size: 0.6875rem;
-  font-weight: 700;
-  color: #7469B6;
-  min-width: 38px;
+  font-weight: 600;
+  color: var(--n-text-muted);
+  flex-shrink: 0;
+  width: 52px;
   letter-spacing: 0.01em;
 }
 
 .ticker-rate {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #AD88C6;
-  margin-left: auto;
+  color: var(--n-text);
+  flex: 1;
+  text-align: right;
 }
 
-/* Settings Buttons */
+
+/* Settings Buttons — 네비바 우측 끝 */
 .navbar-settings {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-right: 12px;
+  margin-left: 12px;
 }
 
 .settings-btn {
@@ -417,18 +473,18 @@ onUnmounted(() => {
   justify-content: center;
   width: 38px;
   height: 38px;
-  border-radius: 10px;
-  background: rgba(116, 105, 182, 0.06);
-  border: 1px solid rgba(116, 105, 182, 0.1);
-  color: #6e6e73;
+  border-radius: 9px;
+  background: transparent;
+  border: 1px solid var(--n-border);
+  color: var(--n-text-muted);
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
 .settings-btn:hover {
-  background: rgba(116, 105, 182, 0.12);
-  color: #7469B6;
-  transform: translateY(-1px);
+  background: var(--n-bg-sunken);
+  border-color: var(--n-border-strong);
+  color: var(--n-text);
 }
 
 .settings-btn svg {
@@ -448,45 +504,142 @@ onUnmounted(() => {
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+}
+
+/* 전역 .btn-primary / .btn-ghost 는 그라데이션이라 네비바 안에서만 무채색으로 덮는다.
+   (다른 페이지의 버튼은 그대로 둔다) */
+.navbar-actions :deep(.btn) {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.navbar-actions :deep(.btn-ghost) {
+  color: var(--n-text-muted);
+  background: transparent;
+}
+
+.navbar-actions :deep(.btn-ghost:hover) {
+  color: var(--n-text);
+  background: var(--n-bg-subtle);
+  transform: none;
+}
+
+.navbar-actions :deep(.btn-primary) {
+  background: var(--n-accent);
+  background-image: none;
+  border: 1px solid var(--n-accent);
+  color: #fff;
+}
+
+.navbar-actions :deep(.btn-primary:hover) {
+  background: var(--n-accent-hover);
+  border-color: var(--n-accent-hover);
+  transform: none;
+  box-shadow: none;
+}
+
+.navbar-actions :deep(.btn-primary::before) {
+  display: none;
 }
 
 .user-menu {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 6px 14px 6px 6px;
-  background: rgba(116, 105, 182, 0.08);
-  border-radius: 50px;
+  gap: 9px;
+  padding: 4px 12px 4px 4px;
+  background: transparent;
+  border-radius: 9px;
   text-decoration: none;
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+  border: 1px solid var(--n-border);
 }
 
 .user-menu:hover {
-  background: rgba(116, 105, 182, 0.12);
-  border-color: rgba(116, 105, 182, 0.1);
-  transform: translateY(-1px);
+  background: var(--n-bg-sunken);
+  border-color: var(--n-border-strong);
+}
+
+.user-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.15;
+}
+
+.user-label {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--n-text-muted);
 }
 
 .user-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #E1AFD1 0%, #AD88C6 50%, #7469B6 100%);
-  color: white;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  background: var(--n-accent);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(116, 105, 182, 0.2);
 }
 
 .user-name {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  color: #1d1d1f;
+  color: var(--n-text);
+  max-width: 96px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 로그아웃 — 아이콘 버튼. 넓을 때만 텍스트가 붙는다. */
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--n-border);
+  border-radius: 9px;
+  background: transparent;
+  color: var(--n-text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.logout-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.logout-btn:hover {
+  background: var(--n-bg-sunken);
+  border-color: var(--n-border-strong);
+  color: var(--n-text);
+}
+
+@media (max-width: 1200px) {
+  .logout-text {
+    display: none;
+  }
+
+  .logout-btn {
+    padding: 0 10px;
+  }
 }
 
 /* Mobile Menu Button */
@@ -496,17 +649,17 @@ onUnmounted(() => {
   height: 44px;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  color: #6e6e73;
+  border-radius: 8px;
+  color: var(--n-text-muted);
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .mobile-menu-btn:hover {
-  background: rgba(116, 105, 182, 0.08);
-  color: #7469B6;
+  background: var(--n-bg-subtle);
+  color: var(--n-text);
 }
 
 .mobile-menu-btn svg {
@@ -519,8 +672,8 @@ onUnmounted(() => {
   display: none;
   flex-direction: column;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.98);
-  border-top: 1px solid rgba(116, 105, 182, 0.08);
+  background: var(--n-bg);
+  border-top: 1px solid var(--n-border);
 }
 
 .mobile-link {
@@ -528,10 +681,10 @@ onUnmounted(() => {
   padding: 14px 16px;
   font-size: 1rem;
   font-weight: 500;
-  color: #3f3f46;
+  color: var(--n-text-body);
   text-decoration: none;
-  border-radius: 12px;
-  transition: all 0.25s ease;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
   background: transparent;
   border: none;
   text-align: left;
@@ -541,13 +694,13 @@ onUnmounted(() => {
 
 .mobile-link:hover,
 .mobile-link.router-link-active {
-  background: rgba(116, 105, 182, 0.08);
-  color: #7469B6;
+  background: var(--n-bg-subtle);
+  color: var(--n-text);
 }
 
 .mobile-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(116, 105, 182, 0.15), transparent);
+  background: var(--n-border);
   margin: 12px 0;
 }
 
@@ -567,12 +720,12 @@ onUnmounted(() => {
   padding: 12px 16px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #52525b;
-  background: rgba(116, 105, 182, 0.06);
-  border: 1px solid rgba(116, 105, 182, 0.12);
-  border-radius: 12px;
+  color: var(--n-text-body);
+  background: transparent;
+  border: 1px solid var(--n-border);
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .mobile-settings-btn svg {
@@ -581,8 +734,8 @@ onUnmounted(() => {
 }
 
 .mobile-settings-btn:hover {
-  background: rgba(116, 105, 182, 0.12);
-  color: #7469B6;
+  background: var(--n-bg-subtle);
+  color: var(--n-text);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -597,48 +750,31 @@ onUnmounted(() => {
    Footer - Modern Style (70% 축소)
    ═══════════════════════════════════════════════════════════════════════════ */
 .footer {
-  background: #2d2d44;
-  color: white;
-  padding: 20px 24px 28px;
+  background: var(--n-bg-subtle);
+  border-top: 1px solid var(--n-border);
+  padding: 40px 24px;
   margin-top: auto;
-  position: relative;
-  overflow: hidden;
-}
-
-.footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(116, 105, 182, 0.4), transparent);
 }
 
 .footer-content {
   max-width: 1400px;
   margin: 0 auto;
   text-align: center;
-  position: relative;
-  z-index: 1;
 }
 
 .footer-brand {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .footer-logo {
-  font-size: 1.4rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, #FFE6E6 0%, #E1AFD1 35%, #AD88C6 70%, #7469B6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--n-text);
   letter-spacing: -0.03em;
 }
 
 .footer-tagline {
-  color: #86868b;
+  color: var(--n-text-muted);
   font-size: 0.8125rem;
   margin-top: 6px;
   letter-spacing: -0.01em;
@@ -652,35 +788,19 @@ onUnmounted(() => {
 }
 
 .footer-links a {
-  color: #a1a1aa;
+  color: var(--n-text-muted);
   font-size: 0.8125rem;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: color 0.2s ease;
   padding: 3px 0;
-  position: relative;
-}
-
-.footer-links a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: linear-gradient(90deg, #E1AFD1, #7469B6);
-  transition: width 0.3s ease;
 }
 
 .footer-links a:hover {
-  color: #E1AFD1;
-}
-
-.footer-links a:hover::after {
-  width: 100%;
+  color: var(--n-text);
 }
 
 .footer-copyright {
-  color: #52525b;
+  color: var(--n-text-muted);
   font-size: 0.75rem;
   letter-spacing: -0.01em;
 }
@@ -709,12 +829,22 @@ onUnmounted(() => {
 
   .exchange-ticker {
     display: flex;
-    max-width: 120px;
+    max-width: 170px;
+    min-width: 0;
     overflow: hidden;
+  }
+
+  .ticker-badge {
+    display: none;
   }
 
   .navbar-actions {
     display: none;
+  }
+
+  /* 테마 버튼은 햄버거 바로 왼쪽에 붙는다. */
+  .navbar-settings {
+    margin-left: auto;
   }
 
   .mobile-menu-btn {
@@ -732,12 +862,9 @@ onUnmounted(() => {
     padding: 0 16px;
   }
 
-  .navbar-brand {
-    font-size: 1.5rem;
-  }
-
-  .navbar-settings {
-    margin-right: 8px;
+  .brand-mark {
+    width: 26px;
+    height: 26px;
   }
 
   .footer {
@@ -752,105 +879,12 @@ onUnmounted(() => {
 
 /* ═══════════════════════════════════════════════════════════════════════════
    Dark Mode Styles
+
+   네비바·푸터는 --n-* 토큰을 쓰고 있고 이 토큰들은 global.css 의
+   [data-theme="dark"] 블록에서 이미 뒤집힌다. 따라서 여기에는
+   토큰으로 처리되지 않는 예외만 남긴다.
    ═══════════════════════════════════════════════════════════════════════════ */
-[data-theme="dark"] .app {
-  background: #0a0a0a;
-}
-
-[data-theme="dark"] .navbar {
-  background: rgba(10, 10, 10, 0.85);
-  border-bottom-color: rgba(116, 105, 182, 0.15);
-}
-
-[data-theme="dark"] .navbar-link {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .navbar-link:hover {
-  color: #E1AFD1;
-  background: rgba(116, 105, 182, 0.1);
-}
-
-[data-theme="dark"] .navbar-link.router-link-active {
-  color: #E1AFD1;
-  background: rgba(116, 105, 182, 0.15);
-}
-
-[data-theme="dark"] .exchange-ticker {
-  background: linear-gradient(135deg, rgba(116, 105, 182, 0.15) 0%, rgba(173, 136, 198, 0.1) 100%);
-  border-color: rgba(116, 105, 182, 0.25);
-}
-
-[data-theme="dark"] .ticker-name {
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .ticker-rate {
-  color: #AD88C6;
-}
-
-[data-theme="dark"] .settings-btn {
-  background: rgba(116, 105, 182, 0.1);
-  border-color: rgba(116, 105, 182, 0.2);
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .settings-btn:hover {
-  background: rgba(116, 105, 182, 0.2);
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .user-menu {
-  background: rgba(116, 105, 182, 0.12);
-}
-
-[data-theme="dark"] .user-menu:hover {
-  background: rgba(116, 105, 182, 0.18);
-}
-
-[data-theme="dark"] .user-name {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .mobile-menu {
-  background: rgba(10, 10, 10, 0.98);
-  border-top-color: rgba(116, 105, 182, 0.15);
-}
-
-[data-theme="dark"] .mobile-link {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .mobile-link:hover,
-[data-theme="dark"] .mobile-link.router-link-active {
-  background: rgba(116, 105, 182, 0.12);
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .mobile-settings-btn {
-  background: rgba(116, 105, 182, 0.1);
-  border-color: rgba(116, 105, 182, 0.2);
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .mobile-settings-btn:hover {
-  background: rgba(116, 105, 182, 0.18);
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .footer {
-  background: linear-gradient(180deg, #18181b 0%, #09090b 100%);
-}
-
-[data-theme="dark"] .footer-tagline {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .footer-links a {
-  color: #d4d4d8;
-}
-
-[data-theme="dark"] .footer-copyright {
-  color: #71717a;
+[data-theme="dark"] .btn-primary {
+  color: #fff;
 }
 </style>

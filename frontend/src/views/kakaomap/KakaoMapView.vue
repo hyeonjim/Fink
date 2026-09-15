@@ -1,17 +1,17 @@
 <template>
   <div class="kakao-map-page">
     <!-- Header Section -->
-    <header class="page-header">
-      <div class="header-content">
-        <div class="header-icon">
+    <header class="n-page-header">
+      <div class="n-page-header-content">
+        <div class="n-page-header-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
             <circle cx="12" cy="10" r="3"/>
           </svg>
         </div>
-        <div class="header-text">
-          <h1>은행 찾기</h1>
-          <p>가까운 은행 지점을 검색해보세요</p>
+        <div class="n-page-header-text">
+          <h1 class="n-page-title">은행 찾기</h1>
+          <p class="n-page-subtitle">가까운 은행 지점을 검색해보세요</p>
         </div>
       </div>
     </header>
@@ -176,53 +176,9 @@ onMounted(() => {
 <style scoped>
 .kakao-map-page {
   min-height: 100vh;
-  background: #FDFBFD;
+  background: var(--n-bg);
 }
 
-/* Header */
-.page-header {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
-  padding: 32px 24px;
-  margin-bottom: 0px;
-}
-
-.header-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.header-icon {
-  width: 52px;
-  height: 52px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-icon svg {
-  width: 28px;
-  height: 28px;
-  color: white;
-}
-
-.header-text h1 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: white;
-  margin: 0 0 4px;
-  text-align: left;
-}
-
-.header-text p {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0;
-}
 
 /* Main Container */
 .main-container {
@@ -244,10 +200,10 @@ onMounted(() => {
 }
 
 .search-card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
 }
 
 .input-section {
@@ -262,31 +218,31 @@ onMounted(() => {
   gap: 8px;
   font-size: 0.875rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
 }
 
 .input-label svg {
   width: 16px;
   height: 16px;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .input-field {
   width: 100%;
   padding: 12px 14px;
   font-size: 0.875rem;
-  border: 1px solid #e4e4e7;
+  border: 1px solid var(--n-border);
   border-radius: 12px;
-  background: #fafafa;
+  background: var(--n-bg-subtle);
   transition: all 0.2s;
   box-sizing: border-box;
 }
 
 .input-field:focus {
   outline: none;
-  border-color: #7469B6;
-  background: white;
-  box-shadow: 0 0 0 3px rgba(116, 105, 182, 0.1);
+  border-color: var(--n-accent);
+  background: var(--n-bg);
+  box-shadow: 0 0 0 3px var(--n-accent-wash);
 }
 
 .origin-row {
@@ -304,7 +260,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: var(--n-info-text);
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -331,9 +287,9 @@ onMounted(() => {
   padding: 10px;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #7469B6;
-  background: rgba(116, 105, 182, 0.08);
-  border: 1px solid rgba(116, 105, 182, 0.2);
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
+  border: 1px solid var(--n-accent);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
@@ -345,8 +301,8 @@ onMounted(() => {
 }
 
 .btn-current-location:hover {
-  background: rgba(116, 105, 182, 0.12);
-  border-color: rgba(116, 105, 182, 0.3);
+  background: var(--n-accent-wash);
+  border-color: var(--n-accent);
 }
 
 .origin-badge {
@@ -356,8 +312,8 @@ onMounted(() => {
   padding: 10px 14px;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #16a34a;
-  background: #f0fdf4;
+  color: var(--n-ok-text);
+  background: var(--n-ok-bg);
   border-radius: 10px;
 }
 
@@ -368,7 +324,7 @@ onMounted(() => {
 
 .section-divider {
   height: 1px;
-  background: #e4e4e7;
+  background: var(--n-border);
   margin: 16px 0;
 }
 
@@ -380,9 +336,9 @@ onMounted(() => {
   width: 100%;
   padding: 12px 40px 12px 14px;
   font-size: 0.875rem;
-  border: 1px solid #e4e4e7;
+  border: 1px solid var(--n-border);
   border-radius: 12px;
-  background: #fafafa;
+  background: var(--n-bg-subtle);
   appearance: none;
   cursor: pointer;
   transition: all 0.2s;
@@ -391,9 +347,9 @@ onMounted(() => {
 
 .select-field:focus {
   outline: none;
-  border-color: #7469B6;
-  background: white;
-  box-shadow: 0 0 0 3px rgba(116, 105, 182, 0.1);
+  border-color: var(--n-accent);
+  background: var(--n-bg);
+  box-shadow: 0 0 0 3px var(--n-accent-wash);
 }
 
 .select-arrow {
@@ -403,7 +359,7 @@ onMounted(() => {
   transform: translateY(-50%);
   width: 16px;
   height: 16px;
-  color: #71717a;
+  color: var(--n-text-muted);
   pointer-events: none;
 }
 
@@ -417,7 +373,7 @@ onMounted(() => {
   font-size: 0.9375rem;
   font-weight: 700;
   color: white;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border: none;
   border-radius: 14px;
   cursor: pointer;
@@ -431,8 +387,7 @@ onMounted(() => {
 }
 
 .btn-search:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(116, 105, 182, 0.4);
+  box-shadow: none;
 }
 
 /* Info Card */
@@ -440,15 +395,15 @@ onMounted(() => {
   display: flex;
   gap: 12px;
   padding: 16px;
-  background: white;
+  background: var(--n-bg);
   border-radius: 14px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
 }
 
 .info-icon {
   width: 36px;
   height: 36px;
-  background: #fef3c7;
+  background: var(--n-warn-bg);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -459,13 +414,13 @@ onMounted(() => {
 .info-icon svg {
   width: 18px;
   height: 18px;
-  color: #d97706;
+  color: var(--n-warn-text);
 }
 
 .info-text p {
   margin: 0;
   font-size: 0.8125rem;
-  color: #52525b;
+  color: var(--n-text-body);
   line-height: 1.5;
 }
 
@@ -475,7 +430,7 @@ onMounted(() => {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
 }
 
 #map {
@@ -496,7 +451,6 @@ onMounted(() => {
   font-weight: 600;
   color: white;
   background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
   border-radius: 8px;
 }
 
@@ -515,60 +469,4 @@ onMounted(() => {
   }
 }
 
-/* Dark Mode */
-[data-theme="dark"] .kakao-map-page {
-  background: #0a0a0a;
-}
-
-[data-theme="dark"] .main-container {
-  background: #0a0a0a;
-}
-
-[data-theme="dark"] .search-card {
-  background: #18181b;
-  border-color: rgba(116, 105, 182, 0.2);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .input-label {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .input-field,
-[data-theme="dark"] .select-field {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .input-field:focus,
-[data-theme="dark"] .select-field:focus {
-  border-color: #7469B6;
-  background: #27272a;
-}
-
-[data-theme="dark"] .input-field::placeholder {
-  color: #71717a;
-}
-
-[data-theme="dark"] .select-arrow {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .section-divider {
-  background: #27272a;
-}
-
-[data-theme="dark"] .info-card {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .info-text p {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .map-wrapper {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
 </style>

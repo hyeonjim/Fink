@@ -203,10 +203,10 @@ const onToggleCommentLike = (commentId) => {
 
 <style scoped>
 .comments-section {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
   margin-top: 16px;
 }
 
@@ -216,7 +216,7 @@ const onToggleCommentLike = (commentId) => {
   justify-content: space-between;
   gap: 12px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #e4e4e7;
+  border-bottom: 1px solid var(--n-border);
   margin-bottom: 16px;
 }
 
@@ -229,7 +229,7 @@ const onToggleCommentLike = (commentId) => {
 .header-icon {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -245,12 +245,12 @@ const onToggleCommentLike = (commentId) => {
 .comments-header h3 {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0;
 }
 
 .comments-header .count {
-  color: #7469B6;
+  color: var(--n-accent);
   margin-left: 4px;
 }
 
@@ -267,9 +267,9 @@ const onToggleCommentLike = (commentId) => {
   padding: 8px 14px;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #71717a;
-  background: white;
-  border: 1px solid #e4e4e7;
+  color: var(--n-text-muted);
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
@@ -281,19 +281,19 @@ const onToggleCommentLike = (commentId) => {
 }
 
 .sort-btn:hover {
-  background: #fafafa;
-  border-color: #d4d4d8;
-  color: #3f3f46;
+  background: var(--n-bg-subtle);
+  border-color: var(--n-border-strong);
+  color: var(--n-text-body);
 }
 
 .sort-btn.active {
   color: white;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border-color: transparent;
 }
 
 .sort-btn.active:hover {
-  box-shadow: 0 4px 12px rgba(116, 105, 182, 0.3);
+  box-shadow: none;
 }
 
 /* Comments List */
@@ -312,13 +312,13 @@ const onToggleCommentLike = (commentId) => {
   align-items: flex-start;
   gap: 12px;
   padding: 16px;
-  background: #fafafa;
+  background: var(--n-bg-subtle);
   border-radius: 14px;
   transition: background 0.2s;
 }
 
 .comment-item:hover {
-  background: #f4f4f5;
+  background: var(--n-bg-sunken);
 }
 
 .comment-main {
@@ -330,14 +330,14 @@ const onToggleCommentLike = (commentId) => {
 .comment-avatar {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #E1AFD1 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.875rem;
   font-weight: 700;
-  color: #7469B6;
+  color: var(--n-accent);
   flex-shrink: 0;
 }
 
@@ -356,17 +356,17 @@ const onToggleCommentLike = (commentId) => {
 .author {
   font-size: 0.875rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
 }
 
 .date {
   font-size: 0.75rem;
-  color: #a1a1aa;
+  color: var(--n-text-muted);
 }
 
 .comment-content {
   font-size: 0.9375rem;
-  color: #3f3f46;
+  color: var(--n-text-body);
   line-height: 1.6;
   white-space: pre-wrap;
 }
@@ -382,9 +382,9 @@ const onToggleCommentLike = (commentId) => {
   padding: 6px 12px;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #71717a;
-  background: white;
-  border: 1px solid #e4e4e7;
+  color: var(--n-text-muted);
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.2s;
@@ -396,15 +396,15 @@ const onToggleCommentLike = (commentId) => {
 }
 
 .like-btn:hover {
-  background: #fef2f2;
-  border-color: #fecaca;
-  color: #dc2626;
+  background: var(--n-danger-bg);
+  border-color: var(--n-danger-bg);
+  color: var(--n-danger-text);
 }
 
 .like-btn.liked {
-  background: #fef2f2;
-  border-color: #fecaca;
-  color: #dc2626;
+  background: var(--n-danger-bg);
+  border-color: var(--n-danger-bg);
+  color: var(--n-danger-text);
 }
 
 /* Comment Actions */
@@ -420,8 +420,8 @@ const onToggleCommentLike = (commentId) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
-  border: 1px solid #e4e4e7;
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s;
@@ -430,25 +430,25 @@ const onToggleCommentLike = (commentId) => {
 .action-btn svg {
   width: 14px;
   height: 14px;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .action-btn.edit:hover {
-  background: #f0fdf4;
-  border-color: #bbf7d0;
+  background: var(--n-ok-bg);
+  border-color: var(--n-ok-bg);
 }
 
 .action-btn.edit:hover svg {
-  color: #16a34a;
+  color: var(--n-ok-text);
 }
 
 .action-btn.delete:hover {
-  background: #fef2f2;
-  border-color: #fecaca;
+  background: var(--n-danger-bg);
+  border-color: var(--n-danger-bg);
 }
 
 .action-btn.delete:hover svg {
-  color: #dc2626;
+  color: var(--n-danger-text);
 }
 
 /* Edit Mode */
@@ -463,17 +463,17 @@ const onToggleCommentLike = (commentId) => {
   width: 100%;
   padding: 12px 14px;
   font-size: 0.9375rem;
-  border: 1px solid #e4e4e7;
+  border: 1px solid var(--n-border);
   border-radius: 12px;
-  background: white;
+  background: var(--n-bg);
   transition: all 0.2s;
   box-sizing: border-box;
 }
 
 .edit-input:focus {
   outline: none;
-  border-color: #7469B6;
-  box-shadow: 0 0 0 3px rgba(116, 105, 182, 0.1);
+  border-color: var(--n-accent);
+  box-shadow: 0 0 0 3px var(--n-accent-wash);
 }
 
 .edit-actions {
@@ -502,12 +502,12 @@ const onToggleCommentLike = (commentId) => {
 
 .btn-save {
   color: white;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border: none;
 }
 
 .btn-save:hover {
-  box-shadow: 0 4px 12px rgba(116, 105, 182, 0.4);
+  box-shadow: none;
 }
 
 .btn-save:disabled {
@@ -517,13 +517,13 @@ const onToggleCommentLike = (commentId) => {
 }
 
 .btn-cancel {
-  color: #52525b;
-  background: white;
-  border: 1px solid #e4e4e7;
+  color: var(--n-text-body);
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
 }
 
 .btn-cancel:hover {
-  background: #f4f4f5;
+  background: var(--n-bg-sunken);
 }
 
 /* Empty State */
@@ -535,133 +535,13 @@ const onToggleCommentLike = (commentId) => {
 .empty-state svg {
   width: 48px;
   height: 48px;
-  color: #d4d4d8;
+  color: var(--n-border-strong);
   margin-bottom: 16px;
 }
 
 .empty-state p {
   font-size: 0.9375rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   line-height: 1.6;
   margin: 0;
-}
-
-/* Dark Mode */
-[data-theme="dark"] .comments-section {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .comments-header {
-  border-bottom-color: #27272a;
-}
-
-[data-theme="dark"] .comments-header h3 {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .comments-header .count {
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .sort-btn {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .sort-btn:hover {
-  background: #3f3f46;
-  border-color: #52525b;
-  color: #d4d4d8;
-}
-
-[data-theme="dark"] .sort-btn.active {
-  color: white;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
-  border-color: transparent;
-}
-
-[data-theme="dark"] .comment-item {
-  background: #27272a;
-}
-
-[data-theme="dark"] .comment-item:hover {
-  background: #3f3f46;
-}
-
-[data-theme="dark"] .author {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .date {
-  color: #71717a;
-}
-
-[data-theme="dark"] .comment-content {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .like-btn {
-  background: #18181b;
-  border-color: #3f3f46;
-  color: #71717a;
-}
-
-[data-theme="dark"] .like-btn:hover {
-  background: rgba(220, 38, 38, 0.1);
-  border-color: rgba(220, 38, 38, 0.3);
-}
-
-[data-theme="dark"] .like-btn.liked {
-  background: rgba(220, 38, 38, 0.1);
-  border-color: rgba(220, 38, 38, 0.3);
-}
-
-[data-theme="dark"] .action-btn {
-  background: #18181b;
-  border-color: #3f3f46;
-}
-
-[data-theme="dark"] .action-btn svg {
-  color: #71717a;
-}
-
-[data-theme="dark"] .action-btn.edit:hover {
-  background: rgba(22, 163, 74, 0.1);
-  border-color: rgba(22, 163, 74, 0.3);
-}
-
-[data-theme="dark"] .action-btn.delete:hover {
-  background: rgba(220, 38, 38, 0.1);
-  border-color: rgba(220, 38, 38, 0.3);
-}
-
-[data-theme="dark"] .edit-input {
-  background: #18181b;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .edit-input:focus {
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .btn-cancel {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .btn-cancel:hover {
-  background: #3f3f46;
-}
-
-[data-theme="dark"] .empty-state svg {
-  color: #52525b;
-}
-
-[data-theme="dark"] .empty-state p {
-  color: #71717a;
-}
-</style>
+}</style>

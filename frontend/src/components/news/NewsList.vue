@@ -66,9 +66,9 @@ const toggleBookmark = (id) => {
 
 <style scoped>
 .news-list-section {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -80,21 +80,21 @@ const toggleBookmark = (id) => {
   align-items: center;
   justify-content: space-between;
   padding: 20px 24px;
-  border-bottom: 1px solid #f4f4f5;
+  border-bottom: 1px solid var(--n-bg-sunken);
 }
 
 .list-title {
   font-size: 1rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0;
 }
 
 .list-count {
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #7469B6;
-  background: rgba(116, 105, 182, 0.1);
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
   padding: 4px 10px;
   border-radius: 20px;
 }
@@ -117,20 +117,20 @@ const toggleBookmark = (id) => {
 .news-empty svg {
   width: 48px;
   height: 48px;
-  color: #d4d4d8;
+  color: var(--n-border-strong);
   margin-bottom: 16px;
 }
 
 .news-empty p {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #52525b;
+  color: var(--n-text-body);
   margin: 0 0 4px;
 }
 
 .news-empty span {
   font-size: 0.8125rem;
-  color: #a1a1aa;
+  color: var(--n-text-muted);
 }
 
 .news-item {
@@ -144,11 +144,11 @@ const toggleBookmark = (id) => {
 }
 
 .news-item:hover {
-  background: #fafafa;
+  background: var(--n-bg-subtle);
 }
 
 .news-item.selected {
-  background: rgba(116, 105, 182, 0.1);
+  background: var(--n-accent-wash);
 }
 
 .bookmark-btn {
@@ -167,23 +167,23 @@ const toggleBookmark = (id) => {
 .bookmark-btn svg {
   width: 18px;
   height: 18px;
-  color: #d4d4d8;
+  color: var(--n-border-strong);
   transition: color 0.2s;
 }
 
 .bookmark-btn:hover svg {
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .bookmark-btn.active svg {
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .news-title {
   flex: 1;
   font-size: 0.9375rem;
   font-weight: 500;
-  color: #3f3f46;
+  color: var(--n-text-body);
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -192,82 +192,17 @@ const toggleBookmark = (id) => {
 }
 
 .news-item.selected .news-title {
-  color: #18181b;
+  color: var(--n-text);
   font-weight: 600;
 }
 
 .chevron {
   width: 16px;
   height: 16px;
-  color: #d4d4d8;
+  color: var(--n-border-strong);
   flex-shrink: 0;
 }
 
 .news-item.selected .chevron {
-  color: #7469B6;
-}
-
-/* Dark Mode */
-[data-theme="dark"] .news-list-section {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .list-header {
-  border-bottom-color: #27272a;
-}
-
-[data-theme="dark"] .list-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .list-count {
-  background: rgba(116, 105, 182, 0.2);
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .news-empty svg {
-  color: #3f3f46;
-}
-
-[data-theme="dark"] .news-empty p {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .news-empty span {
-  color: #71717a;
-}
-
-[data-theme="dark"] .news-item:hover {
-  background: #27272a;
-}
-
-[data-theme="dark"] .news-item.selected {
-  background: rgba(116, 105, 182, 0.15);
-}
-
-[data-theme="dark"] .bookmark-btn svg {
-  color: #52525b;
-}
-
-[data-theme="dark"] .bookmark-btn:hover svg,
-[data-theme="dark"] .bookmark-btn.active svg {
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .news-title {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .news-item.selected .news-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .chevron {
-  color: #52525b;
-}
-
-[data-theme="dark"] .news-item.selected .chevron {
-  color: #E1AFD1;
-}
-</style>
+  color: var(--n-accent);
+}</style>

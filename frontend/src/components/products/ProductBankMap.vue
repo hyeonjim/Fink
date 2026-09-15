@@ -249,9 +249,9 @@ onUnmounted(() => {
   margin-top: 20px;
   border-radius: 20px;
   overflow: hidden;
-  background: white;
-  box-shadow: 0 8px 32px rgba(116, 105, 182, 0.15);
-  border: 1px solid rgba(116, 105, 182, 0.1);
+  background: var(--n-bg);
+  box-shadow: none;
+  border: 1px solid var(--n-accent-wash);
 }
 
 /* Header */
@@ -260,7 +260,7 @@ onUnmounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: 20px 24px;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
 }
 
 .header-left {
@@ -332,8 +332,8 @@ onUnmounted(() => {
   width: 300px;
   padding: 20px;
   overflow-y: auto;
-  border-right: 1px solid #e4e4e7;
-  background: #fafafa;
+  border-right: 1px solid var(--n-border);
+  background: var(--n-bg-subtle);
 }
 
 .input-section {
@@ -348,30 +348,30 @@ onUnmounted(() => {
   gap: 8px;
   font-size: 0.8125rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
 }
 
 .input-label svg {
   width: 14px;
   height: 14px;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .input-field {
   width: 100%;
   padding: 10px 12px;
   font-size: 0.8125rem;
-  border: 1px solid #e4e4e7;
+  border: 1px solid var(--n-border);
   border-radius: 10px;
-  background: white;
+  background: var(--n-bg);
   transition: all 0.2s;
   box-sizing: border-box;
 }
 
 .input-field:focus {
   outline: none;
-  border-color: #7469B6;
-  box-shadow: 0 0 0 3px rgba(116, 105, 182, 0.1);
+  border-color: var(--n-accent);
+  box-shadow: 0 0 0 3px var(--n-accent-wash);
 }
 
 .origin-row {
@@ -389,7 +389,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: var(--n-info-text);
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -416,9 +416,9 @@ onUnmounted(() => {
   padding: 10px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #7469B6;
-  background: rgba(116, 105, 182, 0.08);
-  border: 1px solid rgba(116, 105, 182, 0.2);
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
+  border: 1px solid var(--n-accent);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
@@ -430,7 +430,7 @@ onUnmounted(() => {
 }
 
 .btn-current-location:hover {
-  background: rgba(116, 105, 182, 0.12);
+  background: var(--n-accent-wash);
 }
 
 .origin-badge {
@@ -440,8 +440,8 @@ onUnmounted(() => {
   padding: 8px 12px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #16a34a;
-  background: #f0fdf4;
+  color: var(--n-ok-text);
+  background: var(--n-ok-bg);
   border-radius: 8px;
 }
 
@@ -452,7 +452,7 @@ onUnmounted(() => {
 
 .section-divider {
   height: 1px;
-  background: #e4e4e7;
+  background: var(--n-border);
   margin: 16px 0;
 }
 
@@ -464,9 +464,9 @@ onUnmounted(() => {
   width: 100%;
   padding: 10px 36px 10px 12px;
   font-size: 0.8125rem;
-  border: 1px solid #e4e4e7;
+  border: 1px solid var(--n-border);
   border-radius: 10px;
-  background: white;
+  background: var(--n-bg);
   appearance: none;
   cursor: pointer;
   transition: all 0.2s;
@@ -475,8 +475,8 @@ onUnmounted(() => {
 
 .select-field:focus {
   outline: none;
-  border-color: #7469B6;
-  box-shadow: 0 0 0 3px rgba(116, 105, 182, 0.1);
+  border-color: var(--n-accent);
+  box-shadow: 0 0 0 3px var(--n-accent-wash);
 }
 
 .select-arrow {
@@ -486,7 +486,7 @@ onUnmounted(() => {
   transform: translateY(-50%);
   width: 14px;
   height: 14px;
-  color: #71717a;
+  color: var(--n-text-muted);
   pointer-events: none;
 }
 
@@ -500,7 +500,7 @@ onUnmounted(() => {
   font-size: 0.875rem;
   font-weight: 700;
   color: white;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -514,8 +514,7 @@ onUnmounted(() => {
 }
 
 .btn-search:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(116, 105, 182, 0.4);
+  box-shadow: none;
 }
 
 /* Results */
@@ -533,14 +532,14 @@ onUnmounted(() => {
 .results-title {
   font-size: 0.8125rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
 }
 
 .results-count {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #7469B6;
-  background: rgba(116, 105, 182, 0.1);
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
   padding: 4px 10px;
   border-radius: 12px;
 }
@@ -561,21 +560,21 @@ onUnmounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: 12px;
-  background: white;
-  border: 1px solid #e4e4e7;
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .result-item:hover {
-  border-color: #AD88C6;
-  box-shadow: 0 2px 8px rgba(116, 105, 182, 0.1);
+  border-color: var(--n-accent);
+  box-shadow: none;
 }
 
 .result-item.selected {
-  background: rgba(116, 105, 182, 0.08);
-  border-color: #7469B6;
+  background: var(--n-accent-wash);
+  border-color: var(--n-accent);
 }
 
 .result-info {
@@ -586,7 +585,7 @@ onUnmounted(() => {
 .place-name {
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
   margin-bottom: 2px;
   white-space: nowrap;
   overflow: hidden;
@@ -595,7 +594,7 @@ onUnmounted(() => {
 
 .place-address {
   font-size: 0.6875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -607,7 +606,7 @@ onUnmounted(() => {
   gap: 4px;
   font-size: 0.6875rem;
   font-weight: 600;
-  color: #7469B6;
+  color: var(--n-accent);
   flex-shrink: 0;
   margin-left: 8px;
 }
@@ -643,122 +642,6 @@ onUnmounted(() => {
   backdrop-filter: blur(8px);
   border-radius: 6px;
 }
-
-/* Dark Mode */
-[data-theme="dark"] .product-bank-map {
-  background: #18181b;
-  border-color: rgba(116, 105, 182, 0.2);
-}
-
-[data-theme="dark"] .map-header {
-  background: linear-gradient(135deg, rgba(116, 105, 182, 0.15) 0%, rgba(173, 136, 198, 0.15) 100%);
-}
-
-[data-theme="dark"] .header-icon {
-  background: rgba(116, 105, 182, 0.2);
-}
-
-[data-theme="dark"] .header-text h3 {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .header-text p {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .close-btn {
-  background: rgba(255, 255, 255, 0.1);
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .close-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .search-sidebar {
-  background: #0a0a0a;
-  border-right-color: #27272a;
-}
-
-[data-theme="dark"] .input-label {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .input-field,
-[data-theme="dark"] .select-field {
-  background: #18181b;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .input-field::placeholder {
-  color: #71717a;
-}
-
-[data-theme="dark"] .input-field:focus,
-[data-theme="dark"] .select-field:focus {
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .btn-origin-search {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .btn-origin-search:hover {
-  background: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .btn-current-location {
-  background: rgba(116, 105, 182, 0.15);
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .btn-current-location:hover {
-  background: rgba(116, 105, 182, 0.25);
-}
-
-[data-theme="dark"] .origin-badge {
-  background: rgba(116, 105, 182, 0.2);
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .section-divider {
-  background: #27272a;
-}
-
-[data-theme="dark"] .select-arrow {
-  color: #71717a;
-}
-
-[data-theme="dark"] .results-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .result-item {
-  background: #18181b;
-  border-color: #3f3f46;
-}
-
-[data-theme="dark"] .result-item:hover {
-  border-color: #AD88C6;
-}
-
-[data-theme="dark"] .result-item.selected {
-  background: rgba(116, 105, 182, 0.15);
-}
-
-[data-theme="dark"] .place-name {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .place-address {
-  color: #a1a1aa;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .map-content {
@@ -769,7 +652,7 @@ onUnmounted(() => {
   .search-sidebar {
     width: 100%;
     border-right: none;
-    border-bottom: 1px solid #e4e4e7;
+    border-bottom: 1px solid var(--n-border);
   }
 
   .map-wrapper {

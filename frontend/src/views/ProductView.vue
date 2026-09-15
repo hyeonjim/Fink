@@ -1,16 +1,16 @@
 <template>
   <div class="products-page">
     <!-- Page Header -->
-    <header class="page-header">
-      <div class="header-content">
-        <div class="header-icon">
+    <header class="n-page-header">
+      <div class="n-page-header-content">
+        <div class="n-page-header-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
         </div>
-        <div class="header-text">
-          <h1 class="page-title">금융상품</h1>
-          <p class="page-subtitle">다양한 예금·적금 상품을 비교하고 나에게 맞는 상품을 찾아보세요</p>
+        <div class="n-page-header-text">
+          <h1 class="n-page-title">금융상품</h1>
+          <p class="n-page-subtitle">다양한 예금·적금 상품을 비교하고 나에게 맞는 상품을 찾아보세요</p>
         </div>
       </div>
     </header>
@@ -261,134 +261,86 @@ const resetFilter = () => {
 </script>
 
 <style scoped>
+/* ═══════════════════════════════════════════════════════════════════
+   금융상품 목록 — 무채색. HomeView 의 카드/보더 언어를 따른다.
+   ═══════════════════════════════════════════════════════════════════ */
 .products-page {
   min-height: calc(100vh - 72px);
-  background: linear-gradient(180deg, #FDFBFD 0%, #FFF5F8 50%, #FAFAFA 100%);
-}
-
-/* Page Header */
-.page-header {
-  background: linear-gradient(135deg, #E1AFD1 0%, #AD88C6 50%, #7469B6 100%);
-  padding: 40px 24px;
-  margin-bottom: 0px;
-}
-
-.header-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.header-icon {
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(10px);
-  flex-shrink: 0;
-}
-
-.header-icon svg {
-  width: 32px;
-  height: 32px;
-  color: white;
-}
-
-.header-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  flex: 1;
-}
-
-.page-title {
-  font-size: 2rem;
-  font-weight: 800;
-  color: white;
-  margin: 0;
-  text-align: left;
-}
-
-.page-subtitle {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0;
-  text-align: left;
+  background: var(--n-bg);
 }
 
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 40px 24px 72px;
 }
 
-/* Tabs */
+/* ── 탭 ──────────────────────────────────────────────────────────── */
 .tabs-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .tabs-pill {
-  background: white;
-  padding: 6px;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   display: inline-flex;
   gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--n-border);
+  border-radius: 10px;
+  background: var(--n-bg-subtle);
+  box-shadow: none;
 }
 
 .tab {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 28px;
+  padding: 10px 24px;
   font-size: 0.9375rem;
-  font-weight: 600;
-  color: #71717a;
+  font-weight: 500;
+  color: var(--n-text-muted);
   background: transparent;
   border: none;
-  border-radius: 12px;
+  border-radius: 7px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.18s ease, color 0.18s ease;
 }
 
-.tab:hover {
-  color: #7469B6;
+.tab:hover:not(.active) {
+  color: var(--n-text);
 }
 
 .tab.active {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
-  color: white;
-  box-shadow: 0 4px 12px rgba(116, 105, 182, 0.3);
+  background: var(--n-bg);
+  color: var(--n-text);
+  border: 1px solid var(--n-border);
+  box-shadow: none;
+  font-weight: 600;
 }
 
 .tab-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
-/* Filter Section */
+/* ── 필터 ────────────────────────────────────────────────────────── */
 .filter-section {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .filter-card {
-  background: white;
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+  border: 1px solid var(--n-border);
+  border-radius: 12px;
+  background: var(--n-bg);
+  box-shadow: none;
 }
 
 .filter-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr auto;
-  gap: 16px;
+  gap: 14px;
   align-items: end;
 }
 
@@ -402,34 +354,43 @@ const resetFilter = () => {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: #52525b;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
 }
 
 .filter-icon {
   width: 14px;
   height: 14px;
-  color: #7469B6;
+  color: var(--n-text-muted);
 }
 
 .filter-select,
 .filter-input {
   width: 100%;
-  padding: 12px 16px;
+  padding: 10px 12px;
   font-size: 0.9375rem;
-  background: #fafafa;
-  border: 2px solid #e4e4e7;
-  border-radius: 12px;
+  color: var(--n-text);
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
+  border-radius: 8px;
   outline: none;
-  transition: all 0.2s ease;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.filter-select:hover:not(:focus),
+.filter-input:hover:not(:focus) {
+  border-color: var(--n-border-strong);
 }
 
 .filter-select:focus,
 .filter-input:focus {
-  border-color: #7469B6;
-  background: white;
-  box-shadow: 0 0 0 4px rgba(116, 105, 182, 0.1);
+  border-color: var(--n-accent);
+  box-shadow: 0 0 0 3px var(--n-accent-wash);
+}
+
+.filter-input::placeholder {
+  color: var(--n-text-muted);
 }
 
 .search-input-wrapper {
@@ -438,62 +399,86 @@ const resetFilter = () => {
 
 .search-clear {
   position: absolute;
-  right: 12px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
+  display: grid;
+  place-items: center;
   width: 20px;
   height: 20px;
   padding: 0;
-  background: #e4e4e7;
+  background: var(--n-bg-sunken);
   border: none;
-  border-radius: 50%;
+  border-radius: 5px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: background-color 0.18s ease;
+}
+
+.search-clear:hover {
+  background: var(--n-border);
 }
 
 .search-clear svg {
   width: 12px;
   height: 12px;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .filter-group-reset {
   justify-content: flex-end;
 }
 
-.btn-icon {
-  width: 16px;
-  height: 16px;
+/* 전역 .btn-secondary 가 옛 팔레트라 이 화면에서만 무채색으로 덮는다 */
+.filter-group-reset :deep(.btn-secondary) {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 8px;
+  border: 1px solid var(--n-border-strong);
+  background: transparent;
+  color: var(--n-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 }
 
-/* Active Filters */
+.filter-group-reset :deep(.btn-secondary:hover) {
+  background: var(--n-bg-subtle);
+  border-color: var(--n-text-muted);
+  transform: none;
+}
+
+.btn-icon {
+  width: 15px;
+  height: 15px;
+}
+
+/* ── 적용된 필터 ─────────────────────────────────────────────────── */
 .active-filters {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px solid #f4f4f5;
+  border-top: 1px solid var(--n-border);
   flex-wrap: wrap;
 }
 
 .active-filters-label {
   font-size: 0.8125rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .filter-tag {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 5px 10px;
   font-size: 0.8125rem;
   font-weight: 500;
-  color: #7469B6;
-  background: rgba(116, 105, 182, 0.1);
-  border-radius: 20px;
+  color: var(--n-text-body);
+  background: var(--n-bg-sunken);
+  border: 1px solid var(--n-border);
+  border-radius: 6px;
 }
 
 .filter-tag-remove {
@@ -502,69 +487,92 @@ const resetFilter = () => {
   padding: 0;
   background: transparent;
   border: none;
-  color: #7469B6;
+  color: var(--n-text-muted);
   font-size: 1rem;
   line-height: 1;
   cursor: pointer;
-  opacity: 0.7;
-  transition: opacity 0.2s;
+  transition: color 0.18s ease;
 }
 
 .filter-tag-remove:hover {
-  opacity: 1;
+  color: var(--n-text);
 }
 
-/* Results Info */
+/* ── 결과 수 ─────────────────────────────────────────────────────── */
 .results-info {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .results-count {
-  font-size: 0.9375rem;
-  color: #71717a;
+  font-size: 0.875rem;
+  color: var(--n-text-muted);
 }
 
 .results-count strong {
-  color: #7469B6;
-  font-weight: 700;
+  color: var(--n-text);
+  font-weight: 600;
 }
 
-/* Empty State */
+/* ── 빈 상태 ─────────────────────────────────────────────────────── */
 .empty-state {
   text-align: center;
   padding: 80px 24px;
 }
 
 .empty-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 24px;
-  background: #f4f4f5;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  border: 1px solid var(--n-border);
+  border-radius: 12px;
+  background: var(--n-bg-subtle);
 }
 
 .empty-icon svg {
-  width: 40px;
-  height: 40px;
-  color: #a1a1aa;
+  width: 26px;
+  height: 26px;
+  color: var(--n-text-muted);
 }
 
 .empty-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #18181b;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--n-text);
   margin-bottom: 8px;
 }
 
 .empty-description {
-  color: #71717a;
+  font-size: 0.9375rem;
+  color: var(--n-text-muted);
   margin-bottom: 24px;
 }
 
-/* Responsive */
+.empty-state :deep(.btn-primary) {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 8px;
+  background: var(--n-accent);
+  background-image: none;
+  border: 1px solid var(--n-accent);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.empty-state :deep(.btn-primary:hover) {
+  background: var(--n-accent-hover);
+  border-color: var(--n-accent-hover);
+  transform: none;
+  box-shadow: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
   .filter-grid {
     grid-template-columns: 1fr 1fr;
@@ -581,35 +589,8 @@ const resetFilter = () => {
 }
 
 @media (max-width: 600px) {
-  .page-header {
-    padding: 32px 20px;
-  }
-
-  .header-content {
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .header-icon {
-    width: 48px;
-    height: 48px;
-  }
-
-  .header-icon svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .page-title {
-    font-size: 1.5rem;
-  }
-
-  .page-subtitle {
-    font-size: 0.875rem;
-  }
-
   .container {
-    padding: 32px 16px;
+    padding: 28px 16px 56px;
   }
 
   .filter-grid {
@@ -622,109 +603,8 @@ const resetFilter = () => {
   }
 
   .tab {
-    padding: 10px 20px;
+    padding: 9px 18px;
     font-size: 0.875rem;
   }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   Dark Mode Styles
-   ═══════════════════════════════════════════════════════════════════════════ */
-[data-theme="dark"] .products-page {
-  background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 50%, #0a0a0a 100%);
-}
-
-[data-theme="dark"] .page-header {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 50%, #9b7ab8 100%);
-}
-
-[data-theme="dark"] .page-title {
-  color: white;
-}
-
-[data-theme="dark"] .page-subtitle {
-  color: rgba(255, 255, 255, 0.85);
-}
-
-[data-theme="dark"] .tabs-pill {
-  background: #18181b;
-  border-color: rgba(116, 105, 182, 0.2);
-}
-
-[data-theme="dark"] .tab {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .tab:hover {
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .tab.active {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
-  color: white;
-}
-
-[data-theme="dark"] .filter-card {
-  background: #18181b;
-  border-color: rgba(116, 105, 182, 0.15);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .filter-label {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .filter-select,
-[data-theme="dark"] .filter-input {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .filter-select:focus,
-[data-theme="dark"] .filter-input:focus {
-  border-color: #7469B6;
-  background: #27272a;
-}
-
-[data-theme="dark"] .filter-input::placeholder {
-  color: #71717a;
-}
-
-[data-theme="dark"] .active-filters-label {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .filter-tag {
-  background: rgba(116, 105, 182, 0.2);
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .results-count {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .results-count strong {
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .empty-state {
-  background: transparent;
-}
-
-[data-theme="dark"] .empty-icon {
-  background: #27272a;
-}
-
-[data-theme="dark"] .empty-icon svg {
-  color: #71717a;
-}
-
-[data-theme="dark"] .empty-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .empty-description {
-  color: #a1a1aa;
 }
 </style>

@@ -271,11 +271,11 @@ const chartData = computed(() => {
       {
         label: '이자 포함 총액',
         data: totalData,
-        borderColor: '#7469B6',
-        backgroundColor: 'rgba(116, 105, 182, 0.1)',
+        borderColor: 'var(--n-accent)',
+        backgroundColor: 'var(--n-accent-wash)',
         fill: true,
         tension: 0.4,
-        pointBackgroundColor: '#7469B6',
+        pointBackgroundColor: 'var(--n-accent)',
         pointBorderColor: '#fff',
         pointBorderWidth: 2,
         pointRadius: 4,
@@ -284,11 +284,11 @@ const chartData = computed(() => {
       {
         label: '납입 원금',
         data: principalData,
-        borderColor: '#E1AFD1',
-        backgroundColor: 'rgba(225, 175, 209, 0.2)',
+        borderColor: 'var(--n-accent)',
+        backgroundColor: 'var(--n-accent-wash)',
         fill: true,
         tension: 0.4,
-        pointBackgroundColor: '#E1AFD1',
+        pointBackgroundColor: 'var(--n-accent)',
         pointBorderColor: '#fff',
         pointBorderWidth: 2,
         pointRadius: 4,
@@ -319,7 +319,7 @@ const chartOptions = computed(() => ({
       }
     },
     tooltip: {
-      backgroundColor: '#18181b',
+      backgroundColor: 'var(--n-text)',
       titleColor: '#fff',
       bodyColor: '#fff',
       padding: 12,
@@ -348,19 +348,19 @@ const chartOptions = computed(() => ({
         font: {
           size: 11,
         },
-        color: '#71717a',
+        color: 'var(--n-text-muted)',
       }
     },
     y: {
       beginAtZero: true,
       grid: {
-        color: '#f4f4f5',
+        color: 'var(--n-bg-sunken)',
       },
       ticks: {
         font: {
           size: 11,
         },
-        color: '#71717a',
+        color: 'var(--n-text-muted)',
         callback: function(value) {
           if (value >= 10000000) {
             return (value / 10000000).toFixed(1) + '천만'
@@ -396,7 +396,7 @@ const formatCurrency = (value) => {
 .header-icon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -419,13 +419,13 @@ const formatCurrency = (value) => {
 .section-title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0;
 }
 
 .section-description {
   font-size: 0.9375rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   margin: 0;
 }
 
@@ -436,8 +436,8 @@ const formatCurrency = (value) => {
   align-items: center;
   justify-content: center;
   padding: 80px 24px;
-  background: #fafafa;
-  border: 2px dashed #e4e4e7;
+  background: var(--n-bg-subtle);
+  border: 2px dashed var(--n-border);
   border-radius: 20px;
   text-align: center;
 }
@@ -445,7 +445,7 @@ const formatCurrency = (value) => {
 .placeholder-icon {
   width: 80px;
   height: 80px;
-  background: rgba(116, 105, 182, 0.1);
+  background: var(--n-accent-wash);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -456,19 +456,19 @@ const formatCurrency = (value) => {
 .placeholder-icon svg {
   width: 40px;
   height: 40px;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .placeholder-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 8px;
 }
 
 .placeholder-text {
   font-size: 0.9375rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   line-height: 1.6;
   margin: 0 0 24px;
 }
@@ -478,7 +478,7 @@ const formatCurrency = (value) => {
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   color: white;
   border: none;
   border-radius: 12px;
@@ -494,8 +494,7 @@ const formatCurrency = (value) => {
 }
 
 .go-analysis-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(116, 105, 182, 0.3);
+  box-shadow: none;
 }
 
 /* Products Container */
@@ -518,20 +517,20 @@ const formatCurrency = (value) => {
 .product-mini-card {
   min-width: 200px;
   padding: 16px;
-  background: white;
-  border: 2px solid #e4e4e7;
+  background: var(--n-bg);
+  border: 2px solid var(--n-border);
   border-radius: 16px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .product-mini-card:hover {
-  border-color: #E1AFD1;
+  border-color: var(--n-accent);
 }
 
 .product-mini-card.active {
-  border-color: #7469B6;
-  background: rgba(116, 105, 182, 0.05);
+  border-color: var(--n-accent);
+  background: var(--n-accent-wash);
 }
 
 .mini-card-header {
@@ -549,19 +548,19 @@ const formatCurrency = (value) => {
 }
 
 .product-type-badge.deposit {
-  background: #dbeafe;
-  color: #2563eb;
+  background: var(--n-info-bg);
+  color: var(--n-info-text);
 }
 
 .product-type-badge.saving {
-  background: #dcfce7;
-  color: #16a34a;
+  background: var(--n-ok-bg);
+  color: var(--n-ok-text);
 }
 
 .remove-btn {
   width: 24px;
   height: 24px;
-  background: #fee2e2;
+  background: var(--n-danger-bg);
   border: none;
   border-radius: 6px;
   display: flex;
@@ -574,17 +573,17 @@ const formatCurrency = (value) => {
 .remove-btn svg {
   width: 14px;
   height: 14px;
-  color: #dc2626;
+  color: var(--n-danger-text);
 }
 
 .remove-btn:hover {
-  background: #fecaca;
+  background: var(--n-danger-bg);
 }
 
 .mini-card-name {
   font-size: 0.9375rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 4px;
   white-space: nowrap;
   overflow: hidden;
@@ -593,7 +592,7 @@ const formatCurrency = (value) => {
 
 .mini-card-bank {
   font-size: 0.8125rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   margin: 0 0 12px;
 }
 
@@ -602,26 +601,26 @@ const formatCurrency = (value) => {
   justify-content: space-between;
   align-items: center;
   padding-top: 12px;
-  border-top: 1px solid #e4e4e7;
+  border-top: 1px solid var(--n-border);
 }
 
 .rate-label {
   font-size: 0.75rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .rate-value {
   font-size: 1rem;
   font-weight: 800;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 /* Simulation Section */
 .simulation-section {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
 }
 
 .simulation-header {
@@ -640,18 +639,18 @@ const formatCurrency = (value) => {
 .sim-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0;
 }
 
 .sim-subtitle {
   font-size: 0.875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .sim-rate-badge {
   padding: 8px 16px;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   color: white;
   font-size: 1rem;
   font-weight: 700;
@@ -667,7 +666,7 @@ const formatCurrency = (value) => {
   display: block;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #52525b;
+  color: var(--n-text-body);
   margin-bottom: 8px;
 }
 
@@ -681,7 +680,7 @@ const formatCurrency = (value) => {
   flex: 1;
   max-width: 200px;
   padding: 12px 16px;
-  border: 2px solid #e4e4e7;
+  border: 2px solid var(--n-border);
   border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
@@ -690,13 +689,13 @@ const formatCurrency = (value) => {
 
 .input-wrapper input:focus {
   outline: none;
-  border-color: #7469B6;
+  border-color: var(--n-accent);
 }
 
 .input-suffix {
   font-size: 1rem;
   font-weight: 600;
-  color: #52525b;
+  color: var(--n-text-body);
 }
 
 /* Simulation Summary */
@@ -704,7 +703,7 @@ const formatCurrency = (value) => {
   display: flex;
   gap: 16px;
   padding: 20px;
-  background: rgba(116, 105, 182, 0.05);
+  background: var(--n-accent-wash);
   border-radius: 16px;
   margin-bottom: 24px;
 }
@@ -719,27 +718,27 @@ const formatCurrency = (value) => {
 
 .summary-label {
   font-size: 0.8125rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .summary-value {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
 }
 
 .summary-item.highlight .summary-value {
-  color: #16a34a;
+  color: var(--n-ok-text);
 }
 
 .summary-item.total .summary-value {
   font-size: 1.25rem;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 /* Chart Container */
 .chart-container {
-  border: 1px solid #e4e4e7;
+  border: 1px solid var(--n-border);
   border-radius: 16px;
   padding: 20px;
 }
@@ -751,7 +750,7 @@ const formatCurrency = (value) => {
 .chart-title {
   font-size: 1rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0;
 }
 
@@ -765,21 +764,21 @@ const formatCurrency = (value) => {
   align-items: flex-start;
   gap: 12px;
   padding: 16px;
-  background: #fef3c7;
+  background: var(--n-warn-bg);
   border-radius: 12px;
 }
 
 .deposit-notice svg {
   width: 20px;
   height: 20px;
-  color: #d97706;
+  color: var(--n-warn-text);
   flex-shrink: 0;
   margin-top: 2px;
 }
 
 .deposit-notice p {
   font-size: 0.875rem;
-  color: #92400e;
+  color: var(--n-warn-text);
   line-height: 1.5;
   margin: 0;
 }
@@ -791,8 +790,8 @@ const formatCurrency = (value) => {
   justify-content: center;
   gap: 8px;
   padding: 12px 24px;
-  background: #fee2e2;
-  color: #dc2626;
+  background: var(--n-danger-bg);
+  color: var(--n-danger-text);
   border: none;
   border-radius: 12px;
   font-size: 0.875rem;
@@ -808,138 +807,5 @@ const formatCurrency = (value) => {
 }
 
 .clear-all-btn:hover {
-  background: #fecaca;
-}
-
-/* Dark Mode */
-[data-theme="dark"] .section-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .section-description {
-  color: #71717a;
-}
-
-[data-theme="dark"] .chart-placeholder {
-  background: #18181b;
-}
-
-[data-theme="dark"] .placeholder-icon {
-  background: rgba(116, 105, 182, 0.2);
-}
-
-[data-theme="dark"] .placeholder-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .placeholder-text {
-  color: #71717a;
-}
-
-[data-theme="dark"] .product-mini-card {
-  background: #27272a;
-  border-color: #3f3f46;
-}
-
-[data-theme="dark"] .product-mini-card:hover {
-  border-color: #9b8fb8;
-}
-
-[data-theme="dark"] .product-mini-card.active {
-  background: rgba(116, 105, 182, 0.1);
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .product-type-badge.deposit {
-  background: rgba(37, 99, 235, 0.2);
-  color: #93c5fd;
-}
-
-[data-theme="dark"] .product-type-badge.saving {
-  background: rgba(22, 163, 74, 0.2);
-  color: #86efac;
-}
-
-[data-theme="dark"] .mini-card-name {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .mini-card-bank {
-  color: #71717a;
-}
-
-[data-theme="dark"] .mini-card-rate {
-  border-top-color: #3f3f46;
-}
-
-[data-theme="dark"] .rate-value {
-  color: #d4b8d0;
-}
-
-[data-theme="dark"] .simulation-section {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .sim-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .sim-subtitle {
-  color: #71717a;
-}
-
-[data-theme="dark"] .input-label {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .input-wrapper input {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .input-wrapper input:focus {
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .input-suffix {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .simulation-summary {
-  background: rgba(116, 105, 182, 0.1);
-}
-
-[data-theme="dark"] .summary-value {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .summary-item.total .summary-value {
-  color: #d4b8d0;
-}
-
-[data-theme="dark"] .chart-container {
-  border-color: #3f3f46;
-}
-
-[data-theme="dark"] .chart-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .deposit-notice {
-  background: rgba(217, 119, 6, 0.1);
-}
-
-[data-theme="dark"] .deposit-notice p {
-  color: #fcd34d;
-}
-
-[data-theme="dark"] .clear-all-btn {
-  background: rgba(220, 38, 38, 0.1);
-}
-
-[data-theme="dark"] .clear-all-btn:hover {
-  background: rgba(220, 38, 38, 0.2);
-}
-</style>
+  background: var(--n-danger-bg);
+}</style>

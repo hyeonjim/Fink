@@ -257,15 +257,15 @@ const formatMarketCap = (cap, currency) => {
 
 <style scoped>
 .stock-detail {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--n-border);
   overflow: hidden;
 }
 
 /* Detail Header */
 .detail-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--n-accent);
   padding: 28px;
   display: flex;
   justify-content: space-between;
@@ -331,7 +331,7 @@ const formatMarketCap = (cap, currency) => {
 }
 
 .price-change.negative {
-  color: #fca5a5;
+  color: var(--n-danger-bg);
 }
 
 .price-change.neutral {
@@ -341,7 +341,7 @@ const formatMarketCap = (cap, currency) => {
 /* Chart Section */
 .chart-section {
   padding: 24px;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--n-bg-sunken);
 }
 
 .chart-header {
@@ -356,7 +356,7 @@ const formatMarketCap = (cap, currency) => {
 .chart-header h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--n-text);
   margin: 0;
 }
 
@@ -368,24 +368,24 @@ const formatMarketCap = (cap, currency) => {
 
 .period-btn {
   padding: 6px 14px;
-  border: 1px solid #e5e7eb;
-  background: white;
+  border: 1px solid var(--n-border);
+  background: var(--n-bg);
   border-radius: 20px;
   font-size: 13px;
   font-weight: 500;
-  color: #6b7280;
+  color: var(--n-text-muted);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .period-btn:hover {
-  border-color: #667eea;
-  color: #667eea;
+  border-color: var(--n-accent);
+  color: var(--n-accent);
 }
 
 .period-btn.active {
-  background: #667eea;
-  border-color: #667eea;
+  background: var(--n-accent);
+  border-color: var(--n-accent);
   color: white;
 }
 
@@ -399,8 +399,8 @@ const formatMarketCap = (cap, currency) => {
 .loading-spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid #e5e7eb;
-  border-top-color: #667eea;
+  border: 3px solid var(--n-border);
+  border-top-color: var(--n-accent);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -418,19 +418,19 @@ const formatMarketCap = (cap, currency) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #9ca3af;
+  color: var(--n-text-muted);
 }
 
 /* Stats Section */
 .stats-section {
   padding: 24px;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--n-bg-sunken);
 }
 
 .stats-section h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--n-text);
   margin: 0 0 20px 0;
 }
 
@@ -441,7 +441,7 @@ const formatMarketCap = (cap, currency) => {
 }
 
 .stat-item {
-  background: #f9fafb;
+  background: var(--n-bg-subtle);
   padding: 16px;
   border-radius: 12px;
 }
@@ -449,7 +449,7 @@ const formatMarketCap = (cap, currency) => {
 .stat-label {
   display: block;
   font-size: 12px;
-  color: #6b7280;
+  color: var(--n-text-muted);
   margin-bottom: 4px;
 }
 
@@ -457,24 +457,24 @@ const formatMarketCap = (cap, currency) => {
   display: block;
   font-size: 16px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--n-text);
 }
 
 /* Description Section */
 .description-section {
   padding: 24px;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--n-bg-sunken);
 }
 
 .description-section h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--n-text);
   margin: 0 0 16px 0;
 }
 
 .description-text {
-  color: #4b5563;
+  color: var(--n-text-body);
   line-height: 1.7;
   font-size: 14px;
   margin: 0 0 16px 0;
@@ -484,7 +484,7 @@ const formatMarketCap = (cap, currency) => {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #667eea;
+  color: var(--n-accent);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
@@ -507,7 +507,7 @@ const formatMarketCap = (cap, currency) => {
 .news-section h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--n-text);
   margin: 0 0 20px 0;
 }
 
@@ -522,14 +522,14 @@ const formatMarketCap = (cap, currency) => {
   align-items: center;
   gap: 16px;
   padding: 16px;
-  background: #f9fafb;
+  background: var(--n-bg-subtle);
   border-radius: 12px;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .news-item:hover {
-  background: #f3f4f6;
+  background: var(--n-bg-sunken);
   transform: translateX(4px);
 }
 
@@ -541,7 +541,7 @@ const formatMarketCap = (cap, currency) => {
 .news-title {
   font-size: 14px;
   font-weight: 500;
-  color: #1f2937;
+  color: var(--n-text);
   margin: 0 0 6px 0;
   line-height: 1.4;
 }
@@ -553,13 +553,13 @@ const formatMarketCap = (cap, currency) => {
 
 .news-publisher {
   font-size: 12px;
-  color: #6b7280;
+  color: var(--n-text-muted);
 }
 
 .news-arrow {
   width: 20px;
   height: 20px;
-  color: #9ca3af;
+  color: var(--n-text-muted);
   flex-shrink: 0;
 }
 

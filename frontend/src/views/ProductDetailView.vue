@@ -260,10 +260,13 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* ═══════════════════════════════════════════════════════════════════
+   상품 상세 — 무채색. 그림자 대신 보더로 카드를 구분한다.
+   ═══════════════════════════════════════════════════════════════════ */
 .product-detail-page {
   min-height: calc(100vh - 72px);
-  padding: 48px 24px;
-  background: linear-gradient(180deg, #FDFBFD 0%, #FFF5F8 50%, #FAFAFA 100%);
+  padding: 48px 24px 80px;
+  background: var(--n-bg);
 }
 
 .container {
@@ -271,67 +274,65 @@ onMounted(() => {
   margin: 0 auto;
 }
 
-/* Back Link */
+/* ── 뒤로가기 ────────────────────────────────────────────────────── */
 .back-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: #71717a;
-  text-decoration: none;
   margin-bottom: 24px;
-  transition: color 0.2s;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
+  text-decoration: none;
+  transition: color 0.18s ease;
 }
 
 .back-link:hover {
-  color: #7469B6;
+  color: var(--n-text);
 }
 
 .back-link svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
+  transition: transform 0.18s ease;
 }
 
-/* Header Card */
+.back-link:hover svg {
+  transform: translateX(-3px);
+}
+
+/* ── 헤더 카드 ───────────────────────────────────────────────────── */
 .product-header-card {
-  background: white;
-  border-radius: 24px;
-  padding: 32px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  padding: 28px;
+  border: 1px solid var(--n-border);
+  border-radius: 12px;
+  background: var(--n-bg);
+  box-shadow: none;
 }
 
 .product-badge-row {
   display: flex;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
-.product-type-badge {
-  padding: 6px 14px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  border-radius: 20px;
-}
-
-.product-type-badge.deposit {
-  color: #2563eb;
-  background: rgba(37, 99, 235, 0.1);
+.product-type-badge,
+.product-join-badge {
+  padding: 4px 11px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--n-border);
+  border-radius: 6px;
+  background: var(--n-bg-subtle);
+  color: var(--n-text-body);
 }
 
 .product-type-badge.saving {
-  color: #16a34a;
-  background: rgba(22, 163, 74, 0.1);
+  border-color: var(--n-accent-wash);
+  background: var(--n-accent-wash);
+  color: var(--n-accent);
 }
-
-.product-join-badge {
-  padding: 6px 14px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  border-radius: 20px;
-}
-
 
 .product-bank-info {
   display: flex;
@@ -341,39 +342,32 @@ onMounted(() => {
 }
 
 .bank-logo-large {
-  width: 90px;
-  height: 30px;
-  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.bank-logo-large svg {
-  width: 24px;
-  height: 24px;
-  color: white;
+  width: 90px;
+  height: 30px;
 }
 
 .bank-name-large {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #52525b;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
 }
 
 .product-title {
-  font-size: 1.35rem;
+  margin: 18px 0 40px;
+  font-size: 1.5rem;
   font-weight: 600;
-  color: #18181b;
-  line-height: 1.3;
-  margin-bottom: 70px;
-  margin-top: 20px;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  color: var(--n-text);
 }
 
-/* Action Buttons */
+/* ── 액션 버튼 ───────────────────────────────────────────────────── */
 .action-buttons {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -382,95 +376,110 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 20px;
+  height: 42px;
+  padding: 0 18px;
   font-size: 0.9375rem;
-  font-weight: 600;
-  border-radius: 12px;
+  font-weight: 500;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
 }
 
 .like-btn {
-  background: white;
-  color: #7469B6;
-  border: 2px solid #E1AFD1;
+  background: transparent;
+  color: var(--n-text);
+  border: 1px solid var(--n-border-strong);
 }
 
 .like-btn:hover {
-  background: rgba(116, 105, 182, 0.05);
-  border-color: #7469B6;
+  background: var(--n-bg-subtle);
+  border-color: var(--n-text-muted);
 }
 
 .like-btn.liked {
-  background: #c6a3dd;
-  color: rgb(243, 240, 240);
-  border-color: transparent;
+  background: var(--n-accent);
+  border-color: var(--n-accent);
+  color: #fff;
+}
+
+.like-btn.liked:hover {
+  background: var(--n-accent-hover);
+  border-color: var(--n-accent-hover);
 }
 
 .like-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
 }
 
 .like-count {
-  padding: 2px 8px;
+  padding: 1px 7px;
   font-size: 0.75rem;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
+  font-variant-numeric: tabular-nums;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.22);
 }
 
 .like-btn:not(.liked) .like-count {
-  background: rgba(116, 105, 182, 0.1);
-  color: #7469B6;
+  background: var(--n-bg-sunken);
+  color: var(--n-text-muted);
 }
 
 .map-btn {
-  background: #8ea3db;
-  color: white;
-  border: none;
+  background: transparent;
+  color: var(--n-text);
+  border: 1px solid var(--n-border-strong);
 }
 
 .map-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  background: var(--n-bg-subtle);
+  border-color: var(--n-text-muted);
 }
 
 .map-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
 }
 
-/* Options Card */
+/* ── 카드 ────────────────────────────────────────────────────────── */
 .details-card {
-  margin-bottom: 50px;
-}
-.options-card{
-  background: white;
-  border-radius: 24px;
-  padding: 32px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   margin-bottom: 40px;
-  margin-top: 30px;
+}
+
+.options-card {
+  margin: 24px 0 40px;
+  padding: 28px;
+  border: 1px solid var(--n-border);
+  border-radius: 12px;
+  background: var(--n-bg);
+  box-shadow: none;
 }
 
 .card-title {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
+  margin-bottom: 20px;
   font-size: 1rem;
-  font-weight: 500;
-  color: #18181b;
-  margin-bottom: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--n-text);
 }
 
 .card-title svg {
-  width: 20px;
-  height: 20px;
-  color: #7469B6;
+  width: 18px;
+  height: 18px;
+  color: var(--n-text-muted);
 }
 
+/* ── 금리 옵션 표 ────────────────────────────────────────────────── */
 .options-table-wrapper {
   overflow-x: auto;
+  border: 1px solid var(--n-border);
+  border-radius: 10px;
 }
 
 .options-table {
@@ -479,28 +488,21 @@ onMounted(() => {
 }
 
 .options-table th {
-  padding: 14px 16px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: #71717a;
+  padding: 12px 14px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
   text-align: left;
-  background: #fafafa;
-  border-bottom: 2px solid #e4e4e7;
-}
-
-.options-table th:first-child {
-  border-radius: 12px 0 0 0;
-}
-
-.options-table th:last-child {
-  border-radius: 0 12px 0 0;
+  white-space: nowrap;
+  background: var(--n-bg-subtle);
+  border-bottom: 1px solid var(--n-border);
 }
 
 .options-table td {
-  padding: 16px;
+  padding: 13px 14px;
   font-size: 0.9375rem;
-  color: #3f3f46;
-  border-bottom: 1px solid #f4f4f5;
+  color: var(--n-text-body);
+  border-bottom: 1px solid var(--n-border);
 }
 
 .options-table tr:last-child td {
@@ -508,36 +510,40 @@ onMounted(() => {
 }
 
 .term-value {
-  font-weight: 700;
-  color: #18181b;
   font-size: 1rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--n-text);
 }
 
 .term-unit {
-  color: #71717a;
   font-size: 0.875rem;
+  color: var(--n-text-muted);
 }
 
 .rate-cell {
-  font-weight: 600;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--n-text);
 }
 
-.rate-max {
-  color: #7469B6;
+.rate-cell.rate-max {
   font-size: 1rem;
+  font-weight: 600;
+  color: var(--n-accent);
 }
 
-/* Detail Grid */
+/* ── 상세 정보 그리드 ────────────────────────────────────────────── */
 .detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 18px;
 }
 
 .detail-item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .detail-full {
@@ -545,51 +551,56 @@ onMounted(() => {
 }
 
 .detail-label {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: #71717a;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
 }
 
 .detail-value {
   font-size: 0.9375rem;
-  color: #18181b;
-  line-height: 1.6;
+  line-height: 1.65;
+  color: var(--n-text-body);
 }
 
-/* Loading State */
+/* ── 로딩 ────────────────────────────────────────────────────────── */
 .loading-state {
   text-align: center;
   padding: 80px 24px;
+  color: var(--n-text-muted);
 }
 
 .loading-spinner {
-  width: 48px;
-  height: 48px;
+  width: 30px;
+  height: 30px;
   margin: 0 auto 16px;
-  border: 4px solid rgba(116, 105, 182, 0.1);
-  border-top-color: #7469B6;
+  border: 2px solid var(--n-border);
+  border-top-color: var(--n-text-muted);
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 0.7s linear infinite;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-/* Responsive */
+/* ═══════════════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   .product-detail-page {
-    padding: 32px 16px;
+    padding: 32px 16px 64px;
   }
 
   .product-header-card,
-  .options-card,
-  .details-card {
-    padding: 24px;
+  .options-card {
+    padding: 22px;
   }
 
   .product-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    margin-bottom: 28px;
   }
 
   .detail-grid {
@@ -610,107 +621,12 @@ onMounted(() => {
   }
 }
 
-/* Dark Mode */
-[data-theme="dark"] .product-detail-page {
-  background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 50%, #0a0a0a 100%);
-}
-
-[data-theme="dark"] .back-link {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .back-link:hover {
-  color: #c9b8c6;
-}
-
-[data-theme="dark"] .product-header-card,
-[data-theme="dark"] .options-card,
-[data-theme="dark"] .details-card {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .product-type-badge.deposit {
-  background: rgba(37, 99, 235, 0.2);
-  color: #93c5fd;
-}
-
-[data-theme="dark"] .product-type-badge.saving {
-  background: rgba(22, 163, 74, 0.2);
-  color: #86efac;
-}
-
-[data-theme="dark"] .badge-success {
-  background: rgba(5, 150, 105, 0.2);
-  color: #34d399;
-}
-
-[data-theme="dark"] .badge-warning {
-  background: rgba(217, 119, 6, 0.2);
-  color: #fbbf24;
-}
-
-[data-theme="dark"] .badge-info {
-  background: rgba(2, 132, 199, 0.2);
-  color: #38bdf8;
-}
-
-[data-theme="dark"] .product-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .like-btn {
-  background: #27272a;
-  border-color: rgba(116, 105, 182, 0.3);
-  color: #c9b8c6;
-}
-
-[data-theme="dark"] .like-btn:hover {
-  background: #3f3f46;
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .like-btn.liked {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
-  color: white;
-}
-
-[data-theme="dark"] .like-btn:not(.liked) .like-count {
-  background: rgba(116, 105, 182, 0.2);
-}
-
-[data-theme="dark"] .card-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .options-table th {
-  background: #27272a;
-  color: #a1a1aa;
-  border-bottom-color: #3f3f46;
-}
-
-[data-theme="dark"] .options-table td {
-  color: #a1a1aa;
-  border-bottom-color: #27272a;
-}
-
-[data-theme="dark"] .term-value {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .rate-max {
-  color: #d4b8d0;
-}
-
-[data-theme="dark"] .detail-label {
-  color: #71717a;
-}
-
-[data-theme="dark"] .detail-value {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .loading-state p {
-  color: #a1a1aa;
+/* ═══════════════════════════════════════════════════════════════════
+   Dark mode — 은행 로고는 흰 배경 전제 이미지라 타일을 밝게 유지한다.
+   ═══════════════════════════════════════════════════════════════════ */
+[data-theme='dark'] .bank-logo-img-large {
+  padding: 2px 5px;
+  border-radius: 6px;
+  background: #f5f5f4;
 }
 </style>

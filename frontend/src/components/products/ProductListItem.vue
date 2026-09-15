@@ -159,45 +159,48 @@ const uniqueTerms = computed(() => {
 </script>
 
 <style scoped>
+/* ═══════════════════════════════════════════════════════════════════
+   상품 카드 — 무채색. 그림자 대신 보더, hover 는 보더 변화로 절제.
+   ═══════════════════════════════════════════════════════════════════ */
 .product-card {
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  overflow: hidden;
-  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.18s ease;
 }
 
 .product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(116, 105, 182, 0.15);
+  border-color: var(--n-border-strong);
 }
 
 .product-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 24px;
-  height: 80px;
-  border-bottom: 1px solid #f4f4f5;
+  gap: 12px;
+  height: 72px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--n-border);
 }
 
 .product-type-badge {
-  padding: 6px 12px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--n-border);
+  border-radius: 6px;
+  background: var(--n-bg-subtle);
+  color: var(--n-text-body);
 }
 
-.product-type-badge.deposit {
-  background: #dbeafe;
-  color: #2563eb;
-}
-
+/* 예금/적금 구분은 색 대신 굵기·배경 농도의 차이로만 준다 */
 .product-type-badge.saving {
-  background: #dcfce7;
-  color: #16a34a;
+  background: var(--n-accent-wash);
+  border-color: var(--n-accent-wash);
+  color: var(--n-accent);
 }
 
 .product-bank {
@@ -206,39 +209,24 @@ const uniqueTerms = computed(() => {
   gap: 8px;
 }
 
-.bank-logo {
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bank-logo svg {
-  width: 18px;
-  height: 18px;
-  color: white;
-}
-
 .bank-name {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #3f3f46;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
 }
 
 .product-card-body {
-  padding: 24px;
   flex: 1;
+  padding: 20px;
 }
 
 .product-name {
-  font-size: 1.3rem;
+  margin-bottom: 18px;
+  font-size: 1.0625rem;
   font-weight: 600;
-  color: #18181b;
-  margin-bottom: 20px;
-  line-height: 1.4;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--n-text);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -247,164 +235,110 @@ const uniqueTerms = computed(() => {
 
 .product-rates {
   display: flex;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
 .rate-item {
   flex: 1;
-  padding: 16px;
-  background: #fafafa;
-  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid var(--n-border);
+  border-radius: 8px;
+  background: var(--n-bg);
   text-align: center;
 }
 
 .rate-item.rate-max {
-  background: linear-gradient(135deg, #FFE6E6 0%, rgba(116, 105, 182, 0.1) 100%);
+  border-color: var(--n-accent);
+  background: var(--n-accent-wash);
 }
 
 .rate-label {
   display: block;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #71717a;
   margin-bottom: 4px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
 }
 
 .rate-value {
   font-size: 1.25rem;
-  font-weight: 800;
-  color: #18181b;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--n-text);
 }
 
 .rate-max .rate-value {
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .product-terms {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .term-badge {
-  padding: 6px 10px;
-  font-size: 0.75rem;
+  padding: 4px 9px;
+  font-size: 0.6875rem;
   font-weight: 500;
-  color: #52525b;
-  background: #f4f4f5;
-  border-radius: 6px;
+  color: var(--n-text-muted);
+  border: 1px solid var(--n-border);
+  border-radius: 5px;
 }
 
 .term-more {
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .product-card-footer {
-  padding: 16px 24px;
-  border-top: 1px solid #f4f4f5;
+  padding: 14px 20px;
+  border-top: 1px solid var(--n-border);
 }
 
 .detail-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   font-size: 0.875rem;
-  font-weight: 600;
-  color: #7469B6;
+  font-weight: 500;
+  color: var(--n-accent);
   text-decoration: none;
-  transition: gap 0.2s ease;
+  transition: color 0.18s ease;
 }
 
 .detail-link:hover {
-  gap: 12px;
+  color: var(--n-accent-hover);
 }
 
 .detail-link svg {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
+  transition: transform 0.18s ease;
 }
 
+.detail-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* 은행 로고 — 흰 배경 전제 이미지라 다크모드에서도 밝은 타일을 유지한다 */
 .bank-logo-img {
   width: 80px;
   height: 32px;
   object-fit: contain;
 }
 
-/* Dark Mode */
-[data-theme="dark"] .product-card {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .product-card:hover {
-  box-shadow: 0 12px 40px rgba(116, 105, 182, 0.25);
-}
-
-[data-theme="dark"] .product-card-header {
-  border-bottom-color: #27272a;
-}
-
-[data-theme="dark"] .product-type-badge.deposit {
-  background: rgba(37, 99, 235, 0.2);
-  color: #93c5fd;
-}
-
-[data-theme="dark"] .product-type-badge.saving {
-  background: rgba(22, 163, 74, 0.2);
-  color: #86efac;
-}
-
-[data-theme="dark"] .bank-name {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .product-name {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .rate-item {
-  background: #27272a;
-}
-
-[data-theme="dark"] .rate-item.rate-max {
-  background: linear-gradient(135deg, rgba(116, 105, 182, 0.15) 0%, rgba(200, 160, 190, 0.1) 100%);
-}
-
-[data-theme="dark"] .rate-label {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .rate-value {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .rate-max .rate-value {
-  color: #d4b8d0;
-}
-
-[data-theme="dark"] .term-badge {
-  background: #27272a;
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .product-card-footer {
-  border-top-color: #27272a;
-}
-
-[data-theme="dark"] .detail-link {
-  color: #c9b8c6;
-}
-.bank-logo-img {
-  width: 80px;
-  height: 32px;
-  object-fit: contain;
-}
-
-/* ✅ 경남은행 전용 */
-.bank-logo-img.logo-large  {
-  width: 100px;   /* 원하는 만큼 */
+.bank-logo-img.logo-large {
+  width: 100px;
   height: 75px;
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   Dark mode — 토큰이 대부분 처리한다. 예외만 남긴다.
+   ═══════════════════════════════════════════════════════════════════ */
+[data-theme='dark'] .bank-logo-img {
+  padding: 2px 4px;
+  border-radius: 5px;
+  background: #f5f5f4;
+}
 </style>

@@ -47,7 +47,7 @@ watch(
 <style scoped>
 .news-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, #FDFBFD 0%, #FFF5F8 50%, #FAFAFA 100%);
+  background: var(--n-bg);
 }
 
 .news-container {
@@ -68,10 +68,4 @@ watch(
     grid-template-columns: 1fr;
     height: auto;
   }
-}
-
-/* Dark Mode */
-[data-theme="dark"] .news-page {
-  background: linear-gradient(180deg, #0a0a0a 0%, #18181b 50%, #0f0f0f 100%);
-}
-</style>
+}</style>

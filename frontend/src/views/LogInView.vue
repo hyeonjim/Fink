@@ -7,17 +7,17 @@
           <div class="branding-logo">F!NK</div>
           <h1 class="branding-title">
             당신의 금융을<br>
-            <span class="text-gradient">더 스마트하게</span>
+            더 스마트하게
           </h1>
           <p class="branding-description">
             AI 기반 맞춤 금융상품 추천으로<br>
             현명한 금융 생활을 시작하세요.
           </p>
-          
+
           <div class="branding-features">
             <div class="feature-item">
               <div class="feature-check">✓</div>
-              <span>50+ 금융 상품 비교</span>
+              <span>21개 금융기관 상품 비교</span>
             </div>
             <div class="feature-item">
               <div class="feature-check">✓</div>
@@ -25,14 +25,9 @@
             </div>
             <div class="feature-item">
               <div class="feature-check">✓</div>
-              <span>실시간 뉴스 & 시세</span>
+              <span>실시간 뉴스 &amp; 시세</span>
             </div>
           </div>
-        </div>
-        
-        <div class="branding-decoration">
-          <div class="decoration-orb orb-1"></div>
-          <div class="decoration-orb orb-2"></div>
         </div>
       </div>
 
@@ -155,132 +150,103 @@ const logIn = () => {
 </script>
 
 <style scoped>
+/* ═══════════════════════════════════════════════════════════════════
+   Auth (Login) — 무채색. HomeView 의 카드/보더 언어를 따른다.
+   ═══════════════════════════════════════════════════════════════════ */
 .auth-page {
   min-height: calc(100vh - 72px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 24px;
+  padding: 64px 24px;
+  background: var(--n-bg-subtle);
 }
 
 .auth-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  max-width: 1100px;
+  max-width: 1040px;
   width: 100%;
-  background: white;
-  border-radius: 32px;
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
 }
 
-/* Branding Section */
+/* ── 좌측 브랜딩 — 그라데이션 대신 단색 잉크 패널 ──────────────── */
 .auth-branding {
   position: relative;
-  background: linear-gradient(135deg, #1d1d1f 0%, #2D2660 50%, #1d1d1f 100%);
-  padding: 60px 48px;
+  background: var(--n-ink);
+  padding: 64px 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow: hidden;
+  border-right: 1px solid var(--n-border);
 }
 
 .branding-content {
   position: relative;
-  z-index: 1;
 }
 
 .branding-logo {
-  font-size: 2rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, #FFE6E6 0%, #E1AFD1 35%, #AD88C6 70%, #7469B6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 32px;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: var(--n-ink-text);
+  margin-bottom: 36px;
 }
 
 .branding-title {
-  font-size: 2.25rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: white;
-  line-height: 1.2;
-  margin-bottom: 20px;
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, #FFE6E6 0%, #E1AFD1 35%, #AD88C6 70%, #7469B6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  color: var(--n-ink-text);
+  margin-bottom: 18px;
 }
 
 .branding-description {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 1.6;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--n-ink-text);
+  opacity: 0.72;
   margin-bottom: 40px;
 }
 
 .branding-features {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .feature-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: rgba(255, 255, 255, 0.9);
   font-size: 0.9375rem;
+  color: var(--n-ink-text);
+  opacity: 0.9;
 }
 
 .feature-check {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: rgba(116, 105, 182, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: rgba(41, 41, 48, 0.08);
   font-size: 0.75rem;
-  color: #E1AFD1;
+  color: var(--n-accent);
 }
 
-.branding-decoration {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.decoration-orb {
-  position: absolute;
-  border-radius: 50%;
-}
-
-.orb-1 {
-  top: -100px;
-  right: -100px;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(116, 105, 182, 0.4) 0%, transparent 70%);
-}
-
-.orb-2 {
-  bottom: -50px;
-  left: -50px;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(225, 175, 209, 0.3) 0%, transparent 70%);
-}
-
-/* Form Section */
+/* ── 우측 폼 ─────────────────────────────────────────────────────── */
 .auth-form-section {
-  padding: 60px 48px;
+  padding: 64px 48px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--n-bg);
 }
 
 .auth-form-container {
@@ -289,26 +255,26 @@ const logIn = () => {
 }
 
 .auth-header {
-  text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
 .auth-title {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #18181b;
+  font-size: 1.625rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--n-text);
   margin-bottom: 8px;
 }
 
 .auth-subtitle {
-  color: #71717a;
+  color: var(--n-text-muted);
   font-size: 0.9375rem;
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .input-group {
@@ -318,59 +284,83 @@ const logIn = () => {
 }
 
 .input-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #3f3f46;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
 }
 
 .input-wrapper {
   position: relative;
-  
 }
 
 .input-icon {
   position: absolute;
-  left: 16px;
+  left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  color: #a1a1aa;
+  width: 18px;
+  height: 18px;
+  color: var(--n-text-muted);
   pointer-events: none;
-  
 }
 
+input.input-with-icon,
 .input.input-with-icon {
-  padding-left: 48px;
-
+  padding-left: 42px;
 }
 
 .input {
   width: 100%;
-  padding: 14px 18px;
-  font-size: 1rem;
-  background: #fafafa;
-  border: 2px solid #e4e4e7;
-  border-radius: 14px;
-  transition: all 0.2s ease;
+  padding: 12px 14px;
+  font-size: 0.9375rem;
+  color: var(--n-text);
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
+  border-radius: 8px;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
   outline: none;
 }
 
+.input:hover:not(:focus) {
+  border-color: var(--n-border-strong);
+}
+
 .input:focus {
-  border-color: #7469B6;
-  background: white;
-  box-shadow: 0 0 0 4px rgba(116, 105, 182, 0.1);
+  border-color: var(--n-accent);
+  box-shadow: 0 0 0 3px var(--n-accent-wash);
 }
 
 .input::placeholder {
-  color: #a1a1aa;
+  color: var(--n-text-muted);
+}
+
+/* 전역 .btn-primary 가 그라데이션이라 이 화면에서만 무채색으로 덮는다 */
+.auth-form :deep(.btn-primary) {
+  height: 46px;
+  padding: 0 20px;
+  border-radius: 8px;
+  background: var(--n-accent);
+  background-image: none;
+  border: 1px solid var(--n-accent);
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  box-shadow: none;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.auth-form :deep(.btn-primary:hover) {
+  background: var(--n-accent-hover);
+  border-color: var(--n-accent-hover);
+  transform: none;
+  box-shadow: none;
 }
 
 .auth-divider {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin: 32px 0;
+  margin: 28px 0;
 }
 
 .auth-divider::before,
@@ -378,12 +368,12 @@ const logIn = () => {
   content: '';
   flex: 1;
   height: 1px;
-  background: #e4e4e7;
+  background: var(--n-border);
 }
 
 .auth-divider span {
   font-size: 0.8125rem;
-  color: #a1a1aa;
+  color: var(--n-text-muted);
 }
 
 .auth-footer {
@@ -391,7 +381,7 @@ const logIn = () => {
 }
 
 .auth-footer p {
-  color: #71717a;
+  color: var(--n-text-muted);
   font-size: 0.9375rem;
   margin-bottom: 8px;
 }
@@ -401,29 +391,61 @@ const logIn = () => {
   align-items: center;
   gap: 6px;
   font-size: 0.9375rem;
-  font-weight: 600;
-  color: #7469B6;
+  font-weight: 500;
+  color: var(--n-accent);
   text-decoration: none;
-  transition: gap 0.2s ease;
+  transition: color 0.18s ease;
 }
 
 .auth-link:hover {
-  gap: 10px;
+  color: var(--n-accent-hover);
 }
 
 .auth-link .arrow {
-  transition: transform 0.2s ease;
+  transition: transform 0.18s ease;
 }
 
 .auth-link:hover .arrow {
-  transform: translateX(2px);
+  transform: translateX(3px);
 }
 
-/* Responsive */
+/* 비밀번호 보기 버튼 */
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--n-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.18s ease;
+}
+
+.password-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.password-toggle:hover {
+  color: var(--n-text);
+}
+
+.input-with-toggle {
+  padding-right: 44px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
   .auth-container {
     grid-template-columns: 1fr;
-    max-width: 480px;
+    max-width: 460px;
   }
 
   .auth-branding {
@@ -437,114 +459,18 @@ const logIn = () => {
 
 @media (max-width: 480px) {
   .auth-page {
-    padding: 24px 16px;
+    padding: 32px 16px;
   }
 
   .auth-form-section {
-    padding: 40px 24px;
+    padding: 36px 24px;
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   Dark Mode Styles
-   ═══════════════════════════════════════════════════════════════════════════ */
-[data-theme="dark"] .auth-page {
-  background: #0a0a0a;
+/* ═══════════════════════════════════════════════════════════════════
+   Dark mode — --n-* 토큰이 대부분 처리한다. 예외만 남긴다.
+   ═══════════════════════════════════════════════════════════════════ */
+[data-theme='dark'] .feature-check {
+  background: rgba(250, 250, 249, 0.08);
 }
-
-[data-theme="dark"] .auth-container {
-  background: #18181b;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-
-[data-theme="dark"] .auth-form-section {
-  background: #18181b;
-}
-
-[data-theme="dark"] .auth-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .auth-subtitle {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .input-label {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .input {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .input:focus {
-  background: #27272a;
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .input::placeholder {
-  color: #71717a;
-}
-
-[data-theme="dark"] .input-icon {
-  color: #71717a;
-}
-
-[data-theme="dark"] .auth-divider::before,
-[data-theme="dark"] .auth-divider::after {
-  background: #3f3f46;
-}
-
-[data-theme="dark"] .auth-divider span {
-  color: #71717a;
-}
-
-[data-theme="dark"] .auth-footer p {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .auth-link {
-  color: #E1AFD1; 
-}
-/* 비밀번호 보기 버튼 */
-.password-toggle {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  padding: 4px;
-  cursor: pointer;
-  color: #a1a1aa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.password-toggle svg {
-  width: 20px;
-  height: 20px;
-}
-
-.password-toggle:hover {
-  color: #7469B6;
-}
-
-/* 아이콘 + 토글 버튼 공간 확보 */
-.input-with-toggle {
-  padding-right: 48px;
-}
-
-/* 다크모드 */
-[data-theme="dark"] .password-toggle {
-  color: #71717a;
-}
-
-[data-theme="dark"] .password-toggle:hover {
-  color: #E1AFD1;
-}
-
 </style>

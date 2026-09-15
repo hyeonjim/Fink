@@ -174,6 +174,10 @@ const router = createRouter({
     { path: '/community/create', name: 'CreateView', component: CommunityCreateView },
     { path: '/community/:id', name: 'DetailView', component: CommunityDetailView, props: true },
   ],
+  // 페이지 이동 시 항상 최상단으로. 뒤로가기는 이전 스크롤 위치를 복원한다.
+  scrollBehavior(to, from, savedPosition) {
+    return savedPosition || { top: 0 }
+  },
 })
 
 // 인증된 사용자는 회원가입과 로그인 페이지에 접근 제한

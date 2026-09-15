@@ -102,7 +102,7 @@ const channelStore = useChannelStore()
 .header-icon {
   width: 44px;
   height: 44px;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -118,13 +118,13 @@ const channelStore = useChannelStore()
 .section-title {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0;
 }
 
 .section-count {
   font-size: 0.8125rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .clear-btn {
@@ -134,9 +134,9 @@ const channelStore = useChannelStore()
   padding: 10px 16px;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #dc2626;
-  background: white;
-  border: 1px solid #fecaca;
+  color: var(--n-danger-text);
+  background: var(--n-bg);
+  border: 1px solid var(--n-danger-bg);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
@@ -148,8 +148,8 @@ const channelStore = useChannelStore()
 }
 
 .clear-btn:hover:not(:disabled) {
-  background: #fef2f2;
-  border-color: #dc2626;
+  background: var(--n-danger-bg);
+  border-color: var(--n-danger-text);
 }
 
 .clear-btn:disabled {
@@ -164,15 +164,15 @@ const channelStore = useChannelStore()
   align-items: center;
   padding: 60px 24px;
   text-align: center;
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
 }
 
 .empty-icon {
   width: 72px;
   height: 72px;
-  background: rgba(116, 105, 182, 0.1);
+  background: var(--n-accent-wash);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -183,19 +183,19 @@ const channelStore = useChannelStore()
 .empty-icon svg {
   width: 36px;
   height: 36px;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .empty-title {
   font-size: 1.0625rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 6px;
 }
 
 .empty-text {
   font-size: 0.875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   margin-bottom: 20px;
 }
 
@@ -207,7 +207,7 @@ const channelStore = useChannelStore()
   font-size: 0.875rem;
   font-weight: 600;
   color: white;
-  background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+  background: var(--n-danger-text);
   border-radius: 12px;
   text-decoration: none;
   transition: all 0.2s;
@@ -237,7 +237,7 @@ const channelStore = useChannelStore()
   align-items: center;
   gap: 16px;
   padding: 16px 20px;
-  background: white;
+  background: var(--n-bg);
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   transition: all 0.2s ease;
@@ -250,7 +250,7 @@ const channelStore = useChannelStore()
 .channel-avatar {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+  background: var(--n-danger-text);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -272,12 +272,12 @@ const channelStore = useChannelStore()
 .channel-name {
   font-size: 1rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
 }
 
 .channel-id {
   font-size: 0.75rem;
-  color: #a1a1aa;
+  color: var(--n-text-muted);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -290,9 +290,9 @@ const channelStore = useChannelStore()
   padding: 10px 14px;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #dc2626;
-  background: white;
-  border: 1px solid #fecaca;
+  color: var(--n-danger-text);
+  background: var(--n-bg);
+  border: 1px solid var(--n-danger-bg);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
@@ -304,8 +304,8 @@ const channelStore = useChannelStore()
 }
 
 .delete-btn:hover {
-  background: #fef2f2;
-  border-color: #dc2626;
+  background: var(--n-danger-bg);
+  border-color: var(--n-danger-text);
 }
 
 /* Responsive */

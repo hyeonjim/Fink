@@ -203,7 +203,7 @@ const onChangePassword = () => {
 .header-icon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -226,22 +226,22 @@ const onChangePassword = () => {
 .section-title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0;
 }
 
 .section-description {
   font-size: 0.9375rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   margin: 0;
 }
 
 /* Card */
 .card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
 }
 
 .card-header {
@@ -250,7 +250,7 @@ const onChangePassword = () => {
   gap: 16px;
   margin-bottom: 24px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #f4f4f5;
+  border-bottom: 1px solid var(--n-bg-sunken);
 }
 
 .card-icon {
@@ -269,13 +269,13 @@ const onChangePassword = () => {
 }
 
 .nickname-icon {
-  background: #f0fdf4;
-  color: #16a34a;
+  background: var(--n-ok-bg);
+  color: var(--n-ok-text);
 }
 
 .password-icon {
-  background: #fef3c7;
-  color: #d97706;
+  background: var(--n-warn-bg);
+  color: var(--n-warn-text);
 }
 
 .card-title-group {
@@ -287,13 +287,13 @@ const onChangePassword = () => {
 .card-title {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0;
 }
 
 .card-subtitle {
   font-size: 0.875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   margin: 0;
 }
 
@@ -314,7 +314,7 @@ const onChangePassword = () => {
 .input-label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #3f3f46;
+  color: var(--n-text-body);
 }
 
 .input-wrapper {
@@ -328,7 +328,7 @@ const onChangePassword = () => {
   left: 16px;
   width: 18px;
   height: 18px;
-  color: #a1a1aa;
+  color: var(--n-text-muted);
   pointer-events: none;
 }
 
@@ -336,20 +336,20 @@ const onChangePassword = () => {
   width: 100%;
   padding: 14px 16px 14px 48px;
   font-size: 0.9375rem;
-  border: 2px solid #e4e4e7;
+  border: 2px solid var(--n-border);
   border-radius: 14px;
-  background: white;
+  background: var(--n-bg);
   transition: all 0.2s;
 }
 
 .input::placeholder {
-  color: #a1a1aa;
+  color: var(--n-text-muted);
 }
 
 .input:focus {
   outline: none;
-  border-color: #7469B6;
-  box-shadow: 0 0 0 4px rgba(116, 105, 182, 0.1);
+  border-color: var(--n-accent);
+  box-shadow: 0 0 0 4px var(--n-accent-wash);
 }
 
 /* Button */
@@ -362,7 +362,7 @@ const onChangePassword = () => {
   font-size: 0.9375rem;
   font-weight: 600;
   color: white;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border: none;
   border-radius: 14px;
   cursor: pointer;
@@ -376,8 +376,7 @@ const onChangePassword = () => {
 }
 
 .btn-primary:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(116, 105, 182, 0.35);
+  box-shadow: none;
 }
 
 .btn-primary:disabled {
@@ -394,22 +393,22 @@ const onChangePassword = () => {
   gap: 10px;
   margin-top: 20px;
   padding: 14px 16px;
-  background: #fffbeb;
+  background: var(--n-warn-bg);
   border-radius: 12px;
-  border: 1px solid #fde68a;
+  border: 1px solid var(--n-warn-bg);
 }
 
 .hint-icon {
   width: 18px;
   height: 18px;
-  color: #d97706;
+  color: var(--n-warn-text);
   flex-shrink: 0;
   margin-top: 1px;
 }
 
 .hint {
   font-size: 0.875rem;
-  color: #92400e;
+  color: var(--n-warn-text);
   margin: 0;
   line-height: 1.5;
 }
@@ -427,67 +426,4 @@ const onChangePassword = () => {
   .btn-primary {
     width: 100%;
   }
-}
-
-/* Dark Mode */
-[data-theme="dark"] .section-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .section-description {
-  color: #71717a;
-}
-
-[data-theme="dark"] .card {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .card-header {
-  border-bottom-color: #27272a;
-}
-
-[data-theme="dark"] .nickname-icon {
-  background: rgba(22, 163, 74, 0.1);
-}
-
-[data-theme="dark"] .password-icon {
-  background: rgba(217, 119, 6, 0.1);
-}
-
-[data-theme="dark"] .card-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .card-subtitle {
-  color: #71717a;
-}
-
-[data-theme="dark"] .input-label {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .input {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .input::placeholder {
-  color: #71717a;
-}
-
-[data-theme="dark"] .input:focus {
-  border-color: #7469B6;
-  background: #18181b;
-}
-
-[data-theme="dark"] .hint-box {
-  background: rgba(217, 119, 6, 0.1);
-  border-color: rgba(217, 119, 6, 0.3);
-}
-
-[data-theme="dark"] .hint {
-  color: #fbbf24;
-}
-</style>
+}</style>

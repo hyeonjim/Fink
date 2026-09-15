@@ -2,19 +2,22 @@
   <div class="chatbot-wrapper">
     <!-- 플로팅 버튼 -->
     <Transition name="bounce">
-      <button 
-        v-if="!chatbotStore.isOpen" 
-        class="chatbot-fab"
+      <button
+        v-if="!chatbotStore.isOpen"
+        class="chatbot-fab-group"
         @click="openChatbot"
         title="AI 챗봇"
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-          <circle cx="9" cy="10" r="1" fill="currentColor"/>
-          <circle cx="12" cy="10" r="1" fill="currentColor"/>
-          <circle cx="15" cy="10" r="1" fill="currentColor"/>
-        </svg>
-        <span class="fab-badge" v-if="unreadCount > 0">{{ unreadCount }}</span>
+        <span class="chatbot-fab">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 13V6a1.5 1.5 0 013 0v5"/>
+            <path d="M11 11V4.5a1.5 1.5 0 013 0V11"/>
+            <path d="M14 11.5V6a1.5 1.5 0 013 0v7"/>
+            <path d="M17 13v-2a1.5 1.5 0 013 0v5c0 3.5-2 6-6 6h-1c-3 0-4.5-1-6-3l-3-4.5c-.5-.8-.2-1.8.7-2.1.7-.3 1.4 0 1.8.6l1.5 2"/>
+          </svg>
+          <span class="fab-badge" v-if="unreadCount > 0">{{ unreadCount }}</span>
+        </span>
+        <span class="chatbot-fab-label">챗봇</span>
       </button>
     </Transition>
 
@@ -33,10 +36,7 @@
             </div>
             <div class="bot-info">
               <span class="bot-name">핑프 AI</span>
-              <span class="bot-status">
-                <span class="status-dot"></span>
-                온라인
-              </span>
+              <span class="bot-status">금융상품 상담</span>
             </div>
           </div>
           <div class="header-actions">
@@ -435,56 +435,71 @@ onMounted(() => {
   z-index: 9999;
 }
 
-/* 플로팅 버튼 */
-.chatbot-fab {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+/* 플로팅 버튼 그룹 — 아이콘 타일 + 라벨을 함께 감싸는 버튼 */
+.chatbot-fab-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
   border: none;
+  background: transparent;
+  padding: 0;
   cursor: pointer;
+}
+
+.chatbot-fab {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--n-accent);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(116, 105, 182, 0.4);
-  transition: all 0.3s ease;
+  /* 떠 있는 버튼이라 중성 그림자로 바닥에서 띄운다 */
+  box-shadow: 0 8px 24px -10px rgba(28, 25, 23, 0.4);
   position: relative;
 }
 
-.chatbot-fab:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 30px rgba(116, 105, 182, 0.5);
+.chatbot-fab svg {
+  width: 23px;
+  height: 23px;
+  color: #fff;
 }
 
-.chatbot-fab svg {
-  width: 28px;
-  height: 28px;
-  color: white;
+/* 라벨은 배경·테두리 없이 텍스트만 — 미니멀하게 */
+.chatbot-fab-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--n-text-muted);
 }
 
 .fab-badge {
   position: absolute;
-  top: -4px;
-  right: -4px;
-  background: #ef4444;
-  color: white;
-  font-size: 12px;
+  top: -5px;
+  right: -5px;
+  background: var(--n-accent);
+  color: #fff;
+  font-size: 11px;
   font-weight: 600;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid var(--n-bg);
 }
 
 /* 채팅 창 */
 .chatbot-window {
   width: 380px;
   height: 560px;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.15);
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
+  border-radius: 14px;
+  box-shadow: 0 24px 60px -24px rgba(28, 25, 23, 0.3);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -492,8 +507,9 @@ onMounted(() => {
 
 /* 헤더 */
 .chatbot-header {
-  padding: 16px 20px;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  padding: 14px 16px;
+  background: var(--n-bg);
+  border-bottom: 1px solid var(--n-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -502,83 +518,74 @@ onMounted(() => {
 .header-info {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .bot-avatar {
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+  width: 34px;
+  height: 34px;
+  background: var(--n-accent);
+  border-radius: 9px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .bot-avatar svg {
-  width: 24px;
-  height: 24px;
-  color: white;
+  width: 19px;
+  height: 19px;
+  color: #fff;
 }
 
 .bot-info {
   display: flex;
   flex-direction: column;
+  gap: 1px;
 }
 
 .bot-name {
-  font-size: 16px;
-  font-weight: 700;
-  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--n-text);
 }
 
 .bot-status {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 11px;
+  color: var(--n-text-muted);
   display: flex;
   align-items: center;
-  gap: 6px;
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background: #4ade80;
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  gap: 5px;
 }
 
 .header-actions {
   display: flex;
-  gap: 8px;
+  gap: 4px;
 }
 
 .header-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
   border: none;
-  background: rgba(255, 255, 255, 0.2);
+  background: transparent;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: background-color 0.18s ease, color 0.18s ease;
+  color: var(--n-text-muted);
 }
 
 .header-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--n-bg-sunken);
+  color: var(--n-text);
 }
 
 .header-btn svg {
-  width: 18px;
-  height: 18px;
-  color: white;
+  width: 16px;
+  height: 16px;
+  color: currentColor;
 }
 
 /* 메시지 영역 */
@@ -588,8 +595,9 @@ onMounted(() => {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  background: #f8f9fa;
+  gap: 14px;
+  /* 아주 옅은 톤으로 채팅창과 카드가 구분되도록 */
+  background: var(--n-accent-wash);
 }
 
 .message {
@@ -612,29 +620,29 @@ onMounted(() => {
 }
 
 .message-bubble {
-  padding: 12px 16px;
-  border-radius: 18px;
-  font-size: 14px;
-  line-height: 1.5;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  line-height: 1.55;
   word-break: break-word;
 }
 
 .message-user .message-bubble {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
-  color: white;
+  background: var(--n-accent);
+  color: #fff;
   border-bottom-right-radius: 4px;
 }
 
 .message-bot .message-bubble {
-  background: white;
-  color: #1f2937;
+  background: var(--n-bg);
+  color: var(--n-text-body);
+  box-shadow: 0 1px 2px rgba(28, 25, 23, 0.06);
   border-bottom-left-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .message-time {
-  font-size: 11px;
-  color: #9ca3af;
+  font-size: 10.5px;
+  color: var(--n-text-muted);
   padding: 0 4px;
 }
 
@@ -657,61 +665,71 @@ onMounted(() => {
 }
 
 .product-card {
-  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-  padding: 12px;
-  border-radius: 12px;
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
+  padding: 11px 12px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .product-type {
-  font-size: 11px;
-  color: #7469B6;
-  font-weight: 600;
+  font-size: 10.5px;
+  color: var(--n-text-muted);
+  font-weight: 500;
 }
 
 .product-bank {
-  font-size: 12px;
-  color: #6b7280;
+  font-size: 11.5px;
+  color: var(--n-text-muted);
 }
 
 .product-name {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--n-text);
 }
 
 .product-rate {
   font-size: 14px;
-  font-weight: 700;
-  color: #7469B6;
+  font-weight: 600;
+  color: var(--n-accent);
 }
 
 .action-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 16px;
-  background: #7469B6;
-  color: white;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 600;
+  padding: 9px 14px;
+  background: var(--n-accent);
+  color: #fff;
+  border: 1px solid var(--n-accent);
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 500;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 }
 
 .action-btn:hover {
-  background: #5a4f9e;
+  background: var(--n-accent-hover);
+  border-color: var(--n-accent-hover);
 }
 
-.map-btn {
-  background: #10b981;
+/* 지도/위치 버튼도 같은 톤으로 (기존 초록·파랑 제거) */
+.map-btn,
+.location-btn {
+  background: transparent;
+  border-color: var(--n-border-strong);
+  color: var(--n-text-body);
 }
 
-.map-btn:hover {
-  background: #059669;
+.map-btn:hover,
+.location-btn:hover {
+  background: var(--n-bg-sunken);
+  border-color: var(--n-text-muted);
+  color: var(--n-text);
 }
 
 /* 은행 정보 카드 */
@@ -724,44 +742,38 @@ onMounted(() => {
 .bank-info-card {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 11px;
   padding: 12px;
-  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-  border-radius: 12px;
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
+  border-radius: 10px;
 }
 
 .bank-icon {
-  font-size: 24px;
+  font-size: 20px;
+  line-height: 1.2;
 }
 
 .bank-details {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .bank-name-label {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  color: #065f46;
+  color: var(--n-text);
 }
 
 .bank-address {
-  font-size: 12px;
-  color: #047857;
+  font-size: 11.5px;
+  color: var(--n-text-muted);
 }
 
 .bank-phone {
-  font-size: 12px;
-  color: #059669;
-}
-
-.location-btn {
-  background: #3b82f6;
-}
-
-.location-btn:hover {
-  background: #2563eb;
+  font-size: 11.5px;
+  color: var(--n-text-muted);
 }
 
 /* 뉴스 카드 */
@@ -776,29 +788,31 @@ onMounted(() => {
   flex-direction: column;
   gap: 4px;
   padding: 10px 12px;
-  background: white;
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
+  border-left: 2px solid var(--n-accent);
   border-radius: 10px;
-  border-left: 3px solid #7469B6;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 }
 
 .news-card:hover {
-  background: #f9fafb;
-  transform: translateX(4px);
+  background: var(--n-bg-sunken);
+  border-color: var(--n-border-strong);
+  border-left-color: var(--n-accent);
 }
 
 .news-title {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
-  color: #1f2937;
-  line-height: 1.3;
+  color: var(--n-text);
+  line-height: 1.35;
 }
 
 .news-desc {
   font-size: 11px;
-  color: #6b7280;
-  line-height: 1.3;
+  color: var(--n-text-muted);
+  line-height: 1.35;
 }
 
 /* 유튜브 카드 */
@@ -813,44 +827,46 @@ onMounted(() => {
   align-items: center;
   gap: 10px;
   padding: 8px;
-  background: white;
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
   border-radius: 10px;
   text-decoration: none;
-  transition: background 0.2s;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 }
 
 .youtube-card:hover {
-  background: #f3f4f6;
+  background: var(--n-bg-sunken);
+  border-color: var(--n-border-strong);
 }
 
 .youtube-thumb {
-  width: 60px;
-  height: 45px;
+  width: 58px;
+  height: 43px;
   border-radius: 6px;
   object-fit: cover;
 }
 
 .youtube-title {
-  font-size: 12px;
-  color: #1f2937;
-  line-height: 1.3;
+  font-size: 11.5px;
+  color: var(--n-text);
+  line-height: 1.35;
 }
 
 /* 타이핑 인디케이터 */
 .typing-indicator {
   display: flex;
   gap: 4px;
-  padding: 12px 16px;
-  background: white;
-  border-radius: 18px;
+  padding: 12px 14px;
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
+  border-radius: 12px;
   border-bottom-left-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .typing-indicator span {
-  width: 8px;
-  height: 8px;
-  background: #9ca3af;
+  width: 6px;
+  height: 6px;
+  background: var(--n-text-muted);
   border-radius: 50%;
   animation: typing 1.4s infinite ease-in-out;
 }
@@ -866,9 +882,9 @@ onMounted(() => {
 
 /* 추천 질문 */
 .suggestions-area {
-  padding: 12px 16px;
-  background: white;
-  border-top: 1px solid #e5e7eb;
+  padding: 10px 14px;
+  background: var(--n-bg);
+  border-top: 1px solid var(--n-border);
 }
 
 .suggestions-scroll {
@@ -883,82 +899,91 @@ onMounted(() => {
 }
 
 .suggestions-scroll::-webkit-scrollbar-thumb {
-  background: #d1d5db;
+  background: var(--n-border-strong);
   border-radius: 2px;
 }
 
 .suggestion-chip {
   flex-shrink: 0;
-  padding: 8px 14px;
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  border-radius: 20px;
-  font-size: 12px;
-  color: #4b5563;
+  padding: 7px 12px;
+  background: transparent;
+  border: 1px solid var(--n-border);
+  border-radius: 8px;
+  font-size: 11.5px;
+  color: var(--n-text-muted);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
   white-space: nowrap;
 }
 
 .suggestion-chip:hover {
-  background: #7469B6;
-  border-color: #7469B6;
-  color: white;
+  background: var(--n-bg-sunken);
+  border-color: var(--n-accent);
+  color: var(--n-accent);
 }
 
 /* 입력 영역 */
 .chatbot-input {
-  padding: 16px;
-  background: white;
-  border-top: 1px solid #e5e7eb;
+  padding: 12px 14px;
+  background: var(--n-bg);
+  border-top: 1px solid var(--n-border);
   display: flex;
-  gap: 12px;
+  gap: 8px;
 }
 
 .chatbot-input input {
   flex: 1;
-  padding: 12px 16px;
-  border: 2px solid #e5e7eb;
-  border-radius: 12px;
-  font-size: 14px;
+  padding: 10px 13px;
+  border: 1px solid var(--n-border);
+  border-radius: 9px;
+  font-size: 13px;
+  background: var(--n-bg);
+  color: var(--n-text);
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.18s ease;
 }
 
 .chatbot-input input:focus {
-  border-color: #7469B6;
+  border-color: var(--n-accent);
 }
 
 .chatbot-input input::placeholder {
-  color: #9ca3af;
+  color: var(--n-text-muted);
 }
 
 .send-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  border: 1px solid var(--n-accent);
+  background: var(--n-accent);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 }
 
 .send-btn:hover:not(:disabled) {
-  transform: scale(1.05);
+  background: var(--n-accent-hover);
+  border-color: var(--n-accent-hover);
 }
 
 .send-btn:disabled {
-  opacity: 0.5;
+  background: var(--n-bg-sunken);
+  border-color: var(--n-border);
   cursor: not-allowed;
 }
 
 .send-btn svg {
-  width: 20px;
-  height: 20px;
-  color: white;
+  width: 18px;
+  height: 18px;
+  color: #fff;
+}
+
+.send-btn:disabled svg {
+  color: var(--n-text-muted);
 }
 
 /* 애니메이션 */
@@ -1024,104 +1049,15 @@ onMounted(() => {
   }
 }
 
-/* 다크 모드 */
-[data-theme="dark"] .chatbot-window {
-  background: #1f1f23;
-}
-
-[data-theme="dark"] .chatbot-messages {
-  background: #121214;
-}
-
-[data-theme="dark"] .message-bot .message-bubble {
-  background: #27272a;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .product-card {
-  background: linear-gradient(135deg, #27272a 0%, #1f1f23 100%);
-}
-
-[data-theme="dark"] .product-name {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .suggestions-area {
-  background: #1f1f23;
-  border-color: #3f3f46;
-}
-
-[data-theme="dark"] .suggestion-chip {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .chatbot-input {
-  background: #1f1f23;
-  border-color: #3f3f46;
-}
-
-[data-theme="dark"] .chatbot-input input {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .youtube-card {
-  background: #27272a;
-}
-
-[data-theme="dark"] .youtube-card:hover {
-  background: #3f3f46;
-}
-
-[data-theme="dark"] .youtube-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .typing-indicator {
-  background: #27272a;
-}
-
-[data-theme="dark"] .news-card {
-  background: #27272a;
-  border-left-color: #AD88C6;
-}
-
-[data-theme="dark"] .news-card:hover {
-  background: #3f3f46;
-}
-
-[data-theme="dark"] .news-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .news-desc {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .bank-info-card {
-  background: linear-gradient(135deg, #1c3829 0%, #14532d 100%);
-}
-
-[data-theme="dark"] .bank-name-label {
-  color: #86efac;
-}
-
-[data-theme="dark"] .bank-address {
-  color: #4ade80;
-}
-
-[data-theme="dark"] .bank-phone {
-  color: #34d399;
-}
+/* 다크 모드 — 챗봇 전체가 --n-* 토큰을 쓰고 이 토큰은 global.css 에서
+   이미 뒤집히므로 별도 오버라이드가 필요 없다. */
 
 /* 종목 여론 분석 스타일 */
 .sentiment-analysis {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-radius: 12px;
-  padding: 16px;
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
+  border-radius: 10px;
+  padding: 14px;
   margin-top: 12px;
 }
 
@@ -1133,72 +1069,72 @@ onMounted(() => {
 }
 
 .stock-name {
-  font-size: 16px;
-  font-weight: 700;
-  color: #1f2937;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--n-text);
 }
 
+/* 매수/매도는 의미가 있는 색이라 구분은 유지하되 그라데이션은 걷어낸다 */
 .recommendation-badge {
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11.5px;
   font-weight: 600;
-  color: white;
+  border: 1px solid transparent;
 }
 
 .recommendation-badge.buy {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  background: var(--n-danger-bg);
+  border-color: var(--n-danger-bg);
+  color: var(--n-danger-text);
 }
 
 .recommendation-badge.sell {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: var(--n-info-bg);
+  border-color: var(--n-info-bg);
+  color: var(--n-info-text);
 }
 
 .recommendation-badge.hold {
-  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  background: var(--n-bg-sunken);
+  border-color: var(--n-border);
+  color: var(--n-text-body);
 }
 
 .sentiment-stats {
   display: flex;
-  gap: 16px;
-  margin-bottom: 12px;
+  gap: 14px;
+  margin-bottom: 10px;
 }
 
 .stat-item {
-  font-size: 12px;
-  color: #6b7280;
+  font-size: 11.5px;
+  color: var(--n-text-muted);
 }
 
 .sentiment-summary {
-  background: white;
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
   border-radius: 8px;
-  padding: 12px;
+  padding: 11px;
 }
 
 .sentiment-summary p {
   margin: 0;
-  font-size: 13px;
+  font-size: 12.5px;
   line-height: 1.6;
-  color: #374151;
+  color: var(--n-text-body);
 }
 
-[data-theme="dark"] .sentiment-analysis {
-  background: linear-gradient(135deg, #27272a 0%, #18181b 100%);
+[data-theme="dark"] .recommendation-badge.buy {
+  background: rgba(185, 28, 28, 0.15);
+  border-color: rgba(248, 113, 113, 0.3);
+  color: var(--n-danger-bg);
 }
 
-[data-theme="dark"] .stock-name {
-  color: #f4f4f5;
-}
-
-[data-theme="dark"] .stat-item {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .sentiment-summary {
-  background: #3f3f46;
-}
-
-[data-theme="dark"] .sentiment-summary p {
-  color: #e4e4e7;
+[data-theme="dark"] .recommendation-badge.sell {
+  background: rgba(29, 78, 216, 0.15);
+  border-color: rgba(96, 165, 250, 0.3);
+  color: #93c5fd;
 }
 </style>

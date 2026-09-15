@@ -1,17 +1,17 @@
 <template>
   <section class="saved-layout">
     <!-- Page Header -->
-    <header class="page-header">
-      <div class="header-content">
+    <header class="n-page-header">
+      <div class="n-page-header-content n-page-header-content--stack">
         <div class="header-title-area">
-          <div class="youtube-icon">
+          <div class="n-page-header-icon youtube-icon">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 4-8 4z"/>
             </svg>
           </div>
-          <div>
-            <h1 class="page-title">저장된 콘텐츠</h1>
-            <p class="page-subtitle">저장한 비디오와 채널을 관리하세요</p>
+          <div class="n-page-header-text">
+            <h1 class="n-page-title">저장된 콘텐츠</h1>
+            <p class="n-page-subtitle">저장한 비디오와 채널을 관리하세요</p>
           </div>
         </div>
 
@@ -92,57 +92,19 @@ const onSearch = () => {
 <style scoped>
 .saved-layout {
   min-height: calc(100vh - 200px);
-  background: linear-gradient(180deg, #FDFBFD 0%, #FFF5F8 50%, #FAFAFA 100%);
+  background: var(--n-bg);
 }
 
-/* Page Header */
-.page-header {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
-  padding: 40px 24px 32px;
-}
-
-.header-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
+/* Page Header — 공용 규칙은 global.css 의 .n-page-header* 를 쓴다. */
 .header-title-area {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
-.youtube-icon {
-  width: 56px;
-  height: 56px;
-  background: white;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+/* 유튜브 로고는 플랫폼을 식별하는 브랜드 마크라 빨강을 유지한다. */
 .youtube-icon svg {
-  width: 32px;
-  height: 32px;
-  color: #dc2626;
-}
-
-.page-title {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: white;
-  margin: 0;
-  text-align: left;
-}
-
-.page-subtitle {
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 4px 0 0;
+  color: var(--n-danger-text);
 }
 
 /* Search Box */
@@ -167,7 +129,7 @@ const onSearch = () => {
   left: 14px;
   width: 18px;
   height: 18px;
-  color: #a1a1aa;
+  color: var(--n-text-muted);
   pointer-events: none;
 }
 
@@ -182,12 +144,12 @@ const onSearch = () => {
 }
 
 .search-input::placeholder {
-  color: #a1a1aa;
+  color: var(--n-text-muted);
 }
 
 .search-input:focus {
   outline: none;
-  background: white;
+  background: var(--n-bg);
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
 }
 
@@ -198,8 +160,8 @@ const onSearch = () => {
   padding: 12px 18px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #dc2626;
-  background: white;
+  color: var(--n-danger-text);
+  background: var(--n-bg);
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -231,15 +193,19 @@ const onSearch = () => {
 .nav-tab {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
+  gap: 7px;
+  padding: 9px 14px;
   font-size: 0.875rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
+  font-weight: 500;
+  color: var(--n-text-muted);
+  background: transparent;
+  border: 1px solid var(--n-border);
+  border-radius: 8px;
   text-decoration: none;
-  transition: all 0.2s;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
 }
 
 .nav-tab svg {
@@ -248,13 +214,14 @@ const onSearch = () => {
 }
 
 .nav-tab:hover {
-  background: rgba(255, 255, 255, 0.25);
-  color: white;
+  color: var(--n-text);
+  border-color: var(--n-border-strong);
 }
 
 .nav-tab.router-link-active {
-  background: white;
-  color: #dc2626;
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
+  border-color: var(--n-accent);
 }
 
 /* Content */
@@ -267,10 +234,6 @@ const onSearch = () => {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .page-header {
-    padding: 32px 16px 24px;
-  }
-
   .search-form {
     flex-direction: column;
   }

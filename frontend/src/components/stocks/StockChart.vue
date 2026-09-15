@@ -134,9 +134,9 @@ const createChart = () => {
         },
         tooltip: {
           backgroundColor: 'rgba(255, 255, 255, 0.95)',
-          titleColor: '#1f2937',
-          bodyColor: '#4b5563',
-          borderColor: '#e5e7eb',
+          titleColor: 'var(--n-text)',
+          bodyColor: 'var(--n-text-body)',
+          borderColor: 'var(--n-border)',
           borderWidth: 1,
           padding: 12,
           displayColors: false,
@@ -211,7 +211,7 @@ const createChart = () => {
             display: false
           },
           ticks: {
-            color: '#9ca3af',
+            color: 'var(--n-text-muted)',
             font: {
               size: 11
             },
@@ -222,10 +222,10 @@ const createChart = () => {
           position: 'right',
           grace: '10%',
           grid: {
-            color: '#f3f4f6'
+            color: 'var(--n-bg-sunken)'
           },
           ticks: {
-            color: '#9ca3af',
+            color: 'var(--n-text-muted)',
             font: {
               size: 11
             },

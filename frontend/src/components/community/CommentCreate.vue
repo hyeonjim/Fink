@@ -38,12 +38,16 @@ const submit = () => {
 </script>
 
 <style scoped>
+/* ═══════════════════════════════════════════════════════════════════
+   댓글 작성 — 무채색.
+   ═══════════════════════════════════════════════════════════════════ */
 .comment-create {
-  background: white;
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   margin-top: 12px;
+  padding: 16px;
+  border: 1px solid var(--n-border);
+  border-radius: 12px;
+  background: var(--n-bg);
+  box-shadow: none;
 }
 
 .create-header {
@@ -53,20 +57,20 @@ const submit = () => {
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #E1AFD1 0%, #AD88C6 100%);
-  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--n-accent);
 }
 
 .avatar svg {
-  width: 20px;
-  height: 20px;
-  color: #7469B6;
+  width: 19px;
+  height: 19px;
+  color: #fff;
 }
 
 .input-wrapper {
@@ -75,74 +79,57 @@ const submit = () => {
 
 .comment-input {
   width: 100%;
-  padding: 12px 16px;
+  padding: 11px 14px;
   font-size: 0.9375rem;
-  border: 1px solid #e4e4e7;
-  border-radius: 12px;
-  background: #fafafa;
-  transition: all 0.2s;
+  color: var(--n-text);
+  border: 1px solid var(--n-border);
+  border-radius: 8px;
+  background: var(--n-bg);
   box-sizing: border-box;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.comment-input:hover:not(:focus) {
+  border-color: var(--n-border-strong);
 }
 
 .comment-input:focus {
   outline: none;
-  border-color: #7469B6;
-  background: white;
-  box-shadow: 0 0 0 3px rgba(116, 105, 182, 0.1);
+  border-color: var(--n-accent);
+  box-shadow: 0 0 0 3px var(--n-accent-wash);
 }
 
 .comment-input::placeholder {
-  color: #a1a1aa;
+  color: var(--n-text-muted);
 }
 
 .btn-submit {
-  width: 44px;
-  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.2s;
   flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--n-accent);
+  border-radius: 8px;
+  background: var(--n-accent);
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 }
 
 .btn-submit svg {
-  width: 20px;
-  height: 20px;
-  color: white;
+  width: 19px;
+  height: 19px;
+  color: #fff;
 }
 
 .btn-submit:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(116, 105, 182, 0.4);
+  background: var(--n-accent-hover);
+  border-color: var(--n-accent-hover);
 }
 
 .btn-submit:disabled {
-  opacity: 0.5;
+  opacity: 0.45;
   cursor: not-allowed;
-}
-
-/* Dark Mode */
-[data-theme="dark"] .comment-create {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .comment-input {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .comment-input:focus {
-  background: #18181b;
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .comment-input::placeholder {
-  color: #71717a;
 }
 </style>

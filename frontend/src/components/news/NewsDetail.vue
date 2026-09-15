@@ -81,9 +81,9 @@ const toggle = function () {
 
 <style scoped>
 .news-detail-section {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
   height: 100%;
   overflow-y: auto;
   display: flex;
@@ -103,7 +103,7 @@ const toggle = function () {
 .empty-icon {
   width: 80px;
   height: 80px;
-  background: #f4f4f5;
+  background: var(--n-bg-sunken);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -114,19 +114,19 @@ const toggle = function () {
 .empty-icon svg {
   width: 40px;
   height: 40px;
-  color: #a1a1aa;
+  color: var(--n-text-muted);
 }
 
 .empty-title {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 8px;
 }
 
 .empty-desc {
   font-size: 0.9375rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   line-height: 1.5;
 }
 
@@ -150,8 +150,8 @@ const toggle = function () {
   padding: 6px 14px;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #71717a;
-  background: #f4f4f5;
+  color: var(--n-text-muted);
+  background: var(--n-bg-sunken);
   border-radius: 20px;
 }
 
@@ -161,8 +161,8 @@ const toggle = function () {
 }
 
 .bookmark-badge.active {
-  color: #7469B6;
-  background: rgba(116, 105, 182, 0.1);
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
 }
 
 .pub-date {
@@ -170,7 +170,7 @@ const toggle = function () {
   align-items: center;
   gap: 6px;
   font-size: 0.8125rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .pub-date svg {
@@ -181,21 +181,21 @@ const toggle = function () {
 .detail-title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #18181b;
+  color: var(--n-text);
   line-height: 1.4;
   margin: 0 0 24px;
 }
 
 .detail-body {
   padding: 24px;
-  background: #fafafa;
+  background: var(--n-bg-subtle);
   border-radius: 16px;
   margin-bottom: 24px;
 }
 
 .detail-body p {
   font-size: 1rem;
-  color: #3f3f46;
+  color: var(--n-text-body);
   line-height: 1.8;
   white-space: pre-line;
   margin: 0;
@@ -226,25 +226,24 @@ const toggle = function () {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   color: white;
   border: none;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(116, 105, 182, 0.3);
+  box-shadow: none;
 }
 
 .btn-secondary {
-  background: white;
-  color: #52525b;
-  border: 2px solid #e4e4e7;
+  background: var(--n-bg);
+  color: var(--n-text-body);
+  border: 2px solid var(--n-border);
 }
 
 .btn-secondary:hover {
-  border-color: #7469B6;
-  color: #7469B6;
+  border-color: var(--n-accent);
+  color: var(--n-accent);
 }
 
 @media (max-width: 768px) {
@@ -263,64 +262,4 @@ const toggle = function () {
   .btn {
     justify-content: center;
   }
-}
-
-/* Dark Mode */
-[data-theme="dark"] .news-detail-section {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .empty-icon {
-  background: #27272a;
-}
-
-[data-theme="dark"] .empty-icon svg {
-  color: #71717a;
-}
-
-[data-theme="dark"] .empty-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .empty-desc {
-  color: #71717a;
-}
-
-[data-theme="dark"] .bookmark-badge {
-  background: #27272a;
-  color: #71717a;
-}
-
-[data-theme="dark"] .bookmark-badge.active {
-  background: rgba(116, 105, 182, 0.2);
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .pub-date {
-  color: #71717a;
-}
-
-[data-theme="dark"] .detail-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .detail-body {
-  background: #27272a;
-}
-
-[data-theme="dark"] .detail-body p {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .btn-secondary {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .btn-secondary:hover {
-  border-color: #7469B6;
-  color: #E1AFD1;
-}
-</style>
+}</style>

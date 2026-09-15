@@ -1,16 +1,16 @@
 <template>
   <div class="community-page">
     <!-- Page Header -->
-    <header class="page-header">
-      <div class="header-content">
-        <div class="header-icon">
+    <header class="n-page-header">
+      <div class="n-page-header-content">
+        <div class="n-page-header-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
           </svg>
         </div>
-        <div class="header-text">
-          <h1 class="page-title">커뮤니티</h1>
-          <p class="page-subtitle">다양한 이야기를 나눠보세요</p>
+        <div class="n-page-header-text">
+          <h1 class="n-page-title">커뮤니티</h1>
+          <p class="n-page-subtitle">다양한 이야기를 나눠보세요</p>
         </div>
         <RouterLink class="create-btn" :to="{ name: 'CreateView' }">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -169,86 +169,29 @@ const formatDate = (iso) => {
 <style scoped>
 .community-page {
   min-height: calc(100vh - 72px);
-  background: linear-gradient(180deg, #FDFBFD 0%, #FFF5F8 50%, #FAFAFA 100%);
-}
-
-/* Page Header */
-.page-header {
-  background: linear-gradient(135deg, #E1AFD1 0%, #AD88C6 50%, #7469B6 100%);
-  padding: 30px 24px;
-  margin-bottom: 0px;
-}
-
-.header-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.header-icon {
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(10px);
-  flex-shrink: 0;
-}
-
-.header-icon svg {
-  width: 32px;
-  height: 32px;
-  color: white;
-}
-
-.header-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  flex: 1;
-}
-
-.page-title {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: white;
-  margin: 0;
-  text-align: left;
-}
-
-.page-subtitle {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0;
-  text-align: left;
+  background: var(--n-bg);
 }
 
 .create-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 24px;
+  height: 42px;
+  padding: 0 18px;
   font-size: 0.9375rem;
-  font-weight: 600;
-  color: white;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 14px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--n-accent);
+  border: 1px solid var(--n-accent);
+  border-radius: 8px;
   text-decoration: none;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(10px);
+  transition: background-color 0.18s ease, border-color 0.18s ease;
   flex-shrink: 0;
 }
 
 .create-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: var(--n-accent-hover);
+  border-color: var(--n-accent-hover);
 }
 
 .create-btn svg {
@@ -268,9 +211,9 @@ const formatDate = (iso) => {
 }
 
 .board-card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
   overflow: hidden;
 }
 
@@ -279,11 +222,11 @@ const formatDate = (iso) => {
   grid-template-columns: 1fr 140px 140px 80px;
   align-items: center;
   padding: 16px 24px;
-  background: #fafafa;
-  border-bottom: 2px solid #e4e4e7;
+  background: var(--n-bg-subtle);
+  border-bottom: 2px solid var(--n-border);
   font-size: 1rem;
   font-weight: 700;
-  color: #52525b;
+  color: var(--n-text-body);
 }
 
 .board-body {
@@ -296,7 +239,7 @@ const formatDate = (iso) => {
   grid-template-columns: 1fr 140px 140px 80px;
   align-items: center;
   padding: 16px 24px;
-  border-bottom: 1px solid #f4f4f5;
+  border-bottom: 1px solid var(--n-bg-sunken);
   transition: background 0.2s;
 }
 
@@ -305,11 +248,11 @@ const formatDate = (iso) => {
 }
 
 .board-row:hover {
-  background: #fafafa;
+  background: var(--n-bg-subtle);
 }
 
 .board-row.notice {
-  background: rgba(116, 105, 182, 0.04);
+  background: var(--n-accent-wash);
 }
 
 .col-title {
@@ -325,12 +268,12 @@ const formatDate = (iso) => {
 .article-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
   transition: color 0.2s;
 }
 
 .article-link:hover .article-title {
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .comment-count {
@@ -339,8 +282,8 @@ const formatDate = (iso) => {
   gap: 3px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #7469B6;
-  background: rgba(116, 105, 182, 0.1);
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
   padding: 3px 8px;
   border-radius: 12px;
 }
@@ -359,20 +302,20 @@ const formatDate = (iso) => {
 .attach-badge svg {
   width: 16px;
   height: 16px;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .col-author {
-  color: #52525b;
+  color: var(--n-text-body);
 }
 
 .col-date {
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .col-views {
   font-weight: 600;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 /* Empty State */
@@ -387,20 +330,20 @@ const formatDate = (iso) => {
 .empty-state svg {
   width: 48px;
   height: 48px;
-  color: #d4d4d8;
+  color: var(--n-border-strong);
   margin-bottom: 16px;
 }
 
 .empty-state p {
   font-size: 1rem;
   font-weight: 600;
-  color: #52525b;
+  color: var(--n-text-body);
   margin: 0 0 4px;
 }
 
 .empty-state span {
   font-size: 0.875rem;
-  color: #a1a1aa;
+  color: var(--n-text-muted);
 }
 
 /* Pagination */
@@ -420,9 +363,9 @@ const formatDate = (iso) => {
   padding: 0 12px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #52525b;
-  background: white;
-  border: 2px solid #e4e4e7;
+  color: var(--n-text-body);
+  background: var(--n-bg);
+  border: 2px solid var(--n-border);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s;
@@ -435,12 +378,12 @@ const formatDate = (iso) => {
 
 .page-btn:hover:not(:disabled),
 .page-num:hover {
-  border-color: #7469B6;
-  color: #7469B6;
+  border-color: var(--n-accent);
+  color: var(--n-accent);
 }
 
 .page-num.active {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border-color: transparent;
   color: white;
 }
@@ -452,33 +395,6 @@ const formatDate = (iso) => {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .page-header {
-    padding: 32px 20px;
-  }
-
-  .header-content {
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .header-icon {
-    width: 48px;
-    height: 48px;
-  }
-
-  .header-icon svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .page-title {
-    font-size: 1.5rem;
-  }
-
-  .page-subtitle {
-    font-size: 0.875rem;
-  }
-
   .create-btn {
     width: 100%;
     justify-content: center;
@@ -508,99 +424,4 @@ const formatDate = (iso) => {
   .col-title {
     flex-wrap: wrap;
   }
-}
-
-/* Dark Mode Styles */
-[data-theme="dark"] .community-page {
-  background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 50%, #0a0a0a 100%);
-}
-
-[data-theme="dark"] .page-header {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 50%, #9b7ab8 100%);
-}
-
-[data-theme="dark"] .page-title {
-  color: white;
-}
-
-[data-theme="dark"] .page-subtitle {
-  color: rgba(255, 255, 255, 0.85);
-}
-
-[data-theme="dark"] .create-btn {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
-[data-theme="dark"] .create-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-[data-theme="dark"] .board-card {
-  background: #18181b;
-  border-color: rgba(116, 105, 182, 0.2);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .board-header {
-  background: #27272a;
-  border-bottom-color: #3f3f46;
-}
-
-[data-theme="dark"] .board-header .col-title,
-[data-theme="dark"] .board-header .col-author,
-[data-theme="dark"] .board-header .col-date,
-[data-theme="dark"] .board-header .col-views {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .board-row {
-  border-bottom-color: #27272a;
-}
-
-[data-theme="dark"] .board-row:hover {
-  background: rgba(116, 105, 182, 0.08);
-}
-
-[data-theme="dark"] .article-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .col-author,
-[data-theme="dark"] .col-date,
-[data-theme="dark"] .col-views {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .comment-count {
-  color: #AD88C6;
-}
-
-[data-theme="dark"] .empty-state {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .empty-state p {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .page-btn,
-[data-theme="dark"] .page-num {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .page-btn:hover:not(:disabled),
-[data-theme="dark"] .page-num:hover {
-  border-color: #7469B6;
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .page-num.active {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
-  border-color: transparent;
-  color: white;
-}
-</style>
+}</style>

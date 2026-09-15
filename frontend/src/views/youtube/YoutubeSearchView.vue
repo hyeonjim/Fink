@@ -1,17 +1,17 @@
 <template>
   <section class="youtube-search">
     <!-- Page Header -->
-    <header class="page-header">
-      <div class="header-content">
+    <header class="n-page-header">
+      <div class="n-page-header-content n-page-header-content--stack">
         <div class="header-title-area">
-          <div class="youtube-icon">
+          <div class="n-page-header-icon youtube-icon">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 4-8 4z"/>
             </svg>
           </div>
-          <div>
-            <h1 class="page-title">YouTube</h1>
-            <p class="page-subtitle">금융 관련 영상을 검색하고 저장하세요</p>
+          <div class="n-page-header-text">
+            <h1 class="n-page-title">YouTube</h1>
+            <p class="n-page-subtitle">금융 관련 영상을 검색하고 저장하세요</p>
           </div>
         </div>
         
@@ -148,58 +148,22 @@ onMounted(() => {
 <style scoped>
 .youtube-search {
   min-height: calc(100vh - 200px);
-  background: linear-gradient(180deg, #FDFBFD 0%, #FFF5F8 50%, #FAFAFA 100%);
+  background: var(--n-bg);
   padding-bottom: 60px;
 }
 
-/* Page Header */
-.page-header {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
-  padding: 25px 24px 25px;
-}
-
-.header-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
+/* Page Header — 공용 규칙은 global.css 의 .n-page-header* 를 쓴다.
+   이 화면 고유 구조(제목줄+탭이 세로로 쌓이는 것, 유튜브 로고 색)만 남긴다. */
 .header-title-area {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
-.youtube-icon {
-  width: 56px;
-  height: 56px;
-  background: white;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+/* 유튜브 로고는 플랫폼을 식별하는 브랜드 마크라 빨강을 유지한다.
+   타일 크기·보더는 .n-page-header-icon 이 처리한다. */
 .youtube-icon svg {
-  width: 32px;
-  height: 32px;
-  color: #dc2626;
-}
-
-.page-title {
-  font-size: 1.55rem;
-  font-weight: 700;
-  color: white;
-  margin: 0;
-  text-align: left;
-}
-
-.page-subtitle {
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 4px 0 0;
+  color: var(--n-danger-text);
 }
 
 /* Nav Tabs */
@@ -211,15 +175,19 @@ onMounted(() => {
 .nav-tab {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
+  gap: 7px;
+  padding: 9px 14px;
   font-size: 0.875rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
+  font-weight: 500;
+  color: var(--n-text-muted);
+  background: transparent;
+  border: 1px solid var(--n-border);
+  border-radius: 8px;
   text-decoration: none;
-  transition: all 0.2s;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
 }
 
 .nav-tab svg {
@@ -228,13 +196,14 @@ onMounted(() => {
 }
 
 .nav-tab:hover {
-  background: rgba(255, 255, 255, 0.25);
-  color: white;
+  color: var(--n-text);
+  border-color: var(--n-border-strong);
 }
 
 .nav-tab.router-link-active {
-  background: white;
-  color: #7469B6;
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
+  border-color: var(--n-accent);
 }
 
 /* Search Section */
@@ -245,10 +214,10 @@ onMounted(() => {
 }
 
 .search-card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--n-border);
 }
 
 .search-title {
@@ -257,14 +226,14 @@ onMounted(() => {
   gap: 10px;
   font-size: 1rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 16px;
 }
 
 .search-title svg {
   width: 20px;
   height: 20px;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .search-form {
@@ -284,7 +253,7 @@ onMounted(() => {
   left: 16px;
   width: 20px;
   height: 20px;
-  color: #a1a1aa;
+  color: var(--n-text-muted);
   pointer-events: none;
 }
 
@@ -292,21 +261,21 @@ onMounted(() => {
   width: 100%;
   padding: 14px 16px 14px 48px;
   font-size: 0.9375rem;
-  border: 2px solid #e4e4e7;
+  border: 2px solid var(--n-border);
   border-radius: 14px;
-  background: #fafafa;
+  background: var(--n-bg-subtle);
   transition: all 0.2s;
 }
 
 .search-input::placeholder {
-  color: #a1a1aa;
+  color: var(--n-text-muted);
 }
 
 .search-input:focus {
   outline: none;
-  border-color: #7469B6;
-  background: white;
-  box-shadow: 0 0 0 4px rgba(116, 105, 182, 0.1);
+  border-color: var(--n-accent);
+  background: var(--n-bg);
+  box-shadow: 0 0 0 4px var(--n-accent-wash);
 }
 
 .search-btn {
@@ -317,7 +286,7 @@ onMounted(() => {
   font-size: 0.9375rem;
   font-weight: 600;
   color: white;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border: none;
   border-radius: 14px;
   cursor: pointer;
@@ -325,8 +294,7 @@ onMounted(() => {
 }
 
 .search-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(116, 105, 182, 0.35);
+  box-shadow: none;
 }
 
 .search-btn:disabled {
@@ -363,9 +331,9 @@ onMounted(() => {
   gap: 8px;
   margin: 16px 0 0;
   padding: 12px 16px;
-  background: #fef2f2;
+  background: var(--n-danger-bg);
   border-radius: 12px;
-  color: #dc2626;
+  color: var(--n-danger-text);
   font-size: 0.875rem;
 }
 
@@ -392,13 +360,13 @@ onMounted(() => {
 .results-title {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0;
 }
 
 .results-count {
   font-size: 0.875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .video-grid {
@@ -419,7 +387,7 @@ onMounted(() => {
 .empty-icon {
   width: 80px;
   height: 80px;
-  background: rgba(116, 105, 182, 0.1);
+  background: var(--n-accent-wash);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -430,27 +398,23 @@ onMounted(() => {
 .empty-icon svg {
   width: 40px;
   height: 40px;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .empty-title {
   font-size: 1.125rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 8px;
 }
 
 .empty-text {
   font-size: 0.9375rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .page-header {
-    padding: 32px 16px 24px;
-  }
-
   .search-section {
     padding: 0 16px;
   }
@@ -470,58 +434,4 @@ onMounted(() => {
   .video-grid {
     grid-template-columns: 1fr;
   }
-}
-
-/* Dark Mode */
-[data-theme="dark"] .youtube-search {
-  background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 50%, #0a0a0a 100%);
-}
-
-[data-theme="dark"] .search-card {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .search-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .search-input {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .search-input::placeholder {
-  color: #71717a;
-}
-
-[data-theme="dark"] .search-input:focus {
-  background: #18181b;
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .error-message {
-  background: rgba(220, 38, 38, 0.1);
-}
-
-[data-theme="dark"] .results-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .results-count {
-  color: #71717a;
-}
-
-[data-theme="dark"] .empty-icon {
-  background: rgba(116, 105, 182, 0.2);
-}
-
-[data-theme="dark"] .empty-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .empty-text {
-  color: #71717a;
-}
-</style>
+}</style>

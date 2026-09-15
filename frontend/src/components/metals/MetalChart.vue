@@ -20,33 +20,26 @@ let chart = null
 // 테마 감지
 const isDarkMode = () => document.documentElement.getAttribute('data-theme') === 'dark'
 
-// 색상 팔레트 - 미니멀하고 프리미엄한 색상
+/* 색상 팔레트.
+   금/은은 실제로 다른 자산이라 선 색은 구분하되, 채도를 낮춰
+   나머지 화면의 무채색 톤과 어긋나지 않게 한다. */
 const getColors = () => {
   const isGold = props.metal === 'gold'
   const dark = isDarkMode()
-  
-  if (isGold) {
-    return {
-      primary: dark ? '#F7D794' : '#D4AF37',
-      gradient1: dark ? 'rgba(247, 215, 148, 0.25)' : 'rgba(212, 175, 55, 0.2)',
-      gradient2: dark ? 'rgba(247, 215, 148, 0.02)' : 'rgba(212, 175, 55, 0.01)',
-      gridColor: dark ? 'rgba(247, 215, 148, 0.05)' : 'rgba(212, 175, 55, 0.08)',
-      textColor: dark ? '#d4d4d8' : '#52525b',
-      tooltipBg: dark ? 'rgba(24, 24, 27, 0.95)' : 'rgba(255, 255, 255, 0.98)',
-      tooltipText: dark ? '#F7D794' : '#D4AF37',
-      tooltipBorder: dark ? '#F7D794' : '#D4AF37',
-    }
-  } else {
-    return {
-      primary: dark ? '#CBD5E1' : '#64748B',
-      gradient1: dark ? 'rgba(203, 213, 225, 0.2)' : 'rgba(100, 116, 139, 0.15)',
-      gradient2: dark ? 'rgba(203, 213, 225, 0.02)' : 'rgba(100, 116, 139, 0.01)',
-      gridColor: dark ? 'rgba(203, 213, 225, 0.05)' : 'rgba(100, 116, 139, 0.08)',
-      textColor: dark ? '#d4d4d8' : '#52525b',
-      tooltipBg: dark ? 'rgba(24, 24, 27, 0.95)' : 'rgba(255, 255, 255, 0.98)',
-      tooltipText: dark ? '#CBD5E1' : '#64748B',
-      tooltipBorder: dark ? '#CBD5E1' : '#64748B',
-    }
+
+  const line = isGold
+    ? (dark ? '#c9ab6b' : '#8a6d3b')
+    : (dark ? '#a8a29e' : '#78716c')
+
+  return {
+    primary: line,
+    // 영역 채움은 데이터를 읽는 데 쓰이므로 남기되 단일 톤으로 옅게 깐다
+    fill: dark ? 'rgba(168, 162, 158, 0.10)' : 'rgba(120, 113, 108, 0.08)',
+    gridColor: dark ? 'rgba(250, 250, 249, 0.07)' : 'rgba(41, 41, 48, 0.07)',
+    textColor: dark ? '#a8a29e' : '#78716c',
+    tooltipBg: dark ? '#191919' : '#ffffff',
+    tooltipText: dark ? '#fafaf9' : '#292930',
+    tooltipBorder: dark ? '#2a2a2a' : '#e7e5e4',
   }
 }
 
@@ -57,11 +50,6 @@ const drawChart = () => {
   const ctx = canvas.value.getContext('2d')
   const colors = getColors()
 
-  // 그라데이션 생성
-  const gradient = ctx.createLinearGradient(0, 0, 0, canvas.value.offsetHeight || 300)
-  gradient.addColorStop(0, colors.gradient1)
-  gradient.addColorStop(1, colors.gradient2)
-
   chart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -71,7 +59,7 @@ const drawChart = () => {
           label: props.metal === 'gold' ? 'Gold (USD/oz)' : 'Silver (USD/oz)',
           data: props.prices,
           borderColor: colors.primary,
-          backgroundColor: gradient,
+          backgroundColor: colors.fill,
           borderWidth: 2,
           tension: 0.4,
           fill: true,
@@ -237,45 +225,16 @@ watch(() => [props.labels, props.prices, props.metal], drawChart, { deep: true }
 </script>
 
 <style scoped>
+/* 바깥 .chart-wrapper 가 이미 카드(보더+라운드)라 여기서는 캔버스 영역만 잡는다 */
 .chart-container {
   position: relative;
   width: 100%;
   height: 400px;
-  padding: 32px 24px;
-  background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 
-    0 1px 3px rgba(0, 0, 0, 0.05),
-    0 1px 2px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.chart-container:hover {
-  box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.08),
-    0 2px 4px rgba(0, 0, 0, 0.06);
-  border-color: rgba(0, 0, 0, 0.1);
+  background: transparent;
 }
 
 canvas {
   width: 100% !important;
   height: 100% !important;
-}
-
-/* Dark Mode */
-[data-theme="dark"] .chart-container {
-  background: #18181b;
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 
-    0 1px 3px rgba(0, 0, 0, 0.3),
-    0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-[data-theme="dark"] .chart-container:hover {
-  box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.4),
-    0 2px 4px rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.12);
 }
 </style>

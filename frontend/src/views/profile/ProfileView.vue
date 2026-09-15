@@ -81,7 +81,7 @@ const onDeleteAccount = async () => {
 .profile-page {
   min-height: calc(100vh - 72px);
   padding: 48px 24px;
-  background: linear-gradient(180deg, #FDFBFD 0%, #FFF5F8 50%, #FAFAFA 100%);
+  background: var(--n-bg);
 }
 
 .container {
@@ -96,15 +96,15 @@ const onDeleteAccount = async () => {
   gap: 24px;
   margin-bottom: 30px;
   padding: 30px;
-  background: white;
+  background: var(--n-bg);
   border-radius: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
 }
 
 .profile-avatar {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #E1AFD1 0%, #AD88C6 50%, #7469B6 100%);
+  background: var(--n-accent);
   border-radius: 24px;
   display: flex;
   align-items: center;
@@ -124,13 +124,13 @@ const onDeleteAccount = async () => {
 .profile-name {
   font-size: 1.75rem;
   font-weight: 800;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0;
 }
 
 .profile-greeting {
   font-size: 0.9375rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   margin: 0;
 }
 
@@ -142,10 +142,10 @@ const onDeleteAccount = async () => {
 
 /* Sidebar Menu */
 .sidebar-menu {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
   padding: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
   height: fit-content;
   position: sticky;
   top: 100px;
@@ -160,7 +160,7 @@ const onDeleteAccount = async () => {
 .menu-label {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #a1a1aa;
+  color: var(--n-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 8px 12px;
@@ -174,7 +174,7 @@ const onDeleteAccount = async () => {
   padding: 14px 16px;
   font-size: 0.9375rem;
   font-weight: 500;
-  color: #52525b;
+  color: var(--n-text-body);
   text-decoration: none;
   border-radius: 12px;
   transition: all 0.2s ease;
@@ -192,36 +192,36 @@ const onDeleteAccount = async () => {
 }
 
 .menu-link:hover {
-  color: #7469B6;
-  background: rgba(116, 105, 182, 0.06);
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
 }
 
 .menu-link.router-link-active {
-  color: #7469B6;
-  background: rgba(116, 105, 182, 0.1);
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
   font-weight: 600;
 }
 
 .menu-link.danger {
-  color: #dc2626;
+  color: var(--n-danger-text);
 }
 
 .menu-link.danger:hover {
-  background: #fef2f2;
+  background: var(--n-danger-bg);
 }
 
 .menu-divider {
   height: 1px;
-  background: #f4f4f5;
+  background: var(--n-bg-sunken);
   margin: 16px 0;
 }
 
 /* Content Area */
 .content-area {
-  background: white;
+  background: var(--n-bg);
   border-radius: 24px;
   padding: 32px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
   min-height: 600px;
 }
 
@@ -248,63 +248,4 @@ const onDeleteAccount = async () => {
   .content-area {
     padding: 24px;
   }
-}
-
-/* Dark Mode */
-[data-theme="dark"] .profile-page {
-  background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 50%, #0a0a0a 100%);
-}
-
-[data-theme="dark"] .profile-header {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .profile-name {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .profile-greeting {
-  color: #71717a;
-}
-
-[data-theme="dark"] .sidebar-menu {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .menu-label {
-  color: #71717a;
-}
-
-[data-theme="dark"] .menu-link {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .menu-link:hover {
-  color: #E1AFD1;
-  background: rgba(116, 105, 182, 0.1);
-}
-
-[data-theme="dark"] .menu-link.router-link-active {
-  color: #E1AFD1;
-  background: rgba(116, 105, 182, 0.15);
-}
-
-[data-theme="dark"] .menu-link.danger {
-  color: #f87171;
-}
-
-[data-theme="dark"] .menu-link.danger:hover {
-  background: rgba(248, 113, 113, 0.1);
-}
-
-[data-theme="dark"] .menu-divider {
-  background: #27272a;
-}
-
-[data-theme="dark"] .content-area {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-</style>
+}</style>

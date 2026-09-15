@@ -119,6 +119,37 @@
   --z-modal-backdrop: 400;
   --z-modal: 500;
   --z-tooltip: 600;
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     Neutral Redesign Tokens
+     무채색 기반 리디자인용. 위의 기존 토큰은 나머지 페이지들이 쓰고 있어
+     그대로 두고, 메인페이지와 App.vue만 아래 --n-* 토큰을 사용한다.
+     ───────────────────────────────────────────────────────────────────────── */
+  --n-bg: #ffffff;
+  --n-bg-subtle: #fafaf9;
+  --n-bg-sunken: #f2ecf7;
+  --n-border: #e7e5e4;
+  --n-border-strong: #d6d3d1;
+  --n-text: #292930;
+  --n-text-body: #44403c;
+  --n-text-muted: #78716c;
+  --n-accent: #7469B6;
+  --n-accent-hover: #5B4E9E;
+  --n-accent-wash: #f4f2fa;
+  --n-ink: #dfdceb;
+  --n-ink-text: #3a393d;
+
+  /* 의미색(성공/경고/오류/정보).
+     장식이 아니라 상태를 전달하는 자리에만 쓴다. 배경은 옅은 틴트,
+     글자는 진한 톤. 다크모드 값은 아래 [data-theme="dark"] 에서 뒤집는다. */
+  --n-ok-bg: #f0fdf4;
+  --n-ok-text: #15803d;
+  --n-warn-bg: #fffbeb;
+  --n-warn-text: #92400e;
+  --n-danger-bg: #fef2f2;
+  --n-danger-text: #b91c1c;
+  --n-info-bg: #eff6ff;
+  --n-info-text: #1d4ed8;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -689,7 +720,7 @@ h6 { font-size: 1rem; }
 
 .navbar-link {
   padding: 8px 14px;
-  font-size: 0.875rem;
+  font-size: 22px;
   font-weight: 400;
   color: var(--gray-800);
   border-radius: var(--radius-md);
@@ -768,7 +799,7 @@ h6 { font-size: 1rem; }
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: 50px;
   font-weight: 700;
   line-height: 1.05;
   margin-bottom: var(--space-lg);
@@ -1226,6 +1257,31 @@ h6 { font-size: 1rem; }
   --shadow-glow-pink: 0 0 60px rgba(225, 175, 209, 0.25);
   --shadow-float: 0 20px 50px -20px rgba(116, 105, 182, 0.4);
   --shadow-purple: 0 10px 40px -10px rgba(116, 105, 182, 0.4);
+
+  /* Neutral Redesign Tokens - Dark */
+  --n-bg: #121212;
+  --n-bg-subtle: #191919;
+  --n-bg-sunken: #202020;
+  --n-border: #2a2a2a;
+  --n-border-strong: #3a3a3a;
+  --n-text: #fafaf9;
+  --n-text-body: #d6d3d1;
+  --n-text-muted: #a8a29e;
+  --n-accent: #a394d8;
+  --n-accent-hover: #bfb3e6;
+  --n-accent-wash: #1e1b2a;
+  --n-ink: #0a0a0a;
+  --n-ink-text: #d6d3d1;
+
+  /* 의미색 - Dark */
+  --n-ok-bg: #12261a;
+  --n-ok-text: #6ee7a8;
+  --n-warn-bg: #2a2113;
+  --n-warn-text: #e8c07a;
+  --n-danger-bg: #2a1616;
+  --n-danger-text: #f0a0a0;
+  --n-info-bg: #15203a;
+  --n-info-text: #93b4f5;
 }
 
 /* Dark mode body styles */
@@ -1299,4 +1355,127 @@ h6 { font-size: 1rem; }
 
 [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
   background: var(--gray-500);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   21. Page Header (무채색 리디자인 공용 컴포넌트)
+   상품/현물/주식/커뮤니티/AI분석/은행찾기/유튜브/뉴스 등 각 화면의
+   페이지 헤더가 동일한 CSS를 10곳에 복사-붙여넣기 하고 있던 것을 통합.
+   각 .vue 파일에서는 이 클래스들만 마크업에 붙이고, 화면 고유 요소
+   (버튼·검색창·탭 등)만 그 파일의 scoped style에 남긴다.
+   CommunityView.vue 를 기준으로 잡았다. 다른 페이지의 기존
+   header-icon/header-text/page-title 클래스와 충돌하지 않도록
+   n- 접두사를 쓴다.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.n-page-header {
+  background: var(--n-accent-wash);
+  border-bottom: 1px solid var(--n-border);
+  padding: 30px 24px;
+}
+
+.n-page-header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* 제목 아래에 검색창/탭 등 부가 요소가 세로로 쌓이는 화면용
+   (유튜브 검색/저장 등) */
+.n-page-header-content--stack {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* 제목 영역과 검색·탭 영역을 양끝에 배치하는 화면용 (뉴스) */
+.n-page-header-content--split {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.n-page-header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border: 1px solid var(--n-border);
+  border-radius: 16px;
+  background: var(--n-bg);
+}
+
+.n-page-header-icon svg {
+  width: 32px;
+  height: 32px;
+  color: var(--n-text-muted);
+}
+
+.n-page-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.n-page-title {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--n-text);
+  text-align: left;
+}
+
+.n-page-subtitle {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--n-text-muted);
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .n-page-header {
+    padding: 32px 20px;
+  }
+
+  .n-page-header-content {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .n-page-header-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .n-page-header-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .n-page-title {
+    font-size: 1.5rem;
+  }
+
+  .n-page-subtitle {
+    font-size: 0.875rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   20. Reduced Motion
+   OS에서 "동작 줄이기"를 켠 사용자에게만 적용된다. 일반 사용자에게는
+   제휴은행 마퀴를 포함한 모든 모션이 그대로 동작한다.
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

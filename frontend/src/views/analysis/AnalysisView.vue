@@ -1,18 +1,18 @@
 <template>
   <div class="analysis-page">
     <!-- Page Header -->
-    <header class="page-header">
-      <div class="header-content">
-        <div class="header-icon">
+    <header class="n-page-header">
+      <div class="n-page-header-content">
+        <div class="n-page-header-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
             <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
             <line x1="12" y1="22.08" x2="12" y2="12"/>
           </svg>
         </div>
-        <div class="header-text">
-          <h1 class="page-title">AI 금융 분석</h1>
-          <p class="page-subtitle">나에게 맞는 금융상품을 추천받아보세요</p>
+        <div class="n-page-header-text">
+          <h1 class="n-page-title">AI 금융 분석</h1>
+          <p class="n-page-subtitle">나에게 맞는 금융상품을 추천받아보세요</p>
         </div>
       </div>
     </header>
@@ -509,7 +509,7 @@ const purposes = [
     label: '여행', 
     emoji: '✈️', 
     desc: '국내외 여행 자금',
-    bgColor: 'rgba(116, 105, 182, 0.15)'
+    bgColor: 'var(--n-accent-wash)'
   },
 ]
 
@@ -688,60 +688,8 @@ const submit = () => {
 <style scoped>
 .analysis-page {
   min-height: calc(100vh - 200px);
-  background: linear-gradient(180deg, #FDFBFD 0%, #FFF5F8 50%, #FAFAFA 100%);
+  background: var(--n-bg);
   margin-bottom: 200px;
-}
-
-/* Page Header */
-.page-header {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
-  padding: 40px 24px;
-  margin-bottom: 10px;
-}
-
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.header-icon {
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(10px);
-}
-
-.header-icon svg {
-  width: 32px;
-  height: 32px;
-  color: white;
-}
-
-.header-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.page-title {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: white;
-  margin: 0;
-  text-align: left;
-}
-
-.page-subtitle {
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0;
 }
 
 /* Main Content */
@@ -776,8 +724,8 @@ const submit = () => {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: white;
-  color: #7469B6;
+  background: var(--n-bg);
+  color: var(--n-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -787,7 +735,7 @@ const submit = () => {
 }
 
 .step-item.active .step-number {
-  background: #7469B6;
+  background: var(--n-accent);
   color: white;
 }
 
@@ -804,7 +752,7 @@ const submit = () => {
 
 /* Analysis Card */
 .analysis-card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 24px;
   padding: 32px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
@@ -817,13 +765,13 @@ const submit = () => {
   gap: 16px;
   margin-bottom: 32px;
   padding-bottom: 24px;
-  border-bottom: 1px solid #f4f4f5;
+  border-bottom: 1px solid var(--n-bg-sunken);
 }
 
 .card-icon {
   width: 48px;
   height: 48px;
-  background: rgba(116, 105, 182, 0.1);
+  background: var(--n-accent-wash);
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -833,19 +781,19 @@ const submit = () => {
 .card-icon svg {
   width: 24px;
   height: 24px;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .card-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 4px;
 }
 
 .card-subtitle {
   font-size: 0.875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   margin: 0;
 }
 
@@ -859,7 +807,7 @@ const submit = () => {
 
 .purpose-card {
   padding: 24px 16px;
-  border: 2px solid #e4e4e7;
+  border: 2px solid var(--n-border);
   border-radius: 16px;
   text-align: center;
   cursor: pointer;
@@ -867,13 +815,13 @@ const submit = () => {
 }
 
 .purpose-card:hover {
-  border-color: #7469B6;
+  border-color: var(--n-accent);
   transform: translateY(-2px);
 }
 
 .purpose-card.selected {
-  border-color: #7469B6;
-  background: rgba(116, 105, 182, 0.05);
+  border-color: var(--n-accent);
+  background: var(--n-accent-wash);
 }
 
 .purpose-icon {
@@ -893,13 +841,13 @@ const submit = () => {
 .purpose-title {
   font-size: 1rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 4px;
 }
 
 .purpose-desc {
   font-size: 0.8125rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   margin: 0;
 }
 
@@ -916,7 +864,7 @@ const submit = () => {
 
 .option-card {
   padding: 16px 12px;
-  border: 2px solid #e4e4e7;
+  border: 2px solid var(--n-border);
   border-radius: 12px;
   text-align: center;
   cursor: pointer;
@@ -924,12 +872,12 @@ const submit = () => {
 }
 
 .option-card:hover {
-  border-color: #7469B6;
+  border-color: var(--n-accent);
 }
 
 .option-card.selected {
-  border-color: #7469B6;
-  background: rgba(116, 105, 182, 0.05);
+  border-color: var(--n-accent);
+  background: var(--n-accent-wash);
 }
 
 .option-emoji {
@@ -941,7 +889,7 @@ const submit = () => {
 .option-label {
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #3f3f46;
+  color: var(--n-text-body);
 }
 
 /* Form */
@@ -963,13 +911,13 @@ const submit = () => {
   gap: 8px;
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #3f3f46;
+  color: var(--n-text-body);
 }
 
 .form-label svg {
   width: 18px;
   height: 18px;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .input-wrapper {
@@ -982,9 +930,9 @@ const submit = () => {
   width: 100%;
   padding: 14px 60px 14px 16px;
   font-size: 1rem;
-  border: 2px solid #e4e4e7;
+  border: 2px solid var(--n-border);
   border-radius: 14px;
-  background: white;
+  background: var(--n-bg);
   transition: all 0.2s;
 }
 
@@ -994,13 +942,13 @@ const submit = () => {
 }
 
 .form-input::placeholder {
-  color: #a1a1aa;
+  color: var(--n-text-muted);
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #7469B6;
-  box-shadow: 0 0 0 4px rgba(116, 105, 182, 0.1);
+  border-color: var(--n-accent);
+  box-shadow: 0 0 0 4px var(--n-accent-wash);
 }
 
 .input-suffix {
@@ -1008,12 +956,12 @@ const submit = () => {
   right: 16px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .form-hint {
   font-size: 0.8125rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   margin: 4px 0 0;
 }
 
@@ -1026,9 +974,9 @@ const submit = () => {
   width: 100%;
   padding: 14px 44px 14px 16px;
   font-size: 1rem;
-  border: 2px solid #e4e4e7;
+  border: 2px solid var(--n-border);
   border-radius: 14px;
-  background: white;
+  background: var(--n-bg);
   cursor: pointer;
   appearance: none;
   transition: all 0.2s;
@@ -1036,8 +984,8 @@ const submit = () => {
 
 .form-select:focus {
   outline: none;
-  border-color: #7469B6;
-  box-shadow: 0 0 0 4px rgba(116, 105, 182, 0.1);
+  border-color: var(--n-accent);
+  box-shadow: 0 0 0 4px var(--n-accent-wash);
 }
 
 .select-arrow {
@@ -1047,7 +995,7 @@ const submit = () => {
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
-  color: #71717a;
+  color: var(--n-text-muted);
   pointer-events: none;
 }
 
@@ -1061,22 +1009,22 @@ const submit = () => {
 
 .period-option {
   padding: 12px 20px;
-  border: 2px solid #e4e4e7;
+  border: 2px solid var(--n-border);
   border-radius: 12px;
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #3f3f46;
+  color: var(--n-text-body);
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .period-option:hover {
-  border-color: #7469B6;
+  border-color: var(--n-accent);
 }
 
 .period-option.selected {
-  border-color: #7469B6;
-  background: #7469B6;
+  border-color: var(--n-accent);
+  background: var(--n-accent);
   color: white;
 }
 
@@ -1093,7 +1041,7 @@ const submit = () => {
 
 /* Preview Card */
 .preview-card {
-  background: #f8f8f8;
+  background: var(--n-bg-subtle);
   border-radius: 16px;
   padding: 20px;
   margin-top: 8px;
@@ -1105,14 +1053,14 @@ const submit = () => {
   gap: 8px;
   font-size: 0.9375rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 16px;
 }
 
 .preview-title svg {
   width: 18px;
   height: 18px;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .preview-stats {
@@ -1129,17 +1077,17 @@ const submit = () => {
 
 .stat-label {
   font-size: 0.8125rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .stat-value {
   font-size: 1rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
 }
 
 .stat-value.highlight {
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .preview-stat.success .stat-value {
@@ -1147,7 +1095,7 @@ const submit = () => {
 }
 
 .preview-stat.warning .stat-value {
-  color: #f59e0b;
+  color: var(--n-warn-text);
 }
 
 /* Country Grid for Travel */
@@ -1163,7 +1111,7 @@ const submit = () => {
   align-items: center;
   gap: 6px;
   padding: 16px 12px;
-  border: 2px solid #e4e4e7;
+  border: 2px solid var(--n-border);
   border-radius: 14px;
   cursor: pointer;
   transition: all 0.2s;
@@ -1171,13 +1119,13 @@ const submit = () => {
 }
 
 .country-card:hover {
-  border-color: #7469B6;
+  border-color: var(--n-accent);
   transform: translateY(-2px);
 }
 
 .country-card.selected {
-  border-color: #7469B6;
-  background: linear-gradient(135deg, #FFE6E6 0%, rgba(116, 105, 182, 0.1) 100%);
+  border-color: var(--n-accent);
+  background: var(--n-accent-wash);
 }
 
 .country-flag-img {
@@ -1191,12 +1139,12 @@ const submit = () => {
 .country-name {
   font-size: 0.9375rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
 }
 
 .country-currency {
   font-size: 0.75rem;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 /* Travel Tip */
@@ -1205,7 +1153,7 @@ const submit = () => {
   align-items: flex-start;
   gap: 12px;
   padding: 16px;
-  background: #fef3c7;
+  background: var(--n-warn-bg);
   border-radius: 12px;
   margin-top: 8px;
 }
@@ -1213,7 +1161,7 @@ const submit = () => {
 .travel-tip svg {
   width: 20px;
   height: 20px;
-  color: #f59e0b;
+  color: var(--n-warn-text);
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -1221,7 +1169,7 @@ const submit = () => {
 .travel-tip p {
   margin: 0;
   font-size: 0.875rem;
-  color: #92400e;
+  color: var(--n-warn-text);
   line-height: 1.5;
 }
 
@@ -1242,7 +1190,7 @@ const submit = () => {
   font-size: 1rem;
   font-weight: 700;
   color: white;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border: none;
   border-radius: 14px;
   cursor: pointer;
@@ -1255,8 +1203,7 @@ const submit = () => {
 }
 
 .next-btn:hover:not(:disabled), .submit-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(116, 105, 182, 0.4);
+  box-shadow: none;
 }
 
 .next-btn:disabled, .submit-btn:disabled {
@@ -1273,9 +1220,9 @@ const submit = () => {
   padding: 16px 24px;
   font-size: 1rem;
   font-weight: 600;
-  color: #71717a;
-  background: white;
-  border: 2px solid #e4e4e7;
+  color: var(--n-text-muted);
+  background: var(--n-bg);
+  border: 2px solid var(--n-border);
   border-radius: 14px;
   cursor: pointer;
   transition: all 0.2s;
@@ -1287,8 +1234,8 @@ const submit = () => {
 }
 
 .back-btn:hover {
-  border-color: #7469B6;
-  color: #7469B6;
+  border-color: var(--n-accent);
+  color: var(--n-accent);
 }
 
 .loading-spinner {
@@ -1313,7 +1260,7 @@ const submit = () => {
 }
 
 .info-card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 16px;
   padding: 24px 20px;
   text-align: center;
@@ -1323,7 +1270,7 @@ const submit = () => {
 .info-icon {
   width: 48px;
   height: 48px;
-  background: #dbeafe;
+  background: var(--n-info-bg);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -1334,45 +1281,41 @@ const submit = () => {
 .info-icon svg {
   width: 24px;
   height: 24px;
-  color: #3b82f6;
+  color: var(--n-info-text);
 }
 
 .info-icon.purple {
-  background: rgba(116, 105, 182, 0.1);
+  background: var(--n-accent-wash);
 }
 
 .info-icon.purple svg {
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .info-icon.amber {
-  background: #fef3c7;
+  background: var(--n-warn-bg);
 }
 
 .info-icon.amber svg {
-  color: #f59e0b;
+  color: var(--n-warn-text);
 }
 
 .info-title {
   font-size: 0.9375rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 6px;
 }
 
 .info-text {
   font-size: 0.8125rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   line-height: 1.5;
   margin: 0;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .page-header {
-    padding: 32px 16px;
-  }
-
   .main-content {
     padding: 24px 16px 40px;
   }
@@ -1409,176 +1352,4 @@ const submit = () => {
   .preview-stats {
     grid-template-columns: 1fr;
   }
-}
-
-/* Dark Mode */
-[data-theme="dark"] .analysis-page {
-  background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 50%, #0a0a0a 100%);
-}
-
-[data-theme="dark"] .step-item .step-number {
-  background: #27272a;
-  color: #71717a;
-}
-
-[data-theme="dark"] .step-item.active .step-number {
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
-  color: white;
-}
-
-[data-theme="dark"] .step-label {
-  color: #71717a;
-}
-
-[data-theme="dark"] .step-item.active .step-label {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .analysis-card {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .card-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .card-subtitle {
-  color: #71717a;
-}
-
-[data-theme="dark"] .purpose-card {
-  background: #27272a;
-  border-color: #3f3f46;
-}
-
-[data-theme="dark"] .purpose-card:hover {
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .purpose-card.selected {
-  background: rgba(116, 105, 182, 0.15);
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .purpose-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .purpose-desc {
-  color: #71717a;
-}
-
-[data-theme="dark"] .form-label {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .option-card {
-  background: #27272a;
-  border-color: #3f3f46;
-}
-
-[data-theme="dark"] .option-card:hover {
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .option-card.selected {
-  background: rgba(116, 105, 182, 0.15);
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .option-label {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .form-input {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .form-input:focus {
-  border-color: #7469B6;
-  background: #18181b;
-}
-
-[data-theme="dark"] .form-input::placeholder {
-  color: #71717a;
-}
-
-[data-theme="dark"] .form-hint {
-  color: #71717a;
-}
-
-[data-theme="dark"] .input-suffix {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .country-card {
-  border-color: #3f3f46;
-}
-
-[data-theme="dark"] .country-card:hover {
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .country-card.selected {
-  background: rgba(116, 105, 182, 0.15);
-  border-color: #7469B6;
-}
-
-[data-theme="dark"] .country-name {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .country-currency {
-  color: #71717a;
-}
-
-[data-theme="dark"] .travel-tip {
-  background: rgba(245, 158, 11, 0.1);
-}
-
-[data-theme="dark"] .travel-tip p {
-  color: #fbbf24;
-}
-
-[data-theme="dark"] .back-btn {
-  background: #27272a;
-  border-color: #3f3f46;
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .back-btn:hover {
-  border-color: #7469B6;
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .preview-card {
-  background: rgba(116, 105, 182, 0.1);
-}
-
-[data-theme="dark"] .preview-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .stat-label {
-  color: #71717a;
-}
-
-[data-theme="dark"] .stat-value {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .info-card {
-  background: #27272a;
-}
-
-[data-theme="dark"] .info-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .info-text {
-  color: #71717a;
-}
-</style>
+}</style>

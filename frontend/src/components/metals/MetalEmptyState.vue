@@ -32,16 +32,16 @@ defineProps({
   align-items: center;
   padding: 60px 40px;
   text-align: center;
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
   max-width: 400px;
 }
 
 .empty-icon {
   width: 72px;
   height: 72px;
-  background: #fef3c7;
+  background: var(--n-warn-bg);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -52,41 +52,18 @@ defineProps({
 .empty-icon svg {
   width: 36px;
   height: 36px;
-  color: #f59e0b;
+  color: var(--n-warn-text);
 }
 
 .empty-title {
   font-size: 1.0625rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 8px;
 }
 
 .empty-text {
   font-size: 0.875rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   line-height: 1.5;
-}
-
-/* Dark Mode */
-[data-theme="dark"] .empty-card {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .empty-icon {
-  background: #422006;
-}
-
-[data-theme="dark"] .empty-icon svg {
-  color: #fbbf24;
-}
-
-[data-theme="dark"] .empty-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .empty-text {
-  color: #a1a1aa;
-}
-</style>
+}</style>

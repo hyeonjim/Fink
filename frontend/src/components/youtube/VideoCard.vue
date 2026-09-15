@@ -67,7 +67,7 @@ const thumb = computed(() =>
 
 <style scoped>
 .video-card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
@@ -91,7 +91,7 @@ const thumb = computed(() =>
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background: #f3f3f3;
+  background: var(--n-bg-sunken);
   transition: transform 0.3s ease;
 }
 
@@ -122,7 +122,7 @@ const thumb = computed(() =>
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #dc2626;
+  color: var(--n-danger-text);
   transition: transform 0.2s ease;
 }
 
@@ -147,7 +147,7 @@ const thumb = computed(() =>
 .title {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
   line-height: 1.4;
   margin: 0;
   display: -webkit-box;
@@ -162,7 +162,7 @@ const thumb = computed(() =>
   gap: 6px;
   margin: 0;
   font-size: 0.8125rem;
-  color: #71717a;
+  color: var(--n-text-muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -182,8 +182,8 @@ const thumb = computed(() =>
   padding: 10px 16px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #7469B6;
-  background: rgba(116, 105, 182, 0.1);
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
   border-radius: 10px;
   text-decoration: none;
   text-align: center;
@@ -198,43 +198,10 @@ const thumb = computed(() =>
 }
 
 .detail-link:hover {
-  background: #7469B6;
+  background: var(--n-accent);
   color: white;
 }
 
 .detail-link:hover svg {
   transform: translateX(3px);
-}
-
-/* Dark Mode */
-[data-theme="dark"] .video-card {
-  background: #18181b;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .video-card:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-}
-
-[data-theme="dark"] .thumb {
-  background: #27272a;
-}
-
-[data-theme="dark"] .title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .channel {
-  color: #71717a;
-}
-
-[data-theme="dark"] .detail-link {
-  background: rgba(116, 105, 182, 0.2);
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .detail-link:hover {
-  background: #7469B6;
-  color: white;
-}
-</style>
+}</style>

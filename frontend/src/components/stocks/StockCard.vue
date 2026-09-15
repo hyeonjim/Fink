@@ -99,19 +99,19 @@ const formatPercent = (percent) => {
 
 <style scoped>
 .stock-card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 1px solid #f3f4f6;
+  border: 1px solid var(--n-bg-sunken);
 }
 
 .stock-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
-  border-color: #667eea;
+  border-color: var(--n-accent);
 }
 
 .card-header {
@@ -130,12 +130,12 @@ const formatPercent = (percent) => {
 .stock-symbol {
   font-size: 18px;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--n-text);
 }
 
 .stock-name {
   font-size: 13px;
-  color: #6b7280;
+  color: var(--n-text-muted);
   max-width: 180px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -160,7 +160,7 @@ const formatPercent = (percent) => {
 .current-price {
   font-size: 24px;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--n-text);
 }
 
 .price-change {
@@ -177,25 +177,25 @@ const formatPercent = (percent) => {
 }
 
 .price-change.positive {
-  color: #10b981;
+  color: var(--n-ok-text);
 }
 
 .price-change.negative {
-  color: #ef4444;
+  color: var(--n-danger-text);
 }
 
 .price-change.neutral {
-  color: #6b7280;
+  color: var(--n-text-muted);
 }
 
 .card-footer {
-  border-top: 1px solid #f3f4f6;
+  border-top: 1px solid var(--n-bg-sunken);
   padding-top: 12px;
 }
 
 .view-detail {
   font-size: 13px;
-  color: #667eea;
+  color: var(--n-accent);
   font-weight: 500;
 }
 </style>

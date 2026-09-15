@@ -168,9 +168,15 @@ watch(() => props.id, load)
 </script>
 
 <style scoped>
+/* 상단 30% 는 플레이어 뒤에 깔리는 어두운 띠. 그라데이션 없이 단색 두 칸으로 나눈다. */
 .video-detail-page {
   min-height: calc(100vh - 200px);
-  background: linear-gradient(180deg, #18181b 0%, #27272a 30%, #fafafa 30%);
+  background: linear-gradient(
+    180deg,
+    var(--n-ink-text) 0%,
+    var(--n-ink-text) 30%,
+    var(--n-bg) 30%
+  );
 }
 
 /* Loading State */
@@ -180,14 +186,14 @@ watch(() => props.id, load)
   align-items: center;
   justify-content: center;
   padding: 120px 24px;
-  color: #71717a;
+  color: var(--n-text-muted);
 }
 
 .loading-spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid #e4e4e7;
-  border-top-color: #7469B6;
+  border: 3px solid var(--n-border);
+  border-top-color: var(--n-accent);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   margin-bottom: 16px;
@@ -210,7 +216,7 @@ watch(() => props.id, load)
 .empty-icon {
   width: 80px;
   height: 80px;
-  background: rgba(116, 105, 182, 0.1);
+  background: var(--n-accent-wash);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -221,13 +227,13 @@ watch(() => props.id, load)
 .empty-icon svg {
   width: 40px;
   height: 40px;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .empty-title {
   font-size: 1.125rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 16px;
 }
 
@@ -238,8 +244,8 @@ watch(() => props.id, load)
   padding: 12px 20px;
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #7469B6;
-  background: rgba(116, 105, 182, 0.1);
+  color: var(--n-accent);
+  background: var(--n-accent-wash);
   border-radius: 12px;
   text-decoration: none;
   transition: all 0.2s;
@@ -251,7 +257,7 @@ watch(() => props.id, load)
 }
 
 .back-link:hover {
-  background: #7469B6;
+  background: var(--n-accent);
   color: white;
 }
 
@@ -290,7 +296,7 @@ watch(() => props.id, load)
 .video-title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #18181b;
+  color: var(--n-text);
   line-height: 1.4;
   margin: 0 0 20px;
 }
@@ -313,7 +319,7 @@ watch(() => props.id, load)
 .channel-avatar {
   width: 44px;
   height: 44px;
-  background: linear-gradient(135deg, #7469B6 0%, #AD88C6 100%);
+  background: var(--n-accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -326,7 +332,7 @@ watch(() => props.id, load)
 .channel-name {
   font-size: 1rem;
   font-weight: 600;
-  color: #18181b;
+  color: var(--n-text);
 }
 
 .action-buttons {
@@ -341,9 +347,9 @@ watch(() => props.id, load)
   padding: 12px 18px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #3f3f46;
-  background: white;
-  border: 2px solid #e4e4e7;
+  color: var(--n-text-body);
+  background: var(--n-bg);
+  border: 2px solid var(--n-border);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s;
@@ -355,22 +361,22 @@ watch(() => props.id, load)
 }
 
 .action-btn:hover {
-  border-color: #7469B6;
-  color: #7469B6;
+  border-color: var(--n-accent);
+  color: var(--n-accent);
 }
 
 .action-btn.active {
-  background: #7469B6;
-  border-color: #7469B6;
+  background: var(--n-accent);
+  border-color: var(--n-accent);
   color: white;
 }
 
 /* Description Card */
 .description-card {
-  background: white;
+  background: var(--n-bg);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--n-border);
 }
 
 .description-title {
@@ -379,19 +385,19 @@ watch(() => props.id, load)
   gap: 10px;
   font-size: 1rem;
   font-weight: 700;
-  color: #18181b;
+  color: var(--n-text);
   margin: 0 0 16px;
 }
 
 .description-title svg {
   width: 20px;
   height: 20px;
-  color: #7469B6;
+  color: var(--n-accent);
 }
 
 .description-text {
   font-size: 0.9375rem;
-  color: #52525b;
+  color: var(--n-text-body);
   line-height: 1.7;
   margin: 0;
   white-space: pre-wrap;
@@ -423,75 +429,4 @@ watch(() => props.id, load)
   .action-btn {
     justify-content: center;
   }
-}
-
-/* Dark Mode */
-[data-theme="dark"] .video-detail-page {
-  background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 30%, #0a0a0a 30%);
-}
-
-[data-theme="dark"] .loading-state {
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .loading-spinner {
-  border-color: #3f3f46;
-  border-top-color: #7469B6;
-}
-
-[data-theme="dark"] .empty-icon {
-  background: rgba(116, 105, 182, 0.2);
-}
-
-[data-theme="dark"] .empty-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .back-link {
-  background: rgba(116, 105, 182, 0.2);
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .back-link:hover {
-  background: #7469B6;
-  color: white;
-}
-
-[data-theme="dark"] .video-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .channel-name {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .action-btn {
-  background: #18181b;
-  border-color: #3f3f46;
-  color: #a1a1aa;
-}
-
-[data-theme="dark"] .action-btn:hover {
-  border-color: #7469B6;
-  color: #E1AFD1;
-}
-
-[data-theme="dark"] .action-btn.active {
-  background: #7469B6;
-  border-color: #7469B6;
-  color: white;
-}
-
-[data-theme="dark"] .description-card {
-  background: #18181b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .description-title {
-  color: #e4e4e7;
-}
-
-[data-theme="dark"] .description-text {
-  color: #a1a1aa;
-}
-</style>
+}</style>
