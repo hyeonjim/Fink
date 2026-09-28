@@ -73,6 +73,40 @@
   --n-ink: #dfdceb;
   --n-ink-text: #3a393d;
 
+  /* ─────────────────────────────────────────────────────────────────────────
+     브랜드 팔레트 (2026-09-29 메인 리디자인)
+     라벤더(#d3d3f1)를 메인으로, 딥 인디고 네이비(#1c1b33)는 글자·버튼에 쓴다.
+     순백 대신 라벤더 기운이 도는 캔버스를 바탕으로 깔아 흰 면적을 줄인다.
+     메인에서 시작해 다른 화면도 이 토큰으로 옮겨간다.
+     ───────────────────────────────────────────────────────────────────────── */
+  --n-canvas: #f5f4fa;            /* 페이지 바탕 */
+  --n-surface: #ffffff;           /* 캔버스 위 카드 */
+  --n-line: #e4e3ef;              /* 캔버스·카드의 구분선 */
+  --n-heading: #1c1b33;           /* 제목 */
+  --n-copy: #4a4960;              /* 본문 */
+  --n-copy-muted: #6b6a82;        /* 보조 본문 */
+
+  --n-brand: #d3d3f1;             /* 메인 컬러 */
+  --n-brand-soft: #ebebf9;        /* 아이콘 타일 */
+  --n-brand-tint: #f3f2f3;        /* 추천 결과 목업 안의 칩·선택 행·배지 */
+  --n-brand-strong: #4f4d9c;      /* 밝은 바탕 위 강조 글자 */
+  --n-brand-panel: #d3d3f1;       /* 라벤더 면 (히어로 등) */
+  --n-brand-panel-text: #1c1b33;
+  --n-brand-panel-muted: #46456b;
+  --n-brand-panel-line: #b9b9e0;
+
+  --n-band: #e6e2ec;              /* 섹션 사이 띠 (옅은 라벤더 그레이) */
+  --n-band-text: #1c1b33;
+  --n-band-muted: #4f4a5e;
+  --n-band-line: #d0cad8;
+
+  --n-cta: #1c1b33;               /* 주요 버튼 */
+  --n-cta-hover: #2e2d52;
+  --n-on-cta: #ffffff;
+
+  --n-shadow-md: 0 16px 40px -20px rgba(28, 27, 51, 0.22);
+  --n-shadow-lg: 0 32px 64px -32px rgba(28, 27, 51, 0.35);
+
   /* accent 배경 위에 올라가는 글자색. --n-bg 는 다크에서 #272727 로
      뒤집히므로 여기에 쓸 수 없어 별도 토큰으로 고정한다. */
   --n-on-accent: #ffffff;
@@ -634,6 +668,36 @@ input.input-with-icon,
   --n-accent-wash: #1e1b2a;
   --n-ink: #0a0a0a;
   --n-ink-text: #d6d3d1;
+
+  /* 브랜드 팔레트 - Dark.
+     라벤더 면은 다크에서 그대로 두면 너무 밝아 톤을 낮춘 인디고로 바꾸고,
+     주요 버튼은 반대로 라벤더를 쓴다. --n-brand 는 원색 그대로 둔다. */
+  --n-canvas: #14141c;
+  --n-surface: #1d1d28;
+  --n-line: #2b2a3b;
+  --n-heading: #f4f4fb;
+  --n-copy: #c9c8dc;
+  --n-copy-muted: #9d9cb6;
+
+  --n-brand-soft: #2a2944;
+  --n-brand-tint: #2b2440;
+  --n-brand-strong: #bcbbee;
+  --n-brand-panel: #24233d;
+  --n-brand-panel-text: #ececfa;
+  --n-brand-panel-muted: #aeadd0;
+  --n-brand-panel-line: #3b3a5e;
+
+  --n-band: #2e2c37;
+  --n-band-text: #f1f1fb;
+  --n-band-muted: #b3afc2;
+  --n-band-line: #423f4d;
+
+  --n-cta: #d3d3f1;
+  --n-cta-hover: #e4e4f7;
+  --n-on-cta: #1c1b33;
+
+  --n-shadow-md: 0 16px 40px -20px rgba(0, 0, 0, 0.55);
+  --n-shadow-lg: 0 32px 64px -32px rgba(0, 0, 0, 0.6);
 
   /* 의미색 - Dark */
   --n-ok-bg: #12261a;

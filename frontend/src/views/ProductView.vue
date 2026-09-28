@@ -301,7 +301,7 @@ const resetFilter = () => {
 
 .tabs-pill {
   display: inline-flex;
-  gap: 4px;
+  gap: 40px;
   padding: 4px;
 }
 
@@ -310,10 +310,10 @@ const resetFilter = () => {
   align-items: center;
   gap: 8px;
   padding: 10px 24px;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 500;
   color: var(--n-text-muted);
-  background: transparent;
+  background: #f1f0f0;
   border: none;
   border-radius: var(--n-radius-sm);
   cursor: pointer;

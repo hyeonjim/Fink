@@ -263,7 +263,7 @@ onUnmounted(() => {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--n-bg);
+  background: var(--n-canvas);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -273,8 +273,8 @@ onUnmounted(() => {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--n-bg);
-  border-bottom: 1px solid var(--n-border);
+  background: var(--n-canvas);
+  border-bottom: 1px solid var(--n-line);
 }
 
 .navbar-container {
