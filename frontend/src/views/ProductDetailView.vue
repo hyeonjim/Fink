@@ -473,8 +473,8 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 9px;
-  margin-bottom: 20px;
-  font-size: 1rem;
+  margin-bottom: 50px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--n-text);
@@ -539,22 +539,22 @@ onMounted(() => {
 }
 
 .rate-cell.rate-max {
-  font-size: 1.0625rem;
+  font-size: 20px;
   font-weight: 700;
-  color: var(--n-accent);
+  color: #e94444;
 }
 
 /* ── 상세 정보 그리드 ────────────────────────────────────────────── */
 .detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
+  gap: 24px;
 }
 
 .detail-item {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 16px;
 }
 
 .detail-full {
@@ -562,13 +562,13 @@ onMounted(() => {
 }
 
 .detail-label {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--n-text-muted);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--n-text);
 }
 
 .detail-value {
-  font-size: 0.9375rem;
+  font-size: 18px;
   line-height: 1.65;
   color: var(--n-text-body);
 }

@@ -195,7 +195,7 @@ const onSearch = () => {
   align-items: center;
   gap: 7px;
   padding: 9px 14px;
-  font-size: 0.875rem;
+  font-size: 18px;
   font-weight: 500;
   color: var(--n-text-muted);
   background: transparent;
@@ -220,7 +220,7 @@ const onSearch = () => {
 
 .nav-tab.router-link-active {
   color: var(--n-accent);
-  background: var(--n-accent-wash);
+  background: #eae3f1;
   border-color: var(--n-accent);
 }
 

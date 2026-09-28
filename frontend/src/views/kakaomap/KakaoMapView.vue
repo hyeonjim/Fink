@@ -297,7 +297,7 @@ onMounted(() => {
   font-weight: 600;
   color: var(--n-accent);
   background: var(--n-accent-wash);
-  border: 1px solid var(--n-accent);
+  border: 1px solid #e2d9e7;
   border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;

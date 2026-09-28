@@ -404,7 +404,7 @@ const onToggleCommentLike = (commentId) => {
 
 .article-title {
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--n-text);
   line-height: 1.4;
   margin: 0;
@@ -546,10 +546,6 @@ const onToggleCommentLike = (commentId) => {
   .edit-form {
     padding-left: 20px;
     padding-right: 20px;
-  }
-
-  .article-title {
-    font-size: 1.25rem;
   }
 
   .header-top {

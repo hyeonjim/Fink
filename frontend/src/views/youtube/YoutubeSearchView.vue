@@ -173,9 +173,9 @@ onMounted(() => {
   align-items: center;
   gap: 7px;
   padding: 9px 14px;
-  font-size: 0.875rem;
+  font-size: 18px;
   font-weight: 500;
-  color: var(--n-accent);
+  color: var(--gray-600);
   background: var(--n-bg);
   border: 1px solid var(--n-border);
   border-radius: var(--n-radius-sm);
@@ -198,8 +198,8 @@ onMounted(() => {
 }
 
 .nav-tab.router-link-active {
-  color: var(--n-accent);
-  background: var(--n-bg);
+  color: var(--gray-700);
+  background: #eae3f1;
 }
 
 /* Search Section */

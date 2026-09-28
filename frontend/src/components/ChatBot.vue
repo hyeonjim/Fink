@@ -9,15 +9,10 @@
         title="AI 챗봇"
       >
         <span class="chatbot-fab">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 13V6a1.5 1.5 0 013 0v5"/>
-            <path d="M11 11V4.5a1.5 1.5 0 013 0V11"/>
-            <path d="M14 11.5V6a1.5 1.5 0 013 0v7"/>
-            <path d="M17 13v-2a1.5 1.5 0 013 0v5c0 3.5-2 6-6 6h-1c-3 0-4.5-1-6-3l-3-4.5c-.5-.8-.2-1.8.7-2.1.7-.3 1.4 0 1.8.6l1.5 2"/>
-          </svg>
+          <img src="@/assets/chatbot-hand.webp" alt="" class="chatbot-fab-img" />
           <span class="fab-badge" v-if="unreadCount > 0">{{ unreadCount }}</span>
         </span>
-        <span class="chatbot-fab-label">챗봇</span>
+        <span class="chatbot-fab-label">챗봇 핑프</span>
       </button>
     </Transition>
 
@@ -28,14 +23,10 @@
         <div class="chatbot-header">
           <div class="header-info">
             <div class="bot-avatar">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="11" width="18" height="10" rx="2"/>
-                <circle cx="12" cy="5" r="3"/>
-                <path d="M8 15h.01M16 15h.01"/>
-              </svg>
+              <img src="@/assets/chatbot-hand.webp" alt="" />
             </div>
             <div class="bot-info">
-              <span class="bot-name">핑프 AI</span>
+              <span class="bot-name">AI 핑프</span>
               <span class="bot-status">금융상품 상담</span>
             </div>
           </div>
@@ -447,37 +438,58 @@ onMounted(() => {
   cursor: pointer;
 }
 
+/* 말풍선 모양 — 꼬리(오른쪽 아래 모서리)가 화면 구석을 가리킨다 */
 .chatbot-fab {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--n-radius-md);
-  background: var(--n-accent);
+  width: 104px;
+  height: 104px;
+  border-radius: 50% 50% 14px 50%;
+  background: var(--n-chatbot-bg);
+  border: 1px solid var(--n-border);
   display: flex;
   align-items: center;
   justify-content: center;
   /* 떠 있는 버튼이라 중성 그림자로 바닥에서 띄운다 */
-  box-shadow: 0 8px 24px -10px rgba(28, 25, 23, 0.4);
+  box-shadow: 0 12px 32px -12px rgba(28, 25, 23, 0.45);
   position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.chatbot-fab svg {
-  width: 23px;
-  height: 23px;
-  color: #fff;
+.chatbot-fab-img {
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+  transform-origin: 50% 90%;
+  transition: transform 0.25s ease;
+}
+
+/* 호버 시 버튼이 살짝 뜨고 손이 인사하듯 기운다 */
+.chatbot-fab-group:hover .chatbot-fab {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -12px rgba(28, 25, 23, 0.5);
+}
+
+.chatbot-fab-group:hover .chatbot-fab-img {
+  transform: rotate(-14deg);
+}
+
+.chatbot-fab-group:focus-visible .chatbot-fab {
+  outline: 2px solid var(--n-accent);
+  outline-offset: 3px;
 }
 
 /* 라벨은 배경·테두리 없이 텍스트만 — 미니멀하게 */
 .chatbot-fab-label {
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 600;
   letter-spacing: 0.01em;
-  color: var(--n-text-muted);
+  color: var(--n-text);
+  margin-top: 10px;
 }
 
 .fab-badge {
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: 4px;
+  right: 4px;
   background: var(--n-accent);
   color: #fff;
   font-size: 11px;
@@ -521,20 +533,22 @@ onMounted(() => {
   gap: 10px;
 }
 
+/* 플로팅 버튼과 같은 말풍선 모양으로 맞춘다 */
 .bot-avatar {
-  width: 34px;
-  height: 34px;
-  background: var(--n-accent);
-  border-radius: var(--n-radius-sm);
+  width: 40px;
+  height: 40px;
+  background: var(--n-chatbot-bg);
+  border: 1px solid var(--n-border);
+  border-radius: 50% 50% 6px 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.bot-avatar svg {
-  width: 19px;
-  height: 19px;
-  color: #fff;
+.bot-avatar img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 .bot-info {
@@ -544,7 +558,7 @@ onMounted(() => {
 }
 
 .bot-name {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--n-text);
@@ -622,7 +636,7 @@ onMounted(() => {
 .message-bubble {
   padding: 10px 14px;
   border-radius: var(--n-radius-md);
-  font-size: 13.5px;
+  font-size: 16px;
   line-height: 1.55;
   word-break: break-word;
 }
@@ -971,7 +985,7 @@ onMounted(() => {
 }
 
 .send-btn:disabled {
-  background: var(--n-bg-sunken);
+  background: var(--n-accent);
   border-color: var(--n-border);
   cursor: not-allowed;
 }
@@ -983,7 +997,7 @@ onMounted(() => {
 }
 
 .send-btn:disabled svg {
-  color: var(--n-text-muted);
+  color: #e7e7e7;
 }
 
 /* 애니메이션 */

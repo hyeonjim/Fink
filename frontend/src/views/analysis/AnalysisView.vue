@@ -743,9 +743,9 @@ const submit = () => {
 }
 
 .step-label {
-  font-size: 1rem;
-  font-weight: 700;
-  color: rgb(193, 100, 206);
+  font-size: 22px;
+  font-weight: 600;
+  color: rgb(89, 81, 90);
 }
 
 /* Analysis Card */

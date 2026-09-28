@@ -222,7 +222,7 @@ const uniqueTerms = computed(() => {
 
 .product-name {
   margin-bottom: 18px;
-  font-size: 1.0625rem;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.45;
   letter-spacing: -0.015em;
@@ -265,7 +265,7 @@ const uniqueTerms = computed(() => {
 .rate-label {
   display: block;
   margin-bottom: 6px;
-  font-size: 0.6875rem;
+  font-size: 16px;
   font-weight: 500;
   color: var(--n-text-muted);
 }

@@ -63,12 +63,13 @@
   --n-bg-sunken: #f2ecf7;
   --n-border: #e7e5e4;
   --n-border-strong: #d6d3d1;
-  --n-text: #292930;
+  --n-text: #3c3c44;
   --n-text-body: #44403c;
   --n-text-muted: #78716c;
-  --n-accent: #a398e4;
+  --n-accent: #9588df;
   --n-accent-hover: #5B4E9E;
-  --n-accent-wash: #fcf5f9;
+  --n-accent-wash: #faf5f9;
+  --n-chatbot-bg: #d3d3f1;
   --n-ink: #dfdceb;
   --n-ink-text: #3a393d;
 
@@ -450,12 +451,12 @@ input.input-with-icon,
 }
 
 .navbar-link:hover {
-  color: var(--primary-600);
+  color: var(--gray-800);
   background: rgba(116, 105, 182, 0.06);
 }
 
 .navbar-link.router-link-active {
-  color: var(--primary-600);
+  color: var(--gray-800);
   background: rgba(116, 105, 182, 0.1);
   font-weight: 500;
 }

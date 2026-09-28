@@ -182,7 +182,6 @@ const formatDate = (iso) => {
   font-weight: 500;
   color: #fff;
   background: var(--n-accent);
-  border: 1px solid var(--n-accent);
   border-radius: var(--n-radius-sm);
   text-decoration: none;
   transition: background-color 0.18s ease, border-color 0.18s ease;
@@ -266,8 +265,8 @@ const formatDate = (iso) => {
 }
 
 .article-title {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   color: var(--n-text);
   transition: color 0.2s;
 }
