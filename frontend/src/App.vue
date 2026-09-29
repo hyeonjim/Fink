@@ -16,6 +16,7 @@ import ChatBot from './components/ChatBot.vue'
 </script>
 
 <style scoped>
+/* 푸터가 짧은 화면에서도 바닥에 붙도록 세로 flex (AppFooter 의 margin-top: auto) */
 .app {
   min-height: 100vh;
   display: flex;

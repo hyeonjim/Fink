@@ -697,7 +697,6 @@ const submit = () => {
 <style scoped>
 .analysis-page {
   min-height: calc(100vh - 200px);
-  margin-bottom: 200px;
   background: var(--n-page);
 }
 
@@ -1077,7 +1076,7 @@ const submit = () => {
 }
 
 .preview-stat.warning .stat-value {
-  color: var(--n-warn-text);
+  color: var(--n-red);
 }
 
 /* Country Grid for Travel */

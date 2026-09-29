@@ -126,8 +126,8 @@
   --n-radius-xl: 20px;
 
   /* ── 의미색 — 상태를 전달하는 자리에만 쓴다 ─────────────────────────── */
-  --n-ok-bg: #f0fdf4;
-  --n-ok-text: #15803d;
+  --n-ok-bg: #d5e7fc;
+  --n-ok-text: #153a80;
   --n-warn-bg: #fffbeb;
   --n-warn-text: #92400e;
   --n-danger-bg: #fef2f2;

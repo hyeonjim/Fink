@@ -404,8 +404,8 @@ const scoreClass = computed(() => {
 .product-card {
   background: var(--n-bg);
   border-radius: var(--n-radius-lg);
-  padding: 20px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 24px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
   border: 2px solid transparent;
   transition: all 0.2s ease;
 }
@@ -416,15 +416,14 @@ const scoreClass = computed(() => {
 
 .product-card.selected {
   border-color: var(--n-accent);
-  background: var(--n-accent-wash);
 }
 
 /* Header */
 .card-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 .bank-badge {
@@ -448,7 +447,7 @@ const scoreClass = computed(() => {
 
 .bank-initial {
   color: var(--n-on-accent);
-  font-size: 1rem;
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -456,7 +455,7 @@ const scoreClass = computed(() => {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 4px;
+  padding: 8px;
 }
 
 /* 은행 로고 — 흰 배경 전제 이미지라 다크모드에서도 밝은 타일을 유지한다 */
@@ -470,16 +469,16 @@ const scoreClass = computed(() => {
 }
 
 .bank-name {
-  font-size: 0.75rem;
+  font-size: 16px;
   color: var(--n-text-muted);
   font-weight: 500;
 }
 
 .product-name {
-  font-size: 0.9375rem;
+  font-size: 20px;
   font-weight: 700;
   color: var(--n-text);
-  margin: 2px 0 0;
+  margin: 6px 0 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -489,13 +488,13 @@ const scoreClass = computed(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 6px 10px;
+  padding: 10px 14px;
   border-radius: var(--n-radius-md);
   flex-shrink: 0;
 }
 
 .fit-badge.excellent {
-  background: var(--n-ok-bg);
+  background: #f6f6f8;
 }
 
 .fit-badge.good {
@@ -507,8 +506,8 @@ const scoreClass = computed(() => {
 }
 
 .fit-label {
-  font-size: 0.625rem;
-  color: var(--n-text-muted);
+  font-size: 16px;
+  color: var(--n-text);
 }
 
 .fit-badge.excellent .fit-value {
@@ -524,7 +523,7 @@ const scoreClass = computed(() => {
 }
 
 .fit-value {
-  font-size: 0.9375rem;
+  font-size: 18px;
   font-weight: 800;
 }
 
@@ -532,11 +531,11 @@ const scoreClass = computed(() => {
 .rate-display {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
+  gap: 16px;
+  padding: 18px 20px;
   background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%;
   border-radius: var(--n-radius-md);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .rate-main {
@@ -545,52 +544,52 @@ const scoreClass = computed(() => {
 }
 
 .rate-number {
-  font-size: 2rem;
+  font-size: 34px;
   font-weight: 800;
   color: #da5252;
   line-height: 1;
 }
 
 .rate-unit {
-  font-size: 1rem;
+  font-size: 18px;
   font-weight: 700;
   color: #da5252;
-  margin-left: 2px;
+  margin-left: 6px;
 }
 
 .rate-info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 6px;
 }
 
 .rate-type {
-  font-size: 0.75rem;
+  font-size: 16px;
   color: #da5252;
   font-weight: 600;
 }
 
 .rate-base {
-  font-size: 0.75rem;
+  font-size: 16px;
   color: var(--n-text-muted);
 }
 
 /* Quick Info */
 .quick-info {
   display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 12px;
+  margin-bottom: 16px;
   flex-wrap: wrap;
 }
 
 .info-chip {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 5px 10px;
-  background: var(--n-bg-sunken);
+  gap: 8px;
+  padding: 9px 14px;
+  background: #f3f3f3;
   border-radius: var(--n-radius-sm);
-  font-size: 0.75rem;
+  font-size: 16px;
   font-weight: 600;
   color: var(--n-text-body);
 }
@@ -619,11 +618,11 @@ const scoreClass = computed(() => {
 .simulation-box {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 12px;
+  gap: 12px;
+  padding: 16px;
   background: #f9f9fa;
   border-radius: var(--n-radius-md);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .simulation-box.deposit {
@@ -636,22 +635,22 @@ const scoreClass = computed(() => {
 }
 
 .sim-title {
-  font-size: 0.6875rem;
+  font-size: 16px;
   font-weight: 600;
-  color: var(--n-ok-text);
+  color: var(--n-text);
   background: var(--n-bg);
-  padding: 2px 8px;
+  padding: 6px 12px;
   border-radius: var(--n-radius-sm);
 }
 
 .simulation-box.deposit .sim-title {
-  color: var(--n-info-text);
+  color: var(--n-text);
 }
 
 .sim-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 
 .sim-item {
@@ -662,12 +661,12 @@ const scoreClass = computed(() => {
 }
 
 .sim-label {
-  font-size: 0.625rem;
+  font-size: 16px;
   color: var(--n-text-muted);
 }
 
 .sim-value {
-  font-size: 0.9375rem;
+  font-size: 16px;
   font-weight: 700;
   color: var(--n-text);
 }
@@ -682,22 +681,22 @@ const scoreClass = computed(() => {
 
 .sim-arrow {
   color: var(--n-text-muted);
-  font-size: 1rem;
+  font-size: 18px;
   font-weight: 500;
 }
 
 .sim-interest {
-  padding: 4px 8px;
+  padding: 8px 12px;
   background: var(--n-bg);
   border-radius: var(--n-radius-sm);
-  font-size: 0.75rem;
+  font-size: 18px;
   font-weight: 700;
-  color: var(--n-ok-text);
+  color: #da5252;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .simulation-box.deposit .sim-interest {
-  color: var(--n-info-text);
+  color: #db4343;
 }
 
 /* 세후 이자 표시 */
@@ -705,43 +704,42 @@ const scoreClass = computed(() => {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 8px;
-  padding-top: 6px;
+  gap: 12px;
+  padding-top: 10px;
   border-top: 1px dashed var(--n-border-strong);
-  margin-top: 6px;
+  margin-top: 10px;
 }
 
 .sim-tax-label {
-  font-size: 0.625rem;
+  font-size: 16px;
   color: var(--n-text-muted);
 }
 
 .sim-tax-value {
-  font-size: 0.8125rem;
+  font-size: 16px;
   font-weight: 600;
   color: var(--n-text-body);
 }
 
 .sim-tax-interest {
-  font-size: 0.6875rem;
+  font-size: 16px;
   font-weight: 600;
   color: var(--n-text-muted);
   background: var(--n-bg-sunken);
-  padding: 2px 6px;
+  padding: 6px 10px;
   border-radius: var(--n-radius-sm);
 }
 
 /* Reason Box */
 .reason-box {
-  padding: 12px;
-  background: var(--n-warn-bg);
+  padding: 16px;
+  background: #f9f9fa;
   border-radius: var(--n-radius-md);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .reason-text {
-  font-size: 0.8125rem;
-  color: var(--n-warn-text);
+  font-size: 16px;
   line-height: 1.5;
   margin: 0;
   font-style: italic;
@@ -750,17 +748,17 @@ const scoreClass = computed(() => {
 /* Actions */
 .card-actions {
   display: flex;
-  gap: 8px;
+  gap: 12px;
 }
 
 .action-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 10px;
+  gap: 10px;
+  padding: 14px;
   border-radius: var(--n-radius-md);
-  font-size: 0.8125rem;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -790,7 +788,7 @@ const scoreClass = computed(() => {
 
 .action-btn.select {
   flex: 1;
-  background: #cececf;
+  background: #e0e0e0;
   color: var(--n-on-accent);
 }
 
@@ -810,13 +808,13 @@ const scoreClass = computed(() => {
 
 /* Detail Panel */
 .detail-panel {
-  margin-top: 16px;
-  padding-top: 16px;
+  margin-top: 20px;
+  padding-top: 20px;
   border-top: 1px solid var(--n-border);
 }
 
 .detail-section {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .detail-section:last-child {
@@ -824,28 +822,28 @@ const scoreClass = computed(() => {
 }
 
 .detail-title {
-  font-size: 0.75rem;
+  font-size: 16px;
   font-weight: 600;
   color: var(--n-text-muted);
-  margin: 0 0 6px;
+  margin: 0 0 10px;
 }
 
 .detail-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 10px;
 }
 
 .detail-tag {
-  padding: 4px 8px;
+  padding: 8px 12px;
   background: var(--n-bg-sunken);
   border-radius: var(--n-radius-sm);
-  font-size: 0.75rem;
+  font-size: 16px;
   color: var(--n-text-body);
 }
 
 .detail-text {
-  font-size: 0.8125rem;
+  font-size: 16px;
   color: var(--n-text-body);
   line-height: 1.5;
   margin: 0;
