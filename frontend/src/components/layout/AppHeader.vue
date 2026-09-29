@@ -153,8 +153,8 @@ const themeLabel = computed(() => (themeStore.isDark ? '라이트 모드' : '다
 
 .brand-mark {
   display: block;
-  width: 52px;
-  height: 52px;
+  width: 40px;
+  height: 40px;
   color: var(--n-orchid);
 }
 
@@ -165,7 +165,7 @@ const themeLabel = computed(() => (themeStore.isDark ? '라이트 모드' : '다
 }
 
 .brand-text {
-  font-size: 42px;
+  font-size: 32px;
   font-weight: 800;
   letter-spacing: -0.035em;
   color: var(--n-orchid);
