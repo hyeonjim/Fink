@@ -27,7 +27,6 @@
             </div>
             <div class="bot-info">
               <span class="bot-name">AI 핑프</span>
-              <span class="bot-status">금융상품 상담</span>
             </div>
           </div>
           <div class="header-actions">
@@ -613,7 +612,7 @@ onMounted(() => {
   flex-direction: column;
   gap: 14px;
   /* 아주 옅은 톤으로 채팅창과 카드가 구분되도록 */
-  background: var(--n-accent-wash);
+  background: #eeeaf8;
 }
 
 .message {
@@ -952,7 +951,7 @@ onMounted(() => {
   padding: 10px 13px;
   border: 1px solid var(--n-border);
   border-radius: var(--n-radius-sm);
-  font-size: 13px;
+  font-size: 16px;
   background: var(--n-bg);
   color: var(--n-text);
   outline: none;

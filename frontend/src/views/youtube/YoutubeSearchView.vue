@@ -85,8 +85,19 @@
       </div>
     </div>
 
+    <!-- Featured (첫 화면) -->
+    <div v-else-if="!searched && featured.length" class="results-section">
+      <div class="results-header">
+        <h3 class="results-title">추천 금융 영상</h3>
+        <span class="results-count">{{ featured.length }}개의 영상</span>
+      </div>
+      <div class="video-grid">
+        <VideoCard v-for="it in featured" :key="it.etag" :item="it" />
+      </div>
+    </div>
+
     <!-- Empty State -->
-    <div v-else-if="!loading && q" class="empty-state">
+    <div v-else-if="searched && !loading" class="empty-state">
       <div class="empty-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <rect x="2" y="4" width="20" height="16" rx="2"/>
@@ -102,19 +113,22 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { searchVideos } from '@/stores/youtube/youtube'
+import { searchVideos, fetchFeaturedVideos } from '@/stores/youtube/youtube'
 import VideoCard from '@/components/youtube/VideoCard.vue'
 
 const route = useRoute()
 
 const q = ref('')
 const items = ref([])
+const featured = ref([])
+const searched = ref(false)
 const loading = ref(false)
 const error = ref('')
 
 async function onSearch() {
   error.value = ''
   items.value = []
+  searched.value = true
   loading.value = true
 
   try {
@@ -127,11 +141,18 @@ async function onSearch() {
 }
 
 // 페이지 로드 시 query parameter에서 검색어를 가져와서 자동 검색
-onMounted(() => {
+onMounted(async () => {
   const queryParam = route.query.q
   if (queryParam) {
     q.value = queryParam
     onSearch()
+    return
+  }
+  // 검색어 없이 들어오면 추천 영상을 보여준다 (실패해도 검색은 그대로 쓸 수 있다)
+  try {
+    featured.value = await fetchFeaturedVideos()
+  } catch (e) {
+    featured.value = []
   }
 })
 </script>

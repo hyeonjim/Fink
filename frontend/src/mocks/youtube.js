@@ -137,6 +137,67 @@ export const MOCK_VIDEOS = [
 }))
 
 // ========================================
+// 추천 영상 (실제 유튜브 영상 8건)
+// ========================================
+
+/**
+ * 유튜브 첫 화면에 보여줄 실제 금융·투자 영상
+ * @description videoId 는 oEmbed 로 존재를 확인한 값이다. 썸네일은 실제 유튜브 CDN 을 쓴다.
+ *   상세 페이지에서 iframe 으로 실제 재생된다.
+ * @type {Array<{videoId: string, title: string, channelTitle: string}>}
+ */
+export const FEATURED_VIDEOS = [
+  {
+    videoId: 'p94_t07GTKA',
+    title: '주식투자를 위한 준비물 5가지 (for. 완전 초보용)',
+    channelTitle: '박곰희TV',
+  },
+  {
+    videoId: 'TAj_PG1Aobw',
+    title: '100분으로 끝내는 주식 기초! 총정리 [주린이 탈출하기 1탄]',
+    channelTitle: '이효석아카데미',
+  },
+  {
+    videoId: '5hIm_bG_GwM',
+    title: '사회초년생 주식 투자, 입문 방법? 사회초년생의 슬기로운 금융생활 2편',
+    channelTitle: '한국은행',
+  },
+  {
+    videoId: 'BfxO1AZ1Xek',
+    title: '2시간만에 주린이 탈출... 주식투자 기초 완전 마스터',
+    channelTitle: '와이스트릿 - 지식과 자산의 복리효과',
+  },
+  {
+    videoId: 'a1tnJPpbAoI',
+    title: '"소액이라도 지금 시작해라" 아무리 폭락 와도 결국 살아남는 주식 투자 특징',
+    channelTitle: '머니인사이트',
+  },
+  {
+    videoId: '2291FQ20494',
+    title: '큰돈 버는 ‘주식 프로세스’ 총정리해드립니다 (이광수 대표 풀버전)',
+    channelTitle: '지식인사이드',
+  },
+  {
+    videoId: 'gZahFHftc4E',
+    title: '[슬기로운 금융생활] ETF 기초 설명: 처음 투자할 때 반드시 알아야 할 핵심 개념',
+    channelTitle: '예금보험공사 TV',
+  },
+  {
+    videoId: 'CqUKepnrcXo',
+    title: '재테크 1도 모르는 쌩초보도 절대 돈 잃을 일 없는 투자 방법 알려드립니다',
+    channelTitle: '행크TV',
+  },
+].map((video, index) => ({
+  ...video,
+  channelId: `UC-featured-${index}`,
+  description: '',
+  publishedAt: '2025-01-01T00:00:00Z',
+  thumbnail: `https://i.ytimg.com/vi/${video.videoId}/mqdefault.jpg`,
+  thumbnailSmall: `https://i.ytimg.com/vi/${video.videoId}/default.jpg`,
+  thumbnailLarge: `https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`,
+}))
+
+// ========================================
 // 응답 변환
 // ========================================
 
@@ -196,13 +257,22 @@ export const searchVideos = (query) => {
 }
 
 /**
+ * 첫 화면 추천 영상
+ * @returns {Array<Object>} search API 응답 형태의 항목 배열 (8건)
+ */
+export const featuredVideos = () => FEATURED_VIDEOS.map(toSearchItem)
+
+/**
  * 영상 상세 조회
  * @param {string} videoId - 영상 ID
  * @returns {Object|null} videos API 응답 형태의 항목. 없으면 목록의 첫 영상
  */
 export const fetchVideoDetail = (videoId) => {
   const video =
-    MOCK_VIDEOS.find((item) => item.videoId === videoId) || MOCK_VIDEOS[0] || null
+    MOCK_VIDEOS.find((item) => item.videoId === videoId) ||
+    FEATURED_VIDEOS.find((item) => item.videoId === videoId) ||
+    MOCK_VIDEOS[0] ||
+    null
 
   if (!video) return null
 

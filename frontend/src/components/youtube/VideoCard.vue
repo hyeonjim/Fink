@@ -215,7 +215,7 @@ const thumb = computed(() =>
 .body { padding: 20px; gap: 10px; }
 .title { min-height: 58px; font-size: 20px; font-weight: 600; line-height: 1.45; letter-spacing: -0.02em; color: var(--fk-title); }
 .channel { font-size: 16px; font-weight: 500; color: var(--fk-muted); }
-.detail-link { font-size: 16px; font-weight: 700; color: var(--fk-ink); border: 0; padding: 0; background: none; }
+.detail-link { font-size: 16px; font-weight: 600; color: var(--fk-ink); border: 0; padding: 0; background: none; }
 .detail-link:hover { color: var(--fk-muted); background: none; }
 </style>
 

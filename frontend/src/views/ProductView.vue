@@ -392,13 +392,13 @@ const resetFilter = () => {
 .filter-select,
 .filter-input {
   width: 100%;
-  height: 33px;
+  height: 28px;
   padding: 0;
   border: 0;
   background: transparent;
   outline: none;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   color: var(--fk-ink);
 }
 

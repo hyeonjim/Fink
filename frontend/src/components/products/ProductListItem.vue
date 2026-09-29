@@ -217,9 +217,8 @@ const uniqueTerms = computed(() => {
 }
 
 .product-name {
-  margin: 24px 0 20px;
-  min-height: 73px;
-  font-size: 26px;
+  margin: 30px 0 40px;
+  font-size: 24px;
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: -0.03em;
@@ -298,7 +297,7 @@ const uniqueTerms = computed(() => {
   align-items: center;
   justify-content: space-between;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--fk-ink);
   text-decoration: none;
 }

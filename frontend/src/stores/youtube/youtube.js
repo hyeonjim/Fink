@@ -47,6 +47,27 @@ export async function searchVideos(q) {
 }
 
 /**
+ * 첫 화면 추천 영상
+ * @description 검색 전 화면에 보여줄 금융 영상 8개. 목업 모드는 실제 유튜브 영상 목록을 쓴다
+ * @returns {Promise<Array>} 동영상 배열 (8개)
+ */
+export async function fetchFeaturedVideos() {
+  if (USE_MOCK) {
+    return delay(mockYoutube.featuredVideos())
+  }
+
+  const { data } = await api.get('/search', {
+    params: {
+      part: 'snippet',
+      type: 'video',
+      maxResults: 8,
+      q: '금융 투자 기초',
+    },
+  })
+  return data.items
+}
+
+/**
  * 동영상 상세 조회
  * @description 동영상 ID로 상세 정보를 가져옵니다
  * @param {string} id - YouTube 동영상 ID

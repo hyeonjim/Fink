@@ -113,11 +113,6 @@
         <!-- Rate Options Card -->
         <div v-if="options.length" class="options-card">
           <h2 class="card-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M16 8l-4 4-4-4"/>
-              <path d="M8 16l4-4 4 4"/>
-            </svg>
             금리 옵션
           </h2>
           
@@ -308,7 +303,7 @@ onMounted(() => {
   flex-direction: column;
   gap: 24px;
   padding-top: 40px;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
 }
 
 .back-link {
@@ -403,7 +398,7 @@ onMounted(() => {
 
 .product-title {
   margin: 0;
-  font-size: 42px;
+  font-size: 36px;
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: -0.035em;
@@ -504,7 +499,7 @@ onMounted(() => {
   align-items: center;
   gap: 12px;
   margin: 0 0 24px;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 600;
   letter-spacing: -0.03em;
   color: var(--fk-title);
@@ -530,7 +525,7 @@ onMounted(() => {
 .detail-item {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
   padding: 20px 24px;
   border-radius: 20px;
   background: var(--fk-surface);
@@ -547,7 +542,7 @@ onMounted(() => {
 }
 
 .detail-value {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 1.7;
   color: var(--fk-ink);
@@ -595,7 +590,7 @@ onMounted(() => {
 
 .term-value {
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--fk-ink);
 }
 
