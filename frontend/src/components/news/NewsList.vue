@@ -66,43 +66,50 @@ const toggleBookmark = (id) => {
 
 <style scoped>
 .news-list-section {
-  background: var(--n-bg);
-  border-radius: var(--n-radius-xl);
-  border: 1px solid var(--n-border);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: 24px;
+  gap: 16px;
+  border: 0;
+  border-radius: 28px;
+  background: var(--n-fill);
 }
 
 .list-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 24px;
-  border-bottom: 1px solid var(--n-bg-sunken);
+  padding: 0;
+  border: 0;
 }
 
 .list-title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--n-text);
   margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--n-title);
 }
 
 .list-count {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--n-accent);
-  background: var(--n-accent-wash);
-  padding: 4px 10px;
-  border-radius: var(--n-radius-xl);
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--n-surface);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--n-fg);
 }
 
 .news-list {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0 4px 4px 0;
+  min-height: 0;
   overflow-y: auto;
-  padding: 12px;
 }
 
 .news-empty {
@@ -122,46 +129,52 @@ const toggleBookmark = (id) => {
 }
 
 .news-empty p {
-  font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--n-text-body);
   margin: 0 0 4px;
+  font-size: 18px;
+  color: var(--n-fg);
 }
 
 .news-empty span {
-  font-size: 0.8125rem;
-  color: var(--n-text-muted);
+  font-size: 16px;
+  color: var(--n-fg-muted);
 }
 
 .news-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 16px;
-  border-radius: var(--n-radius-md);
   cursor: pointer;
-  transition: all 0.2s ease;
+  padding: 14px 14px 14px 12px;
+  gap: 12px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--n-surface);
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .news-item:hover {
-  background: var(--n-bg-subtle);
+  background: var(--n-surface);
+  transform: translateX(4px);
 }
 
 .news-item.selected {
-  background: var(--n-accent-wash);
+  background: var(--n-fill-strong);
+  border: 0;
 }
 
 .bookmark-btn {
-  width: 32px;
-  height: 32px;
   padding: 0;
-  background: transparent;
-  border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--n-fill);
+  color: var(--n-fg-faint);
 }
 
 .bookmark-btn svg {
@@ -181,19 +194,19 @@ const toggleBookmark = (id) => {
 
 .news-title {
   flex: 1;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--n-text-body);
-  line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--n-fg);
 }
 
 .news-item.selected .news-title {
-  color: var(--n-text);
   font-weight: 600;
+  color: var(--n-fg);
 }
 
 .chevron {
@@ -206,28 +219,14 @@ const toggleBookmark = (id) => {
 .news-item.selected .chevron {
   color: var(--n-accent);
 }
-/* ═══ F!NK 리디자인 — 기사 목록 (연한 면 + 흰 타일, 북마크 옐로) ═══ */
-.news-list-section { padding: 24px; gap: 16px; border: 0; border-radius: 28px; background: var(--fk-surface); }
-.list-header { padding: 0; border: 0; }
-.list-title { font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--fk-title); }
-.list-count { padding: 4px 12px; border-radius: 999px; background: var(--fk-card); font-size: 16px; font-weight: 700; color: var(--fk-ink); }
 /* 목록을 세로 flex 로 만들어 gap 이 실제로 적용되게 하고,
    고정 높이 안에서 항목이 눌려 겹치지 않도록 줄어들지 않게 + 넘치면 스크롤 */
-.news-list { display: flex; flex-direction: column; gap: 18px; padding: 0 4px 4px 0; min-height: 0; overflow-y: auto; }
 .news-list > * { flex-shrink: 0; }
-.news-item { padding: 14px 14px 14px 12px; gap: 12px; border: 0; border-radius: 18px; background: var(--fk-card); transition: background-color 0.2s, transform 0.2s; }
-.news-item:hover { background: var(--fk-card); transform: translateX(4px); }
-.news-item.selected { background: var(--fk-surface-2); border: 0; }
-.bookmark-btn { width: 40px; height: 40px; border: 0; border-radius: 12px; background: var(--fk-surface); color: var(--fk-faint); }
-.news-item.selected .bookmark-btn:not(.active) { background: var(--fk-card); }
-.bookmark-btn.active { background: var(--fk-bookmark-bg); }
+.news-item.selected .bookmark-btn:not(.active) { background: var(--n-surface); }
+.bookmark-btn.active { background: var(--n-bookmark-bg); }
 .bookmark-btn:hover svg,
-.bookmark-btn.active svg { color: var(--fk-bookmark); }
-.news-title { font-size: 18px; font-weight: 600; line-height: 1.4; color: var(--fk-ink); }
-.news-item.selected .news-title { color: var(--fk-ink); }
+.bookmark-btn.active svg { color: var(--n-bookmark); }
 .chevron,
-.news-item.selected .chevron { color: var(--fk-faint); }
-.news-empty p { font-size: 18px; color: var(--fk-ink); }
-.news-empty span { font-size: 16px; color: var(--fk-muted); }
+.news-item.selected .chevron { color: var(--n-fg-faint); }
 </style>
 

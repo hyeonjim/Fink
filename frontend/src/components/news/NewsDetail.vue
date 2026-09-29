@@ -80,13 +80,14 @@ const toggle = function () {
 
 <style scoped>
 .news-detail-section {
-  background: var(--n-bg);
-  border-radius: var(--n-radius-xl);
-  border: 1px solid var(--n-border);
   height: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  border: 0;
+  border-radius: 32px;
+  background: var(--n-surface);
+  box-shadow: 0 24px 60px rgba(29, 26, 43, 0.12);
 }
 
 .news-empty {
@@ -102,12 +103,13 @@ const toggle = function () {
 .empty-icon {
   width: 80px;
   height: 80px;
-  background: var(--n-bg-sunken);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 24px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--n-fill);
 }
 
 .empty-icon svg {
@@ -117,20 +119,20 @@ const toggle = function () {
 }
 
 .empty-title {
-  font-size: 1.125rem;
   font-weight: 700;
-  color: var(--n-text);
   margin: 0 0 8px;
+  font-size: 26px;
+  color: var(--n-title);
 }
 
 .empty-desc {
-  font-size: 0.9375rem;
-  color: var(--n-text-muted);
   line-height: 1.5;
+  font-size: 18px;
+  color: var(--n-fg-muted);
 }
 
 .detail-content {
-  padding: 32px;
+  padding: 48px;
 }
 
 .detail-header {
@@ -139,19 +141,23 @@ const toggle = function () {
   justify-content: space-between;
   margin-bottom: 20px;
   flex-wrap: wrap;
-  gap: 12px;
+  padding: 0;
+  border: 0;
+  gap: 14px;
 }
 
 .bookmark-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 14px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--n-text-muted);
-  background: var(--n-bg-sunken);
-  border-radius: var(--n-radius-xl);
+  height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--n-fill);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--n-fg-muted);
 }
 
 .bookmark-badge svg {
@@ -160,16 +166,16 @@ const toggle = function () {
 }
 
 .bookmark-badge.active {
-  color: var(--n-accent);
-  background: var(--n-accent-wash);
+  background: var(--n-bookmark-bg);
+  color: var(--n-bookmark-text);
 }
 
 .pub-date {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.8125rem;
-  color: var(--n-text-muted);
+  font-size: 16px;
+  color: var(--n-fg-muted);
 }
 
 .pub-date svg {
@@ -178,11 +184,13 @@ const toggle = function () {
 }
 
 .detail-title {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--n-text);
-  line-height: 1.4;
   margin: 0 0 24px;
+  margin-top: 44px;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.035em;
+  color: var(--n-title);
 }
 
 .detail-body {
@@ -193,17 +201,21 @@ const toggle = function () {
 }
 
 .detail-body p {
-  font-size: 1rem;
-  color: var(--n-text-body);
-  line-height: 1.8;
   white-space: pre-line;
   margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.8;
+  color: var(--n-fg-muted);
 }
 
 .detail-actions {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 32px;
+  border: 0;
 }
 
 /* 버튼 스타일은 global.css 의 .btn 계열이 담당한다.
@@ -213,26 +225,14 @@ const toggle = function () {
 }
 
 /* ═══ F!NK 리디자인 — 기사 상세 (흰 카드 + 그림자, 북마크 옐로) ═══ */
-.news-detail-section { border: 0; border-radius: 32px; background: var(--fk-card); box-shadow: 0 24px 60px rgba(29, 26, 43, 0.12); }
-.detail-content { padding: 48px; }
-.detail-header { padding: 0; border: 0; gap: 14px; }
-.bookmark-badge { height: 36px; padding: 0 14px; border: 0; border-radius: 999px; background: var(--fk-surface); font-size: 16px; font-weight: 700; color: var(--fk-muted); }
-.bookmark-badge.active { background: var(--fk-bookmark-bg); color: var(--fk-bookmark-text); }
-.bookmark-badge.active svg { color: var(--fk-bookmark); }
-.pub-date { font-size: 16px; color: var(--fk-muted); }
-.detail-title { margin-top: 44px; font-size: 26px; font-weight: 700; line-height: 1.4; letter-spacing: -0.035em; color: var(--fk-title); }
-.detail-body p { font-size: 20px; font-weight: 500; line-height: 1.8; color: var(--fk-muted); }
-.detail-body p :deep(b) { font-weight: 700; color: var(--fk-ink); }
-.detail-actions { margin-top: auto; padding-top: 32px; border: 0; }
+.bookmark-badge.active svg { color: var(--n-bookmark); }
+.detail-body p :deep(b) { font-weight: 700; color: var(--n-fg); }
 .detail-actions .btn { height: 60px; padding: 0 28px; border: 0; border-radius: 18px; font-size: 19px; font-weight: 700; box-shadow: none; background-image: none; }
-.detail-actions .btn-secondary { background: var(--fk-lilac); color: var(--fk-violet-hover); }
-.detail-actions .btn-secondary:hover { background: var(--fk-lilac-2); }
+.detail-actions .btn-secondary { background: var(--n-lilac); color: var(--n-violet-hover); }
+.detail-actions .btn-secondary:hover { background: var(--n-lilac-strong); }
 /* 북마크 추가/해제 — 옐로 */
-.detail-actions .btn-primary { background: var(--fk-bookmark-btn); color: var(--fk-bookmark-text); }
+.detail-actions .btn-primary { background: var(--n-bookmark-btn); color: var(--n-bookmark-text); }
 .detail-actions .btn-primary:hover { background: #ffe0ab; }
-.empty-icon { border: 0; border-radius: 20px; background: var(--fk-surface); }
-.empty-title { font-size: 26px; color: var(--fk-title); }
-.empty-desc { font-size: 18px; color: var(--fk-muted); }
 
 @media (max-width: 768px) {
   .detail-content {

@@ -160,7 +160,7 @@ const uniqueTerms = computed(() => {
 
 <style scoped>
 /* ═══════════════════════════════════════════════════════════════════
-   상품 카드 — 연한 면(--fk-surface) 위에 흰 타일을 올린다.
+   상품 카드 — 연한 면(--n-fill) 위에 흰 타일을 올린다.
    보더 없이 hover 때 살짝 떠오르며 그림자가 생긴다.
    ═══════════════════════════════════════════════════════════════════ */
 .product-card {
@@ -168,7 +168,7 @@ const uniqueTerms = computed(() => {
   flex-direction: column;
   padding: 28px;
   border-radius: 28px;
-  background: var(--fk-surface);
+  background: var(--n-fill);
   /* 카드 가장자리를 살짝 띄우는 옅은 그림자 */
   box-shadow: 0 2px 4px rgba(29, 26, 43, 0.06), 0 12px 28px rgba(49, 32, 110, 0.11);
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
@@ -176,7 +176,7 @@ const uniqueTerms = computed(() => {
 
 .product-card:hover {
   transform: translateY(-6px);
-  box-shadow: var(--fk-shadow-hover);
+  box-shadow: var(--n-shadow-hover);
 }
 
 .product-card-header {
@@ -189,10 +189,10 @@ const uniqueTerms = computed(() => {
 .product-type-badge {
   padding: 6px 14px;
   border-radius: 999px;
-  background: var(--fk-card);
+  background: var(--n-surface);
   font-size: 16px;
   font-weight: 700;
-  color: var(--fk-violet);
+  color: var(--n-violet);
 }
 
 .product-type-badge.saving {
@@ -222,7 +222,7 @@ const uniqueTerms = computed(() => {
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: -0.03em;
-  color: var(--fk-title);
+  color: var(--n-title);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -244,14 +244,14 @@ const uniqueTerms = computed(() => {
   gap: 4px;
   padding: 16px 12px;
   border-radius: 20px;
-  background: var(--fk-card);
+  background: var(--n-surface);
   white-space: nowrap;
 }
 
 .rate-label {
   font-size: 16px;
   font-weight: 500;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .rate-value {
@@ -262,14 +262,14 @@ const uniqueTerms = computed(() => {
   font-weight: 700;
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
-  color: var(--fk-ink);
+  color: var(--n-fg);
 }
 
 /* 최고금리 — 금리 강조 레드 */
 .rate-max .rate-value {
   font-size: 26px;
   font-weight: 800;
-  color: var(--fk-red);
+  color: var(--n-red);
 }
 
 .product-terms {
@@ -281,10 +281,10 @@ const uniqueTerms = computed(() => {
 .term-badge {
   padding: 5px 12px;
   border-radius: 999px;
-  background: var(--fk-card);
+  background: var(--n-surface);
   font-size: 16px;
   font-weight: 600;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .product-card-footer {
@@ -298,7 +298,7 @@ const uniqueTerms = computed(() => {
   justify-content: space-between;
   font-size: 18px;
   font-weight: 600;
-  color: var(--fk-ink);
+  color: var(--n-fg);
   text-decoration: none;
 }
 
@@ -308,14 +308,14 @@ const uniqueTerms = computed(() => {
   padding: 12px;
   box-sizing: border-box;
   border-radius: 50%;
-  background: var(--fk-card);
-  color: var(--fk-ink);
+  background: var(--n-surface);
+  color: var(--n-fg);
   transition: background-color 0.25s, color 0.25s;
 }
 
 .product-card:hover .detail-link svg {
-  background: var(--fk-violet);
-  color: #ffffff;
+  background: var(--n-violet);
+  color: var(--n-on-accent);
 }
 
 /* 은행 로고 */

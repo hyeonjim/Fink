@@ -160,8 +160,8 @@ onMounted(async () => {
 <style scoped>
 .youtube-search {
   min-height: calc(100vh - 200px);
-  background: var(--n-bg);
-  padding-bottom: 60px;
+  background: var(--n-page);
+  padding-bottom: 120px;
 }
 
 /* Page Header — 공용 규칙은 global.css 의 .n-page-header* 를 쓴다.
@@ -169,13 +169,7 @@ onMounted(async () => {
 .header-title-area {
   display: flex;
   align-items: center;
-  gap: 20px;
-}
-
-/* 유튜브 로고는 플랫폼을 식별하는 브랜드 마크라 빨강을 유지한다.
-   타일 크기·보더는 .n-page-header-icon 이 처리한다. */
-.youtube-icon svg {
-  color: var(--n-danger-text);
+  gap: 28px;
 }
 
 /* Nav Tabs */
@@ -187,30 +181,20 @@ onMounted(async () => {
 .nav-tab {
   display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 9px 14px;
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--gray-600);
-  background: var(--n-bg);
-  border: 1px solid var(--n-border);
-  border-radius: var(--n-radius-sm);
   text-decoration: none;
   transition:
     background-color 0.18s ease,
     border-color 0.18s ease,
     color 0.18s ease;
-}
-
-.nav-tab svg {
-  width: 16px;
-  height: 16px;
-}
-
-.nav-tab:hover {
-  color: var(--n-accent-hover);
-  border-color: var(--n-border-strong);
-  background: var(--n-accent-wash);
+  height: 52px;
+  padding: 0 24px;
+  gap: 8px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--n-surface);
+  color: var(--n-fg-muted);
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .nav-tab.router-link-active {
@@ -220,32 +204,22 @@ onMounted(async () => {
 
 /* Search Section */
 .search-section {
-  max-width: 1400px;
-  margin: 32px auto 0;
   padding: 0 24px;
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: -48px auto 0;
 }
 
 .search-card {
-  background: var(--n-bg);
-  border-radius: var(--n-radius-xl);
-  padding: 24px;
-  border: 1px solid var(--n-border);
-}
-
-.search-title {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--n-text);
-  margin: 0 0 16px;
-}
-
-.search-title svg {
-  width: 20px;
-  height: 20px;
-  color: var(--n-accent);
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px;
+  border: 0;
+  border-radius: 28px;
+  background: var(--n-surface);
+  box-shadow: var(--n-shadow-float);
 }
 
 .search-form {
@@ -262,57 +236,61 @@ onMounted(async () => {
 
 .search-icon {
   position: absolute;
-  left: 16px;
-  width: 20px;
-  height: 20px;
-  color: var(--n-text-muted);
   pointer-events: none;
+  left: 22px;
+  width: 22px;
+  height: 22px;
+  color: var(--n-fg-muted);
 }
 
 .search-input {
   width: 100%;
   padding: 14px 16px 14px 48px;
-  font-size: 0.9375rem;
-  border: 2px solid var(--n-border);
-  border-radius: var(--n-radius-md);
-  background: var(--n-bg-subtle);
   transition: all 0.2s;
+  height: 64px;
+  padding-left: 56px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--n-fill);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--n-fg);
 }
 
 .search-input::placeholder {
-  color: var(--n-text-muted);
+  color: var(--n-fg-faint);
+  font-weight: 500;
 }
 
 .search-input:focus {
   outline: none;
-  border-color: var(--n-accent);
-  background: var(--n-bg);
-  box-shadow: 0 0 0 4px var(--n-accent-wash);
+  background: var(--n-lilac);
+  box-shadow: 0 0 0 3px var(--n-lilac-strong);
 }
 
 .search-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 24px;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: white;
-  background: var(--n-accent);
-  border: none;
-  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
+  height: 64px;
+  padding: 0 36px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--n-violet);
+  color: var(--n-on-accent);
+  font-size: 19px;
+  font-weight: 700;
 }
 
 .search-btn:hover:not(:disabled) {
-  box-shadow: none;
+  background: var(--n-violet-hover);
 }
 
 .search-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
 }
 
 .btn-content,
@@ -352,34 +330,38 @@ onMounted(async () => {
 
 /* Results Section */
 .results-section {
-  max-width: 1400px;
-  margin: 32px auto 0;
   padding: 0 24px;
+  max-width: 1200px;
+  margin: 56px auto 0;
 }
 
 .results-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 24px;
+  border: 0;
+  padding: 0;
 }
 
 .results-title {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--n-text);
   margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--n-title);
 }
 
 .results-count {
-  font-size: 0.875rem;
-  color: var(--n-text-muted);
+  font-size: 18px;
+  color: var(--n-fg-muted);
 }
 
 .video-grid {
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
 }
 
 /* Empty State */
@@ -394,12 +376,13 @@ onMounted(async () => {
 .empty-icon {
   width: 80px;
   height: 80px;
-  background: var(--n-accent-wash);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 24px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--n-fill);
 }
 
 .empty-icon svg {
@@ -409,51 +392,28 @@ onMounted(async () => {
 }
 
 .empty-title {
-  font-size: 1.125rem;
   font-weight: 600;
-  color: var(--n-text);
   margin: 0 0 8px;
+  font-size: 26px;
+  color: var(--n-title);
 }
 
 .empty-text {
-  font-size: 0.9375rem;
-  color: var(--n-text-muted);
+  font-size: 18px;
+  color: var(--n-fg-muted);
 }
-
-/* Responsive */
 /* ═══════════════════════════════════════════════════════════════════
    F!NK 리디자인 — 헤더 아래 탭, 검색 카드는 헤더에 겹쳐 뜬다.
    ═══════════════════════════════════════════════════════════════════ */
-.youtube-search { background: var(--fk-bg); padding-bottom: 120px; }
 .n-page-header { padding-bottom: 100px; }
 .n-page-header-content--stack { gap: 28px; }
-.header-title-area { gap: 28px; }
+
+/* 유튜브 로고는 플랫폼을 식별하는 브랜드 마크라 빨강을 유지한다.
+   타일 크기·보더는 .n-page-header-icon 이 처리한다. */
 .youtube-icon svg { color: inherit; }
-
-.nav-tab { height: 52px; padding: 0 24px; gap: 8px; border: 0; border-radius: 16px; background: var(--fk-card); color: var(--fk-muted); font-size: 20px; font-weight: 600; }
 .nav-tab svg { width: 20px; height: 20px; }
-.nav-tab:hover { background: var(--fk-card); color: var(--fk-ink); }
-.nav-tab.router-link-exact-active { background: var(--fk-violet); color: #fff; }
-
-.search-section { position: relative; z-index: 2; max-width: 1200px; margin: -48px auto 0; }
-.search-card { display: flex; flex-direction: column; gap: 20px; padding: 32px; border: 0; border-radius: 28px; background: var(--fk-card); box-shadow: var(--fk-shadow-float); }
-.search-title { margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--fk-title); }
-.search-form { gap: 12px; }
-.search-input { height: 64px; padding-left: 56px; border: 0; border-radius: 20px; background: var(--fk-surface); font-size: 20px; font-weight: 600; color: var(--fk-ink); }
-.search-input::placeholder { color: var(--fk-faint); font-weight: 500; }
-.search-input:focus { background: var(--fk-lilac); box-shadow: 0 0 0 3px var(--fk-lilac-2); }
-.search-icon { left: 22px; width: 22px; height: 22px; color: var(--fk-muted); }
-.search-btn { height: 64px; padding: 0 36px; border: 0; border-radius: 20px; background: var(--fk-violet); color: #fff; font-size: 19px; font-weight: 700; }
-.search-btn:hover:not(:disabled) { background: var(--fk-violet-hover); }
-
-.results-section { max-width: 1200px; margin: 56px auto 0; }
-.results-header { align-items: baseline; gap: 12px; margin-bottom: 24px; border: 0; padding: 0; }
-.results-title { font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--fk-title); }
-.results-count { font-size: 18px; color: var(--fk-muted); }
-.video-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
-.empty-icon { border: 0; border-radius: 20px; background: var(--fk-surface); }
-.empty-title { font-size: 26px; color: var(--fk-title); }
-.empty-text { font-size: 18px; color: var(--fk-muted); }
+.nav-tab:hover { background: var(--n-surface); color: var(--n-fg); }
+.nav-tab.router-link-exact-active { background: var(--n-violet); color: var(--n-on-accent); }
 
 @media (max-width: 768px) {
   .search-section {

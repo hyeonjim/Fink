@@ -47,7 +47,6 @@ const submit = () => {
   border: 1px solid var(--n-border);
   border-radius: var(--n-radius-md);
   background: var(--n-bg);
-  box-shadow: none;
 }
 
 .create-header {
@@ -70,7 +69,7 @@ const submit = () => {
 .avatar svg {
   width: 19px;
   height: 19px;
-  color: #fff;
+  color: var(--n-on-accent);
 }
 
 .input-wrapper {
@@ -120,7 +119,7 @@ const submit = () => {
 .btn-submit svg {
   width: 19px;
   height: 19px;
-  color: #fff;
+  color: var(--n-on-accent);
 }
 
 .btn-submit:hover:not(:disabled) {

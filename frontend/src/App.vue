@@ -267,30 +267,30 @@ onUnmounted(() => {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   Navbar - Glassmorphism Style
+   Navbar — 88px, 메뉴 22px/600, 보더 없음
    ═══════════════════════════════════════════════════════════════════════════ */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--n-canvas);
-  border-bottom: 1px solid var(--n-line);
+  background: var(--n-page);
 }
 
+/* 넓은 화면에서도 로고·버튼이 화면 끝에 붙지 않게 최대 폭을 두고 가운데 정렬 */
 .navbar-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
-  max-width: 1400px;
+  height: 88px;
+  max-width: 1800px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 48px;
+  gap: 20px;
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 9px;
   flex-shrink: 0;
   /* position:relative + left 로 이동시켜야 레이아웃 폭(공간 자체)은 그대로 유지되고
      시각적 위치만 왼쪽으로 옮겨진다. margin-left를 쓰면 space-between 컨테이너라
@@ -298,17 +298,14 @@ onUnmounted(() => {
   position: relative;
   left: -20px;
   text-decoration: none;
-  /* global.css 의 .navbar-brand 가 그라데이션 텍스트(-webkit-text-fill-color:
-     transparent)를 걸어두기 때문에 여기서 되돌려야 color 가 실제로 먹는다. */
-  background: none;
-  -webkit-text-fill-color: currentColor;
+  gap: 10px;
 }
 
 .brand-mark {
   display: block;
-  width: 38px;
-  height: 38px;
-  color: #bb8ec7;
+  width: 52px;
+  height: 52px;
+  color: var(--n-orchid);
 }
 
 .brand-mark svg {
@@ -318,62 +315,42 @@ onUnmounted(() => {
 }
 
 .brand-text {
-  font-size: 40px;
-  font-weight: 700;
+  font-size: 42px;
+  font-weight: 800;
   letter-spacing: -0.035em;
-  color: #bb8ec7;
+  color: var(--n-orchid);
 }
 
 .navbar-menu {
   display: flex;
   align-items: center;
-  gap: 2px;
+  flex: 1;
+  justify-content: center;
+  gap: 20px;
 }
 
 .navbar-link {
-  position: relative;
   display: flex;
   align-items: center;
-  padding: 8px 12px;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--n-text-muted);
-  border-radius: var(--n-radius-sm);
   text-decoration: none;
-  transition: color 0.18s ease, background-color 0.18s ease;
-}
-
-/* 하단 인디케이터 — 가운데에서 양쪽으로 펼쳐진다 */
-.navbar-link::after {
-  content: '';
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 2px;
-  height: 2px;
-  border-radius: 1px;
-  background: var(--n-accent);
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--n-fg-muted);
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: color 0.2s, background-color 0.2s;
 }
 
 .navbar-link:hover {
-  color: var(--n-text);
-  background: var(--n-bg-sunken);
+  color: var(--n-fg);
+  background: var(--n-fill);
 }
 
-.navbar-link:hover::after {
-  transform: scaleX(1);
-}
-
+/* 활성 표시 — 둥근 연보라 배경만 (막대·점 없음) */
 .navbar-link.router-link-active {
-  color: var(--n-accent);
-  font-weight: 600;
-}
-
-.navbar-link.router-link-active::after {
-  transform: scaleX(1);
+  color: var(--n-violet-hover);
+  background: var(--n-lilac);
 }
 
 /* 메뉴가 8개라 아이콘까지 두면 밀도가 높다. 마크업은 유지하고 표시만 끈다. */
@@ -381,37 +358,38 @@ onUnmounted(() => {
   display: none;
 }
 
-/* Exchange Rate Ticker */
+/* 환율 알약 — 숫자가 길어도 잘리지 않게 알약 폭은 내용에 맞추고,
+   항목이 absolute 라 폭을 못 잡는 래퍼에만 가장 긴 조합(JPY(100) + 1,752.10) 기준 폭을 준다 */
 .exchange-ticker {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 10px;
-  min-width: 180px;
-  height: 34px;
-  margin: 0 16px;
   overflow: hidden;
-  background: var(--n-bg-sunken);
-  border-radius: var(--n-radius-lg);
-  padding: 0 16px;
-  border: 1px solid var(--n-border);
+  min-width: 0;
+  height: 36px;
+  padding: 0 16px 0 5px;
+  gap: 8px;
+  border-radius: 999px;
+  background: #fcf1ff;
+  box-shadow: 0 6px 18px rgba(49, 32, 110, 0.22), 0 2px 4px rgba(49, 32, 110, 0.16);
 }
 
 .ticker-badge {
   flex-shrink: 0;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--n-accent);
-  padding: 2px 9px;
+  padding: 3px 12px;
   border-radius: 999px;
-  background: #fdfdfd;
+  background: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  color: #484554;
+  letter-spacing: 0;
 }
 
 .ticker-wrapper {
   position: relative;
-  flex: 1;
   height: 100%;
+  flex: none;
+  width: 156px;
 }
 
 /* 대기 중인 항목: 아래에 숨어서 순서를 기다린다 */
@@ -423,10 +401,11 @@ onUnmounted(() => {
   height: 100%;
   display: flex;
   align-items: center;
-  gap: 7px;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1), transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  justify-content: space-between;
+  gap: 10px;
 }
 
 /* 현재 표시 중: 제자리에서 보임 */
@@ -442,63 +421,51 @@ onUnmounted(() => {
 }
 
 .ticker-name {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  color: var(--n-text-muted);
-  flex-shrink: 0;
-  width: 52px;
+  flex: none;
+  white-space: nowrap;
   letter-spacing: 0.01em;
+  font-size: 16px;
+  font-weight: 500;
+  color: #5140b5;
 }
 
 .ticker-rate {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--n-text);
-  flex: 1;
+  flex: none;
+  white-space: nowrap;
   text-align: right;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1d1a2b;
+  font-variant-numeric: tabular-nums;
 }
-
 
 /* Settings Buttons — 네비바 우측 끝 */
 .navbar-settings {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-left: 12px;
 }
 
 .settings-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: var(--n-radius-sm);
-  background: transparent;
-  border: 1px solid var(--n-border);
-  color: var(--n-text-muted);
   cursor: pointer;
   transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--n-fill);
+  color: var(--n-fg);
 }
 
 .settings-btn:hover {
-  background: var(--n-bg-sunken);
-  border-color: var(--n-border-strong);
-  color: var(--n-text);
+  background: #ece8f4;
 }
 
 .settings-btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.settings-btn.lang-btn {
-  font-size: 0.8125rem;
-  font-weight: 700;
-}
-
-.lang-text {
-  line-height: 1;
+  width: 22px;
+  height: 22px;
 }
 
 .navbar-actions {
@@ -507,29 +474,29 @@ onUnmounted(() => {
   gap: 8px;
 }
 
-/* 버튼의 색·상태는 global.css 가 담당한다. 여기에는 52px 네비바 안에
-   들어맞도록 높이를 줄이는 "배치"만 남긴다. */
+/* 로그인 · 회원가입 — global.css 의 .btn 을 네비바 버튼 높이(44px)에 맞춘다 */
 .navbar-actions :deep(.btn) {
-  height: 36px;
-  padding: 0 16px;
-  font-size: 0.875rem;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 600;
 }
 
 .user-menu {
   display: flex;
   align-items: center;
-  gap: 9px;
-  padding: 4px 12px 4px 4px;
-  background: transparent;
-  border-radius: var(--n-radius-sm);
   text-decoration: none;
   transition: background-color 0.18s ease, border-color 0.18s ease;
-  border: 1px solid var(--n-border);
+  height: 44px;
+  padding: 0 16px 0 6px;
+  gap: 10px;
+  border-radius: 12px;
+  background: var(--n-fill);
 }
 
 .user-menu:hover {
-  background: var(--n-bg-sunken);
-  border-color: var(--n-border-strong);
+  background: var(--n-lilac);
 }
 
 .user-meta {
@@ -539,127 +506,77 @@ onUnmounted(() => {
   line-height: 1.15;
 }
 
-.user-label {
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: var(--n-text-muted);
-}
-
 .user-avatar {
-  width: 30px;
-  height: 30px;
   flex-shrink: 0;
-  border-radius: var(--n-radius-sm);
-  background: var(--n-accent);
-  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8125rem;
-  font-weight: 600;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--n-orchid);
+  color: var(--n-on-accent);
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .user-name {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--n-text);
-  max-width: 96px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 120px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--n-fg);
 }
 
 /* 로그아웃 — 아이콘 버튼. 넓을 때만 텍스트가 붙는다. */
 .logout-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
-  height: 38px;
-  padding: 0 12px;
-  border: 1px solid var(--n-border);
-  border-radius: var(--n-radius-sm);
-  background: transparent;
-  color: var(--n-text-muted);
-  font-size: 0.8125rem;
-  font-weight: 500;
   cursor: pointer;
   transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  height: 44px;
+  padding: 0 16px;
+  gap: 8px;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--n-fg-muted);
+  font-size: 17px;
+  font-weight: 600;
 }
 
 .logout-btn svg {
-  width: 16px;
-  height: 16px;
   flex-shrink: 0;
+  width: 20px;
+  height: 20px;
 }
 
 .logout-btn:hover {
-  background: var(--n-bg-sunken);
-  border-color: var(--n-border-strong);
-  color: var(--n-text);
+  background: var(--n-fill);
+  color: var(--n-fg);
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   F!NK 리디자인 — 상단 메뉴바 (메인 디자인: 88px, 메뉴 22px/600, 보더 없음)
-   ═══════════════════════════════════════════════════════════════════ */
-.navbar { background: var(--fk-bg); border-bottom: 0; }
-/* 넓은 화면에서도 로고·버튼이 화면 끝에 붙지 않게 최대 폭을 두고 가운데 정렬 */
-.navbar-container { height: 88px; max-width: 1800px; margin: 0 auto; padding: 0 48px; gap: 20px; }
-.navbar-brand { gap: 10px; }
-.brand-mark { width: 52px; height: 52px; color: var(--fk-orchid); }
-.brand-text { font-size: 42px; font-weight: 800; letter-spacing: -0.035em; color: var(--fk-orchid); }
-/* 메뉴는 가운데 그대로, 항목 사이 간격만 좁게 */
-.navbar-menu { flex: 1; justify-content: center; gap: 20px; margin: 0; }
-.navbar-link { padding: 10px 0; font-size: 22px; font-weight: 600; color: var(--fk-muted); background: none; border-radius: 0; }
-/* 활성 표시 — 둥근 연보라 배경만 (막대·점 없음) */
-.navbar-link { padding: 8px 16px; border-radius: 999px; transition: color 0.2s, background-color 0.2s; }
-.navbar-link::after { display: none; }
-.navbar-link:hover { color: var(--fk-ink); background: var(--fk-surface); }
-.navbar-link.router-link-active { color: var(--fk-violet-hover); background: var(--fk-lilac); }
-
-/* 환율 알약 */
-.exchange-ticker {
-  min-width: 0;
-  width: 190px;
-  height: 36px;
-  margin: 0;
-  padding: 0 16px 0 5px;
-  gap: 8px;
+.navbar-actions :deep(.btn-ghost) {
+  background: transparent;
   border: 0;
-  border-radius: 999px;
-  background: #fcf1ff;
-  box-shadow: 0 6px 18px rgba(49, 32, 110, 0.22), 0 2px 4px rgba(49, 32, 110, 0.16);
+  color: var(--n-fg);
 }
-.ticker-badge { padding: 3px 12px; border-radius: 999px; background: #ffffff; font-size: 16px; font-weight: 700; color: #484554; letter-spacing: 0; }
-.ticker-name { width: auto; font-size: 16px; font-weight: 500; color: #5140b5; }
-.ticker-rate { font-size: 16px; font-weight: 600; color: #1d1a2b; font-variant-numeric: tabular-nums; }
-/* 숫자가 길어도 잘리지 않게: 알약 폭은 내용에 맞추고,
-   항목이 absolute 라 폭을 못 잡는 래퍼에만 가장 긴 조합(JPY(100) + 1,752.10) 기준 폭을 준다 */
-.exchange-ticker { width: auto; }
-.ticker-wrapper { flex: none; width: 156px; }
-.ticker-item { justify-content: space-between; gap: 10px; }
-.ticker-name,
-.ticker-rate { flex: none; white-space: nowrap; }
 
-/* 로그인 · 회원가입 · 다크모드 */
-.navbar-actions :deep(.btn) { height: 44px; padding: 0 20px; border-radius: 12px; font-size: 17px; font-weight: 600; }
-.navbar-actions :deep(.btn-ghost) { background: transparent; border: 0; color: var(--fk-ink); }
-.navbar-actions :deep(.btn-ghost:hover) { background: var(--fk-surface); }
-.navbar-actions :deep(.btn-primary) { background: #9082dd; background-image: none; border: 0; color: #fff; font-weight: 700; box-shadow: none; }
-.navbar-actions :deep(.btn-primary:hover) { background: var(--fk-violet); transform: none; }
-.navbar-settings { margin-left: 0; }
-.settings-btn { width: 44px; height: 44px; border: 0; border-radius: 12px; background: var(--fk-surface); color: var(--fk-ink); }
-.settings-btn:hover { background: #ece8f4; border-color: transparent; color: var(--fk-ink); }
-.settings-btn svg { width: 22px; height: 22px; }
+.navbar-actions :deep(.btn-ghost:hover) {
+  background: var(--n-fill);
+}
 
-/* 프로필 · 로그아웃 — 보더 없이 연한 면, 메인 버튼 높이(44px)에 맞춘다 */
-.user-menu { height: 44px; padding: 0 16px 0 6px; gap: 10px; border: 0; border-radius: 12px; background: var(--fk-surface); }
-.user-menu:hover { background: var(--fk-lilac); border-color: transparent; }
-.user-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--fk-orchid); color: #fff; font-size: 16px; font-weight: 700; }
-.user-name { max-width: 120px; font-size: 17px; font-weight: 600; color: var(--fk-ink); }
-.logout-btn { height: 44px; padding: 0 16px; gap: 8px; border: 0; border-radius: 12px; background: transparent; color: var(--fk-muted); font-size: 17px; font-weight: 600; }
-.logout-btn svg { width: 20px; height: 20px; }
-.logout-btn:hover { background: var(--fk-surface); color: var(--fk-ink); border-color: transparent; }
+.navbar-actions :deep(.btn-primary) {
+  background: #9082dd;
+  border: 0;
+  color: var(--n-on-accent);
+  font-weight: 700;
+}
+
+.navbar-actions :deep(.btn-primary:hover) {
+  background: var(--n-violet);
+}
 
 /* 메뉴 간격 20px + 배경 여백까지 한 줄에 들어가려면 약 1690px 가 필요하다.
    그보다 좁은 화면에서는 간격을 단계적으로 줄인다 */
@@ -924,16 +841,5 @@ onUnmounted(() => {
     flex-wrap: wrap;
     gap: 20px;
   }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   Dark Mode Styles
-
-   네비바·푸터는 --n-* 토큰을 쓰고 있고 이 토큰들은 global.css 의
-   [data-theme="dark"] 블록에서 이미 뒤집힌다. 따라서 여기에는
-   토큰으로 처리되지 않는 예외만 남긴다.
-   ═══════════════════════════════════════════════════════════════════════════ */
-[data-theme="dark"] .btn-primary {
-  color: #fff;
 }
 </style>

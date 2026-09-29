@@ -260,7 +260,6 @@ onUnmounted(() => {
   border-radius: var(--n-radius-xl);
   overflow: hidden;
   background: var(--n-bg);
-  box-shadow: none;
   border: 1px solid var(--n-accent-wash);
 }
 
@@ -292,13 +291,13 @@ onUnmounted(() => {
 .header-icon svg {
   width: 22px;
   height: 22px;
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .header-text h3 {
   font-size: 1.125rem;
   font-weight: 700;
-  color: white;
+  color: var(--n-on-accent);
   margin: 0 0 2px;
 }
 
@@ -324,7 +323,7 @@ onUnmounted(() => {
 .close-btn svg {
   width: 18px;
   height: 18px;
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .close-btn:hover {
@@ -409,7 +408,7 @@ onUnmounted(() => {
 .btn-origin-search svg {
   width: 16px;
   height: 16px;
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .btn-origin-search:hover {
@@ -509,7 +508,7 @@ onUnmounted(() => {
   padding: 12px;
   font-size: 0.875rem;
   font-weight: 700;
-  color: white;
+  color: var(--n-on-accent);
   background: var(--n-accent);
   border: none;
   border-radius: var(--n-radius-md);
@@ -579,7 +578,6 @@ onUnmounted(() => {
 
 .result-item:hover {
   border-color: var(--n-accent);
-  box-shadow: none;
 }
 
 .result-item.selected {
@@ -679,7 +677,7 @@ onUnmounted(() => {
   padding: 6px 12px;
   font-size: 0.6875rem;
   font-weight: 600;
-  color: white;
+  color: var(--n-on-accent);
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(8px);
   border-radius: var(--n-radius-sm);

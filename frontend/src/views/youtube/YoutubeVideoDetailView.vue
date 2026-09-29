@@ -254,7 +254,7 @@ watch(() => props.id, load)
 
 .back-link:hover {
   background: var(--n-accent);
-  color: white;
+  color: var(--n-on-accent);
 }
 
 /* Video Content */
@@ -322,7 +322,7 @@ watch(() => props.id, load)
   justify-content: center;
   font-size: 1.125rem;
   font-weight: 700;
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .channel-name {
@@ -364,7 +364,7 @@ watch(() => props.id, load)
 .action-btn.active {
   background: var(--n-accent);
   border-color: var(--n-accent);
-  color: white;
+  color: var(--n-on-accent);
 }
 
 /* Description Card */

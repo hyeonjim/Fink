@@ -47,7 +47,7 @@ watch(
 <style scoped>
 .news-page {
   min-height: 100vh;
-  background: var(--fk-bg);
+  background: var(--n-page);
 }
 
 .news-container {

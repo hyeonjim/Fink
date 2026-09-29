@@ -94,18 +94,21 @@ const applyDates = () => {
    ═══════════════════════════════════════════════════════════════════ */
 .filter-bar {
   margin-bottom: 0;
+  position: relative;
+  z-index: 2;
+  margin-top: -48px;
 }
 
 .filter-card {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   align-items: flex-end;
-  padding: 20px;
-  border: 1px solid var(--n-border);
-  border-radius: var(--n-radius-md);
-  background: var(--n-bg);
-  box-shadow: none;
+  gap: 24px;
+  padding: 28px;
+  border: 0;
+  border-radius: 28px;
+  background: var(--n-surface);
+  box-shadow: var(--n-shadow-float);
 }
 
 .filter-group {
@@ -115,9 +118,9 @@ const applyDates = () => {
 }
 
 .filter-label {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--n-text-muted);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--n-fg-muted);
 }
 
 /* ── 날짜 입력 ───────────────────────────────────────────────────── */
@@ -135,63 +138,75 @@ const applyDates = () => {
 
 .input-icon {
   position: absolute;
-  left: 11px;
-  width: 15px;
-  height: 15px;
-  color: var(--n-text-muted);
   pointer-events: none;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  color: var(--n-fg-muted);
 }
 
 .date-input {
-  padding: 10px 12px 10px 34px;
-  font-size: 0.875rem;
-  color: var(--n-text);
-  border: 1px solid var(--n-border);
-  border-radius: var(--n-radius-sm);
-  background: var(--n-bg);
   cursor: pointer;
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  height: 60px;
+  padding: 0 20px 0 50px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--n-fill);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--n-fg);
+  font-variant-numeric: tabular-nums;
 }
 
 .date-input:hover:not(:focus) {
-  border-color: var(--n-border-strong);
+  background: var(--n-lilac);
 }
 
 .date-input:focus {
   outline: none;
-  border-color: var(--n-accent);
-  box-shadow: 0 0 0 3px var(--n-accent-wash);
+  background: var(--n-lilac);
+  box-shadow: 0 0 0 3px var(--n-lilac-strong);
 }
 
 .date-separator {
-  font-size: 0.875rem;
-  color: var(--n-text-muted);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--n-fg-muted);
 }
 
 /* ── 버튼 ────────────────────────────────────────────────────────── */
 .action-buttons {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
 
 /* 버튼의 색·테두리·상태는 global.css 의 .btn/.btn-primary/.btn-secondary 가
    담당한다. 여기에는 이 필터바 높이(40px)에 맞추는 치수만 남긴다. */
 .btn {
-  height: 40px;
-  padding: 0 16px;
-  font-size: 0.875rem;
-  gap: 7px;
+  height: 60px;
+  padding: 0 28px;
+  gap: 10px;
+  border: 0;
+  border-radius: 18px;
+  font-size: 18px;
+  font-weight: 700;
+  box-shadow: none;
+  background-image: none;
 }
 
 .btn svg {
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
 }
 
 /* ── 금/은 토글 ──────────────────────────────────────────────────── */
 .metal-toggle {
   display: flex;
-  gap: 8px;
+  gap: 4px;
+  padding: 5px;
+  border-radius: 18px;
+  background: var(--n-fill);
 }
 
 .metal-btn {
@@ -239,56 +254,36 @@ const applyDates = () => {
 .metal-icon {
   display: grid;
   place-items: center;
-  width: 24px;
-  height: 24px;
-  border-radius: var(--n-radius-sm);
-  font-size: 0.6875rem;
-  font-weight: 600;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 800;
 }
 
 .metal-icon.gold {
-  background: #f3ead6;
-  color: #8a6d3b;
+  background: #f1e3b8;
+  color: #6b5314;
 }
 
 .metal-icon.silver {
-  background: var(--n-bg-sunken);
-  color: var(--n-text-muted);
+  background: #e6e4ec;
+  color: #4a4758;
 }
-
-/* ═══════════════════════════════════════════════════════════════════
-   Responsive
-   ═══════════════════════════════════════════════════════════════════ */
 /* ═══ F!NK 리디자인 — 필터 카드 (헤더에 겹쳐 뜸) ═══ */
-.filter-bar { position: relative; z-index: 2; margin-top: -48px; }
-.filter-card { gap: 24px; padding: 28px; border: 0; border-radius: 28px; background: var(--fk-card); box-shadow: var(--fk-shadow-float); }
-.filter-group { gap: 8px; }
 .filter-group:last-child { margin-left: auto; }
-.filter-label { font-size: 16px; font-weight: 600; color: var(--fk-muted); }
-.date-input { height: 60px; padding: 0 20px 0 50px; border: 0; border-radius: 18px; background: var(--fk-surface); font-size: 16px; font-weight: 600; color: var(--fk-ink); font-variant-numeric: tabular-nums; }
-.date-input:hover:not(:focus) { background: var(--fk-lilac); }
-.date-input:focus { background: var(--fk-lilac); box-shadow: 0 0 0 3px var(--fk-lilac-2); }
-.input-icon { left: 20px; width: 20px; height: 20px; color: var(--fk-muted); }
-.date-separator { font-size: 20px; font-weight: 600; color: var(--fk-muted); }
-.action-buttons { gap: 10px; }
-.btn { height: 60px; padding: 0 28px; gap: 10px; border: 0; border-radius: 18px; font-size: 18px; font-weight: 700; box-shadow: none; background-image: none; }
-.btn svg { width: 20px; height: 20px; }
-.btn-primary { background: var(--fk-violet); color: #fff; }
-.btn-primary:hover { background: var(--fk-violet-hover); }
-.btn-secondary { background: var(--fk-lilac); color: var(--fk-violet-hover); }
-.btn-secondary:hover { background: var(--fk-lilac-2); }
+.btn-primary { background: var(--n-violet); color: var(--n-on-accent); }
+.btn-primary:hover { background: var(--n-violet-hover); }
+.btn-secondary { background: var(--n-lilac); color: var(--n-violet-hover); }
+.btn-secondary:hover { background: var(--n-lilac-strong); }
 
 /* 금/은 토글 — 선택되면 금·은색 면 (무채색에 가까운 톤) */
-.metal-toggle { gap: 4px; padding: 5px; border-radius: 18px; background: var(--fk-surface); }
 .metal-btn,
-.metal-btn.metal-btn-gold { height: 50px; padding: 0 20px 0 10px; gap: 10px; border: 0; border-radius: 14px; background: transparent; font-size: 20px; font-weight: 600; color: var(--fk-muted); }
+.metal-btn.metal-btn-gold { height: 50px; padding: 0 20px 0 10px; gap: 10px; border: 0; border-radius: 14px; background: transparent; font-size: 20px; font-weight: 600; color: var(--n-fg-muted); }
 .metal-btn:hover,
-.metal-btn.metal-btn-gold:hover { color: var(--fk-ink); }
-.metal-btn.metal-btn-gold.active { background: var(--fk-gold-btn); color: #1d1a2b; }
-.metal-btn.active:not(.metal-btn-gold) { background: var(--fk-silver-btn); color: #1d1a2b; }
-.metal-icon { width: 32px; height: 32px; border-radius: 50%; font-size: 16px; font-weight: 800; }
-.metal-icon.gold { background: #f1e3b8; color: #6b5314; }
-.metal-icon.silver { background: #e6e4ec; color: #4a4758; }
+.metal-btn.metal-btn-gold:hover { color: var(--n-fg); }
+.metal-btn.metal-btn-gold.active { background: var(--n-gold-btn); color: #1d1a2b; }
+.metal-btn.active:not(.metal-btn-gold) { background: var(--n-silver-btn); color: #1d1a2b; }
 
 @media (max-width: 768px) {
   .filter-card {

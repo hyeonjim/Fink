@@ -380,53 +380,13 @@ const formatCurrency = (value) => {
 }
 </script>
 
+<style scoped src="../../assets/styles/profile-section.scoped.css"></style>
+
 <style scoped>
 .my-product-section {
   display: flex;
   flex-direction: column;
   gap: 32px;
-}
-
-.section-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.header-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--n-accent);
-  border-radius: var(--n-radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.header-icon svg {
-  width: 24px;
-  height: 24px;
-  color: white;
-}
-
-.header-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--n-text);
-  margin: 0;
-}
-
-.section-description {
-  font-size: 0.9375rem;
-  color: var(--n-text-muted);
-  margin: 0;
 }
 
 /* Placeholder */
@@ -479,7 +439,7 @@ const formatCurrency = (value) => {
   gap: 8px;
   padding: 12px 24px;
   background: var(--n-accent);
-  color: white;
+  color: var(--n-on-accent);
   border: none;
   border-radius: var(--n-radius-md);
   font-size: 0.9375rem;
@@ -491,10 +451,6 @@ const formatCurrency = (value) => {
 .go-analysis-btn svg {
   width: 18px;
   height: 18px;
-}
-
-.go-analysis-btn:hover {
-  box-shadow: none;
 }
 
 /* Products Container */
@@ -651,7 +607,7 @@ const formatCurrency = (value) => {
 .sim-rate-badge {
   padding: 8px 16px;
   background: var(--n-accent);
-  color: white;
+  color: var(--n-on-accent);
   font-size: 1rem;
   font-weight: 700;
   border-radius: var(--n-radius-md);

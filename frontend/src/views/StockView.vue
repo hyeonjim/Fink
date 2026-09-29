@@ -679,15 +679,17 @@ const formatNewsDate = (dateStr) => {
    ═══════════════════════════════════════════════════════════════ */
 .stock-page {
   min-height: 100vh;
-  background: var(--n-bg);
+  background: var(--n-page);
 }
 
 .filter-tabs {
   display: flex;
-  gap: 6px;
-  padding: 12px 14px;
-  background: var(--n-bg-subtle);
-  border-bottom: 1px solid var(--n-border);
+  margin: 0;
+  gap: 4px;
+  border: 0;
+  background: var(--n-surface);
+  padding: 5px;
+  border-radius: 16px;
 }
 
 .filter-tab {
@@ -695,16 +697,17 @@ const formatNewsDate = (dateStr) => {
   align-items: center;
   justify-content: center;
   gap: 5px;
-  flex: 1;
   padding: 10px 12px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--n-text-muted);
-  background: var(--n-bg);
-  border: 1px solid var(--n-border);
-  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
+  flex: 1;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--n-fg-muted);
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .filter-tab svg {
@@ -713,70 +716,68 @@ const formatNewsDate = (dateStr) => {
 }
 
 .filter-tab:hover {
-  color: var(--n-accent);
-  border-color: var(--n-accent);
+  color: var(--n-fg);
+  background: transparent;
 }
 
 .filter-tab.active {
-  color: white;
-  background: var(--n-accent);
-  border-color: transparent;
   box-shadow: none;
+  background: var(--n-violet);
+  color: var(--n-on-accent);
 }
 
 /* ═══════════════════════════════════════════════════════════════
    Main Container
    ═══════════════════════════════════════════════════════════════ */
-.stock-container {
-  padding: 24px;
-}
 
 .stock-layout {
   display: grid;
-  grid-template-columns: 340px 1fr 280px;
-  gap: 24px;
-  max-width: 1400px;
   margin: 0 auto;
+  max-width: 1200px;
+  grid-template-columns: 340px minmax(0, 1fr) 256px;
+  gap: 24px;
 }
 
 /* ═══════════════════════════════════════════════════════════════
    Left Sidebar - Stock List
    ═══════════════════════════════════════════════════════════════ */
 .stock-sidebar {
-  background: var(--n-bg);
-  border-radius: var(--n-radius-xl);
   display: flex;
   flex-direction: column;
   height: calc(100vh - 200px);
   position: sticky;
   top: 96px;
-  border: 1px solid var(--n-border);
   overflow: hidden;
+  gap: 14px;
+  border: 0;
+  background: var(--n-fill);
+  padding: 18px;
+  border-radius: 28px;
 }
 
 /* Sidebar Search */
 .sidebar-search {
   position: relative;
-  padding: 14px;
-  background: var(--n-bg);
-  border-bottom: 1px solid var(--n-border);
+  background: transparent;
+  border-bottom: 0;
+  padding: 0;
 }
 
 .sidebar-search .search-box {
   display: flex;
   align-items: center;
   gap: 0;
-  background: var(--n-bg-subtle);
-  border-radius: var(--n-radius-md);
-  padding: 4px;
-  border: 1px solid var(--n-border);
   transition: all 0.2s;
+  height: 56px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--n-surface);
 }
 
 .sidebar-search .search-box:focus-within {
   background: var(--n-bg);
-  border-color: var(--n-accent);
-  box-shadow: 0 0 0 3px var(--n-accent-wash);
+  box-shadow: 0 0 0 3px var(--n-lilac-strong);
 }
 
 .sidebar-search .search-icon {
@@ -789,15 +790,17 @@ const formatNewsDate = (dateStr) => {
 .sidebar-search .search-box input {
   flex: 1;
   padding: 10px 12px;
-  font-size: 0.875rem;
   background: transparent;
   border: none;
   outline: none;
-  color: var(--n-text);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--n-fg);
 }
 
 .sidebar-search .search-box input::placeholder {
-  color: var(--n-text-muted);
+  color: var(--n-fg-faint);
+  font-weight: 500;
 }
 
 .sidebar-search .search-dropdown {
@@ -806,11 +809,12 @@ const formatNewsDate = (dateStr) => {
   left: 14px;
   right: 14px;
   background: var(--n-bg);
-  border-radius: var(--n-radius-md);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   z-index: 100;
   max-height: 280px;
   overflow-y: auto;
+  border: 0;
+  border-radius: 16px;
+  box-shadow: var(--n-shadow);
 }
 
 .search-result {
@@ -819,8 +823,9 @@ const formatNewsDate = (dateStr) => {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  border-bottom: 1px solid var(--n-bg-subtle);
   transition: background 0.15s;
+  border-bottom: 0;
+  font-size: 16px;
 }
 
 .search-result:last-child {
@@ -847,34 +852,35 @@ const formatNewsDate = (dateStr) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
-  background: var(--n-bg-subtle);
-  border-bottom: 1px solid var(--n-border);
+  border: 0;
+  background: transparent;
+  padding: 0 4px;
 }
 
 .update-info {
-  font-size: 11px;
-  color: var(--n-text-muted);
+  color: var(--n-fg-muted);
+  font-size: 16px;
 }
 
 .refresh-btn {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 6px 10px;
-  border: 1px solid var(--n-border);
-  background: var(--n-bg);
-  border-radius: var(--n-radius-sm);
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--n-text-muted);
   cursor: pointer;
   transition: all 0.2s;
+  height: 40px;
+  border: 0;
+  background: var(--n-surface);
+  color: var(--n-violet-hover);
+  padding: 0 14px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .refresh-btn:hover:not(:disabled) {
-  border-color: var(--n-accent);
   color: var(--n-accent);
+  background: var(--n-lilac);
 }
 
 .refresh-btn:disabled {
@@ -895,6 +901,10 @@ const formatNewsDate = (dateStr) => {
 .stock-list {
   flex: 1;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--n-surface);
 }
 
 .list-loading {
@@ -906,39 +916,36 @@ const formatNewsDate = (dateStr) => {
 .stock-item {
   display: flex;
   align-items: center;
-  padding: 12px 14px;
-  gap: 10px;
   cursor: pointer;
-  border-bottom: 1px solid var(--n-bg-subtle);
   transition: all 0.15s;
-}
-
-.stock-item:hover {
-  background: #ebedf0;
+  gap: 12px;
+  border: 0;
+  padding: 12px;
+  border-radius: 18px;
 }
 
 .stock-item.active {
-  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%;
-  border-left: 3px solid var(--n-accent);
+  border-left: 0;
+  box-shadow: 0 10px 24px rgba(29, 26, 43, 0.08);
 }
 
 .stock-rank {
-  width: 24px;
-  height: 24px;
-  background: #f3f1f7;
-  border-radius: var(--n-radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--n-text-muted);
   flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: var(--n-surface);
+  color: var(--n-fg-muted);
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .stock-item.active .stock-rank {
-  background: #bbaee7;
-  color: white;
+  background: var(--n-violet);
+  color: var(--n-on-accent);
 }
 
 .stock-info {
@@ -948,18 +955,18 @@ const formatNewsDate = (dateStr) => {
 
 .stock-name {
   display: block;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--n-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-bottom: 1px;
+  color: var(--n-fg);
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .stock-symbol {
-  font-size: 11px;
-  color: var(--n-text-muted);
+  color: var(--n-fg-muted);
+  font-size: 16px;
 }
 
 .stock-price-info {
@@ -969,67 +976,34 @@ const formatNewsDate = (dateStr) => {
 
 .stock-price {
   display: block;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--n-text);
   margin-bottom: 1px;
-}
-
-.stock-change {
-  font-size: 11px;
-  font-weight: 600;
+  color: var(--n-fg);
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .stock-change.up { color: var(--n-danger-text); }
 .stock-change.down { color: var(--n-accent); }
 
-/* Market Badge */
-.stock-market-badge {
-  flex-shrink: 0;
-}
-
-.market-badge {
-  padding: 3px 8px;
-  border-radius: var(--n-radius-sm);
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.market-badge.kospi {
-  background: var(--n-accent-wash);
-  color: var(--n-accent);
-}
-
-.market-badge.kosdaq {
-  background: var(--n-accent-wash);
-  color: var(--n-accent);
-}
-
-.market-badge.us {
-  background: rgba(74, 144, 217, 0.1);
-  color: var(--n-accent);
-}
-
-/* Pagination */
+/* Pagination
+   목록 아래 페이지 이동 — 네모 흰 띠 대신 둥근 흰 카드 */
 .pagination {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 12px;
-  border-top: 1px solid var(--n-border);
-  background: var(--n-bg);
   position: sticky;
   bottom: 0;
+  margin-top: 8px;
+  padding: 8px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--n-surface);
 }
 
 .page-btn {
   width: 32px;
   height: 32px;
-  border: 1px solid var(--n-border);
-  background: var(--n-bg);
-  border-radius: var(--n-radius-sm);
   font-size: 16px;
   color: var(--n-text-muted);
   cursor: pointer;
@@ -1037,12 +1011,14 @@ const formatNewsDate = (dateStr) => {
   align-items: center;
   justify-content: center;
   transition: all 0.15s;
+  border: 0;
+  border-radius: 12px;
+  background: var(--n-fill);
 }
 
 .page-btn:hover:not(:disabled) {
   background: var(--n-accent);
-  border-color: var(--n-accent);
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .page-btn:disabled {
@@ -1051,10 +1027,10 @@ const formatNewsDate = (dateStr) => {
 }
 
 .page-info {
-  font-size: 13px;
-  color: var(--n-text-muted);
   min-width: 60px;
   text-align: center;
+  font-size: 16px;
+  color: var(--n-fg-muted);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1085,12 +1061,13 @@ const formatNewsDate = (dateStr) => {
   height: 100px;
   /* 그라데이션을 지우다 만 흔적으로 "var(--n-accent-wash) 0%, ... 100%" 라는
      문법이 깨진 값이 들어 있어 배경이 아예 적용되지 않았다. */
-  background: var(--n-accent-wash);
-  border-radius: var(--n-radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 24px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--n-fill);
 }
 
 .empty-icon svg {
@@ -1100,17 +1077,17 @@ const formatNewsDate = (dateStr) => {
 }
 
 .empty-state h2 {
-  font-size: 22px;
   font-weight: 700;
-  color: var(--n-text);
   margin: 0 0 10px;
+  font-size: 26px;
+  color: var(--n-title);
 }
 
 .empty-state p {
-  font-size: 15px;
   line-height: 1.6;
   margin: 0;
-  color: var(--n-text-muted);
+  font-size: 18px;
+  color: var(--n-fg-muted);
 }
 
 /* Stock Detail */
@@ -1119,15 +1096,17 @@ const formatNewsDate = (dateStr) => {
   border-radius: var(--n-radius-xl);
   padding: 28px;
   border: 1px solid var(--n-border);
+  gap: 40px;
 }
 
 .detail-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
   margin-bottom: 28px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--n-border);
+  padding: 0;
+  border: 0;
+  background: none;
+  align-items: flex-end;
 }
 
 .header-title-row {
@@ -1137,26 +1116,27 @@ const formatNewsDate = (dateStr) => {
 }
 
 .detail-name {
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--n-text);
   margin: 0;
-  letter-spacing: -0.02em;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  color: var(--n-title);
 }
 
 /* Bookmark Button */
 .bookmark-btn {
-  width: 30px;
-  height: 30px;
-  border: 1px solid var(--n-border);
-  background: var(--n-bg);
-  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s;
   flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--n-fill);
+  color: var(--n-fg-faint);
 }
 
 .bookmark-btn svg {
@@ -1166,8 +1146,8 @@ const formatNewsDate = (dateStr) => {
 }
 
 .bookmark-btn:hover:not(:disabled) {
-  border-color: var(--n-accent);
-  background: var(--n-accent-wash);
+  background: var(--n-bookmark-bg);
+  color: var(--n-bookmark);
 }
 
 .bookmark-btn:hover:not(:disabled) svg {
@@ -1175,13 +1155,14 @@ const formatNewsDate = (dateStr) => {
 }
 
 .bookmark-btn.active {
-  background: var(--n-accent);
-  border-color: transparent;
   box-shadow: none;
+  background: #fdf3d3;
+  color: var(--n-bookmark);
+  border: 0;
 }
 
 .bookmark-btn.active svg {
-  color: white;
+  color: var(--n-bookmark);
 }
 
 .bookmark-btn:disabled {
@@ -1218,16 +1199,16 @@ const formatNewsDate = (dateStr) => {
 }
 
 .detail-price {
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 800;
-  color: var(--n-text);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  color: var(--n-fg);
 }
 
 .detail-change {
-  font-size: 16px;
-  font-weight: 600;
   margin-top: 6px;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .detail-change.up { color: var(--n-danger-text); }
@@ -1235,42 +1216,48 @@ const formatNewsDate = (dateStr) => {
 
 /* Chart Section */
 .chart-section {
-  border-radius: var(--n-radius-xl);
-  padding: 24px;
   margin-top: 24px;
+  padding: 24px;
+  border: 0;
+  border-radius: 28px;
+  background: var(--n-fill);
 }
 
 .chart-tabs {
   display: flex;
-  gap: 6px;
   margin-bottom: 20px;
+  gap: 4px;
+  border: 0;
 }
 
 .chart-tab {
-  padding: 10px 18px;
-  border: none;
-  background: transparent;
-  border-radius: var(--n-radius-md);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--n-text-muted);
   cursor: pointer;
   transition: all 0.2s;
+  height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--n-fg-muted);
 }
 
 .chart-tab:hover {
-  background: var(--n-bg);
-  color: var(--n-text-muted);
+  color: var(--n-fg);
+  background: transparent;
 }
 
 .chart-tab.active {
-  background: #e7e7e7;
-  color: black;
-  box-shadow: none;
+  background: var(--n-surface);
+  color: var(--n-violet-hover);
+  box-shadow: 0 6px 16px rgba(29, 26, 43, 0.08);
 }
 
 .chart-container {
   height: 320px;
+  background: transparent;
+  border: 0;
 }
 
 .chart-loading,
@@ -1292,36 +1279,39 @@ const formatNewsDate = (dateStr) => {
 }
 
 .section-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--n-text);
   margin: 0 0 20px;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--n-title);
 }
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
 }
 
 .stat-card {
-  background: var(--n-bg);
-  border-radius: var(--n-radius-md);
-  padding: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 16px 18px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--n-fill);
 }
 
 .stat-label {
   display: block;
-  font-size: 12px;
-  color: var(--n-text-muted);
   margin-bottom: 6px;
+  font-size: 16px;
+  color: var(--n-fg-muted);
 }
 
 .stat-value {
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 700;
-  color: var(--n-text);
+  color: var(--n-fg);
+  font-variant-numeric: tabular-nums;
 }
 
 .stat-value.up { color: var(--n-danger-text); }
@@ -1329,10 +1319,11 @@ const formatNewsDate = (dateStr) => {
 
 /* Info Section */
 .info-section {
-  background: var(--n-bg-subtle);
-  border-radius: var(--n-radius-xl);
-  padding: 24px;
   margin-top: 20px;
+  padding: 28px;
+  border: 0;
+  border-radius: 28px;
+  background: var(--n-fill);
 }
 
 .section-header {
@@ -1350,19 +1341,20 @@ const formatNewsDate = (dateStr) => {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 10px 16px;
-  background: #dfe8f1;
-  border: none;
-  border-radius: var(--n-radius-md);
-  color: #5a5a5e;
-  font-size: 13px;
-  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--n-surface);
+  color: var(--n-violet-hover);
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .translate-btn:hover {
-  box-shadow: none;
+  background: var(--n-lilac);
 }
 
 .translate-btn svg {
@@ -1379,13 +1371,13 @@ const formatNewsDate = (dateStr) => {
 }
 
 .company-desc {
-  font-size: 15px;
-  line-height: 1.9;
-  color: var(--n-text-body);
   margin: 0 0 18px;
   background: var(--n-bg);
   padding: 20px;
   border-radius: var(--n-radius-md);
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--n-fg-muted);
 }
 
 .company-meta {
@@ -1395,13 +1387,14 @@ const formatNewsDate = (dateStr) => {
 }
 
 .meta-tag {
-  padding: 8px 14px;
-  background: var(--n-bg);
-  border-radius: var(--n-radius-xl);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--n-accent);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 5px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--n-surface);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--n-violet-hover);
 }
 
 /* News Section */
@@ -1415,28 +1408,30 @@ const formatNewsDate = (dateStr) => {
 .news-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .news-item {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 16px;
-  background: var(--n-bg);
-  border-radius: var(--n-radius-md);
   text-decoration: none;
-  transition: all 0.15s;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 18px 22px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--n-fill);
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .news-item:hover {
-  transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  background: var(--n-lilac);
+  transform: translateX(4px);
 }
 
 .news-item:hover .news-title {
-  color: var(--n-accent);
+  color: var(--n-fg);
 }
 
 .news-content {
@@ -1446,25 +1441,25 @@ const formatNewsDate = (dateStr) => {
 }
 
 .news-title {
-  font-size: 15px;
-  color: var(--n-text);
   line-height: 1.5;
-  font-weight: 600;
   transition: color 0.15s;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--n-fg);
 }
 
 .news-desc {
-  font-size: 14px;
-  color: var(--n-text-muted);
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  font-size: 16px;
+  color: var(--n-fg-muted);
 }
 
 .news-meta {
@@ -1475,14 +1470,14 @@ const formatNewsDate = (dateStr) => {
 }
 
 .news-publisher {
-  font-size: 13px;
-  color: var(--n-accent);
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--n-violet);
 }
 
 .news-date {
-  font-size: 12px;
-  color: var(--n-text-muted);
+  font-size: 16px;
+  color: var(--n-fg-muted);
 }
 
 .news-empty {
@@ -1498,74 +1493,26 @@ const formatNewsDate = (dateStr) => {
    Right Sidebar
    ═══════════════════════════════════════════════════════════════ */
 .market-sidebar {
-  background: var(--n-bg);
-  border-radius: var(--n-radius-xl);
-  padding: 24px 20px;
   height: calc(100vh - 200px);
   position: sticky;
   top: 96px;
   overflow-y: auto;
-  border: 1px solid var(--n-border);
+  padding: 20px;
+  border: 0;
+  border-radius: 28px;
+  background: var(--n-fill);
 }
 
 .sidebar-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--n-text);
   margin: 0 0 20px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--n-title);
 }
 
 .market-section {
   margin-bottom: 24px;
-}
-
-.market-subtitle {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--n-text-muted);
-  margin: 0 0 14px;
-}
-
-.market-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.market-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 14px;
-  background: var(--n-bg-subtle);
-  border-radius: var(--n-radius-md);
-  transition: all 0.15s;
-}
-
-.market-item:hover {
-  background: var(--n-bg-sunken);
-}
-
-.market-item-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.market-flag {
-  font-size: 18px;
-}
-
-.market-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--n-text-body);
-}
-
-.market-value {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--n-text);
 }
 
 .market-empty {
@@ -1590,14 +1537,15 @@ const formatNewsDate = (dateStr) => {
 }
 
 .index-card {
-  background: var(--n-bg-subtle);
-  border-radius: var(--n-radius-md);
-  padding: 12px 14px;
   transition: all 0.15s;
+  padding: 16px;
+  border-radius: 20px;
+  background: var(--n-surface);
 }
 
 .index-card:hover {
-  background: var(--n-bg-sunken);
+  background: var(--n-surface);
+  box-shadow: 0 10px 24px rgba(29, 26, 43, 0.08);
 }
 
 .index-header {
@@ -1608,13 +1556,13 @@ const formatNewsDate = (dateStr) => {
 }
 
 .index-name {
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 600;
-  color: var(--n-text-body);
+  color: var(--n-fg);
 }
 
 .index-change {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -1627,10 +1575,11 @@ const formatNewsDate = (dateStr) => {
 }
 
 .index-price {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--n-text);
   margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--n-fg);
 }
 
 .mini-chart {
@@ -1673,115 +1622,31 @@ const formatNewsDate = (dateStr) => {
   justify-content: center;
   height: 100%;
 }
-
-/* ═══════════════════════════════════════════════════════════════
-   Responsive
-   ═══════════════════════════════════════════════════════════════ */
 /* ═══════════════════════════════════════════════════════════════════
    F!NK 리디자인 — 메인 톤 적용
-   보더 대신 연한 면(--fk-surface)과 그림자, 선택 상태는 바이올렛.
+   보더 대신 연한 면(--n-fill)과 그림자, 선택 상태는 바이올렛.
    북마크는 옐로, 상승 레드 / 하락 블루.
    ═══════════════════════════════════════════════════════════════════ */
-.stock-page { background: var(--fk-bg); }
 .stock-container { padding: 48px 24px 120px; }
-.stock-layout { max-width: 1200px; grid-template-columns: 340px minmax(0, 1fr) 256px; gap: 24px; }
 
 /* 왼쪽 목록 */
-.stock-sidebar { padding: 18px; gap: 14px; border: 0; border-radius: 28px; background: var(--fk-surface); }
-.sidebar-search { padding: 0; background: transparent; border-bottom: 0; }
-.sidebar-search .search-box { height: 56px; padding: 0 18px; border: 0; border-radius: 16px; background: var(--fk-card); }
-.sidebar-search .search-box:focus-within { box-shadow: 0 0 0 3px var(--fk-lilac-2); }
-.sidebar-search .search-box input { font-size: 18px; font-weight: 600; color: var(--fk-ink); }
-.sidebar-search .search-box input::placeholder { color: var(--fk-faint); font-weight: 500; }
-.sidebar-search .search-dropdown { border: 0; border-radius: 16px; box-shadow: var(--fk-shadow); }
-.search-result { border-bottom: 0; font-size: 16px; }
-
-.filter-tabs { margin: 0; padding: 5px; gap: 4px; border: 0; border-radius: 16px; background: var(--fk-card); }
-.filter-tab { flex: 1; height: 44px; border: 0; border-radius: 12px; background: transparent; font-size: 18px; font-weight: 600; color: var(--fk-muted); }
-.filter-tab:hover { color: var(--fk-ink); background: transparent; }
-.filter-tab.active { background: var(--fk-violet); color: #fff; }
-
-.refresh-bar { padding: 0 4px; border: 0; background: transparent; }
-.update-info { font-size: 16px; color: var(--fk-muted); }
-.refresh-btn { height: 40px; padding: 0 14px; border: 0; border-radius: 12px; background: var(--fk-card); color: var(--fk-violet-hover); font-size: 16px; font-weight: 700; }
-.refresh-btn:hover:not(:disabled) { background: var(--fk-lilac); }
-
-.stock-list { display: flex; flex-direction: column; gap: 2px; background: var(--fk-card); }
-.stock-item { padding: 12px; gap: 12px; border: 0; border-radius: 18px; }
-.stock-item:hover { background: var(--fk-lilac); }
-.stock-item.active { border-left: 0; background: var(--fk-card); box-shadow: 0 10px 24px rgba(29, 26, 43, 0.08); }
-.stock-rank { width: 28px; height: 28px; border-radius: 50%; background: var(--fk-card); color: var(--fk-muted); font-size: 16px; font-weight: 700; }
-.stock-item.active .stock-rank { background: var(--fk-violet); color: #fff; }
-.stock-name { font-size: 18px; font-weight: 600; color: var(--fk-ink); }
-.stock-symbol { font-size: 16px; color: var(--fk-muted); }
-.stock-price { font-size: 18px; font-weight: 700; color: var(--fk-ink); }
+.stock-item:hover { background: var(--n-lilac); }
+.stock-item.active { background: var(--n-surface); }
 .stock-change { font-size: 16px; font-weight: 600; }
 .stock-change.up,
 .detail-change.up,
 .stat-value.up,
-.index-change.up { color: var(--fk-red); }
+.index-change.up { color: var(--n-red); }
 .stock-change.down,
 .detail-change.down,
 .stat-value.down,
-.index-change.down { color: var(--fk-blue); }
-/* 목록 아래 페이지 이동 — 네모 흰 띠 대신 둥근 흰 카드 */
-.pagination { margin-top: 8px; padding: 8px; border: 0; border-radius: 16px; background: var(--fk-card); }
-.page-btn { border: 0; border-radius: 12px; background: var(--fk-surface); }
-.page-info { font-size: 16px; color: var(--fk-muted); }
+.index-change.down { color: var(--n-blue); }
 
 /* 가운데 상세 */
-.stock-detail { gap: 40px; }
-.detail-header { padding: 0; border: 0; background: none; align-items: flex-end; }
-.detail-name { font-size: 28px; font-weight: 600; letter-spacing: -0.035em; color: var(--fk-title); }
-.bookmark-btn { width: 44px; height: 44px; border: 0; border-radius: 12px; background: var(--fk-surface); color: var(--fk-faint); }
-.bookmark-btn:hover:not(:disabled) { background: var(--fk-bookmark-bg); color: var(--fk-bookmark); }
-.bookmark-btn.active { background: #fdf3d3; color: var(--fk-bookmark); border: 0; }
-.bookmark-btn.active svg { color: var(--fk-bookmark); }
 .detail-exchange,
-.detail-symbol { padding: 4px 12px; border: 0; border-radius: 999px; background: var(--fk-surface); font-size: 16px; font-weight: 600; color: var(--fk-muted); }
-.detail-price { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; color: var(--fk-ink); }
-.detail-change { font-size: 18px; font-weight: 700; }
-
-.chart-section { padding: 24px; border: 0; border-radius: 28px; background: var(--fk-surface); }
-.chart-tabs { gap: 4px; border: 0; }
-.chart-tab { height: 40px; padding: 0 16px; border: 0; border-radius: 12px; background: transparent; font-size: 16px; font-weight: 600; color: var(--fk-muted); }
-.chart-tab:hover { color: var(--fk-ink); background: transparent; }
-.chart-tab.active { background: var(--fk-card); color: var(--fk-violet-hover); box-shadow: 0 6px 16px rgba(29, 26, 43, 0.08); }
-.chart-container { background: transparent; border: 0; }
-
-.section-title { font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--fk-title); }
-.stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-.stat-card { padding: 16px 18px; border: 0; border-radius: 20px; background: var(--fk-surface); }
-.stat-label { font-size: 16px; color: var(--fk-muted); }
-.stat-value { font-size: 20px; font-weight: 700; color: var(--fk-ink); font-variant-numeric: tabular-nums; }
-
-.info-section { padding: 28px; border: 0; border-radius: 28px; background: var(--fk-surface); }
-.translate-btn { height: 44px; padding: 0 20px; border: 0; border-radius: 12px; background: var(--fk-card); color: var(--fk-violet-hover); font-size: 16px; font-weight: 700; }
-.translate-btn:hover { background: var(--fk-lilac); }
-.company-desc { font-size: 18px; line-height: 1.75; color: var(--fk-muted); }
-.meta-tag { padding: 5px 14px; border: 0; border-radius: 999px; background: var(--fk-card); font-size: 16px; font-weight: 600; color: var(--fk-violet-hover); }
-
-.news-list { gap: 10px; }
-.news-item { padding: 18px 22px; border: 0; border-radius: 20px; background: var(--fk-surface); transition: background-color 0.2s, transform 0.2s; }
-.news-item:hover { background: var(--fk-lilac); transform: translateX(4px); }
-.news-item:hover .news-title { color: var(--fk-ink); }
-.news-title { font-size: 18px; font-weight: 600; color: var(--fk-ink); }
-.news-desc { font-size: 16px; color: var(--fk-muted); }
-.news-publisher { font-size: 16px; font-weight: 600; color: var(--fk-violet); }
-.news-date { font-size: 16px; color: var(--fk-muted); }
+.detail-symbol { padding: 4px 12px; border: 0; border-radius: 999px; background: var(--n-fill); font-size: 16px; font-weight: 600; color: var(--n-fg-muted); }
 
 /* 오른쪽 주요 지표 */
-.market-sidebar { padding: 20px; border: 0; border-radius: 28px; background: var(--fk-surface); }
-.sidebar-title { font-size: 22px; font-weight: 600; letter-spacing: -0.03em; color: var(--fk-title); }
-.index-card { padding: 16px; border-radius: 20px; background: var(--fk-card); }
-.index-card:hover { background: var(--fk-card); box-shadow: 0 10px 24px rgba(29, 26, 43, 0.08); }
-.index-name { font-size: 18px; font-weight: 600; color: var(--fk-ink); }
-.index-change { font-size: 16px; font-weight: 700; }
-.index-price { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; color: var(--fk-ink); }
-
-.empty-state h2 { font-size: 26px; color: var(--fk-title); }
-.empty-state p { font-size: 18px; color: var(--fk-muted); }
-.empty-icon { border: 0; border-radius: 20px; background: var(--fk-surface); }
 
 @media (max-width: 1200px) {
   .stock-layout {

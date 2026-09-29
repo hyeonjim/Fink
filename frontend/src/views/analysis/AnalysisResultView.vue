@@ -613,16 +613,12 @@ const formatDate = (dateString) => {
   padding: 12px 24px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: white;
+  color: var(--n-on-accent);
   background: var(--n-accent);
   border: none;
   border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
-}
-
-.retry-btn:hover {
-  box-shadow: none;
 }
 
 /* Section Title */
@@ -792,103 +788,6 @@ const formatDate = (dateString) => {
 }
 
 /* 추천 상품 요약 (예금 + 적금) */
-.recommended-products-summary {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px;
-  background: var(--n-accent-wash) 0%, var(--n-accent-wash) 100%;
-  border-radius: var(--n-radius-lg);
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.recommended-product {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  background: var(--n-bg);
-  border-radius: var(--n-radius-md);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  flex: 1;
-  min-width: 200px;
-  max-width: 300px;
-}
-
-.recommended-product.deposit {
-  border-left: 4px solid var(--n-info-text);
-}
-
-.recommended-product.saving {
-  border-left: 4px solid var(--n-ok-text);
-}
-
-.rp-badge {
-  padding: 4px 10px;
-  border-radius: var(--n-radius-sm);
-  font-size: 0.75rem;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.recommended-product.deposit .rp-badge {
-  background: var(--n-info-bg);
-  color: var(--n-info-text);
-}
-
-.recommended-product.saving .rp-badge {
-  background: var(--n-ok-bg);
-  color: var(--n-ok-text);
-}
-
-.rp-info {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.rp-bank {
-  font-size: 0.6875rem;
-  color: var(--n-text-muted);
-}
-
-.rp-name {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--n-text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.rp-rate {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  flex-shrink: 0;
-}
-
-.rp-rate-value {
-  font-size: 1.125rem;
-  font-weight: 800;
-  color: var(--n-accent);
-}
-
-.rp-rate-label {
-  font-size: 0.625rem;
-  color: var(--n-text-muted);
-}
-
-.rp-plus {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--n-accent);
-  flex-shrink: 0;
-}
 
 .combination-content {
   display: flex;
@@ -924,7 +823,7 @@ const formatDate = (dateString) => {
 .best-badge {
   padding: 4px 10px;
   background: var(--n-accent);
-  color: white;
+  color: var(--n-on-accent);
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: var(--n-radius-xl);
@@ -1051,217 +950,6 @@ const formatDate = (dateString) => {
   color: var(--n-danger-text);
 }
 
-/* Alternatives Card */
-.alternatives-card {
-  background: var(--n-bg);
-  border-radius: var(--n-radius-xl);
-  padding: 24px;
-  margin-bottom: 24px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-}
-
-.alternatives-subtitle {
-  font-size: 0.875rem;
-  color: var(--n-text-muted);
-  margin: -8px 0 16px;
-}
-
-.alternatives-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-}
-
-.alternative-item {
-  padding: 20px;
-  background: var(--n-bg-subtle);
-  border-radius: var(--n-radius-md);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: all 0.2s;
-}
-
-.alternative-item.has-product {
-  background: var(--n-accent-wash);
-  border: 1px solid #e9e4f5;
-}
-
-.alternative-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.alt-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.alt-type {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: var(--n-radius-xl);
-  background: var(--n-bg);
-}
-
-.alt-type.extend_period { 
-  color: var(--n-info-text); 
-  background: var(--n-info-bg);
-}
-.alt-type.extend_period::before { content: '📅'; }
-
-.alt-type.increase_monthly { 
-  color: var(--n-warn-text);
-  background: var(--n-warn-bg);
-}
-.alt-type.increase_monthly::before { content: '💰'; }
-
-.alt-type.reduce_target { 
-  color: var(--n-ok-text);
-  background: #ecfdf5;
-}
-.alt-type.reduce_target::before { content: '🎯'; }
-
-.alt-type.combined { 
-  color: var(--n-accent);
-  background: var(--n-accent-wash);
-}
-.alt-type.combined::before { content: '🔄'; }
-
-.alt-desc {
-  font-size: 0.9375rem;
-  color: var(--n-text-body);
-  margin: 0;
-  line-height: 1.5;
-}
-
-.alt-achievable {
-  font-size: 0.75rem;
-  color: #22c55e;
-  font-weight: 600;
-  padding: 2px 8px;
-  background: var(--n-ok-bg);
-  border-radius: var(--n-radius-md);
-}
-
-/* 예상 금액 정보 */
-.alt-expected {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 10px 12px;
-  background: var(--n-bg);
-  border-radius: var(--n-radius-sm);
-  border: 1px solid var(--n-border);
-}
-
-.alt-expected-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.alt-expected-label {
-  font-size: 0.75rem;
-  color: var(--n-text-muted);
-}
-
-.alt-expected-value {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--n-text);
-}
-
-.alt-expected-row.interest .alt-expected-value {
-  color: #22c55e;
-}
-
-/* 추천 상품 정보 */
-.alt-product {
-  padding: 12px;
-  background: var(--n-bg);
-  border-radius: var(--n-radius-md);
-  border: 1px solid var(--n-border);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.alt-product-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.alt-product-badge {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: var(--n-radius-sm);
-}
-
-.alt-product-badge.saving {
-  background: var(--n-ok-bg);
-  color: var(--n-ok-text);
-}
-
-.alt-product-badge.deposit {
-  background: var(--n-info-bg);
-  color: var(--n-info-text);
-}
-
-.alt-product-term {
-  font-size: 0.75rem;
-  color: var(--n-text-muted);
-  background: var(--n-bg-sunken);
-  padding: 2px 6px;
-  border-radius: var(--n-radius-sm);
-}
-
-.alt-product-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.alt-product-bank {
-  font-size: 0.6875rem;
-  color: var(--n-text-muted);
-}
-
-.alt-product-name {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--n-text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.alt-product-rate {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 8px;
-  border-top: 1px dashed var(--n-border);
-}
-
-.alt-product-rate .rate-label {
-  font-size: 0.6875rem;
-  color: var(--n-text-muted);
-}
-
-.alt-product-rate .rate-value {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--n-accent);
-}
-
 /* Products Section */
 .products-section {
   margin-bottom: 24px;
@@ -1331,12 +1019,6 @@ const formatDate = (dateString) => {
 .exchange-box-title svg {
   width: 18px;
   height: 18px;
-}
-
-.exchange-content {
-  display: flex;
-  gap: 32px;
-  flex-wrap: wrap;
 }
 
 .exchange-stat {
@@ -1649,11 +1331,6 @@ const formatDate = (dateString) => {
 
   .goal-stats {
     grid-template-columns: 1fr;
-  }
-
-  .exchange-content {
-    flex-direction: column;
-    gap: 16px;
   }
 
   .combination-stats {

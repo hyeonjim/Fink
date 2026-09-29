@@ -1,0 +1,45 @@
+/* ═══════════════════════════════════════════════════════════════════
+   마이페이지 섹션 헤더 공용 (ProfileModify / ProfileMyProduct / ProfileWishlist)
+   아이콘 타일 + 제목 + 설명. 세 화면이 이 파일을 <style scoped src> 로 가져온다.
+   ═══════════════════════════════════════════════════════════════════ */
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.header-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--n-accent);
+  border-radius: var(--n-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.header-icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--n-on-accent);
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--n-text);
+  margin: 0;
+}
+
+.section-description {
+  font-size: 0.9375rem;
+  color: var(--n-text-muted);
+  margin: 0;
+}

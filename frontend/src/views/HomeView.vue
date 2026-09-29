@@ -266,8 +266,8 @@ const getBankLogo = (bankName) =>
    보더 없이 면과 그림자로 구분하고, 그라데이션은 히어로·제휴 띠에만 은은하게.
    ═══════════════════════════════════════════════════════════════════ */
 .home {
-  background: var(--fk-bg);
-  color: var(--fk-ink);
+  background: var(--n-page);
+  color: var(--n-fg);
   word-break: keep-all;
 }
 
@@ -283,11 +283,11 @@ const getBankLogo = (bankName) =>
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: -0.035em;
-  color: var(--fk-title);
+  color: var(--n-title);
 }
 
 .accent {
-  color: var(--fk-violet);
+  color: var(--n-violet);
 }
 
 /* 스크롤 리빌 — v-reveal 이 .reveal / .is-visible 을 붙인다 */
@@ -336,28 +336,28 @@ const getBankLogo = (bankName) =>
 
 .h-btn--soft {
   background: #9082dd;
-  color: #ffffff;
+  color: var(--n-on-accent);
 }
 
 .h-btn--soft:hover {
-  background: var(--fk-violet);
-  color: #ffffff;
+  background: var(--n-violet);
+  color: var(--n-on-accent);
 }
 
 .h-btn--white {
   background: #ffffff;
-  color: var(--fk-violet-hover);
+  color: var(--n-violet-hover);
 }
 
 .h-btn--white:hover {
-  background: var(--fk-lilac);
-  color: var(--fk-violet-hover);
+  background: var(--n-lilac);
+  color: var(--n-violet-hover);
 }
 
 /* ── Hero ─────────────────────────────────────────────────────── */
 .hero {
   padding: 0 0 72px;
-  background: var(--fk-hero);
+  background: var(--n-hero);
 }
 
 .hero-inner {
@@ -383,7 +383,7 @@ const getBankLogo = (bankName) =>
   font-weight: 800;
   line-height: 1.45;
   letter-spacing: -0.04em;
-  color: var(--fk-title);
+  color: var(--n-title);
 }
 
 /* 돌아가는 목적 키워드 */
@@ -395,8 +395,8 @@ const getBankLogo = (bankName) =>
   overflow: hidden;
   vertical-align: top;
   border-radius: 0.26em;
-  background: var(--fk-lilac-2);
-  color: var(--fk-violet);
+  background: var(--n-lilac-strong);
+  color: var(--n-violet);
 }
 
 .kw-track {
@@ -538,7 +538,7 @@ const getBankLogo = (bankName) =>
 }
 
 .rec-rate.is-top {
-  color: var(--fk-red);
+  color: var(--n-red);
 }
 
 /* 빠른 추천 바 */
@@ -552,7 +552,7 @@ const getBankLogo = (bankName) =>
   display: flex;
   gap: 10px;
   border-radius: 28px;
-  background: var(--fk-card);
+  background: var(--n-surface);
   box-shadow: 0 24px 60px rgba(49, 32, 110, 0.16);
 }
 
@@ -563,19 +563,19 @@ const getBankLogo = (bankName) =>
   gap: 4px;
   padding: 14px 22px;
   border-radius: 20px;
-  background: var(--fk-surface);
+  background: var(--n-fill);
   text-decoration: none;
   transition: background-color 0.2s;
 }
 
 .qs:hover {
-  background: var(--fk-lilac);
+  background: var(--n-lilac);
 }
 
 .qs-label {
   font-size: 16px;
   font-weight: 600;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .qs-value {
@@ -584,13 +584,13 @@ const getBankLogo = (bankName) =>
   justify-content: space-between;
   font-size: 22px;
   font-weight: 700;
-  color: var(--fk-ink);
+  color: var(--n-fg);
 }
 
 .qs-value svg {
   width: 22px;
   height: 22px;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .quick-go {
@@ -604,7 +604,7 @@ const getBankLogo = (bankName) =>
 /* ── AI 맞춤형 예적금 추천 ─────────────────────────────────────── */
 .steps {
   padding: 140px 0;
-  background: var(--fk-surface);
+  background: var(--n-fill);
 }
 
 .step-grid {
@@ -621,7 +621,7 @@ const getBankLogo = (bankName) =>
   flex-direction: column;
   padding: 40px 36px 44px;
   border-radius: 32px;
-  background: var(--fk-card);
+  background: var(--n-surface);
 }
 
 /* 왼쪽에서 밀려 들어오며 등장 (v-reveal 의 is-visible 이 붙을 때) */
@@ -642,7 +642,7 @@ const getBankLogo = (bankName) =>
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.04em;
-  color: var(--fk-violet);
+  color: var(--n-violet);
 }
 
 .step-title {
@@ -650,7 +650,7 @@ const getBankLogo = (bankName) =>
   font-size: 26px;
   font-weight: 600;
   letter-spacing: -0.03em;
-  color: var(--fk-title);
+  color: var(--n-title);
 }
 
 .step-desc {
@@ -658,13 +658,13 @@ const getBankLogo = (bankName) =>
   font-size: 20px;
   font-weight: 500;
   line-height: 1.7;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 /* ── Services ─────────────────────────────────────────────────── */
 .services {
   padding: 140px 0 160px;
-  background: var(--fk-bg);
+  background: var(--n-page);
 }
 
 .services-head {
@@ -679,7 +679,7 @@ const getBankLogo = (bankName) =>
   font-size: 20px;
   font-weight: 500;
   line-height: 1.6;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
   text-align: right;
 }
 
@@ -697,8 +697,8 @@ const getBankLogo = (bankName) =>
   display: flex;
   flex-direction: column;
   border-radius: 28px;
-  background: var(--fk-surface);
-  color: var(--fk-ink);
+  background: var(--n-fill);
+  color: var(--n-fg);
   text-decoration: none;
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
 }
@@ -706,11 +706,11 @@ const getBankLogo = (bankName) =>
 .service:hover {
   transform: translateY(-8px);
   box-shadow: 0 28px 56px rgba(49, 32, 110, 0.12);
-  color: var(--fk-ink);
+  color: var(--n-fg);
 }
 
 .service--featured {
-  background: var(--fk-lilac);
+  background: var(--n-lilac);
 }
 
 .service-title {
@@ -721,7 +721,7 @@ const getBankLogo = (bankName) =>
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: var(--fk-title);
+  color: var(--n-title);
 }
 
 .service-tag {
@@ -731,7 +731,7 @@ const getBankLogo = (bankName) =>
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 0;
-  color: #ffffff;
+  color: var(--n-on-accent);
 }
 
 .service-desc {
@@ -739,7 +739,7 @@ const getBankLogo = (bankName) =>
   font-size: 20px;
   font-weight: 500;
   line-height: 1.6;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .service-foot {
@@ -766,8 +766,8 @@ const getBankLogo = (bankName) =>
 }
 
 .service:hover .service-go {
-  background: var(--fk-violet);
-  color: #ffffff;
+  background: var(--n-violet);
+  color: var(--n-on-accent);
 }
 
 .service-go svg {
@@ -809,7 +809,7 @@ const getBankLogo = (bankName) =>
   font-weight: 700;
   line-height: 1.35;
   letter-spacing: -0.035em;
-  color: #ffffff;
+  color: var(--n-on-accent);
   text-align: center;
 }
 

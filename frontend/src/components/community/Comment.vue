@@ -292,10 +292,6 @@ const onToggleCommentLike = (commentId) => {
   border-color: transparent;
 }
 
-.sort-btn.active:hover {
-  box-shadow: none;
-}
-
 /* Comments List */
 .comments-list {
   list-style: none;
@@ -337,7 +333,7 @@ const onToggleCommentLike = (commentId) => {
   justify-content: center;
   font-size: 0.875rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--n-on-accent);
   flex-shrink: 0;
 }
 
@@ -501,7 +497,7 @@ const onToggleCommentLike = (commentId) => {
 }
 
 .btn-save {
-  color: white;
+  color: var(--n-on-accent);
   background: var(--n-accent);
   border: none;
 }

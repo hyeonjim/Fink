@@ -67,24 +67,26 @@ const thumb = computed(() =>
 
 <style scoped>
 .video-card {
-  background: var(--n-bg);
-  border-radius: var(--n-radius-lg);
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
+  border: 0;
+  border-radius: 24px;
+  background: var(--n-fill);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
 }
 
 .video-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-6px);
+  box-shadow: var(--n-shadow-hover);
 }
 
 .thumb-wrapper {
   position: relative;
   aspect-ratio: 16 / 9;
   overflow: hidden;
+  border-radius: 0;
 }
 
 .thumb {
@@ -115,15 +117,15 @@ const thumb = computed(() =>
 }
 
 .play-btn {
-  width: 56px;
-  height: 56px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--n-danger-text);
   transition: transform 0.2s ease;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  color: var(--n-on-accent);
 }
 
 .play-btn:hover {
@@ -137,23 +139,25 @@ const thumb = computed(() =>
 }
 
 .body {
-  padding: 16px;
   display: flex;
   flex: 1;
   flex-direction: column;
+  padding: 20px;
   gap: 10px;
 }
 
 .title {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--n-text);
-  line-height: 1.4;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  min-height: 58px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: var(--n-title);
 }
 
 .channel {
@@ -161,11 +165,12 @@ const thumb = computed(() =>
   align-items: center;
   gap: 6px;
   margin: 0;
-  font-size: 0.8125rem;
-  color: var(--n-text-muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--n-fg-muted);
 }
 
 .channel svg {
@@ -179,16 +184,17 @@ const thumb = computed(() =>
   align-items: center;
   gap: 6px;
   margin-top: auto;
-  padding: 10px 16px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--n-accent);
-  background: var(--n-accent-wash);
   border-radius: var(--n-radius-md);
   text-decoration: none;
   text-align: center;
   justify-content: center;
   transition: all 0.2s ease;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--n-fg);
+  border: 0;
+  padding: 0;
+  background: none;
 }
 
 .detail-link svg {
@@ -198,24 +204,15 @@ const thumb = computed(() =>
 }
 
 .detail-link:hover {
-  background: var(--n-accent);
-  color: white;
+  color: var(--n-fg-muted);
+  background: none;
 }
 
 .detail-link:hover svg {
   transform: translateX(3px);
 }
 /* ═══ F!NK 리디자인 — 영상 카드 (연한 면, hover 때 떠오름) ═══ */
-.video-card { border: 0; border-radius: 24px; background: var(--fk-surface); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s; }
-.video-card:hover { transform: translateY(-6px); box-shadow: var(--fk-shadow-hover); border-color: transparent; }
-.thumb-wrapper { border-radius: 0; }
-.play-btn { width: 56px; height: 56px; border-radius: 50%; background: rgba(255, 255, 255, 0.28); color: #fff; }
 .video-card:hover .play-btn,
-.play-btn:hover { background: #fff; color: var(--fk-ink); transform: scale(1.08); }
-.body { padding: 20px; gap: 10px; }
-.title { min-height: 58px; font-size: 20px; font-weight: 600; line-height: 1.45; letter-spacing: -0.02em; color: var(--fk-title); }
-.channel { font-size: 16px; font-weight: 500; color: var(--fk-muted); }
-.detail-link { font-size: 16px; font-weight: 600; color: var(--fk-ink); border: 0; padding: 0; background: none; }
-.detail-link:hover { color: var(--fk-muted); background: none; }
+.play-btn:hover { background: #fff; color: var(--n-fg); transform: scale(1.08); }
 </style>
 

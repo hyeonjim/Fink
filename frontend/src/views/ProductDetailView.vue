@@ -284,7 +284,7 @@ onMounted(() => {
    ═══════════════════════════════════════════════════════════════════ */
 .product-detail-page {
   min-height: calc(100vh - 72px);
-  background: var(--fk-bg);
+  background: var(--n-page);
 }
 
 .container {
@@ -295,7 +295,7 @@ onMounted(() => {
 
 /* ── Hero ─────────────────────────────────────────────────────── */
 .detail-hero {
-  background: var(--fk-hero);
+  background: var(--n-hero);
 }
 
 .detail-hero .container {
@@ -317,14 +317,14 @@ onMounted(() => {
   border-radius: 12px;
   font-size: 18px;
   font-weight: 600;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
   text-decoration: none;
   transition: background-color 0.2s, color 0.2s;
 }
 
 .back-link:hover {
   background: rgba(255, 255, 255, 0.7);
-  color: var(--fk-ink);
+  color: var(--n-fg);
 }
 
 .back-link svg {
@@ -380,7 +380,7 @@ onMounted(() => {
   background: #ffffff;
   font-size: 16px;
   font-weight: 700;
-  color: var(--fk-violet);
+  color: var(--n-violet);
 }
 
 .product-type-badge.saving {
@@ -393,7 +393,7 @@ onMounted(() => {
   background: rgba(255, 255, 255, 0.7);
   font-size: 16px;
   font-weight: 600;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .product-title {
@@ -402,7 +402,7 @@ onMounted(() => {
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: -0.035em;
-  color: var(--fk-title);
+  color: var(--n-title);
 }
 
 /* ── 관심상품 / 은행 위치 ─────────────────────────────────────── */
@@ -444,17 +444,17 @@ onMounted(() => {
 /* 관심등록 전 — 흰 버튼, 좋아요 레드 하트 */
 .like-btn {
   background: #ffffff;
-  color: var(--fk-like-hover);
+  color: var(--n-like-hover);
 }
 
 /* 관심상품 — 좋아요 레드 */
 .like-btn.liked {
-  background: var(--fk-like);
-  color: #ffffff;
+  background: var(--n-like);
+  color: var(--n-on-accent);
 }
 
 .like-btn.liked:hover {
-  background: var(--fk-like-hover);
+  background: var(--n-like-hover);
 }
 
 .like-count {
@@ -472,11 +472,11 @@ onMounted(() => {
 
 .map-btn {
   background: #ffffff;
-  color: var(--fk-violet-hover);
+  color: var(--n-violet-hover);
 }
 
 .map-btn:hover {
-  background: var(--fk-lilac);
+  background: var(--n-lilac);
 }
 
 /* ── 본문 카드 ─────────────────────────────────────────────────── */
@@ -490,8 +490,8 @@ onMounted(() => {
 .options-card {
   padding: 40px;
   border-radius: 28px;
-  background: var(--fk-card);
-  box-shadow: var(--fk-shadow);
+  background: var(--n-surface);
+  box-shadow: var(--n-shadow);
 }
 
 .card-title {
@@ -502,7 +502,7 @@ onMounted(() => {
   font-size: 22px;
   font-weight: 600;
   letter-spacing: -0.03em;
-  color: var(--fk-title);
+  color: var(--n-title);
 }
 
 .card-title svg {
@@ -511,8 +511,8 @@ onMounted(() => {
   padding: 11px;
   box-sizing: border-box;
   border-radius: 14px;
-  background: var(--fk-surface);
-  color: var(--fk-ink);
+  background: var(--n-fill);
+  color: var(--n-fg);
 }
 
 /* 상세정보 — 연한 면 타일 */
@@ -528,7 +528,7 @@ onMounted(() => {
   gap: 12px;
   padding: 20px 24px;
   border-radius: 20px;
-  background: var(--fk-surface);
+  background: var(--n-fill);
 }
 
 .detail-full {
@@ -538,14 +538,14 @@ onMounted(() => {
 .detail-label {
   font-size: 16px;
   font-weight: 600;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .detail-value {
   font-size: 18px;
   font-weight: 500;
   line-height: 1.7;
-  color: var(--fk-ink);
+  color: var(--n-fg);
   white-space: pre-line;
 }
 
@@ -563,10 +563,10 @@ onMounted(() => {
 
 .options-table th {
   padding: 14px 24px;
-  background: var(--fk-surface);
+  background: var(--n-fill);
   font-size: 16px;
   font-weight: 600;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .options-table th:first-child { border-radius: 16px 0 0 16px; }
@@ -576,13 +576,13 @@ onMounted(() => {
   padding: 18px 24px;
   font-size: 18px;
   font-weight: 500;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
   font-variant-numeric: tabular-nums;
   transition: background-color 0.2s;
 }
 
 .options-table tbody tr:hover td {
-  background: var(--fk-surface);
+  background: var(--n-fill);
 }
 
 .options-table td:first-child { border-radius: 16px 0 0 16px; }
@@ -591,25 +591,25 @@ onMounted(() => {
 .term-value {
   font-size: 22px;
   font-weight: 600;
-  color: var(--fk-ink);
+  color: var(--n-fg);
 }
 
 .term-unit {
   margin-left: 2px;
   font-size: 16px;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .rate-cell {
   font-size: 20px;
   font-weight: 600;
-  color: var(--fk-ink);
+  color: var(--n-fg);
 }
 
 .rate-cell.rate-max {
   font-size: 22px;
   font-weight: 800;
-  color: var(--fk-red);
+  color: var(--n-red);
 }
 
 /* ── 로딩 ─────────────────────────────────────────────────────── */
@@ -620,20 +620,16 @@ onMounted(() => {
   gap: 16px;
   padding: 80px 0;
   font-size: 18px;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .loading-spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid var(--fk-lilac);
-  border-top-color: var(--fk-violet);
+  border: 3px solid var(--n-lilac);
+  border-top-color: var(--n-violet);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
 
 /* ═══════════════════════════════════════════════════════════════════

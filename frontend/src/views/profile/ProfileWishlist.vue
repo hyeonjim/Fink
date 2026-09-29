@@ -363,53 +363,13 @@ const getChangeClass = (change) => {
 }
 </script>
 
+<style scoped src="../../assets/styles/profile-section.scoped.css"></style>
+
 <style scoped>
 .wishlist-section {
   display: flex;
   flex-direction: column;
   gap: 24px;
-}
-
-.section-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.header-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--n-accent);
-  border-radius: var(--n-radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.header-icon svg {
-  width: 24px;
-  height: 24px;
-  color: white;
-}
-
-.header-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--n-text);
-  margin: 0;
-}
-
-.section-description {
-  font-size: 0.9375rem;
-  color: var(--n-text-muted);
-  margin: 0;
 }
 
 /* Category Tabs */
@@ -479,7 +439,7 @@ const getChangeClass = (change) => {
 .sub-tab.active {
   background: var(--n-accent);
   border-color: var(--n-accent);
-  color: white;
+  color: var(--n-on-accent);
 }
 
 /* Content Section */
@@ -707,7 +667,7 @@ const getChangeClass = (change) => {
 
 .view-btn:hover {
   background: var(--n-accent);
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .remove-btn {
@@ -750,7 +710,7 @@ const getChangeClass = (change) => {
   justify-content: center;
   font-size: 1.125rem;
   font-weight: 700;
-  color: white;
+  color: var(--n-on-accent);
   flex-shrink: 0;
 }
 
@@ -915,7 +875,7 @@ const getChangeClass = (change) => {
   margin-top: 16px;
   padding: 10px 18px;
   background: var(--n-accent);
-  color: white;
+  color: var(--n-on-accent);
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
@@ -926,10 +886,6 @@ const getChangeClass = (change) => {
 .action-link svg {
   width: 16px;
   height: 16px;
-}
-
-.action-link:hover {
-  box-shadow: none;
 }
 
 /* Loading State */
@@ -948,5 +904,4 @@ const getChangeClass = (change) => {
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
-
 </style>

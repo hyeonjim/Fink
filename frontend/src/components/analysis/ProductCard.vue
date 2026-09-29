@@ -447,7 +447,7 @@ const scoreClass = computed(() => {
 }
 
 .bank-initial {
-  color: white;
+  color: var(--n-on-accent);
   font-size: 1rem;
   font-weight: 700;
 }
@@ -791,11 +791,7 @@ const scoreClass = computed(() => {
 .action-btn.select {
   flex: 1;
   background: #cececf;
-  color: white;
-}
-
-.action-btn.select:hover {
-  box-shadow: none;
+  color: var(--n-on-accent);
 }
 
 .action-btn.select.active {

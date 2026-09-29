@@ -106,92 +106,13 @@ import { useVideoStore } from '@/stores/youtube/videos'
 const videoStore = useVideoStore()
 </script>
 
+<style scoped src="../../assets/styles/youtube-saved.scoped.css"></style>
+
 <style scoped>
 .saved-videos {
   display: flex;
   flex-direction: column;
   gap: 24px;
-}
-
-/* Section Header */
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.header-icon {
-  width: 44px;
-  height: 44px;
-  background: var(--n-accent);
-  border-radius: var(--n-radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-icon svg {
-  width: 22px;
-  height: 22px;
-  color: white;
-}
-
-.section-title {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--n-text);
-  margin: 0;
-}
-
-.section-count {
-  font-size: 0.8125rem;
-  color: var(--n-text-muted);
-}
-
-.clear-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--n-danger-text);
-  background: var(--n-bg);
-  border: 1px solid var(--n-danger-bg);
-  border-radius: var(--n-radius-md);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.clear-btn svg {
-  width: 16px;
-  height: 16px;
-}
-
-.clear-btn:hover:not(:disabled) {
-  background: var(--n-danger-bg);
-  border-color: var(--n-danger-text);
-}
-
-.clear-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* 빈 상태는 global.css 22번 섹션이 담당한다.
-   이 화면은 "저장 해제됨" 이라 빨강 색조를 쓰므로 마크업에
-   .empty-state--danger 를 덧붙였다.
-   CTA 링크와의 간격만 여기 남긴다. */
-.empty-text {
-  margin-bottom: 20px;
 }
 
 .search-link {
@@ -201,7 +122,7 @@ const videoStore = useVideoStore()
   padding: 12px 20px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: white;
+  color: var(--n-on-accent);
   background: var(--n-accent);
   border-radius: var(--n-radius-md);
   text-decoration: none;
@@ -211,10 +132,6 @@ const videoStore = useVideoStore()
 .search-link svg {
   width: 18px;
   height: 18px;
-}
-
-.search-link:hover {
-  box-shadow: none;
 }
 
 /* Video Grid */
@@ -366,7 +283,7 @@ const videoStore = useVideoStore()
 
 .view-btn:hover {
   background: var(--n-accent);
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .delete-btn {
@@ -382,14 +299,6 @@ const videoStore = useVideoStore()
 
 /* Responsive */
 @media (max-width: 768px) {
-  .section-header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .clear-btn {
-    justify-content: center;
-  }
 
   .video-grid {
     grid-template-columns: 1fr;

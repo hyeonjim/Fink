@@ -442,7 +442,7 @@ onMounted(() => {
   width: 104px;
   height: 104px;
   border-radius: 50% 50% 14px 50%;
-  background: var(--n-chatbot-bg);
+  background: var(--n-brand);
   border: 1px solid var(--n-border);
   display: flex;
   align-items: center;
@@ -492,7 +492,7 @@ onMounted(() => {
   top: 4px;
   right: 4px;
   background: var(--n-accent);
-  color: #fff;
+  color: var(--n-on-accent);
   font-size: 11px;
   font-weight: 600;
   min-width: 19px;
@@ -538,7 +538,7 @@ onMounted(() => {
 .bot-avatar {
   width: 40px;
   height: 40px;
-  background: var(--n-chatbot-bg);
+  background: var(--n-brand);
   border: 1px solid var(--n-border);
   border-radius: 50% 50% 6px 50%;
   display: flex;
@@ -563,14 +563,6 @@ onMounted(() => {
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--n-text);
-}
-
-.bot-status {
-  font-size: 11px;
-  color: var(--n-text-muted);
-  display: flex;
-  align-items: center;
-  gap: 5px;
 }
 
 .header-actions {
@@ -644,7 +636,7 @@ onMounted(() => {
 
 .message-user .message-bubble {
   background: var(--n-accent);
-  color: #fff;
+  color: var(--n-on-accent);
   border-bottom-right-radius: 4px;
 }
 
@@ -718,7 +710,7 @@ onMounted(() => {
   justify-content: center;
   padding: 9px 14px;
   background: var(--n-accent);
-  color: #fff;
+  color: var(--n-on-accent);
   border: 1px solid var(--n-accent);
   border-radius: var(--n-radius-sm);
   font-size: 12.5px;
@@ -994,7 +986,7 @@ onMounted(() => {
 .send-btn svg {
   width: 18px;
   height: 18px;
-  color: #fff;
+  color: var(--n-on-accent);
 }
 
 .send-btn:disabled svg {

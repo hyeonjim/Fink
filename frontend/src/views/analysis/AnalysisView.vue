@@ -65,7 +65,7 @@
             </div>
           </div>
 
-          <button class="next-btn" :disabled="!form.purpose" @click="nextStep">
+          <button class="next-btn n-action n-action--primary" :disabled="!form.purpose" @click="nextStep">
             다음 단계
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -251,7 +251,7 @@
               </svg>
               이전
             </button>
-            <button class="next-btn" @click="nextStep">
+            <button class="next-btn n-action n-action--primary" @click="nextStep">
               다음 단계
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -407,7 +407,7 @@
               </svg>
               이전
             </button>
-            <button class="submit-btn" :disabled="analysisStore.loading || !isFormValid" @click="submit">
+            <button class="submit-btn n-action n-action--primary" :disabled="analysisStore.loading || !isFormValid" @click="submit">
               <template v-if="analysisStore.loading">
                 <div class="loading-spinner"></div>
                 분석 중...
@@ -697,32 +697,32 @@ const submit = () => {
 <style scoped>
 .analysis-page {
   min-height: calc(100vh - 200px);
-  background: var(--n-bg);
   margin-bottom: 200px;
+  background: var(--n-page);
 }
 
 /* Main Content */
 .main-content {
-  max-width: 800px;
   margin: 0 auto;
-  padding: 32px 24px 60px;
+  max-width: 960px;
+  padding: 64px 24px 120px;
 }
 
 /* Step Indicator */
 .step-indicator {
   display: flex;
   justify-content: center;
-  gap: 24px;
-  margin-bottom: 24px;
-  margin-top: 20px;
+  gap: 16px;
+  margin: 0 0 40px;
+  align-items: center;
 }
 
 .step-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  opacity: 0.5;
   transition: all 0.3s;
+  gap: 12px;
+  opacity: 1;
 }
 
 .step-item.active {
@@ -730,80 +730,76 @@ const submit = () => {
 }
 
 .step-number {
-  width: 32px;
-  height: 32px;
   border-radius: 50%;
-  background: var(--n-bg);
-  color: var(--n-accent);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 0.875rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: var(--n-lilac);
+  font-size: 18px;
+  font-weight: 800;
+  width: 44px;
+  height: 44px;
+  color: var(--n-violet);
 }
 
 .step-item.active .step-number {
   background: var(--n-accent);
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .step-item.completed .step-number {
   background: #22c55e;
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .step-label {
   font-size: 22px;
   font-weight: 600;
-  color: rgb(89, 81, 90);
+  color: var(--n-fg-muted);
 }
 
 /* Analysis Card */
 .analysis-card {
-  background: var(--n-bg);
-  border-radius: var(--n-radius-xl);
-  padding: 32px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   position: relative;
+  padding: 48px;
+  border-radius: 32px;
+  background: var(--n-surface);
+  box-shadow: var(--n-shadow);
 }
 
 .card-header {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--n-bg-sunken);
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 36px;
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 .card-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--n-accent-wash);
-  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.card-icon svg {
-  width: 24px;
-  height: 24px;
-  color: var(--n-accent);
+  border-radius: 20px;
+  background: var(--n-lilac);
+  width: 64px;
+  height: 64px;
+  color: var(--n-violet);
 }
 
 .card-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--n-text);
   margin: 0 0 4px;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--n-title);
 }
 
 .card-subtitle {
-  font-size: 0.875rem;
-  color: var(--n-text-muted);
   margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--n-fg-muted);
 }
 
 /* Purpose Grid */
@@ -811,53 +807,57 @@ const submit = () => {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
 .purpose-card {
-  padding: 24px 16px;
-  border: 2px solid var(--n-border);
-  border-radius: var(--n-radius-lg);
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s;
+  padding: 32px 24px 28px;
+  border: 0;
+  border-radius: 28px;
+  background: var(--n-fill);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s, box-shadow 0.25s;
+  position: relative;
 }
 
 .purpose-card:hover {
-  border-color: var(--n-accent);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  background: var(--n-fill-strong);
 }
 
 .purpose-card.selected {
-  border-color: var(--n-accent);
-  background: var(--n-accent-wash);
+  background: var(--n-lilac);
+  box-shadow: inset 0 0 0 2px var(--n-periwinkle), 0 16px 36px rgba(81, 64, 181, 0.14);
 }
 
 .purpose-icon {
-  width: 64px;
-  height: 64px;
-  border-radius: var(--n-radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 12px;
-}
-
-.purpose-emoji {
-  font-size: 2rem;
+  border-radius: 26px;
+  background: var(--n-surface) !important;
+  margin-bottom: 20px;
+  width: 88px;
+  height: 88px;
 }
 
 .purpose-title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--n-text);
   margin: 0 0 4px;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--n-title);
 }
 
 .purpose-desc {
-  font-size: 0.8125rem;
-  color: var(--n-text-muted);
   margin: 0;
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--n-fg-muted);
 }
 
 /* Option Grid */
@@ -918,15 +918,14 @@ const submit = () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.9375rem;
+  font-size: 18px;
   font-weight: 600;
-  color: var(--n-text-body);
+  color: var(--n-fg);
 }
 
 .form-label svg {
   width: 18px;
   height: 18px;
-  color: var(--n-accent);
 }
 
 .input-wrapper {
@@ -938,11 +937,14 @@ const submit = () => {
 .form-input {
   width: 100%;
   padding: 14px 60px 14px 16px;
-  font-size: 1rem;
-  border: 2px solid var(--n-border);
-  border-radius: var(--n-radius-md);
-  background: var(--n-bg);
   transition: all 0.2s;
+  border: 0;
+  border-radius: 18px;
+  background: var(--n-fill);
+  font-size: 20px;
+  font-weight: 600;
+  height: 60px;
+  color: var(--n-fg);
 }
 
 .form-input.small {
@@ -951,61 +953,28 @@ const submit = () => {
 }
 
 .form-input::placeholder {
-  color: var(--n-text-muted);
+  color: var(--n-fg-faint);
+  font-weight: 500;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: var(--n-accent);
-  box-shadow: 0 0 0 4px var(--n-accent-wash);
+  background: var(--n-lilac);
+  box-shadow: 0 0 0 3px var(--n-lilac-strong);
 }
 
 .input-suffix {
   position: absolute;
   right: 16px;
-  font-size: 0.875rem;
+  font-size: 16px;
   font-weight: 600;
-  color: var(--n-text-muted);
+  color: var(--n-fg-muted);
 }
 
 .form-hint {
-  font-size: 0.8125rem;
-  color: var(--n-text-muted);
   margin: 4px 0 0;
-}
-
-/* Select */
-.select-wrapper {
-  position: relative;
-}
-
-.form-select {
-  width: 100%;
-  padding: 14px 44px 14px 16px;
-  font-size: 1rem;
-  border: 2px solid var(--n-border);
-  border-radius: var(--n-radius-md);
-  background: var(--n-bg);
-  cursor: pointer;
-  appearance: none;
-  transition: all 0.2s;
-}
-
-.form-select:focus {
-  outline: none;
-  border-color: var(--n-accent);
-  box-shadow: 0 0 0 4px var(--n-accent-wash);
-}
-
-.select-arrow {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  color: var(--n-text-muted);
-  pointer-events: none;
+  font-size: 16px;
+  color: var(--n-fg-muted);
 }
 
 /* Period Selector */
@@ -1017,24 +986,28 @@ const submit = () => {
 }
 
 .period-option {
-  padding: 12px 20px;
-  border: 2px solid var(--n-border);
-  border-radius: var(--n-radius-md);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--n-text-body);
   cursor: pointer;
   transition: all 0.2s;
+  height: 52px;
+  padding: 0 22px;
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  border-radius: 16px;
+  background: var(--n-fill);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--n-fg-muted);
 }
 
 .period-option:hover {
-  border-color: var(--n-accent);
+  color: var(--n-fg);
+  background: var(--n-fill-strong);
 }
 
 .period-option.selected {
-  border-color: var(--n-accent);
-  background: var(--n-accent);
-  color: white;
+  background: var(--n-violet);
+  color: var(--n-on-accent);
 }
 
 .period-custom {
@@ -1050,26 +1023,25 @@ const submit = () => {
 
 /* Preview Card */
 .preview-card {
-  background: var(--n-bg-subtle);
-  border-radius: var(--n-radius-lg);
-  padding: 20px;
   margin-top: 8px;
+  padding: 28px;
+  border-radius: 24px;
+  background: var(--n-fill);
 }
 
 .preview-title {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.9375rem;
   font-weight: 700;
-  color: var(--n-text);
   margin: 0 0 16px;
+  font-size: 20px;
+  color: var(--n-title);
 }
 
 .preview-title svg {
   width: 18px;
   height: 18px;
-  color: var(--n-accent);
 }
 
 .preview-stats {
@@ -1085,18 +1057,19 @@ const submit = () => {
 }
 
 .stat-label {
-  font-size: 0.8125rem;
-  color: var(--n-text-muted);
+  font-size: 16px;
+  color: var(--n-fg-muted);
 }
 
 .stat-value {
-  font-size: 1rem;
   font-weight: 700;
-  color: var(--n-text);
+  font-size: 20px;
+  color: var(--n-fg);
+  font-variant-numeric: tabular-nums;
 }
 
 .stat-value.highlight {
-  color: var(--n-accent);
+  color: var(--n-violet);
 }
 
 .preview-stat.success .stat-value {
@@ -1152,8 +1125,8 @@ const submit = () => {
 }
 
 .country-currency {
-  font-size: 0.75rem;
-  color: var(--n-text-muted);
+  font-size: 16px;
+  color: var(--n-fg-muted);
 }
 
 /* Travel Tip */
@@ -1161,64 +1134,38 @@ const submit = () => {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 16px;
-  background: var(--n-warn-bg);
-  border-radius: var(--n-radius-md);
   margin-top: 8px;
+  padding: 18px 20px;
+  border-radius: 20px;
+  background: var(--n-bookmark-bg);
 }
 
 .travel-tip svg {
   width: 20px;
   height: 20px;
-  color: var(--n-warn-text);
   flex-shrink: 0;
   margin-top: 2px;
 }
 
 .travel-tip p {
   margin: 0;
-  font-size: 0.875rem;
-  color: var(--n-warn-text);
   line-height: 1.5;
+  font-size: 16px;
+  color: var(--n-bookmark-text);
 }
 
 /* Buttons */
 .btn-group {
   display: flex;
   gap: 12px;
-  margin-top: 32px;
+  margin-top: 36px;
+  justify-content: flex-end;
 }
 
+/* 다음·분석하기 — 모양은 global.css 의 .n-action 이 담당한다 */
 .next-btn, .submit-btn {
-  flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 16px 32px;
-  font-size: 1rem;
-  font-weight: 700;
-  color: white;
-  background: var(--n-accent);
-  border: none;
-  border-radius: var(--n-radius-md);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.next-btn svg, .submit-btn svg {
-  width: 20px;
-  height: 20px;
-}
-
-.next-btn:hover:not(:disabled), .submit-btn:hover:not(:disabled) {
-  box-shadow: none;
-}
-
-.next-btn:disabled, .submit-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
+  flex: 0 0 auto;
 }
 
 .back-btn {
@@ -1226,15 +1173,17 @@ const submit = () => {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 16px 24px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--n-text-muted);
-  background: var(--n-bg);
-  border: 2px solid var(--n-border);
-  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
+  height: 60px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--n-lilac);
+  color: var(--n-violet-hover);
+  font-size: 19px;
+  font-weight: 700;
+  margin-right: auto;
 }
 
 .back-btn svg {
@@ -1243,8 +1192,8 @@ const submit = () => {
 }
 
 .back-btn:hover {
-  border-color: var(--n-accent);
-  color: var(--n-accent);
+  background: var(--n-lilac-strong);
+  color: var(--n-violet-hover);
 }
 
 .loading-spinner {
@@ -1265,11 +1214,11 @@ const submit = () => {
 }
 
 .info-card {
-  background: var(--n-bg);
-  border-radius: var(--n-radius-lg);
-  padding: 24px 20px;
   text-align: center;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 32px 28px;
+  border-radius: 28px;
+  background: var(--n-surface);
+  box-shadow: 0 18px 44px rgba(49, 32, 110, 0.10);
 }
 
 .info-icon {
@@ -1306,201 +1255,94 @@ const submit = () => {
 }
 
 .info-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--n-text);
   margin: 0 0 6px;
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--n-title);
 }
 
 .info-text {
-  font-size: 0.8125rem;
-  color: var(--n-text-muted);
-  line-height: 1.5;
   margin: 0;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--n-fg-muted);
 }
 
-/* Responsive */
-/* ═══════════════════════════════════════════════════════════════════
-   F!NK 리디자인 — 메인 톤 적용 (보더 제거, 면 + 그림자, 바이올렛 버튼)
-   위쪽 기존 규칙을 덮어쓴다. 모바일 규칙은 아래 @media 가 이어서 처리.
-   ═══════════════════════════════════════════════════════════════════ */
-.analysis-page { background: var(--fk-bg); }
-.main-content { max-width: 960px; padding: 64px 24px 120px; }
-
 /* 단계 표시 — 버튼과 같은 바이올렛 계열 */
-.step-indicator { gap: 16px; margin: 0 0 40px; align-items: center; }
-.step-item { gap: 12px; opacity: 1; }
 .step-item + .step-item::before {
   content: '';
   width: 56px;
   height: 3px;
   margin-right: 4px;
   border-radius: 2px;
-  background: var(--fk-lilac-2);
-}
-.step-number {
-  width: 44px; height: 44px;
-  background: var(--fk-lilac); color: var(--fk-violet);
-  font-size: 18px; font-weight: 800; box-shadow: none;
+  background: var(--n-lilac-strong);
 }
 .step-item.active .step-number,
-.step-item.completed .step-number { background: var(--fk-violet); color: #fff; }
-.step-label { font-size: 22px; font-weight: 600; color: var(--fk-muted); }
-.step-item.active .step-label { color: var(--fk-ink); }
+.step-item.completed .step-number { background: var(--n-violet); color: var(--n-on-accent); }
+.step-item.active .step-label { color: var(--n-fg); }
 
 /* 분석 카드 */
-.analysis-card { padding: 48px; border-radius: 32px; background: var(--fk-card); box-shadow: var(--fk-shadow); }
-.card-header { align-items: center; gap: 18px; margin-bottom: 36px; padding-bottom: 0; border-bottom: 0; }
-.card-icon { width: 64px; height: 64px; border-radius: 20px; background: var(--fk-lilac); color: var(--fk-violet); }
-.card-icon svg { width: 30px; height: 30px; color: var(--fk-violet); }
-.card-title { font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--fk-title); }
-.card-subtitle { font-size: 20px; font-weight: 500; color: var(--fk-muted); }
+.card-icon svg { width: 30px; height: 30px; color: var(--n-violet); }
 
 /* 목적 카드 — 선택되면 연보라 면 + 얇은 안쪽 링 + 체크 배지 */
-.purpose-grid { gap: 16px; margin-bottom: 36px; }
-.purpose-card {
-  position: relative;
-  padding: 32px 24px 28px;
-  border: 0;
-  border-radius: 28px;
-  background: var(--fk-surface);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s, box-shadow 0.25s;
-}
-.purpose-card:hover { transform: translateY(-4px); background: var(--fk-surface-2); }
-.purpose-card.selected {
-  background: var(--fk-lilac);
-  box-shadow: inset 0 0 0 2px var(--fk-periwinkle), 0 16px 36px rgba(81, 64, 181, 0.14);
-}
 .purpose-card.selected::after {
   content: '';
   position: absolute;
   top: 18px; right: 18px;
   width: 30px; height: 30px;
   border-radius: 50%;
-  background: var(--fk-violet) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 16px no-repeat;
+  background: var(--n-violet) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 16px no-repeat;
 }
-.purpose-icon { width: 88px; height: 88px; border-radius: 26px; background: var(--fk-card) !important; margin-bottom: 20px; }
 .purpose-svg { width: 58px; height: 58px; transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .purpose-card:hover .purpose-svg { transform: translateY(-4px) rotate(-5deg) scale(1.05); }
-.purpose-title { font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--fk-title); }
-.purpose-card.selected .purpose-title { color: var(--fk-violet-hover); }
-.purpose-desc { margin-top: 8px; font-size: 18px; font-weight: 500; line-height: 1.6; color: var(--fk-muted); }
+.purpose-card.selected .purpose-title { color: var(--n-violet-hover); }
 
 /* 선택 타일 (주거 유형·세부 목적·국가) */
 .option-card,
 .country-card {
   border: 0;
   border-radius: 20px;
-  background: var(--fk-surface);
+  background: var(--n-fill);
 }
 .option-card:hover,
-.country-card:hover { background: var(--fk-surface-2); }
+.country-card:hover { background: var(--n-fill-strong); }
 .option-card.selected,
 .country-card.selected {
-  background: var(--fk-lilac);
-  box-shadow: inset 0 0 0 2px var(--fk-periwinkle);
+  background: var(--n-lilac);
+  box-shadow: inset 0 0 0 2px var(--n-periwinkle);
 }
 .option-label,
-.country-name { font-size: 18px; font-weight: 600; color: var(--fk-ink); }
-.country-currency { font-size: 16px; color: var(--fk-muted); }
+.country-name { font-size: 18px; font-weight: 600; color: var(--n-fg); }
 
 /* 입력 */
-.form-label { font-size: 18px; font-weight: 600; color: var(--fk-ink); }
-.form-label svg { color: var(--fk-violet); }
-.form-input {
-  height: 60px;
-  border: 0;
-  border-radius: 18px;
-  background: var(--fk-surface);
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--fk-ink);
-}
-.form-input:focus { background: var(--fk-lilac); box-shadow: 0 0 0 3px var(--fk-lilac-2); }
-.form-input::placeholder { color: var(--fk-faint); font-weight: 500; }
-.input-suffix { font-size: 16px; font-weight: 600; color: var(--fk-muted); }
-.form-hint { font-size: 16px; color: var(--fk-muted); }
-
-.period-option {
-  height: 52px;
-  padding: 0 22px;
-  display: inline-flex;
-  align-items: center;
-  border: 0;
-  border-radius: 16px;
-  background: var(--fk-surface);
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--fk-muted);
-}
-.period-option:hover { color: var(--fk-ink); background: var(--fk-surface-2); }
-.period-option.selected { background: var(--fk-violet); color: #fff; }
-
-.preview-card { padding: 28px; border-radius: 24px; background: var(--fk-surface); }
-.preview-title { font-size: 20px; color: var(--fk-title); }
-.preview-title svg { color: var(--fk-violet); }
-.stat-label { font-size: 16px; color: var(--fk-muted); }
-.stat-value { font-size: 20px; color: var(--fk-ink); font-variant-numeric: tabular-nums; }
-.stat-value.highlight { color: var(--fk-violet); }
-
-.travel-tip { padding: 18px 20px; border-radius: 20px; background: var(--fk-bookmark-bg); }
+.form-label svg { color: var(--n-violet); }
+.preview-title svg { color: var(--n-violet); }
 .travel-tip svg { color: #b58a1c; }
-.travel-tip p { font-size: 16px; color: var(--fk-bookmark-text); }
 
 /* 버튼 */
-.btn-group { margin-top: 36px; justify-content: flex-end; }
-.next-btn,
-.submit-btn {
-  flex: 0 0 auto;
-  height: 60px;
-  padding: 0 28px;
-  border-radius: 18px;
-  background: var(--fk-violet);
-  font-size: 19px;
-  transition: background-color 0.2s, transform 0.2s;
-}
 .step-content > .next-btn { margin-left: auto; }
-.next-btn:hover:not(:disabled),
-.submit-btn:hover:not(:disabled) { background: var(--fk-violet-hover); transform: translateY(-2px); }
-.back-btn {
-  height: 60px;
-  padding: 0 24px;
-  border: 0;
-  border-radius: 18px;
-  background: var(--fk-lilac);
-  color: var(--fk-violet-hover);
-  font-size: 19px;
-  font-weight: 700;
-  margin-right: auto;
-}
-.back-btn:hover { background: var(--fk-lilac-2); color: var(--fk-violet-hover); }
 
-/* 안내 카드 — 흰 카드 + 그림자로 선명하게 */
-.info-cards { gap: 16px; margin-top: 32px; }
-.info-card { padding: 32px 28px; border-radius: 28px; background: var(--fk-card); box-shadow: 0 18px 44px rgba(49, 32, 110, 0.10); }
+/* 안내 카드 — 흰 카드 + 그림자로 선명하게
+   안내 카드 아이콘 — 주택 아이콘과 같은 투톤 일러스트를 연한 면 타일에 */
 .info-icon,
 .info-icon.purple,
 .info-icon.amber {
-  width: 60px; height: 60px;
-  border-radius: 20px;
-  background: var(--fk-lilac);
-  color: var(--fk-violet);
+  color: var(--n-violet);
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
+  background: var(--n-fill);
 }
 .info-icon svg,
 .info-icon.purple svg,
-.info-icon.amber svg { width: 28px; height: 28px; color: var(--fk-violet); }
-/* 안내 카드 아이콘 — 주택 아이콘과 같은 투톤 일러스트를 연한 면 타일에 */
-.info-icon,
-.info-icon.purple,
-.info-icon.amber { width: 72px; height: 72px; border-radius: 22px; background: var(--fk-surface); }
-.info-icon svg,
-.info-icon.purple svg,
-.info-icon.amber svg { width: 46px; height: 46px; }
+.info-icon.amber svg { color: var(--n-violet); width: 46px; height: 46px; }
 /* 목적 선택 헤더 아이콘 */
-.card-icon--illust { background: var(--fk-surface); }
+.card-icon--illust { background: var(--n-fill); }
 .card-icon--illust svg { width: 40px; height: 40px; }
-.info-title { margin-top: 20px; font-size: 22px; font-weight: 600; letter-spacing: -0.03em; color: var(--fk-title); }
-.info-text { margin-top: 10px; font-size: 18px; font-weight: 500; line-height: 1.6; color: var(--fk-muted); }
 
 @media (max-width: 768px) {
   .main-content {

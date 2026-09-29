@@ -10,7 +10,7 @@
           <h1 class="n-page-title">커뮤니티</h1>
           <p class="n-page-subtitle">다양한 이야기를 나눠보세요</p>
         </div>
-        <RouterLink class="create-btn" :to="{ name: 'CreateView' }">
+        <RouterLink class="create-btn n-action n-action--primary" :to="{ name: 'CreateView' }">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="12" y1="5" x2="12" y2="19"/>
             <line x1="5" y1="12" x2="19" y2="12"/>
@@ -167,77 +167,67 @@ const formatDate = (iso) => {
 <style scoped>
 .community-page {
   min-height: calc(100vh - 72px);
-  background: var(--n-bg);
+  background: var(--n-page);
 }
 
+/* 글쓰기 — 모양은 global.css 의 .n-action 이 담당한다 */
 .create-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 42px;
-  padding: 0 18px;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: #fff;
-  background: var(--n-accent);
-  border-radius: var(--n-radius-sm);
-  text-decoration: none;
-  transition: background-color 0.18s ease, border-color 0.18s ease;
   flex-shrink: 0;
-}
-
-.create-btn:hover {
-  background: var(--n-accent-hover);
-  border-color: var(--n-accent-hover);
-}
-
-.create-btn svg {
-  width: 18px;
-  height: 18px;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 }
 
 .container {
-  max-width: 1400px;
   margin: 0 auto;
-  padding: 48px 24px;
+  max-width: 1200px;
+  padding: 48px 24px 120px;
 }
 
 /* Board */
 .board-section {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .board-card {
-  background: var(--n-bg);
-  border-radius: var(--n-radius-xl);
-  border: 1px solid var(--n-border);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  border: 0;
+  border-radius: 28px;
+  background: var(--n-surface);
+  box-shadow: var(--n-shadow);
 }
 
 .board-header {
   display: grid;
-  grid-template-columns: 1fr 140px 140px 80px;
   align-items: center;
+  grid-template-columns: minmax(0, 1fr) 160px 160px 100px;
   padding: 16px 24px;
-  background: var(--n-bg-subtle);
-  border-bottom: 2px solid var(--n-border);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--n-text-body);
+  border: 0;
+  border-radius: 18px;
+  background: var(--n-fill);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--n-fg-muted);
 }
 
 .board-body {
-  max-height: 600px;
-  overflow-y: auto;
+  max-height: none;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .board-row {
   display: grid;
-  grid-template-columns: 1fr 140px 140px 80px;
   align-items: center;
-  padding: 16px 24px;
-  border-bottom: 1px solid var(--n-bg-sunken);
   transition: background 0.2s;
+  grid-template-columns: minmax(0, 1fr) 160px 160px 100px;
+  padding: 20px 24px;
+  border: 0;
+  border-radius: 18px;
 }
 
 .board-row:last-child {
@@ -245,11 +235,11 @@ const formatDate = (iso) => {
 }
 
 .board-row:hover {
-  background: var(--n-bg-subtle);
+  background: var(--n-fill);
 }
 
 .board-row.notice {
-  background: var(--n-accent-wash);
+  background: var(--n-lilac);
 }
 
 .col-title {
@@ -263,26 +253,28 @@ const formatDate = (iso) => {
 }
 
 .article-title {
+  transition: color 0.2s;
   font-size: 20px;
   font-weight: 500;
-  color: var(--n-text);
-  transition: color 0.2s;
+  color: var(--n-fg);
 }
 
 .article-link:hover .article-title {
-  color: var(--n-accent);
+  color: var(--n-fg-muted);
+  text-decoration: underline;
 }
 
 .comment-count {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--n-accent);
-  background: var(--n-accent-wash);
-  padding: 3px 8px;
-  border-radius: var(--n-radius-md);
+  height: 28px;
+  padding: 0 10px;
+  gap: 4px;
+  border-radius: 999px;
+  background: var(--n-lilac);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--n-violet);
 }
 
 .comment-count svg {
@@ -303,16 +295,21 @@ const formatDate = (iso) => {
 }
 
 .col-author {
-  color: var(--n-text-body);
+  font-size: 18px;
+  color: var(--n-fg);
 }
 
 .col-date {
-  color: var(--n-text-muted);
+  font-size: 18px;
+  color: var(--n-fg-muted);
+  font-variant-numeric: tabular-nums;
 }
 
 .col-views {
+  font-size: 18px;
   font-weight: 600;
-  color: var(--n-text-muted);
+  color: var(--n-fg-muted);
+  font-variant-numeric: tabular-nums;
 }
 
 /* Empty State */
@@ -332,15 +329,15 @@ const formatDate = (iso) => {
 }
 
 .empty-state p {
-  font-size: 1rem;
   font-weight: 600;
-  color: var(--n-text-body);
   margin: 0 0 4px;
+  font-size: 20px;
+  color: var(--n-fg);
 }
 
 .empty-state span {
-  font-size: 0.875rem;
-  color: var(--n-text-muted);
+  font-size: 16px;
+  color: var(--n-fg-muted);
 }
 
 /* Pagination */
@@ -355,17 +352,17 @@ const formatDate = (iso) => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 40px;
-  height: 40px;
   padding: 0 12px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--n-text-body);
-  background: var(--n-bg);
-  border: 2px solid var(--n-border);
-  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
+  min-width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--n-fill);
+  color: var(--n-fg);
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .page-btn svg {
@@ -380,53 +377,27 @@ const formatDate = (iso) => {
 }
 
 .page-num.active {
-  background: var(--n-accent);
-  border-color: transparent;
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .page-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+  color: var(--n-fg-faint);
 }
-
-/* Responsive */
 /* ═══════════════════════════════════════════════════════════════════
    F!NK 리디자인 — 게시판 (흰 카드 + 그림자, 행 구분은 hover 면)
    페이지 번호는 그레이 계열.
    ═══════════════════════════════════════════════════════════════════ */
-.community-page { background: var(--fk-bg); }
-.create-btn { height: 60px; padding: 0 28px; gap: 10px; border: 0; border-radius: 18px; background: var(--fk-violet); color: #fff; font-size: 19px; font-weight: 700; box-shadow: none; }
-.create-btn:hover { background: var(--fk-violet-hover); color: #fff; transform: translateY(-2px); }
-.create-btn svg { width: 20px; height: 20px; }
-.container { max-width: 1200px; padding: 48px 24px 120px; }
-.board-section { margin-bottom: 32px; }
-.board-card { display: flex; flex-direction: column; gap: 4px; padding: 16px; border: 0; border-radius: 28px; background: var(--fk-card); box-shadow: var(--fk-shadow); }
-.board-header { grid-template-columns: minmax(0, 1fr) 160px 160px 100px; padding: 16px 24px; border: 0; border-radius: 18px; background: var(--fk-surface); font-size: 16px; font-weight: 600; color: var(--fk-muted); }
-.board-body { max-height: none; overflow: visible; display: flex; flex-direction: column; gap: 4px; }
-.board-row { grid-template-columns: minmax(0, 1fr) 160px 160px 100px; padding: 20px 24px; border: 0; border-radius: 18px; }
-.board-row:hover { background: var(--fk-surface); }
-.board-row.notice { background: var(--fk-lilac); }
 .board-header .col-author,
 .board-header .col-date,
 .board-header .col-views,
 .board-row .col-author,
 .board-row .col-date,
 .board-row .col-views { text-align: center; }
-.article-title { font-size: 20px; font-weight: 500; color: var(--fk-ink); }
-.article-link:hover .article-title { color: var(--fk-muted); text-decoration: underline; }
-.comment-count { height: 28px; padding: 0 10px; gap: 4px; border-radius: 999px; background: var(--fk-lilac); font-size: 16px; font-weight: 700; color: var(--fk-violet); }
-.col-author { font-size: 18px; color: var(--fk-ink); }
-.col-date { font-size: 18px; color: var(--fk-muted); font-variant-numeric: tabular-nums; }
-.col-views { font-size: 18px; font-weight: 600; color: var(--fk-muted); font-variant-numeric: tabular-nums; }
-.empty-state p { font-size: 20px; color: var(--fk-ink); }
-.empty-state span { font-size: 16px; color: var(--fk-muted); }
-.page-btn,
-.page-num { min-width: 44px; height: 44px; border: 0; border-radius: 12px; background: var(--fk-surface); color: var(--fk-ink); font-size: 18px; font-weight: 700; }
 .page-num:hover,
-.page-btn:hover:not(:disabled) { background: var(--fk-surface-2); }
-.page-num.active { background: #6b6975; color: #fff; }
-.page-btn:disabled { color: var(--fk-faint); }
+.page-btn:hover:not(:disabled) { background: var(--n-fill-strong); }
+.page-num.active { background: #6b6975; }
 
 @media (max-width: 768px) {
   .create-btn {

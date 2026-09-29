@@ -104,12 +104,12 @@ const formatDistance = (distance) => {
    ═══════════════════════════════════════════════════════════════════ */
 .map-placeholder {
   width: 100%;
-  height: 100%;
-  min-height: 500px;
-  background: var(--n-bg-subtle);
-  border: 1px solid var(--n-border);
-  border-radius: var(--n-radius-xl);
-  overflow: hidden;
+  min-height: 0;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
 }
 
 /* ── 검색 전 ──────────────────────────────────────────────────────── */
@@ -119,9 +119,11 @@ const formatDistance = (distance) => {
   align-items: center;
   justify-content: center;
   height: 100%;
-  min-height: 500px;
   padding: 32px 24px;
   text-align: center;
+  min-height: 380px;
+  border-radius: 32px;
+  background: var(--n-fill);
 }
 
 .placeholder-icon {
@@ -133,16 +135,16 @@ const formatDistance = (distance) => {
 
 .placeholder-title {
   margin-bottom: 10px;
-  font-size: 0.9375rem;
-  font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--n-text);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--n-title);
 }
 
 .placeholder-text {
-  font-size: 0.8125rem;
   line-height: 1.65;
-  color: var(--n-text-muted);
+  font-size: 18px;
+  color: var(--n-fg-muted);
 }
 
 /* ── 검색 결과 ────────────────────────────────────────────────────── */
@@ -151,57 +153,69 @@ const formatDistance = (distance) => {
   flex-direction: column;
   height: 100%;
   min-height: 500px;
+  padding: 0;
+  gap: 16px;
 }
 
 .results-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 18px 20px;
-  border-bottom: 1px solid var(--n-border);
-  background: var(--n-bg);
+  padding: 0;
+  border: 0;
+  background: none;
+  gap: 10px;
+  justify-content: flex-start;
 }
 
 .results-title {
-  font-size: 0.9375rem;
+  font-size: 26px;
   font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--n-text);
+  letter-spacing: -0.03em;
+  color: var(--n-title);
 }
 
 .results-count {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--n-text-muted);
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--n-lilac);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--n-violet);
 }
 
 .results-list {
   flex: 1;
   overflow-y: auto;
   list-style: none;
-  padding: 8px;
   margin: 0;
+  padding: 0;
+  gap: 8px;
 }
 
 .result-item {
-  display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 14px 16px;
-  border: 1px solid transparent;
-  border-radius: var(--n-radius-md);
   cursor: pointer;
-  transition: background-color 0.18s ease, border-color 0.18s ease;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 16px;
+  row-gap: 4px;
+  align-items: center;
+  padding: 16px 20px 16px 16px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--n-fill);
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .result-item:hover {
-  background: var(--n-bg);
-  border-color: var(--n-border);
+  background: var(--n-fill);
+  transform: translateX(4px);
 }
 
 .result-item.selected {
-  background: var(--n-accent-wash);
-  border-color: var(--n-accent);
+  background: var(--n-fill-strong);
+  border: 0;
 }
 
 .result-main {
@@ -212,16 +226,20 @@ const formatDistance = (distance) => {
 }
 
 .result-name {
-  font-size: 0.875rem;
-  font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--n-text);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--n-fg);
 }
 
 .result-distance {
   flex-shrink: 0;
-  font-size: 0.75rem;
-  color: var(--n-text-muted);
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--n-fill-strong);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--n-fg);
 }
 
 .result-address {
@@ -236,29 +254,6 @@ const formatDistance = (distance) => {
 }
 
 /* ═══ F!NK 리디자인 — 결과 목록 (연한 면 타일 + 은행 로고, 보더 없음) ═══ */
-.map-placeholder { min-height: 0; height: auto; border: 0; border-radius: 0; background: transparent; overflow: visible; }
-.placeholder-empty { min-height: 380px; border-radius: 32px; background: var(--fk-surface); }
-.placeholder-title { font-size: 22px; font-weight: 600; color: var(--fk-title); }
-.placeholder-text { font-size: 18px; color: var(--fk-muted); }
-.placeholder-results { padding: 0; gap: 16px; }
-.results-header { padding: 0; border: 0; background: none; gap: 10px; justify-content: flex-start; }
-.results-title { font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--fk-title); }
-.results-count { padding: 4px 12px; border-radius: 999px; background: var(--fk-lilac); font-size: 16px; font-weight: 700; color: var(--fk-violet); }
-.results-list { padding: 0; gap: 8px; }
-.result-item {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  column-gap: 16px;
-  row-gap: 4px;
-  align-items: center;
-  padding: 16px 20px 16px 16px;
-  border: 0;
-  border-radius: 20px;
-  background: var(--fk-surface);
-  transition: background-color 0.2s, transform 0.2s;
-}
-.result-item:hover { background: var(--fk-surface); transform: translateX(4px); }
-.result-item.selected { background: var(--fk-surface-2); border: 0; }
 .result-logo {
   grid-row: span 3;
   display: flex;
@@ -272,9 +267,7 @@ const formatDistance = (distance) => {
   background: #ffffff;
 }
 .result-logo img { width: 100%; height: 100%; object-fit: contain; }
-.result-name { font-size: 20px; font-weight: 600; color: var(--fk-ink); }
-.result-distance { padding: 4px 12px; border-radius: 999px; background: var(--fk-surface-2); font-size: 16px; font-weight: 700; color: var(--fk-ink); }
-.result-item.selected .result-distance { background: var(--fk-card); }
+.result-item.selected .result-distance { background: var(--n-surface); }
 .result-address,
-.result-phone { font-size: 16px; color: var(--fk-muted); }
+.result-phone { font-size: 16px; color: var(--n-fg-muted); }
 </style>

@@ -89,10 +89,9 @@ const goBookmark = function () {
 
 <style scoped>
 /* ═══════════════════════════════════════════════════════════════════
-   뉴스 헤더 — 무채색. 색 바 대신 옅은 배경 + 아래 경계선.
+   뉴스 헤더 — 공용 규칙은 global.css 의 .n-page-header* 를 쓴다.
+   이 화면만 제목 영역과 검색·탭 영역을 양끝에 배치한다.
    ═══════════════════════════════════════════════════════════════════ */
-/* 공용 규칙은 global.css 의 .n-page-header* 를 쓴다.
-   이 화면만 제목 영역과 검색·탭 영역을 양끝에 배치한다. */
 .header-title-area {
   display: flex;
   align-items: center;
@@ -101,9 +100,14 @@ const goBookmark = function () {
 
 .header-controls {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 22px;
+  width: 480px;
+  flex-wrap: nowrap;
+  position: absolute;
+  right: 0;
+  bottom: -36px;
 }
 
 /* ── 검색 ────────────────────────────────────────────────────────── */
@@ -111,16 +115,18 @@ const goBookmark = function () {
   display: flex;
   align-items: center;
   gap: 0;
-  padding: 3px;
-  border: 1px solid var(--n-border);
-  border-radius: var(--n-radius-sm);
-  background: var(--n-bg);
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  align-self: stretch;
+  height: 52px;
+  padding: 0 6px 0 20px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--n-surface);
+  box-shadow: 0 18px 40px rgba(49, 32, 110, 0.10);
 }
 
 .search-box:focus-within {
-  border-color: var(--n-accent);
-  box-shadow: 0 0 0 3px var(--n-accent-wash);
+  box-shadow: 0 18px 40px rgba(49, 32, 110, 0.10), 0 0 0 3px var(--n-lilac-strong);
 }
 
 .search-icon {
@@ -130,60 +136,71 @@ const goBookmark = function () {
   color: var(--n-text-muted);
   flex-shrink: 0;
 }
+/* 입력칸이 고정 폭(230px)이라 버튼 오른쪽에 빈칸이 남던 문제 → 남는 폭을 입력칸이 채운다 */
 
 .search-box input {
-  width: 230px;
   padding: 8px 10px;
-  font-size: 0.875rem;
-  color: var(--n-text);
   background: transparent;
   border: none;
   outline: none;
+  flex: 1;
+  width: auto;
+  min-width: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--n-fg);
 }
 
 .search-box input::placeholder {
-  color: var(--n-text-muted);
+  color: var(--n-fg-faint);
+  font-weight: 500;
 }
 
 .search-btn {
-  padding: 7px 14px;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: #fff;
-  background: var(--n-accent);
-  border: 1px solid var(--n-accent);
-  border-radius: var(--n-radius-sm);
   cursor: pointer;
   transition: background-color 0.18s ease, border-color 0.18s ease;
+  flex-shrink: 0;
+  height: 40px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--n-violet);
+  color: var(--n-on-accent);
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .search-btn:hover {
-  background: var(--n-accent-hover);
-  border-color: var(--n-accent-hover);
+  background: var(--n-violet-hover);
 }
 
 /* ── 필터 탭 ─────────────────────────────────────────────────────── */
 .filter-tabs {
   display: flex;
-  gap: 6px;
+  padding: 5px;
+  gap: 4px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--n-surface);
 }
 
 .filter-tab {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 9px 14px;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--n-text-muted);
-  background: transparent;
-  border: 1px solid var(--n-border);
-  border-radius: var(--n-radius-sm);
   cursor: pointer;
   transition:
     background-color 0.18s ease,
     border-color 0.18s ease,
     color 0.18s ease;
+  height: 34px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--n-fg-muted);
 }
 
 .filter-tab svg {
@@ -192,37 +209,17 @@ const goBookmark = function () {
 }
 
 .filter-tab:hover {
-  color: var(--n-text);
-  border-color: var(--n-border-strong);
+  background: transparent;
+  color: var(--n-fg);
 }
 
 .filter-tab.active {
-  color: var(--n-accent);
-  background: var(--n-accent-wash);
-  border-color: var(--n-accent);
+  background: var(--n-orchid);
+  color: var(--n-on-accent);
 }
-
-/* ═══════════════════════════════════════════════════════════════════
-   Responsive
-   ═══════════════════════════════════════════════════════════════════ */
-/* ═══ F!NK 리디자인 — 검색창·탭 (헤더 그라데이션 위 흰 요소) ═══ */
-.header-controls { flex-direction: column; align-items: flex-end; gap: 22px; width: 480px; flex-wrap: nowrap; }
 /* 헤더 높이·제목 위치를 다른 페이지와 똑같이 두기 위해,
    검색·탭은 높이 계산에서 빼고(absolute) 헤더 오른쪽 아래에 붙인다 */
 .n-page-header-content--split { position: relative; }
-.header-controls { position: absolute; right: 0; bottom: -36px; }
-.search-box { align-self: stretch; height: 52px; padding: 0 6px 0 20px; border: 0; border-radius: 20px; background: var(--fk-card); box-shadow: 0 18px 40px rgba(49, 32, 110, 0.10); }
-.search-box:focus-within { box-shadow: 0 18px 40px rgba(49, 32, 110, 0.10), 0 0 0 3px var(--fk-lilac-2); }
-/* 입력칸이 고정 폭(230px)이라 버튼 오른쪽에 빈칸이 남던 문제 → 남는 폭을 입력칸이 채운다 */
-.search-box input { flex: 1; width: auto; min-width: 0; font-size: 18px; font-weight: 600; color: var(--fk-ink); }
-.search-btn { flex-shrink: 0; }
-.search-box input::placeholder { color: var(--fk-faint); font-weight: 500; }
-.search-btn { height: 40px; padding: 0 20px; border: 0; border-radius: 12px; background: var(--fk-violet); color: #fff; font-size: 16px; font-weight: 600; }
-.search-btn:hover { background: var(--fk-violet-hover); }
-.filter-tabs { padding: 5px; gap: 4px; border: 0; border-radius: 16px; background: var(--fk-card); }
-.filter-tab { height: 34px; padding: 0 20px; border: 0; border-radius: 12px; background: transparent; font-size: 16px; font-weight: 600; color: var(--fk-muted); }
-.filter-tab:hover { background: transparent; color: var(--fk-ink); }
-.filter-tab.active { background: var(--fk-orchid); color: #fff; }
 
 /* 좁은 화면에서는 제목과 겹치지 않게 다시 흐름 안으로 */
 @media (max-width: 1100px) {

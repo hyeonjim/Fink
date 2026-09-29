@@ -338,7 +338,7 @@ const onToggleCommentLike = (commentId) => {
   justify-content: center;
   font-size: 1.125rem;
   font-weight: 700;
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .author-details {
@@ -454,7 +454,7 @@ const onToggleCommentLike = (commentId) => {
 .like-btn.liked {
   background: #f39696;
   border-color: transparent;
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .like-count {

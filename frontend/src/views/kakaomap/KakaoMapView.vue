@@ -113,7 +113,7 @@
           </div>
 
           <!-- Search Button -->
-          <button class="btn-search" @click="kakaoMapStore.handleSearch">
+          <button class="btn-search n-action n-action--primary" @click="kakaoMapStore.handleSearch">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="11" cy="11" r="8"/>
               <line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -181,55 +181,53 @@ onMounted(() => {
 <style scoped>
 .kakao-map-page {
   min-height: 100vh;
-  background: var(--n-bg);
+  background: var(--n-page);
 }
-
 
 /* Main Container */
 .main-container {
-  max-width: 1400px;
   margin: 0 auto;
-  padding: 24px;
   display: flex;
   gap: 24px;
   min-height: calc(100vh - 140px);
+  max-width: 1200px;
+  padding: 48px 24px 120px;
+  align-items: flex-start;
 }
 
 /* Search Sidebar */
 .search-sidebar {
-  width: 320px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 360px;
 }
 
 .search-card {
-  background: var(--n-bg);
-  border-radius: var(--n-radius-xl);
-  padding: 24px;
-  border: 1px solid var(--n-border);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 28px;
+  border: 0;
+  border-radius: 28px;
+  background: var(--n-surface);
+  box-shadow: 0 24px 60px rgba(29, 26, 43, 0.12);
 }
 
 .input-section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .input-label {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--n-text);
-}
-
-.input-label svg {
-  width: 16px;
-  height: 16px;
-  color: var(--n-accent);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--n-fg);
 }
 
 .input-field {
@@ -260,27 +258,29 @@ onMounted(() => {
 }
 
 .btn-origin-search {
-  width: 44px;
-  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--n-info-text);
-  border: none;
-  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
+  width: 56px;
+  height: 56px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--n-violet);
+  color: var(--n-on-accent);
 }
 
 .btn-origin-search svg {
   width: 18px;
   height: 18px;
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .btn-origin-search:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  background: var(--n-violet-hover);
 }
 
 .btn-current-location {
@@ -290,14 +290,15 @@ onMounted(() => {
   gap: 8px;
   width: 100%;
   padding: 10px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--n-accent);
-  background: var(--n-accent-wash);
-  border: 1px solid #e2d9e7;
-  border-radius: var(--n-radius-md);
   cursor: pointer;
   transition: all 0.2s;
+  height: 52px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--n-lilac);
+  color: var(--n-violet-hover);
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .btn-current-location svg {
@@ -306,20 +307,23 @@ onMounted(() => {
 }
 
 .btn-current-location:hover {
-  background: var(--n-accent-wash);
-  border-color: var(--n-accent);
+  background: var(--n-lilac-strong);
+  color: var(--n-violet-hover);
 }
 
 .origin-badge {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 14px;
-  font-size: 0.8125rem;
+  align-self: flex-start;
+  height: 36px;
+  padding: 0 14px 0 10px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--n-lilac);
+  font-size: 16px;
   font-weight: 600;
-  color: var(--n-ok-text);
-  background: var(--n-ok-bg);
-  border-radius: var(--n-radius-md);
+  color: var(--n-violet-hover);
 }
 
 .origin-badge svg {
@@ -331,6 +335,7 @@ onMounted(() => {
   height: 1px;
   background: var(--n-border);
   margin: 16px 0;
+  display: none;
 }
 
 .select-wrapper {
@@ -359,29 +364,21 @@ onMounted(() => {
 
 .select-arrow {
   position: absolute;
-  right: 14px;
   top: 50%;
   transform: translateY(-50%);
   width: 16px;
   height: 16px;
-  color: var(--n-text-muted);
   pointer-events: none;
+  right: 18px;
+  color: var(--n-fg-muted);
 }
 
+/* 검색 — 모양은 global.css 의 .n-action 이 담당한다 */
 .btn-search {
   display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 8px;
   width: 100%;
   padding: 14px;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  color: white;
-  background: var(--n-accent);
-  border: none;
-  border-radius: var(--n-radius-md);
-  cursor: pointer;
   margin-top: 20px;
   transition: all 0.2s;
 }
@@ -391,29 +388,26 @@ onMounted(() => {
   height: 18px;
 }
 
-.btn-search:hover {
-  box-shadow: none;
-}
-
 /* Info Card */
 .info-card {
   display: flex;
-  gap: 12px;
-  padding: 16px;
-  background: var(--n-bg);
-  border-radius: var(--n-radius-md);
-  border: 1px solid var(--n-border);
+  padding: 18px 20px;
+  gap: 14px;
+  border: 0;
+  border-radius: 24px;
+  background: var(--n-fill);
 }
 
 .info-icon {
-  width: 36px;
-  height: 36px;
-  background: var(--n-warn-bg);
-  border-radius: var(--n-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--n-surface);
+  color: var(--n-violet);
 }
 
 .info-icon svg {
@@ -424,9 +418,9 @@ onMounted(() => {
 
 .info-text p {
   margin: 0;
-  font-size: 0.8125rem;
-  color: var(--n-text-body);
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--n-fg-muted);
 }
 
 /* 데모 모드 플레이스홀더도 지도와 같은 자리를 차지하게 한다 */
@@ -438,9 +432,9 @@ onMounted(() => {
 .map-wrapper {
   flex: 1;
   position: relative;
-  border-radius: var(--n-radius-xl);
   overflow: hidden;
-  box-shadow: none;
+  border-radius: 32px;
+  min-height: 380px;
 }
 
 #map {
@@ -456,43 +450,27 @@ onMounted(() => {
 }
 
 .overlay-badge {
-  padding: 8px 14px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: white;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: var(--n-radius-sm);
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--n-surface);
+  color: var(--n-violet-hover);
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(49, 32, 110, 0.10);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
    F!NK 리디자인 — 흰 검색 카드(그림자) + 연한 면 입력, 바이올렛 버튼
    ═══════════════════════════════════════════════════════════════════ */
-.kakao-map-page { background: var(--fk-bg); }
-.main-container { max-width: 1200px; padding: 48px 24px 120px; align-items: flex-start; }
-.search-sidebar { width: 360px; }
-.search-card { display: flex; flex-direction: column; gap: 28px; padding: 28px; border: 0; border-radius: 28px; background: var(--fk-card); box-shadow: 0 24px 60px rgba(29, 26, 43, 0.12); }
-.input-section { gap: 12px; }
-.input-label { gap: 8px; font-size: 18px; font-weight: 600; color: var(--fk-ink); }
-.input-label svg { width: 20px; height: 20px; color: var(--fk-violet); }
+.input-label svg { width: 20px; height: 20px; color: var(--n-violet); }
 .input-field,
-.select-field { height: 56px; padding: 0 18px; border: 0; border-radius: 16px; background: var(--fk-surface); font-size: 18px; font-weight: 600; color: var(--fk-ink); }
+.select-field { height: 56px; padding: 0 18px; border: 0; border-radius: 16px; background: var(--n-fill); font-size: 18px; font-weight: 600; color: var(--n-fg); }
 .input-field:focus,
-.select-field:focus { background: var(--fk-lilac); box-shadow: 0 0 0 3px var(--fk-lilac-2); }
-.input-field::placeholder { color: var(--fk-faint); font-weight: 500; }
-.select-arrow { right: 18px; color: var(--fk-muted); }
-.btn-origin-search { width: 56px; height: 56px; border: 0; border-radius: 16px; background: var(--fk-violet); color: #fff; }
-.btn-origin-search:hover { background: var(--fk-violet-hover); }
-.btn-current-location { height: 52px; border: 0; border-radius: 16px; background: var(--fk-lilac); color: var(--fk-violet-hover); font-size: 18px; font-weight: 700; }
-.btn-current-location:hover { background: var(--fk-lilac-2); color: var(--fk-violet-hover); }
-.origin-badge { align-self: flex-start; height: 36px; padding: 0 14px 0 10px; border: 0; border-radius: 999px; background: var(--fk-lilac); font-size: 16px; font-weight: 600; color: var(--fk-violet-hover); }
-.section-divider { display: none; }
-.btn-search { height: 60px; border: 0; border-radius: 18px; background: var(--fk-violet); color: #fff; font-size: 19px; font-weight: 700; box-shadow: none; }
-.btn-search:hover { background: var(--fk-violet-hover); transform: translateY(-2px); }
-.info-card { padding: 18px 20px; gap: 14px; border: 0; border-radius: 24px; background: var(--fk-surface); }
-.info-icon { width: 44px; height: 44px; border-radius: 14px; background: var(--fk-card); color: var(--fk-violet); }
-.info-text p { font-size: 16px; line-height: 1.6; color: var(--fk-muted); }
-.map-wrapper { border-radius: 32px; min-height: 380px; }
-.overlay-badge { height: 36px; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; background: var(--fk-card); color: var(--fk-violet-hover); font-size: 16px; font-weight: 700; box-shadow: 0 8px 20px rgba(49, 32, 110, 0.10); }
+.select-field:focus { background: var(--n-lilac); box-shadow: 0 0 0 3px var(--n-lilac-strong); }
+.input-field::placeholder { color: var(--n-fg-faint); font-weight: 500; }
 
 /* Responsive */
 @media (max-width: 900px) {
@@ -508,5 +486,4 @@ onMounted(() => {
     min-height: 400px;
   }
 }
-
 </style>

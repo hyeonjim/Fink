@@ -62,7 +62,7 @@ onMounted(() => {
    ═══════════════════════════════════════════════════════════════════ */
 .metal-page {
   min-height: calc(100vh - 200px);
-  background: var(--fk-bg);
+  background: var(--n-page);
 }
 
 /* 필터 카드가 겹쳐 뜰 자리 */
@@ -91,8 +91,8 @@ onMounted(() => {
   width: 30px;
   height: 30px;
   margin-bottom: 16px;
-  border: 3px solid var(--fk-lilac);
-  border-top-color: var(--fk-violet);
+  border: 3px solid var(--n-lilac);
+  border-top-color: var(--n-violet);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
@@ -102,8 +102,8 @@ onMounted(() => {
   margin-top: 32px;
   padding: 32px;
   border-radius: 28px;
-  background: var(--fk-card);
-  box-shadow: var(--fk-shadow);
+  background: var(--n-surface);
+  box-shadow: var(--n-shadow);
 }
 
 /* ═══════════════════════════════════════════════════════════════════

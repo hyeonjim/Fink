@@ -275,7 +275,7 @@ const formatMarketCap = (cap, currency) => {
 }
 
 .stock-main-info {
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .stock-name {
@@ -302,7 +302,7 @@ const formatMarketCap = (cap, currency) => {
 
 .price-info {
   text-align: right;
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .current-price {
@@ -386,7 +386,7 @@ const formatMarketCap = (cap, currency) => {
 .period-btn.active {
   background: var(--n-accent);
   border-color: var(--n-accent);
-  color: white;
+  color: var(--n-on-accent);
 }
 
 .chart-loading {

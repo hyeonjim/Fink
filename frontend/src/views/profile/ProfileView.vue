@@ -111,7 +111,7 @@ const onDeleteAccount = async () => {
   justify-content: center;
   font-size: 2rem;
   font-weight: 800;
-  color: white;
+  color: var(--n-on-accent);
   flex-shrink: 0;
 }
 

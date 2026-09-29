@@ -266,11 +266,11 @@ const resetFilter = () => {
 <style scoped>
 /* ═══════════════════════════════════════════════════════════════════
    금융상품 목록 — 메인 톤. 필터 카드가 헤더에 겹쳐 뜨고,
-   보더 대신 면(--fk-surface)과 그림자로 영역을 나눈다.
+   보더 대신 면(--n-fill)과 그림자로 영역을 나눈다.
    ═══════════════════════════════════════════════════════════════════ */
 .products-page {
   min-height: calc(100vh - 72px);
-  background: var(--fk-bg);
+  background: var(--n-page);
 }
 
 /* 필터 카드가 겹쳐 뜰 자리만큼 헤더 아래 여백을 더 준다 */
@@ -299,8 +299,8 @@ const resetFilter = () => {
   gap: 20px;
   padding: 28px;
   border-radius: 28px;
-  background: var(--fk-card);
-  box-shadow: var(--fk-shadow-float);
+  background: var(--n-surface);
+  box-shadow: var(--n-shadow-float);
 }
 
 /* ── 탭 (예금/적금) ─────────────────────────────────────────── */
@@ -313,7 +313,7 @@ const resetFilter = () => {
   gap: 6px;
   padding: 6px;
   border-radius: 20px;
-  background: var(--fk-surface);
+  background: var(--n-fill);
 }
 
 .tab {
@@ -325,7 +325,7 @@ const resetFilter = () => {
   border: 0;
   border-radius: 15px;
   background: transparent;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
   font-size: 20px;
   font-weight: 600;
   cursor: pointer;
@@ -333,13 +333,13 @@ const resetFilter = () => {
 }
 
 .tab:hover:not(.active) {
-  color: var(--fk-ink);
-  background: var(--fk-card);
+  color: var(--n-fg);
+  background: var(--n-surface);
 }
 
 .tab.active {
-  background: var(--fk-orchid);
-  color: #fff;
+  background: var(--n-orchid);
+  color: var(--n-on-accent);
 }
 
 .tab-icon {
@@ -366,13 +366,13 @@ const resetFilter = () => {
   gap: 4px;
   padding: 14px 22px;
   border-radius: 20px;
-  background: var(--fk-surface);
+  background: var(--n-fill);
   transition: background-color 0.2s;
 }
 
 .filter-group:hover,
 .filter-group:focus-within {
-  background: var(--fk-lilac);
+  background: var(--n-lilac);
 }
 
 .filter-label {
@@ -381,7 +381,7 @@ const resetFilter = () => {
   gap: 6px;
   font-size: 16px;
   font-weight: 600;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .filter-icon {
@@ -399,7 +399,7 @@ const resetFilter = () => {
   outline: none;
   font-size: 18px;
   font-weight: 600;
-  color: var(--fk-ink);
+  color: var(--n-fg);
 }
 
 .filter-select {
@@ -411,7 +411,7 @@ const resetFilter = () => {
 }
 
 .filter-input::placeholder {
-  color: var(--fk-faint);
+  color: var(--n-fg-faint);
   font-weight: 500;
 }
 
@@ -431,14 +431,14 @@ const resetFilter = () => {
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: var(--fk-card);
+  background: var(--n-surface);
   cursor: pointer;
 }
 
 .search-clear svg {
   width: 14px;
   height: 14px;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 /* 초기화 — 필터 타일과 같은 높이의 연보라 버튼 */
@@ -462,15 +462,15 @@ const resetFilter = () => {
   padding: 0 28px;
   border: 0;
   border-radius: 20px;
-  background: var(--fk-lilac);
-  color: var(--fk-violet-hover);
+  background: var(--n-lilac);
+  color: var(--n-violet-hover);
   font-size: 19px;
   font-weight: 700;
   transition: background-color 0.2s;
 }
 
 .filter-group-reset :deep(.btn-secondary:hover) {
-  background: var(--fk-lilac-2);
+  background: var(--n-lilac-strong);
   transform: none;
 }
 
@@ -490,7 +490,7 @@ const resetFilter = () => {
 .active-filters-label {
   font-size: 16px;
   font-weight: 600;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .filter-tag {
@@ -500,10 +500,10 @@ const resetFilter = () => {
   height: 36px;
   padding: 0 6px 0 14px;
   border-radius: 999px;
-  background: var(--fk-lilac);
+  background: var(--n-lilac);
   font-size: 16px;
   font-weight: 600;
-  color: var(--fk-violet-hover);
+  color: var(--n-violet-hover);
 }
 
 .filter-tag-remove {
@@ -521,7 +521,7 @@ const resetFilter = () => {
 }
 
 .filter-tag-remove:hover {
-  background: var(--fk-lilac-2);
+  background: var(--n-lilac-strong);
 }
 
 /* ── 결과 수 ─────────────────────────────────────────────────── */
@@ -532,12 +532,12 @@ const resetFilter = () => {
 .results-count {
   font-size: 20px;
   font-weight: 500;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .results-count strong {
   font-weight: 700;
-  color: var(--fk-ink);
+  color: var(--n-fg);
 }
 
 /* ── 빈 상태 ─────────────────────────────────────────────────── */
@@ -553,13 +553,13 @@ const resetFilter = () => {
   height: 64px;
   margin: 0 auto 20px;
   border-radius: 20px;
-  background: var(--fk-surface);
+  background: var(--n-fill);
 }
 
 .empty-icon svg {
   width: 28px;
   height: 28px;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .empty-title {
@@ -567,13 +567,13 @@ const resetFilter = () => {
   font-size: 26px;
   font-weight: 600;
   letter-spacing: -0.03em;
-  color: var(--fk-title);
+  color: var(--n-title);
 }
 
 .empty-description {
   margin-bottom: 24px;
   font-size: 18px;
-  color: var(--fk-muted);
+  color: var(--n-fg-muted);
 }
 
 .empty-state :deep(.btn-primary) {
@@ -581,16 +581,16 @@ const resetFilter = () => {
   padding: 0 24px;
   border: 0;
   border-radius: 16px;
-  background: var(--fk-violet);
+  background: var(--n-violet);
   background-image: none;
-  color: #fff;
+  color: var(--n-on-accent);
   font-size: 18px;
   font-weight: 700;
   box-shadow: none;
 }
 
 .empty-state :deep(.btn-primary:hover) {
-  background: var(--fk-violet-hover);
+  background: var(--n-violet-hover);
   transform: none;
   box-shadow: none;
 }
