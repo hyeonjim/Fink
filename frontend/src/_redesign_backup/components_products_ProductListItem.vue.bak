@@ -160,23 +160,20 @@ const uniqueTerms = computed(() => {
 
 <style scoped>
 /* ═══════════════════════════════════════════════════════════════════
-   상품 카드 — 연한 면(--fk-surface) 위에 흰 타일을 올린다.
-   보더 없이 hover 때 살짝 떠오르며 그림자가 생긴다.
+   상품 카드 — 무채색. 그림자 대신 보더, hover 는 보더 변화로 절제.
    ═══════════════════════════════════════════════════════════════════ */
 .product-card {
   display: flex;
   flex-direction: column;
-  padding: 28px;
-  border-radius: 28px;
-  background: var(--fk-surface);
-  /* 카드 가장자리를 살짝 띄우는 옅은 그림자 */
-  box-shadow: 0 2px 4px rgba(29, 26, 43, 0.06), 0 12px 28px rgba(49, 32, 110, 0.11);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
+  border-radius: var(--n-radius-md);
+  overflow: hidden;
+  transition: border-color 0.18s ease;
 }
 
 .product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--fk-shadow-hover);
+  border-color: var(--n-border-strong);
 }
 
 .product-card-header {
@@ -184,93 +181,112 @@ const uniqueTerms = computed(() => {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  height: 72px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--n-border);
 }
 
 .product-type-badge {
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: var(--fk-card);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--fk-violet);
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--n-border);
+  border-radius: var(--n-radius-sm);
+  background: #efeff8;
+  color: #54599c;
 }
 
+/* 예금/적금 구분은 색 대신 굵기·배경 농도의 차이로만 준다 */
 .product-type-badge.saving {
-  color: #8a5aa0;
+  background: var(--n-accent-wash);
+  border-color: var(--n-accent-wash);
+  color: #8e75bd;
 }
 
 .product-bank {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 124px;
-  height: 52px;
-  padding: 8px 14px;
-  box-sizing: border-box;
-  border-radius: 16px;
-  background: #ffffff;   /* 로고 이미지가 흰 바탕 전제라 다크모드에서도 흰 타일 유지 */
+  gap: 8px;
+}
+
+.bank-name {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
 }
 
 .product-card-body {
   flex: 1;
-  padding: 0;
+  padding: 20px;
 }
 
 .product-name {
-  margin: 24px 0 20px;
-  min-height: 73px;
-  font-size: 26px;
+  margin-bottom: 18px;
+  font-size: 20px;
   font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: -0.03em;
-  color: var(--fk-title);
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--n-text);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* 기본금리 / 최고금리 — 흰 타일 두 개 */
+/* 보더 중첩을 걷어내고 하나의 면 위에 두 값을 나란히 둔다.
+   구분은 가운데 세로선 하나로만 준다. */
 .product-rates {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
+  display: flex;
+  gap: 0;
   margin-bottom: 16px;
+  background: #f7f7f8;
+  border-radius: var(--n-radius-md);
+  overflow: hidden;
 }
 
+/* 라벨은 위쪽 기준으로 맞추고, 값은 남는 공간에서 세로 중앙 정렬한다.
+   두 칸의 폰트 크기가 달라도(기본금리 1.125rem / 최고금리 1.625rem)
+   라벨 위치와 값 중심이 각각 일치한다. */
 .rate-item {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 16px 12px;
-  border-radius: 20px;
-  background: var(--fk-card);
+  padding: 14px 12px;
+  text-align: center;
   white-space: nowrap;
 }
 
+/* 두 값 사이 구분선 — 보더 박스가 아니라 선 하나 */
+.rate-item + .rate-item {
+  border-left: 1px solid var(--n-border);
+}
+
 .rate-label {
+  display: block;
+  margin-bottom: 6px;
   font-size: 16px;
   font-weight: 500;
-  color: var(--fk-muted);
+  color: var(--n-text-muted);
 }
 
 .rate-value {
+  flex: 1;
   display: flex;
   align-items: center;
-  height: 42px;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 1.125rem;
+  font-weight: 600;
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
-  color: var(--fk-ink);
+  color: var(--n-text-body);
 }
 
-/* 최고금리 — 금리 강조 레드 */
+/* 최고금리 — 시선이 먼저 가는 자리.
+   글자색·크기로만 강조한다. 보더나 배경을 겹치면 오히려 뭉개진다. */
 .rate-max .rate-value {
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--fk-red);
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: #df4b4b;
 }
 
 .product-terms {
@@ -280,53 +296,66 @@ const uniqueTerms = computed(() => {
 }
 
 .term-badge {
-  padding: 5px 12px;
-  border-radius: 999px;
-  background: var(--fk-card);
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--fk-muted);
+  padding: 4px 9px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
+  background: var(--n-bg-subtle);
+  border-radius: var(--n-radius-sm);
+}
+
+.term-more {
+  color: var(--n-text-muted);
 }
 
 .product-card-footer {
-  margin-top: 24px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--n-border);
 }
 
-/* 상세정보 — 오른쪽 원형 화살표 버튼, 카드 hover 때 바이올렛 */
 .detail-link {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--fk-ink);
+  gap: 7px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #353536;
   text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.detail-link:hover {
+  color: var(--n-accent-hover);
 }
 
 .detail-link svg {
-  width: 44px;
-  height: 44px;
-  padding: 12px;
-  box-sizing: border-box;
-  border-radius: 50%;
-  background: var(--fk-card);
-  color: var(--fk-ink);
-  transition: background-color 0.25s, color 0.25s;
+  width: 15px;
+  height: 15px;
+  transition: transform 0.18s ease;
 }
 
-.product-card:hover .detail-link svg {
-  background: var(--fk-violet);
-  color: #ffffff;
+.detail-link:hover svg {
+  transform: translateX(3px);
 }
 
-/* 은행 로고 */
+/* 은행 로고 — 흰 배경 전제 이미지라 다크모드에서도 밝은 타일을 유지한다 */
 .bank-logo-img {
-  width: 100%;
-  height: 100%;
+  width: 80px;
+  height: 32px;
   object-fit: contain;
 }
 
 .bank-logo-img.logo-large {
-  transform: scale(1.3);
+  width: 100px;
+  height: 75px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Dark mode — 토큰이 대부분 처리한다. 예외만 남긴다.
+   ═══════════════════════════════════════════════════════════════════ */
+[data-theme='dark'] .bank-logo-img {
+  padding: 2px 4px;
+  border-radius: var(--n-radius-sm);
+  background: #f5f5f4;
 }
 </style>

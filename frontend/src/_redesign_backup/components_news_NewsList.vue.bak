@@ -205,29 +205,4 @@ const toggleBookmark = (id) => {
 
 .news-item.selected .chevron {
   color: var(--n-accent);
-}
-/* ═══ F!NK 리디자인 — 기사 목록 (연한 면 + 흰 타일, 북마크 옐로) ═══ */
-.news-list-section { padding: 24px; gap: 16px; border: 0; border-radius: 28px; background: var(--fk-surface); }
-.list-header { padding: 0; border: 0; }
-.list-title { font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--fk-title); }
-.list-count { padding: 4px 12px; border-radius: 999px; background: var(--fk-card); font-size: 16px; font-weight: 700; color: var(--fk-ink); }
-/* 목록을 세로 flex 로 만들어 gap 이 실제로 적용되게 하고,
-   고정 높이 안에서 항목이 눌려 겹치지 않도록 줄어들지 않게 + 넘치면 스크롤 */
-.news-list { display: flex; flex-direction: column; gap: 18px; padding: 0 4px 4px 0; min-height: 0; overflow-y: auto; }
-.news-list > * { flex-shrink: 0; }
-.news-item { padding: 14px 14px 14px 12px; gap: 12px; border: 0; border-radius: 18px; background: var(--fk-card); transition: background-color 0.2s, transform 0.2s; }
-.news-item:hover { background: var(--fk-card); transform: translateX(4px); }
-.news-item.selected { background: var(--fk-surface-2); border: 0; }
-.bookmark-btn { width: 40px; height: 40px; border: 0; border-radius: 12px; background: var(--fk-surface); color: var(--fk-faint); }
-.news-item.selected .bookmark-btn:not(.active) { background: var(--fk-card); }
-.bookmark-btn.active { background: var(--fk-bookmark-bg); }
-.bookmark-btn:hover svg,
-.bookmark-btn.active svg { color: var(--fk-bookmark); }
-.news-title { font-size: 18px; font-weight: 600; line-height: 1.4; color: var(--fk-ink); }
-.news-item.selected .news-title { color: var(--fk-ink); }
-.chevron,
-.news-item.selected .chevron { color: var(--fk-faint); }
-.news-empty p { font-size: 18px; color: var(--fk-ink); }
-.news-empty span { font-size: 16px; color: var(--fk-muted); }
-</style>
-
+}</style>

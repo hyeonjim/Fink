@@ -259,37 +259,6 @@ const applyDates = () => {
 /* ═══════════════════════════════════════════════════════════════════
    Responsive
    ═══════════════════════════════════════════════════════════════════ */
-/* ═══ F!NK 리디자인 — 필터 카드 (헤더에 겹쳐 뜸) ═══ */
-.filter-bar { position: relative; z-index: 2; margin-top: -48px; }
-.filter-card { gap: 24px; padding: 28px; border: 0; border-radius: 28px; background: var(--fk-card); box-shadow: var(--fk-shadow-float); }
-.filter-group { gap: 8px; }
-.filter-group:last-child { margin-left: auto; }
-.filter-label { font-size: 16px; font-weight: 600; color: var(--fk-muted); }
-.date-input { height: 60px; padding: 0 20px 0 50px; border: 0; border-radius: 18px; background: var(--fk-surface); font-size: 16px; font-weight: 600; color: var(--fk-ink); font-variant-numeric: tabular-nums; }
-.date-input:hover:not(:focus) { background: var(--fk-lilac); }
-.date-input:focus { background: var(--fk-lilac); box-shadow: 0 0 0 3px var(--fk-lilac-2); }
-.input-icon { left: 20px; width: 20px; height: 20px; color: var(--fk-muted); }
-.date-separator { font-size: 20px; font-weight: 600; color: var(--fk-muted); }
-.action-buttons { gap: 10px; }
-.btn { height: 60px; padding: 0 28px; gap: 10px; border: 0; border-radius: 18px; font-size: 18px; font-weight: 700; box-shadow: none; background-image: none; }
-.btn svg { width: 20px; height: 20px; }
-.btn-primary { background: var(--fk-violet); color: #fff; }
-.btn-primary:hover { background: var(--fk-violet-hover); }
-.btn-secondary { background: var(--fk-lilac); color: var(--fk-violet-hover); }
-.btn-secondary:hover { background: var(--fk-lilac-2); }
-
-/* 금/은 토글 — 선택되면 금·은색 면 (무채색에 가까운 톤) */
-.metal-toggle { gap: 4px; padding: 5px; border-radius: 18px; background: var(--fk-surface); }
-.metal-btn,
-.metal-btn.metal-btn-gold { height: 50px; padding: 0 20px 0 10px; gap: 10px; border: 0; border-radius: 14px; background: transparent; font-size: 20px; font-weight: 600; color: var(--fk-muted); }
-.metal-btn:hover,
-.metal-btn.metal-btn-gold:hover { color: var(--fk-ink); }
-.metal-btn.metal-btn-gold.active { background: var(--fk-gold-btn); color: #1d1a2b; }
-.metal-btn.active:not(.metal-btn-gold) { background: var(--fk-silver-btn); color: #1d1a2b; }
-.metal-icon { width: 32px; height: 32px; border-radius: 50%; font-size: 16px; font-weight: 800; }
-.metal-icon.gold { background: #f1e3b8; color: #6b5314; }
-.metal-icon.silver { background: #e6e4ec; color: #4a4758; }
-
 @media (max-width: 768px) {
   .filter-card {
     flex-direction: column;

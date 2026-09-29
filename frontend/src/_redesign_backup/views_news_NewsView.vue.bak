@@ -47,19 +47,19 @@ watch(
 <style scoped>
 .news-page {
   min-height: 100vh;
-  background: var(--fk-bg);
+  background: var(--n-bg);
 }
 
 .news-container {
-  padding: 48px 24px 120px;
+  padding: 24px;
 }
 
 .news-layout {
   display: grid;
   grid-template-columns: 380px 1fr;
   gap: 24px;
-  height: 820px;
-  max-width: 1200px;
+  height: calc(100vh - 160px);
+  max-width: 1400px;
   margin: 0 auto;
 }
 

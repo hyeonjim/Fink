@@ -204,18 +204,4 @@ const thumb = computed(() =>
 
 .detail-link:hover svg {
   transform: translateX(3px);
-}
-/* ═══ F!NK 리디자인 — 영상 카드 (연한 면, hover 때 떠오름) ═══ */
-.video-card { border: 0; border-radius: 24px; background: var(--fk-surface); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s; }
-.video-card:hover { transform: translateY(-6px); box-shadow: var(--fk-shadow-hover); border-color: transparent; }
-.thumb-wrapper { border-radius: 0; }
-.play-btn { width: 56px; height: 56px; border-radius: 50%; background: rgba(255, 255, 255, 0.28); color: #fff; }
-.video-card:hover .play-btn,
-.play-btn:hover { background: #fff; color: var(--fk-ink); transform: scale(1.08); }
-.body { padding: 20px; gap: 10px; }
-.title { min-height: 58px; font-size: 20px; font-weight: 600; line-height: 1.45; letter-spacing: -0.02em; color: var(--fk-title); }
-.channel { font-size: 16px; font-weight: 500; color: var(--fk-muted); }
-.detail-link { font-size: 16px; font-weight: 700; color: var(--fk-ink); border: 0; padding: 0; background: none; }
-.detail-link:hover { color: var(--fk-muted); background: none; }
-</style>
-
+}</style>

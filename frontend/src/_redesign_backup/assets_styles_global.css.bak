@@ -792,108 +792,22 @@ input.input-with-icon,
    header-icon/header-text/page-title 클래스와 충돌하지 않도록
    n- 접두사를 쓴다.
    ═══════════════════════════════════════════════════════════════════════════ */
-/* ── F!NK 리디자인 토큰 (메뉴 페이지 공통) ─────────────────────────────
-   메인 화면과 톤을 맞추기 위한 값. 기존 --n-* 토큰은 홈/인증 화면이
-   아직 쓰고 있어서 건드리지 않고, 메뉴 페이지는 --fk-* 를 쓴다. */
-:root {
-  --fk-title: #232327;
-  --fk-ink: #1d1a2b;
-  --fk-muted: #5e5a70;
-  --fk-faint: #8a8599;
-  --fk-bg: #ffffff;
-  --fk-card: #ffffff;
-  --fk-surface: #f6f4fa;          /* 연한 면 (섹션·입력) */
-  --fk-surface-2: #efeef2;        /* 회색 선택 면 */
-  --fk-lilac: #efe9f8;            /* 칩·선택 */
-  --fk-lilac-2: #e4dcf6;
-  --fk-violet: #5140b5;           /* 버튼·강조 */
-  --fk-violet-hover: #3f3096;
-  --fk-periwinkle: #9588df;
-  --fk-orchid: #bb8ec7;
-  --fk-red: #d6364a;              /* 금리·상승 */
-  --fk-blue: #3b5ba5;             /* 하락 */
-  --fk-bookmark: #f0c259;
-  --fk-bookmark-bg: #fcf4dd;
-  --fk-bookmark-btn: #fcf0db;
-  --fk-bookmark-text: #48443c;
-  --fk-like: #ea8794;
-  --fk-like-hover: #e0707f;
-  --fk-gold: #d4a63a;
-  --fk-gold-btn: #edcf84;
-  --fk-silver: #aeacb8;
-  --fk-silver-btn: #c6c6c7;
-  --fk-page-gap: 1200px;
-  --fk-shadow: 0 24px 60px rgba(29, 26, 43, 0.10);
-  --fk-shadow-float: 0 24px 60px rgba(49, 32, 110, 0.14);
-  --fk-shadow-hover: 0 28px 56px rgba(29, 26, 43, 0.12);
-  --fk-hero: radial-gradient(520px circle at 88% 12%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 70%),
-             linear-gradient(115deg, #f8f1fb 0%, #f1e6f6 45%, #e9e6fb 100%);
-}
-
-[data-theme="dark"] {
-  --fk-title: #f4f4fb;
-  --fk-ink: #ececf6;
-  --fk-muted: #b3afc2;
-  --fk-faint: #8f8aa3;
-  --fk-bg: #14141c;
-  --fk-card: #1d1d28;
-  --fk-surface: #23222f;
-  --fk-surface-2: #2b2a38;
-  --fk-lilac: #2e2748;
-  --fk-lilac-2: #3a3260;
-  --fk-violet: #6a5ad0;
-  --fk-violet-hover: #7d6ee0;
-  --fk-bookmark-bg: #3a3220;
-  --fk-bookmark-btn: #3a3220;
-  --fk-bookmark-text: #f3e2b5;
-  --fk-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-  --fk-shadow-float: 0 24px 60px rgba(0, 0, 0, 0.5);
-  --fk-shadow-hover: 0 28px 56px rgba(0, 0, 0, 0.5);
-  --fk-hero: linear-gradient(115deg, #221d33 0%, #241f38 45%, #1f1e36 100%);
-}
-
-/* 메뉴 페이지 공통 버튼 */
-.fk-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: 60px;
-  padding: 0 28px;
-  border: 0;
-  border-radius: 18px;
-  font-size: 19px;
-  font-weight: 700;
-  white-space: nowrap;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
-}
-.fk-btn:hover:not(:disabled) { transform: translateY(-2px); }
-.fk-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-.fk-btn svg { width: 20px; height: 20px; }
-.fk-btn--primary { background: var(--fk-violet); color: #fff; }
-.fk-btn--primary:hover:not(:disabled) { background: var(--fk-violet-hover); color: #fff; }
-.fk-btn--light { background: var(--fk-lilac); color: var(--fk-violet-hover); }
-.fk-btn--light:hover:not(:disabled) { background: var(--fk-lilac-2); }
-.fk-btn--white { background: var(--fk-card); color: var(--fk-violet-hover); }
-.fk-btn--white:hover:not(:disabled) { background: var(--fk-lilac); }
-
-/* ── 페이지 헤더 ───────────────────────────────────────────────── */
 .n-page-header {
-  background: var(--fk-hero);
-  padding: 56px 24px 60px;
+  background: var(--n-accent-wash);
+  border-bottom: 1px solid var(--n-border);
+  padding: 30px 24px;
 }
 
 .n-page-header-content {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 20px;
 }
 
-/* 제목 아래에 검색창/탭 등 부가 요소가 세로로 쌓이는 화면용 (유튜브) */
+/* 제목 아래에 검색창/탭 등 부가 요소가 세로로 쌓이는 화면용
+   (유튜브 검색/저장 등) */
 .n-page-header-content--stack {
   flex-direction: column;
   align-items: stretch;
@@ -910,47 +824,45 @@ input.input-with-icon,
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 96px;
-  height: 96px;
-  border-radius: 28px;
-  background: var(--fk-card);
-  box-shadow: 0 18px 40px rgba(49, 32, 110, 0.12);
+  width: 60px;
+  height: 60px;
+  border: 1px solid var(--n-border);
+  border-radius: 16px;
+  background: var(--n-bg);
 }
 
 .n-page-header-icon svg {
-  width: 60px;
-  height: 60px;
+  width: 32px;
+  height: 32px;
+  color: var(--n-text-muted);
 }
 
 .n-page-header-text {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   flex: 1;
 }
 
 .n-page-title {
   margin: 0;
-  font-size: 34px;
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: -0.035em;
-  color: var(--fk-title);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--n-text);
   text-align: left;
 }
 
 .n-page-subtitle {
   margin: 0;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 1rem;
   line-height: 1.6;
-  color: var(--fk-muted);
+  color: var(--n-text-muted);
   text-align: left;
 }
 
 @media (max-width: 768px) {
   .n-page-header {
-    padding: 36px 20px 40px;
+    padding: 32px 20px;
   }
 
   .n-page-header-content {
@@ -959,22 +871,21 @@ input.input-with-icon,
   }
 
   .n-page-header-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 20px;
+    width: 48px;
+    height: 48px;
   }
 
   .n-page-header-icon svg {
-    width: 40px;
-    height: 40px;
+    width: 24px;
+    height: 24px;
   }
 
   .n-page-title {
-    font-size: 30px;
+    font-size: 1.5rem;
   }
 
   .n-page-subtitle {
-    font-size: 17px;
+    font-size: 0.875rem;
   }
 }
 

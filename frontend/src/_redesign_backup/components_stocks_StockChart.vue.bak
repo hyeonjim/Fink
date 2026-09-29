@@ -92,12 +92,15 @@ const createChart = () => {
   gradient.addColorStop(0, 'rgba(102, 126, 234, 0.3)')
   gradient.addColorStop(1, 'rgba(102, 126, 234, 0.0)')
 
+  // 가격 변동에 따른 색상 결정
+  const firstPrice = prices[0]
+  const lastPrice = prices[prices.length - 1]
+  const isPositive = lastPrice >= firstPrice
 
-  // 리디자인: 등락과 무관하게 브랜드 바이올렛 선 + 페리윙클 면 (등락색은 가격 텍스트가 담당)
-  const lineColor = '#5140b5'
+  const lineColor = isPositive ? '#10b981' : '#ef4444'
   const fillGradient = ctx.createLinearGradient(0, 0, 0, 300)
-  fillGradient.addColorStop(0, 'rgba(149, 136, 223, 0.32)')
-  fillGradient.addColorStop(1, 'rgba(149, 136, 223, 0)')
+  fillGradient.addColorStop(0, isPositive ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)')
+  fillGradient.addColorStop(1, 'rgba(255, 255, 255, 0)')
 
   chartInstance = new Chart(ctx, {
     type: 'line',

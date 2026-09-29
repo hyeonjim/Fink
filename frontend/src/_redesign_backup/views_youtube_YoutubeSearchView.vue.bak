@@ -5,7 +5,9 @@
       <div class="n-page-header-content n-page-header-content--stack">
         <div class="header-title-area">
           <div class="n-page-header-icon youtube-icon">
-            <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="8" width="52" height="38" rx="12" fill="#bb8ec7"/><path d="M27 20.5v14a1.6 1.6 0 0 0 2.4 1.4l11.2-7a1.6 1.6 0 0 0 0-2.8l-11.2-7A1.6 1.6 0 0 0 27 20.5z" fill="#fff"/><rect x="8" y="52" width="48" height="5" rx="2.5" fill="#9588df"/><rect x="8" y="52" width="22" height="5" rx="2.5" fill="#1d1a2b"/><circle cx="30" cy="54.5" r="4.5" fill="#1d1a2b"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 4-8 4z"/>
+            </svg>
           </div>
           <div class="n-page-header-text">
             <h1 class="n-page-title">YouTube</h1>
@@ -34,6 +36,9 @@
     <!-- Search Section -->
     <div class="search-section">
       <div class="search-card">
+        <h3 class="search-title">
+          비디오 검색
+        </h3>
         <form class="search-form" @submit.prevent="onSearch">
           <div class="search-input-wrapper">
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -400,40 +405,6 @@ onMounted(() => {
 }
 
 /* Responsive */
-/* ═══════════════════════════════════════════════════════════════════
-   F!NK 리디자인 — 헤더 아래 탭, 검색 카드는 헤더에 겹쳐 뜬다.
-   ═══════════════════════════════════════════════════════════════════ */
-.youtube-search { background: var(--fk-bg); padding-bottom: 120px; }
-.n-page-header { padding-bottom: 100px; }
-.n-page-header-content--stack { gap: 28px; }
-.header-title-area { gap: 28px; }
-.youtube-icon svg { color: inherit; }
-
-.nav-tab { height: 52px; padding: 0 24px; gap: 8px; border: 0; border-radius: 16px; background: var(--fk-card); color: var(--fk-muted); font-size: 20px; font-weight: 600; }
-.nav-tab svg { width: 20px; height: 20px; }
-.nav-tab:hover { background: var(--fk-card); color: var(--fk-ink); }
-.nav-tab.router-link-exact-active { background: var(--fk-violet); color: #fff; }
-
-.search-section { position: relative; z-index: 2; max-width: 1200px; margin: -48px auto 0; }
-.search-card { display: flex; flex-direction: column; gap: 20px; padding: 32px; border: 0; border-radius: 28px; background: var(--fk-card); box-shadow: var(--fk-shadow-float); }
-.search-title { margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--fk-title); }
-.search-form { gap: 12px; }
-.search-input { height: 64px; padding-left: 56px; border: 0; border-radius: 20px; background: var(--fk-surface); font-size: 20px; font-weight: 600; color: var(--fk-ink); }
-.search-input::placeholder { color: var(--fk-faint); font-weight: 500; }
-.search-input:focus { background: var(--fk-lilac); box-shadow: 0 0 0 3px var(--fk-lilac-2); }
-.search-icon { left: 22px; width: 22px; height: 22px; color: var(--fk-muted); }
-.search-btn { height: 64px; padding: 0 36px; border: 0; border-radius: 20px; background: var(--fk-violet); color: #fff; font-size: 19px; font-weight: 700; }
-.search-btn:hover:not(:disabled) { background: var(--fk-violet-hover); }
-
-.results-section { max-width: 1200px; margin: 56px auto 0; }
-.results-header { align-items: baseline; gap: 12px; margin-bottom: 24px; border: 0; padding: 0; }
-.results-title { font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--fk-title); }
-.results-count { font-size: 18px; color: var(--fk-muted); }
-.video-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
-.empty-icon { border: 0; border-radius: 20px; background: var(--fk-surface); }
-.empty-title { font-size: 26px; color: var(--fk-title); }
-.empty-text { font-size: 18px; color: var(--fk-muted); }
-
 @media (max-width: 768px) {
   .search-section {
     padding: 0 16px;

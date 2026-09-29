@@ -4,7 +4,10 @@
     <header class="n-page-header">
       <div class="n-page-header-content">
         <div class="n-page-header-icon">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="38" width="11" height="18" rx="3.5" fill="#bb8ec7"/><rect x="26.5" y="28" width="11" height="28" rx="3.5" fill="#9588df"/><rect x="45" y="20" width="11" height="36" rx="3.5" fill="#bb8ec7"/><path d="M8 30 22 19l10 7L52 8" stroke="#1d1a2b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M43 8h9v9" stroke="#1d1a2b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
         </div>
         <div class="n-page-header-text">
           <h1 class="n-page-title">주식</h1>
@@ -369,7 +372,7 @@
                 <polyline
                   :points="getMiniChartPoints(index.chart_data)"
                   fill="none"
-                  :stroke="index.change >= 0 ? '#d6364a' : '#3b5ba5'"
+                  :stroke="index.change >= 0 ? '#e55b5b' : '#4a90d9'"
                   stroke-width="1.5"
                 />
               </svg>
@@ -1677,112 +1680,6 @@ const formatNewsDate = (dateStr) => {
 /* ═══════════════════════════════════════════════════════════════
    Responsive
    ═══════════════════════════════════════════════════════════════ */
-/* ═══════════════════════════════════════════════════════════════════
-   F!NK 리디자인 — 메인 톤 적용
-   보더 대신 연한 면(--fk-surface)과 그림자, 선택 상태는 바이올렛.
-   북마크는 옐로, 상승 레드 / 하락 블루.
-   ═══════════════════════════════════════════════════════════════════ */
-.stock-page { background: var(--fk-bg); }
-.stock-container { padding: 48px 24px 120px; }
-.stock-layout { max-width: 1200px; grid-template-columns: 340px minmax(0, 1fr) 256px; gap: 24px; }
-
-/* 왼쪽 목록 */
-.stock-sidebar { padding: 18px; gap: 14px; border: 0; border-radius: 28px; background: var(--fk-surface); }
-.sidebar-search { padding: 0; background: transparent; border-bottom: 0; }
-.sidebar-search .search-box { height: 56px; padding: 0 18px; border: 0; border-radius: 16px; background: var(--fk-card); }
-.sidebar-search .search-box:focus-within { box-shadow: 0 0 0 3px var(--fk-lilac-2); }
-.sidebar-search .search-box input { font-size: 18px; font-weight: 600; color: var(--fk-ink); }
-.sidebar-search .search-box input::placeholder { color: var(--fk-faint); font-weight: 500; }
-.sidebar-search .search-dropdown { border: 0; border-radius: 16px; box-shadow: var(--fk-shadow); }
-.search-result { border-bottom: 0; font-size: 16px; }
-
-.filter-tabs { margin: 0; padding: 5px; gap: 4px; border: 0; border-radius: 16px; background: var(--fk-card); }
-.filter-tab { flex: 1; height: 44px; border: 0; border-radius: 12px; background: transparent; font-size: 18px; font-weight: 600; color: var(--fk-muted); }
-.filter-tab:hover { color: var(--fk-ink); background: transparent; }
-.filter-tab.active { background: var(--fk-violet); color: #fff; }
-
-.refresh-bar { padding: 0 4px; border: 0; background: transparent; }
-.update-info { font-size: 16px; color: var(--fk-muted); }
-.refresh-btn { height: 40px; padding: 0 14px; border: 0; border-radius: 12px; background: var(--fk-card); color: var(--fk-violet-hover); font-size: 16px; font-weight: 700; }
-.refresh-btn:hover:not(:disabled) { background: var(--fk-lilac); }
-
-.stock-list { display: flex; flex-direction: column; gap: 2px; background: var(--fk-card); }
-.stock-item { padding: 12px; gap: 12px; border: 0; border-radius: 18px; }
-.stock-item:hover { background: var(--fk-lilac); }
-.stock-item.active { border-left: 0; background: var(--fk-card); box-shadow: 0 10px 24px rgba(29, 26, 43, 0.08); }
-.stock-rank { width: 28px; height: 28px; border-radius: 50%; background: var(--fk-card); color: var(--fk-muted); font-size: 16px; font-weight: 700; }
-.stock-item.active .stock-rank { background: var(--fk-violet); color: #fff; }
-.stock-name { font-size: 18px; font-weight: 600; color: var(--fk-ink); }
-.stock-symbol { font-size: 16px; color: var(--fk-muted); }
-.stock-price { font-size: 18px; font-weight: 700; color: var(--fk-ink); }
-.stock-change { font-size: 16px; font-weight: 600; }
-.stock-change.up,
-.detail-change.up,
-.stat-value.up,
-.index-change.up { color: var(--fk-red); }
-.stock-change.down,
-.detail-change.down,
-.stat-value.down,
-.index-change.down { color: var(--fk-blue); }
-/* 목록 아래 페이지 이동 — 네모 흰 띠 대신 둥근 흰 카드 */
-.pagination { margin-top: 8px; padding: 8px; border: 0; border-radius: 16px; background: var(--fk-card); }
-.page-btn { border: 0; border-radius: 12px; background: var(--fk-surface); }
-.page-info { font-size: 16px; color: var(--fk-muted); }
-
-/* 가운데 상세 */
-.stock-detail { gap: 40px; }
-.detail-header { padding: 0; border: 0; background: none; align-items: flex-end; }
-.detail-name { font-size: 28px; font-weight: 600; letter-spacing: -0.035em; color: var(--fk-title); }
-.bookmark-btn { width: 44px; height: 44px; border: 0; border-radius: 12px; background: var(--fk-surface); color: var(--fk-faint); }
-.bookmark-btn:hover:not(:disabled) { background: var(--fk-bookmark-bg); color: var(--fk-bookmark); }
-.bookmark-btn.active { background: #fdf3d3; color: var(--fk-bookmark); border: 0; }
-.bookmark-btn.active svg { color: var(--fk-bookmark); }
-.detail-exchange,
-.detail-symbol { padding: 4px 12px; border: 0; border-radius: 999px; background: var(--fk-surface); font-size: 16px; font-weight: 600; color: var(--fk-muted); }
-.detail-price { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; color: var(--fk-ink); }
-.detail-change { font-size: 18px; font-weight: 700; }
-
-.chart-section { padding: 24px; border: 0; border-radius: 28px; background: var(--fk-surface); }
-.chart-tabs { gap: 4px; border: 0; }
-.chart-tab { height: 40px; padding: 0 16px; border: 0; border-radius: 12px; background: transparent; font-size: 16px; font-weight: 600; color: var(--fk-muted); }
-.chart-tab:hover { color: var(--fk-ink); background: transparent; }
-.chart-tab.active { background: var(--fk-card); color: var(--fk-violet-hover); box-shadow: 0 6px 16px rgba(29, 26, 43, 0.08); }
-.chart-container { background: transparent; border: 0; }
-
-.section-title { font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--fk-title); }
-.stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-.stat-card { padding: 16px 18px; border: 0; border-radius: 20px; background: var(--fk-surface); }
-.stat-label { font-size: 16px; color: var(--fk-muted); }
-.stat-value { font-size: 20px; font-weight: 700; color: var(--fk-ink); font-variant-numeric: tabular-nums; }
-
-.info-section { padding: 28px; border: 0; border-radius: 28px; background: var(--fk-surface); }
-.translate-btn { height: 44px; padding: 0 20px; border: 0; border-radius: 12px; background: var(--fk-card); color: var(--fk-violet-hover); font-size: 16px; font-weight: 700; }
-.translate-btn:hover { background: var(--fk-lilac); }
-.company-desc { font-size: 18px; line-height: 1.75; color: var(--fk-muted); }
-.meta-tag { padding: 5px 14px; border: 0; border-radius: 999px; background: var(--fk-card); font-size: 16px; font-weight: 600; color: var(--fk-violet-hover); }
-
-.news-list { gap: 10px; }
-.news-item { padding: 18px 22px; border: 0; border-radius: 20px; background: var(--fk-surface); transition: background-color 0.2s, transform 0.2s; }
-.news-item:hover { background: var(--fk-lilac); transform: translateX(4px); }
-.news-item:hover .news-title { color: var(--fk-ink); }
-.news-title { font-size: 18px; font-weight: 600; color: var(--fk-ink); }
-.news-desc { font-size: 16px; color: var(--fk-muted); }
-.news-publisher { font-size: 16px; font-weight: 600; color: var(--fk-violet); }
-.news-date { font-size: 16px; color: var(--fk-muted); }
-
-/* 오른쪽 주요 지표 */
-.market-sidebar { padding: 20px; border: 0; border-radius: 28px; background: var(--fk-surface); }
-.sidebar-title { font-size: 22px; font-weight: 600; letter-spacing: -0.03em; color: var(--fk-title); }
-.index-card { padding: 16px; border-radius: 20px; background: var(--fk-card); }
-.index-card:hover { background: var(--fk-card); box-shadow: 0 10px 24px rgba(29, 26, 43, 0.08); }
-.index-name { font-size: 18px; font-weight: 600; color: var(--fk-ink); }
-.index-change { font-size: 16px; font-weight: 700; }
-.index-price { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; color: var(--fk-ink); }
-
-.empty-state h2 { font-size: 26px; color: var(--fk-title); }
-.empty-state p { font-size: 18px; color: var(--fk-muted); }
-.empty-icon { border: 0; border-radius: 20px; background: var(--fk-surface); }
-
 @media (max-width: 1200px) {
   .stock-layout {
     grid-template-columns: 320px 1fr;

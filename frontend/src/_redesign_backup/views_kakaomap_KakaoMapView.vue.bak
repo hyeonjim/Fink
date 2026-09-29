@@ -4,7 +4,10 @@
     <header class="n-page-header">
       <div class="n-page-header-content">
         <div class="n-page-header-icon">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M4 32 21 26l22 6 17-6v28l-17 6-22-6-17 6z" fill="#bb8ec7"/><path d="M21 26v28M43 32v28" stroke="#fff" stroke-width="2" stroke-opacity="0.7"/><path d="M32 4c-8.3 0-15 6.5-15 14.6C17 29 32 42 32 42s15-13 15-23.4C47 10.5 40.3 4 32 4z" fill="#1d1a2b"/><circle cx="32" cy="18.5" r="5.5" fill="#9588df"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
         </div>
         <div class="n-page-header-text">
           <h1 class="n-page-title">은행 찾기</h1>
@@ -463,36 +466,6 @@ onMounted(() => {
   background: rgba(0, 0, 0, 0.5);
   border-radius: var(--n-radius-sm);
 }
-
-/* ═══════════════════════════════════════════════════════════════════
-   F!NK 리디자인 — 흰 검색 카드(그림자) + 연한 면 입력, 바이올렛 버튼
-   ═══════════════════════════════════════════════════════════════════ */
-.kakao-map-page { background: var(--fk-bg); }
-.main-container { max-width: 1200px; padding: 48px 24px 120px; align-items: flex-start; }
-.search-sidebar { width: 360px; }
-.search-card { display: flex; flex-direction: column; gap: 28px; padding: 28px; border: 0; border-radius: 28px; background: var(--fk-card); box-shadow: 0 24px 60px rgba(29, 26, 43, 0.12); }
-.input-section { gap: 12px; }
-.input-label { gap: 8px; font-size: 18px; font-weight: 600; color: var(--fk-ink); }
-.input-label svg { width: 20px; height: 20px; color: var(--fk-violet); }
-.input-field,
-.select-field { height: 56px; padding: 0 18px; border: 0; border-radius: 16px; background: var(--fk-surface); font-size: 18px; font-weight: 600; color: var(--fk-ink); }
-.input-field:focus,
-.select-field:focus { background: var(--fk-lilac); box-shadow: 0 0 0 3px var(--fk-lilac-2); }
-.input-field::placeholder { color: var(--fk-faint); font-weight: 500; }
-.select-arrow { right: 18px; color: var(--fk-muted); }
-.btn-origin-search { width: 56px; height: 56px; border: 0; border-radius: 16px; background: var(--fk-violet); color: #fff; }
-.btn-origin-search:hover { background: var(--fk-violet-hover); }
-.btn-current-location { height: 52px; border: 0; border-radius: 16px; background: var(--fk-lilac); color: var(--fk-violet-hover); font-size: 18px; font-weight: 700; }
-.btn-current-location:hover { background: var(--fk-lilac-2); color: var(--fk-violet-hover); }
-.origin-badge { align-self: flex-start; height: 36px; padding: 0 14px 0 10px; border: 0; border-radius: 999px; background: var(--fk-lilac); font-size: 16px; font-weight: 600; color: var(--fk-violet-hover); }
-.section-divider { display: none; }
-.btn-search { height: 60px; border: 0; border-radius: 18px; background: var(--fk-violet); color: #fff; font-size: 19px; font-weight: 700; box-shadow: none; }
-.btn-search:hover { background: var(--fk-violet-hover); transform: translateY(-2px); }
-.info-card { padding: 18px 20px; gap: 14px; border: 0; border-radius: 24px; background: var(--fk-surface); }
-.info-icon { width: 44px; height: 44px; border-radius: 14px; background: var(--fk-card); color: var(--fk-violet); }
-.info-text p { font-size: 16px; line-height: 1.6; color: var(--fk-muted); }
-.map-wrapper { border-radius: 32px; min-height: 380px; }
-.overlay-badge { height: 36px; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; background: var(--fk-card); color: var(--fk-violet-hover); font-size: 16px; font-weight: 700; box-shadow: 0 8px 20px rgba(49, 32, 110, 0.10); }
 
 /* Responsive */
 @media (max-width: 900px) {

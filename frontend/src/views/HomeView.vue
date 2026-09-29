@@ -1,122 +1,113 @@
 <template>
   <div class="home">
     <!-- ══════════════════════════════════════════════════════════════
-         Hero — 화면 폭 전체 라벤더
+         Hero — 은은한 라벤더 그라데이션 + 추천 결과 카드 + 빠른 추천 바
          ══════════════════════════════════════════════════════════════ -->
     <section class="hero">
-      <div class="hero-panel">
+      <div class="hero-inner">
         <div class="hero-copy">
           <h1 class="hero-title" v-reveal="1">
-            목표 금액과 기간을 정하면,<br />
-            최적의 예금과 적금을 골라 드립니다.
+            <span class="kw" aria-label="주택 마련, 목돈 마련, 여행 준비">
+              <span class="kw-track" aria-hidden="true">
+                <span v-for="(kw, i) in keywords" :key="i">{{ kw }}</span>
+              </span>
+            </span>
+            목표에<br />
+            최적의 예금·적금을<br />
+            찾아 드려요
           </h1>
-          <p class="hero-sub" v-reveal="2">
-            주택, 목돈 마련, 여행 가운데 목적을 고르고 보유 금액과 월 납입액을
-            입력하세요. 목표를 채울 수 있는 예금·적금 조합과 세후 만기 금액을
-            보여 드립니다.
-          </p>
+
           <div class="hero-actions" v-reveal="3">
-            <RouterLink :to="{ name: 'AnalysisView' }" class="h-btn h-btn--solid">
+            <RouterLink :to="{ name: 'AnalysisView' }" class="h-btn h-btn--soft">
               추천 받기
+              <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
             </RouterLink>
-            <RouterLink :to="{ name: 'ProductView' }" class="h-btn h-btn--line">
+            <RouterLink :to="{ name: 'ProductView' }" class="h-btn h-btn--white">
               상품 비교하기
             </RouterLink>
           </div>
         </div>
 
-        <!-- 제품 목업 — 실제 추천 결과 화면을 축약해 보여준다 -->
-        <div ref="mockupRef" class="mockup-wrap">
-          <div class="mockup" v-reveal="2">
-            <header class="mk-head">
-              <span class="mk-title">추천 결과</span>
-            </header>
-
-            <div class="mk-conds">
-              <span v-for="cond in mockConditions" :key="cond" class="mk-cond">
-                {{ cond }}
-              </span>
-            </div>
-
-            <ul class="mk-list">
-              <li
-                v-for="(item, i) in mockProducts"
-                :key="item.name"
-                class="mk-row"
-                :class="{ 'is-selected': i === 0 }"
-              >
-                <div class="mk-row-main">
-                  <span class="mk-badge">{{ item.bank.charAt(0) }}</span>
-                  <span class="mk-titles">
-                    <span class="mk-name">{{ item.name }}</span>
-                    <span class="mk-meta">
-                      {{ item.bank }} · 적합도
-                      <strong>{{ item.fit }}%</strong>
-                    </span>
-                  </span>
-                  <span class="mk-rate">
-                    <span class="mk-rate-num">{{ item.topRate }}%</span>
-                    <span class="mk-rate-meta">기본 {{ item.baseRate }}%</span>
-                  </span>
-                </div>
-
-                <div v-if="i === 0 && item.sim" class="mk-sim">
-                  <span>{{ item.sim.label }}</span>
-                  <span class="mk-sim-total">
-                    세후 만기 {{ item.sim.total }}
-                    <em>{{ item.sim.gain }}</em>
-                  </span>
-                </div>
-              </li>
-            </ul>
+        <!-- 추천 결과 카드 — 실제 추천 화면을 축약해 보여준다 -->
+        <div class="rec-card" v-reveal="2">
+          <div class="rec-head">
+            <span class="rec-title">추천 결과</span>
+            <span class="rec-chip">목돈 마련 · 12개월</span>
           </div>
+          <ul class="rec-list">
+            <li
+              v-for="(item, i) in mockProducts"
+              :key="item.name"
+              class="rec-row"
+              :class="{ 'is-selected': i === 0 }"
+            >
+              <span class="rec-logo">
+                <img :src="getBankLogo(item.bank)" :alt="item.bank" />
+              </span>
+              <span class="rec-names">
+                <span class="rec-name">{{ item.name }}</span>
+                <span class="rec-bank">{{ item.bank }}</span>
+              </span>
+              <span class="rec-rates">
+                <span class="rec-rate" :class="{ 'is-top': i === 0 }">{{ item.topRate }}%</span>
+                <span class="rec-base">기본 {{ item.baseRate }}%</span>
+              </span>
+            </li>
+          </ul>
         </div>
+      </div>
+
+      <!-- 빠른 추천 바 — 히어로 아래에 겹쳐 뜬다 -->
+      <div class="quick" v-reveal="4">
+        <RouterLink
+          v-for="q in quickFields"
+          :key="q.label"
+          :to="{ name: 'AnalysisView' }"
+          class="qs"
+        >
+          <span class="qs-label">{{ q.label }}</span>
+          <span class="qs-value">
+            {{ q.value }}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </span>
+        </RouterLink>
+        <RouterLink :to="{ name: 'AnalysisView' }" class="h-btn h-btn--soft quick-go">
+          추천 받기
+          <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </RouterLink>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════
-         Process — 단계 카드를 가로로 늘어놓고 01 → 02 → 03 순서로 등장시킨다
+         AI 맞춤형 예적금 추천 — 01 → 02 → 03 순서로 등장
          ══════════════════════════════════════════════════════════════ -->
-    <section class="process">
+    <section class="steps">
       <div class="h-shell">
-        <h2 class="h-title h-title--on-band process-title" v-reveal>
-          단계별 AI 분석
-        </h2>
-
-        <!-- v-reveal 인덱스 1당 80ms 지연.
-             카드는 i * 4(320ms 간격), 화살표는 그 사이(i * 4 + 2)에 나타나
-             카드 → 화살표 → 카드 순으로 이어진다. -->
-        <ol class="process-steps">
-          <template v-for="(step, i) in steps" :key="step.title">
-            <li v-reveal="i * 4" class="step">
-              <span class="step-num">{{ String(i + 1).padStart(2, '0') }}</span>
-              <div class="step-text">
-                <h3 class="step-title">{{ step.title }}</h3>
-                <p class="step-desc">{{ step.desc }}</p>
-              </div>
-            </li>
-            <li
-              v-if="i < steps.length - 1"
-              v-reveal="i * 4 + 2"
-              class="step-arrow"
-              aria-hidden="true"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 12h16M14 6l6 6-6 6" />
-              </svg>
-            </li>
-          </template>
+        <h2 class="h-title" v-reveal><span class="accent">AI</span> 맞춤형 예적금 추천</h2>
+        <ol class="step-grid">
+          <li v-for="(step, i) in steps" :key="step.title" class="step-card" v-reveal="i * 5 + 1">
+            <span class="step-num">{{ String(i + 1).padStart(2, '0') }}</span>
+            <h3 class="step-title">{{ step.title }}</h3>
+            <p class="step-desc">{{ step.desc }}</p>
+          </li>
         </ol>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════
-         Services
+         Services — 메뉴 8개 바로가기
          ══════════════════════════════════════════════════════════════ -->
     <section class="services">
       <div class="h-shell">
         <header class="services-head" v-reveal>
           <h2 class="h-title">금융 정보를 한눈에</h2>
+          <p class="services-lead">예·적금부터 주식, 뉴스, 금·은 시세까지 한곳에서 확인하세요.</p>
         </header>
 
         <div class="service-grid">
@@ -128,15 +119,18 @@
             :class="{ 'service--featured': svc.tag }"
             v-reveal="i % 4"
           >
-            <span class="service-icon" v-html="svc.icon"></span>
             <h3 class="service-title">
               {{ svc.title }}
               <span v-if="svc.tag" class="service-tag">{{ svc.tag }}</span>
             </h3>
             <p class="service-desc">{{ svc.desc }}</p>
-            <span class="service-more">
-              바로가기
-              <span class="service-arrow" aria-hidden="true">→</span>
+            <span class="service-foot">
+              <span class="service-go" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </span>
+              <span class="service-icon" aria-hidden="true" v-html="svc.icon"></span>
             </span>
           </RouterLink>
         </div>
@@ -144,23 +138,23 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════
-         Partner banks (마퀴 모션 유지 — 이번 리디자인 대상 아님)
+         Partner banks — 두 줄이 반대 방향으로 흐른다
          ══════════════════════════════════════════════════════════════ -->
     <section class="partners">
-      <div class="shell">
-        <header class="section-head" v-reveal>
-          <p class="eyebrow">제휴 금융기관</p>
-          <h2 class="section-title">{{ banks.length }}개 금융기관의 상품을 비교합니다</h2>
-        </header>
-      </div>
+      <h2 class="partners-title" v-reveal>
+        여러 금융기관의 상품을<br />
+        <span>한 번에 비교하세요</span>
+      </h2>
 
-      <div class="marquee">
+      <div class="marquee" v-reveal="3">
         <div class="marquee-track">
-          <div class="partner" v-for="bank in banks" :key="bank">
-            <img :src="getBankLogo(bank)" :alt="bank" class="partner-img" />
+          <div v-for="(bank, i) in [...banks, ...banks]" :key="'a-' + i" class="partner">
+            <img :src="getBankLogo(bank)" :alt="bank" />
           </div>
-          <div class="partner" v-for="bank in banks" :key="bank + '-dup'" aria-hidden="true">
-            <img :src="getBankLogo(bank)" alt="" class="partner-img" />
+        </div>
+        <div class="marquee-track marquee-track--rev" aria-hidden="true">
+          <div v-for="(bank, i) in [...banksRev, ...banksRev]" :key="'b-' + i" class="partner">
+            <img :src="getBankLogo(bank)" alt="" />
           </div>
         </div>
       </div>
@@ -169,101 +163,83 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { vReveal, useParallax } from '@/composables/useScrollReveal'
+import { vReveal } from '@/composables/useScrollReveal'
 
-const mockupRef = ref(null)
-useParallax(mockupRef)
+/* 히어로 제목에서 돌아가는 목적 키워드 (마지막은 첫 항목 반복 — 끊김 없이 순환) */
+const keywords = ['주택 마련', '목돈 마련', '여행 준비', '주택 마련']
 
-/* 히어로 목업용 예시 데이터.
+/* 히어로 추천 카드 예시 데이터.
    실제 추천 화면(components/analysis/ProductCard.vue)의 구조를 따른다. */
-const mockConditions = ['목돈 마련', '12개월', '월 30만원']
-
 const mockProducts = [
-  {
-    bank: '카카오뱅크',
-    name: '자유적금',
-    fit: 92,
-    topRate: '3.80',
-    baseRate: '3.30',
-    // 30만 × 78회차 × 3.8% ÷ 12 = 74,100원(세전) → 15.4% 공제 후 62,688원
-    sim: { label: '월 30만 × 12개월', total: '366만원', gain: '+6.3만원' },
-  },
-  {
-    bank: '신한은행',
-    name: '쏠편한 정기예금',
-    fit: 87,
-    topRate: '3.45',
-    baseRate: '3.10',
-    sim: null,
-  },
-  {
-    bank: '국민은행',
-    name: 'KB국민첫재테크적금',
-    fit: 81,
-    topRate: '3.25',
-    baseRate: '2.80',
-    sim: null,
-  },
+  { bank: '카카오뱅크', name: '자유적금', topRate: '3.80', baseRate: '3.30' },
+  { bank: '신한은행', name: '쏠편한 정기예금', topRate: '3.45', baseRate: '3.10' },
+  { bank: '국민은행', name: 'KB국민첫재테크적금', topRate: '3.25', baseRate: '2.80' },
+]
+
+/* 빠른 추천 바 — 누르면 AI 분석 화면으로 이동 */
+const quickFields = [
+  { label: '목적', value: '목돈 마련' },
+  { label: '월 납입액', value: '300,000원' },
+  { label: '기간', value: '12개월' },
 ]
 
 const steps = [
-  { title: '목적 선택', desc: '주택, 목돈 마련, 여행 중 하나를 고릅니다.' },
-  { title: '금액 입력', desc: '보유 금액, 목표 금액, 월 납입액, 기간을 적습니다.' },
-  { title: '결과 확인', desc: '목표 달성 여부와 예금·적금 조합, 추천 상품을 봅니다.' },
+  { title: '목적 선택', desc: '주택 마련, 목돈 마련, 여행 준비 중 하나를 골라요.' },
+  { title: '금액 입력', desc: '보유 금액, 목표 금액, 월 납입액, 기간을 적어요.' },
+  { title: '결과 확인', desc: '목표 달성 여부와 예금·적금 조합, 추천 상품을 확인해요.' },
 ]
 
-/* 상단 메뉴와 같은 순서로 둔다 */
+/* 상단 메뉴와 같은 순서. 아이콘은 브랜드 투톤 일러스트(64×64). */
 const services = [
   {
     route: 'ProductView',
     title: '금융상품',
-    desc: '은행별·기간별로 예금·적금 금리를 비교합니다.',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h12M3 18h6"/></svg>',
+    desc: '은행별·기간별 예금·적금 금리를 비교해요.',
+    icon: '<svg viewBox="0 0 64 64"><rect x="6" y="40" width="34" height="11" rx="5.5" fill="#9588df"/><rect x="6" y="27" width="34" height="11" rx="5.5" fill="#bb8ec7"/><rect x="6" y="14" width="34" height="11" rx="5.5" fill="#9588df"/><circle cx="45" cy="42" r="14" fill="#1d1a2b"/><circle cx="40.5" cy="37.5" r="2.4" fill="#fff"/><circle cx="49.5" cy="46.5" r="2.4" fill="#fff"/><path d="M49.5 36.5 40.5 47.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>',
   },
   {
     route: 'AnalysisView',
     title: 'AI 분석',
     tag: '추천',
-    desc: '목표에 맞는 예금·적금 조합을 추천합니다.',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6l2.1 2.1m0-12.8l-2.1 2.1m-8.6 8.6l-2.1 2.1"/><circle cx="12" cy="12" r="3.5"/></svg>',
+    desc: '목표에 딱 맞는 예금·적금 조합을 추천해 드려요.',
+    icon: '<svg viewBox="0 0 64 64"><rect x="4" y="10" width="40" height="42" rx="9" fill="#bb8ec7"/><rect x="4" y="20" width="40" height="32" rx="9" fill="#9588df"/><rect x="4" y="20" width="40" height="10" fill="#9588df"/><rect x="10" y="14" width="10" height="3" rx="1.5" fill="#fff"/><rect x="10" y="27" width="22" height="3.5" rx="1.75" fill="#fff"/><rect x="10" y="34" width="16" height="3.5" rx="1.75" fill="#fff"/><rect x="10" y="41" width="12" height="3.5" rx="1.75" fill="#fff"/><circle cx="42" cy="40" r="13" fill="#1d1a2b"/><circle cx="42" cy="40" r="8.5" fill="#bb8ec7"/><path d="M51.5 49.5 58 56" stroke="#1d1a2b" stroke-width="5" stroke-linecap="round"/><path d="M53 4l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#5140b5"/></svg>',
   },
   {
     route: 'StockView',
     title: '주식',
-    desc: '관심 종목의 시세와 차트를 봅니다.',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg>',
+    desc: '관심 종목의 시세와 차트를 확인해요.',
+    icon: '<svg viewBox="0 0 64 64"><rect x="8" y="38" width="11" height="18" rx="3.5" fill="#bb8ec7"/><rect x="26.5" y="28" width="11" height="28" rx="3.5" fill="#9588df"/><rect x="45" y="20" width="11" height="36" rx="3.5" fill="#bb8ec7"/><path d="M8 30 22 19l10 7L52 8" stroke="#1d1a2b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M43 8h9v9" stroke="#1d1a2b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   },
   {
     route: 'NewsView',
     title: '금융뉴스',
-    desc: '최신 금융 뉴스를 읽고 저장합니다.',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h6M7 13h10M7 16h10"/></svg>',
+    desc: '최신 금융 뉴스를 읽고 저장해요.',
+    icon: '<svg viewBox="0 0 64 64"><rect x="36" y="16" width="22" height="40" rx="8" fill="#bb8ec7"/><rect x="6" y="8" width="42" height="48" rx="10" fill="#9588df"/><rect x="14" y="16" width="16" height="13" rx="3.5" fill="#fff"/><rect x="34" y="17" width="7" height="4" rx="2" fill="#fff"/><rect x="34" y="25" width="7" height="4" rx="2" fill="#fff"/><rect x="14" y="35" width="27" height="4" rx="2" fill="#fff"/><rect x="14" y="43" width="18" height="4" rx="2" fill="#1d1a2b"/></svg>',
   },
   {
     route: 'YoutubeSearchView',
     title: '유튜브',
-    desc: '금융 영상을 검색하고 저장합니다.',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></svg>',
+    desc: '금융 영상을 검색하고 저장해요.',
+    icon: '<svg viewBox="0 0 64 64"><rect x="6" y="8" width="52" height="38" rx="12" fill="#bb8ec7"/><path d="M27 20.5v14a1.6 1.6 0 0 0 2.4 1.4l11.2-7a1.6 1.6 0 0 0 0-2.8l-11.2-7A1.6 1.6 0 0 0 27 20.5z" fill="#fff"/><rect x="8" y="52" width="48" height="5" rx="2.5" fill="#9588df"/><rect x="8" y="52" width="22" height="5" rx="2.5" fill="#1d1a2b"/><circle cx="30" cy="54.5" r="4.5" fill="#1d1a2b"/></svg>',
   },
   {
     route: 'MetalView',
     title: '현물',
-    desc: '금·은 가격 추이를 차트로 봅니다.',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h5M9.5 14.5h5"/></svg>',
+    desc: '금·은 가격 추이를 차트로 봐요.',
+    icon: '<svg viewBox="0 0 64 64"><path d="M4 56 9.5 42h17L32 56z" fill="#9588df"/><path d="M33 56 38.5 42h17L61 56z" fill="#bb8ec7"/><path d="M18 39 23.5 25h17L46 39z" fill="#9588df"/><path d="M27 30.5h7" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="M13 47.5h6M42 47.5h6" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="M51 6l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#1d1a2b"/></svg>',
   },
   {
     route: 'KakaoMapView',
     title: '은행찾기',
-    desc: '가까운 은행 지점을 지도에서 찾습니다.',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.2 7-10a7 7 0 10-14 0c0 4.8 7 10 7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>',
+    desc: '가까운 은행 지점을 지도에서 찾아요.',
+    icon: '<svg viewBox="0 0 64 64"><path d="M4 32 21 26l22 6 17-6v28l-17 6-22-6-17 6z" fill="#bb8ec7"/><path d="M21 26v28M43 32v28" stroke="#fff" stroke-width="2" stroke-opacity="0.7"/><path d="M32 4c-8.3 0-15 6.5-15 14.6C17 29 32 42 32 42s15-13 15-23.4C47 10.5 40.3 4 32 4z" fill="#1d1a2b"/><circle cx="32" cy="18.5" r="5.5" fill="#9588df"/></svg>',
   },
   {
     route: 'CommunityView',
     title: '커뮤니티',
-    desc: '다른 사용자와 금융 이야기를 나눕니다.',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15a2 2 0 01-2 2H8l-4 4V5a2 2 0 012-2h12a2 2 0 012 2z"/></svg>',
+    desc: '다른 사용자와 금융 이야기를 나눠요.',
+    icon: '<svg viewBox="0 0 64 64"><rect x="4" y="8" width="38" height="28" rx="11" fill="#9588df"/><path d="M12 32 10 44l12-9z" fill="#9588df"/><rect x="22" y="24" width="38" height="26" rx="11" fill="#bb8ec7"/><path d="M50 46l3 12-12-9z" fill="#bb8ec7"/><circle cx="33" cy="37" r="2.8" fill="#fff"/><circle cx="41" cy="37" r="2.8" fill="#fff"/><circle cx="49" cy="37" r="2.8" fill="#1d1a2b"/></svg>',
   },
 ]
 
@@ -277,6 +253,7 @@ const banks = [
   'sc제일은행', '산업은행', '새마을금고', '수협은행', '신협은행',
   '씨티뱅크',
 ]
+const banksRev = [...banks].reverse()
 
 const getBankLogo = (bankName) =>
   new URL(`../assets/banks/${bankName}.png`, import.meta.url).href
@@ -284,41 +261,33 @@ const getBankLogo = (bankName) =>
 
 <style scoped>
 /* ═══════════════════════════════════════════════════════════════════
-   Base
-   본문 글자는 16px 아래로 내리지 않는다.
+   홈 — 메인 리디자인
+   제목 #232327 · 보조 #5e5a70 · 바이올렛 #5140b5 · 오키드/페리윙클 장식
+   보더 없이 면과 그림자로 구분하고, 그라데이션은 히어로·제휴 띠에만 은은하게.
    ═══════════════════════════════════════════════════════════════════ */
 .home {
-  background: var(--n-canvas);
-  color: var(--n-copy);
-  /* 한글이 음절 중간에서 줄바꿈되지 않도록 어절 단위로 끊는다 */
+  background: var(--fk-bg);
+  color: var(--fk-ink);
   word-break: keep-all;
 }
 
 .h-shell {
   max-width: 1200px;
   margin: 0 auto;
-  padding-inline: 32px;
-}
-
-.h-kicker {
-  margin: 0 0 16px;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--n-brand-strong);
+  padding: 0 24px;
 }
 
 .h-title {
   margin: 0;
-  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  font-size: 40px;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.3;
   letter-spacing: -0.035em;
-  color: var(--n-heading);
+  color: var(--fk-title);
 }
 
-.h-title--on-band {
-  color: var(--n-band-text);
+.accent {
+  color: var(--fk-violet);
 }
 
 /* 스크롤 리빌 — v-reveal 이 .reveal / .is-visible 을 붙인다 */
@@ -335,553 +304,577 @@ const getBankLogo = (bankName) =>
   transform: none;
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   Buttons
-   ═══════════════════════════════════════════════════════════════════ */
+/* ── 버튼 ─────────────────────────────────────────────────────── */
 .h-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 56px;
+  gap: 10px;
+  height: 60px;
   padding: 0 28px;
-  border: 1px solid transparent;
-  border-radius: var(--n-radius-md);
-  font-size: 1.0625rem;
-  font-weight: 600;
-  text-decoration: none;
+  border-radius: 18px;
+  font-size: 19px;
+  font-weight: 700;
   white-space: nowrap;
-  transition:
-    background-color 0.18s ease,
-    border-color 0.18s ease,
-    color 0.18s ease;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
-.h-btn--solid {
-  background: var(--n-cta);
-  color: var(--n-on-cta);
+.h-btn:hover {
+  transform: translateY(-2px);
 }
 
-.h-btn--solid:hover {
-  background: var(--n-cta-hover);
+.h-btn .arr {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.2s;
 }
 
-.h-btn--line {
-  border-color: var(--n-brand-panel-text);
-  color: var(--n-brand-panel-text);
+.h-btn:hover .arr {
+  transform: translateX(4px);
 }
 
-.h-btn--line:hover {
-  background: var(--n-brand-panel-line);
+.h-btn--soft {
+  background: #9082dd;
+  color: #ffffff;
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   Hero
-   ═══════════════════════════════════════════════════════════════════ */
-/* 카드로 감싸지 않고 화면 폭 전체를 라벤더로 채운다 */
+.h-btn--soft:hover {
+  background: var(--fk-violet);
+  color: #ffffff;
+}
+
+.h-btn--white {
+  background: #ffffff;
+  color: var(--fk-violet-hover);
+}
+
+.h-btn--white:hover {
+  background: var(--fk-lilac);
+  color: var(--fk-violet-hover);
+}
+
+/* ── Hero ─────────────────────────────────────────────────────── */
 .hero {
-  background: var(--n-brand-panel);
-  color: var(--n-brand-panel-text);
+  padding: 0 0 72px;
+  background: var(--fk-hero);
 }
 
-.hero-panel {
-  display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  align-items: center;
-  gap: 64px;
-  max-width: 1280px;
+.hero-inner {
+  max-width: 1200px;
+  min-height: 600px;
   margin: 0 auto;
-  padding: 112px 32px 120px;
+  padding: 84px 24px 96px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
 }
 
-.hero-kicker {
-  margin: 0 0 20px;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--n-brand-panel-muted);
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .hero-title {
-  margin: 0;
-  font-size: clamp(2.25rem, 3.4vw, 2.875rem);
-  font-weight: 700;
-  line-height: 1.25;
+  margin: 24px 0 0;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.45;
   letter-spacing: -0.04em;
-  color: var(--n-brand-panel-text);
+  color: var(--fk-title);
 }
 
-.hero-sub {
-  max-width: 760px;
-  margin: 28px 0 0;
-  font-size: 22px;
-  line-height: 1.7;
-  color: var(--n-brand-panel-muted);
+/* 돌아가는 목적 키워드 */
+.kw {
+  display: inline-flex;
+  height: 1.2em;
+  margin-top: 0.125em;
+  padding: 0 0.2em;
+  overflow: hidden;
+  vertical-align: top;
+  border-radius: 0.26em;
+  background: var(--fk-lilac-2);
+  color: var(--fk-violet);
+}
+
+.kw-track {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  animation: kw 7.5s cubic-bezier(0.7, 0, 0.2, 1) 1.4s infinite;
+}
+
+.kw-track span {
+  height: 1.2em;
+  white-space: nowrap;
+}
+
+@keyframes kw {
+  0%, 26% { transform: translateY(0); }
+  33%, 59% { transform: translateY(-1.2em); }
+  66%, 92% { transform: translateY(-2.4em); }
+  100% { transform: translateY(-3.6em); }
 }
 
 .hero-actions {
   display: flex;
-  flex-wrap: wrap;
   gap: 12px;
-  margin-top: 40px;
+  margin-top: 106px;
 }
 
-/* ── 제품 목업 ───────────────────────────────────────────────────── */
-.mockup-wrap {
-  /* useParallax 가 --parallax(0~1)를 갱신한다 */
-  transform: translate3d(0, calc(var(--parallax, 0) * -24px), 0);
-  will-change: transform;
+/* 추천 결과 카드 */
+.rec-card {
+  flex-shrink: 0;
+  align-self: flex-start;
+  width: 400px;
+  padding: 24px;
+  box-sizing: border-box;
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 30px 60px rgba(49, 32, 110, 0.18);
+  color: #1d1a2b;
 }
 
-.mockup {
-  padding: 28px;
-  border-radius: var(--n-radius-lg);
-  background: var(--n-surface);
-  box-shadow: var(--n-shadow-lg);
-}
-
-.mk-head {
+.rec-head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
 }
 
-.mk-title {
-  font-size: 1.25rem;
+.rec-title {
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--n-heading);
 }
 
-.mk-conds {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 18px;
-}
-
-.mk-cond {
-  padding: 6px 14px;
+.rec-chip {
+  padding: 5px 12px;
   border-radius: 999px;
-  background: var(--n-brand-tint);
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--n-brand-strong);
+  background: #efe9f8;
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a3aa8;
 }
 
-.mk-list {
+.rec-list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin: 20px 0 0;
+  gap: 6px;
+  margin: 16px 0 0;
   padding: 0;
   list-style: none;
 }
 
-.mk-row {
-  padding: 16px;
-  border-radius: var(--n-radius-md);
-}
-
-.mk-row + .mk-row {
-  border-top: 1px solid var(--n-line);
-  border-radius: 0;
-}
-
-.mk-row.is-selected {
-  background: var(--n-brand-tint);
-}
-
-/* 선택된 행 바로 아래 행은 구분선이 배경과 겹쳐 보이므로 뺀다 */
-.mk-row.is-selected + .mk-row {
-  border-top-color: transparent;
-}
-
-.mk-row-main {
+.rec-row {
   display: flex;
   align-items: center;
   gap: 14px;
+  padding: 14px 16px;
+  border-radius: 18px;
 }
 
-.mk-badge {
-  display: grid;
-  place-items: center;
+.rec-row.is-selected {
+  background: #f3f3f5;
+}
+
+.rec-logo {
   flex-shrink: 0;
-  width: 44px;
+  width: 72px;
   height: 44px;
-  border-radius: var(--n-radius-md);
-  background: var(--n-brand-tint);
-  font-size: 1.0625rem;
-  font-weight: 700;
-  color: var(--n-brand-strong);
+  padding: 6px 8px;
+  box-sizing: border-box;
+  border-radius: 14px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.mk-row.is-selected .mk-badge {
-  background: var(--n-surface);
+.rec-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.mk-titles {
+.rec-names {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 2px;
-  min-width: 0;
-  flex: 1;
 }
 
-.mk-name {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  color: var(--n-heading);
+.rec-name {
+  font-size: 18px;
+  font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.mk-meta {
-  font-size: 1rem;
-  color: var(--n-copy-muted);
+.rec-bank,
+.rec-base {
+  font-size: 16px;
+  font-weight: 500;
+  color: #5e5a70;
   white-space: nowrap;
 }
 
-.mk-meta strong {
-  font-weight: 600;
-  color: var(--n-brand-strong);
-}
-
-.mk-rate {
+.rec-rates {
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 2px;
-  flex-shrink: 0;
 }
 
-.mk-rate-num {
-  font-size: 1.375rem;
-  font-weight: 700;
+.rec-rate {
+  font-size: 22px;
+  font-weight: 800;
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
-  color: var(--n-heading);
 }
 
-.mk-rate-meta {
-  font-size: 1rem;
-  color: var(--n-copy-muted);
+.rec-rate.is-top {
+  color: var(--fk-red);
 }
 
-.mk-sim {
+/* 빠른 추천 바 */
+.quick {
+  position: relative;
+  z-index: 2;
+  max-width: 1104px;
+  margin: -56px auto 0;
+  padding: 14px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 10px;
+  border-radius: 28px;
+  background: var(--fk-card);
+  box-shadow: 0 24px 60px rgba(49, 32, 110, 0.16);
+}
+
+.qs {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 22px;
+  border-radius: 20px;
+  background: var(--fk-surface);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.qs:hover {
+  background: var(--fk-lilac);
+}
+
+.qs-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--fk-muted);
+}
+
+.qs-value {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--n-brand-panel-line);
-  font-size: 1rem;
-  color: var(--n-copy-muted);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--fk-ink);
 }
 
-.mk-sim-total {
-  font-weight: 600;
-  color: var(--n-heading);
+.qs-value svg {
+  width: 22px;
+  height: 22px;
+  color: var(--fk-muted);
 }
 
-.mk-sim-total em {
-  margin-left: 6px;
-  font-style: normal;
-  color: var(--n-brand-strong);
+.quick-go {
+  height: auto;
+  padding: 0 34px;
+  border-radius: 20px;
+  font-size: 24px;
+  font-weight: 700;
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   Process — 라벤더 그레이 띠
-   ═══════════════════════════════════════════════════════════════════ */
-.process {
+/* ── AI 맞춤형 예적금 추천 ─────────────────────────────────────── */
+.steps {
   padding: 140px 0;
-  background: var(--n-band);
+  background: var(--fk-surface);
 }
 
-.process-title {
-  margin-bottom: 64px;
-}
-
-.process-steps {
+.step-grid {
   display: grid;
-  /* 카드 · 화살표 · 카드 · 화살표 · 카드 */
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: center;
-  gap: 20px;
-  margin: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 56px 0 0;
   padding: 0;
   list-style: none;
 }
 
-.step-arrow {
-  display: grid;
-  place-items: center;
-  color: var(--n-brand-strong);
-}
-
-.step-arrow svg {
-  width: 28px;
-  height: 28px;
-}
-
-/* 단계 카드 — 테두리 없이 그림자로 띠 배경에서 띄운다 */
-.step {
-  align-self: stretch;
+.step-card {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 36px 32px;
-  border-radius: var(--n-radius-lg);
-  background: var(--n-surface);
-  box-shadow: var(--n-shadow-md);
+  padding: 40px 36px 44px;
+  border-radius: 32px;
+  background: var(--fk-card);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .step {
-    transition: none;
-  }
+/* 왼쪽에서 밀려 들어오며 등장 (v-reveal 의 is-visible 이 붙을 때) */
+.step-card.reveal {
+  opacity: 0;
+  transform: translateX(-64px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+}
+
+.step-card.reveal.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
 .step-num {
-  font-size: 1.125rem;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  color: var(--n-brand-strong);
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--fk-violet);
 }
 
 .step-title {
-  margin: 0 0 12px;
-  font-size: 1.625rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  color: var(--n-band-text);
+  margin: 28px 0 0;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--fk-title);
 }
 
 .step-desc {
-  margin: 0;
-  font-size: 1.125rem;
+  margin: 12px 0 0;
+  font-size: 20px;
+  font-weight: 500;
   line-height: 1.7;
-  color: var(--n-band-muted);
+  color: var(--fk-muted);
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   Services
-   ═══════════════════════════════════════════════════════════════════ */
+/* ── Services ─────────────────────────────────────────────────── */
 .services {
-  padding: 140px 0;
-  background: var(--n-canvas);
+  padding: 140px 0 160px;
+  background: var(--fk-bg);
 }
 
 .services-head {
-  margin-bottom: 56px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.services-lead {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--fk-muted);
+  text-align: right;
 }
 
 .service-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
+  margin-top: 56px;
 }
 
 .service {
+  height: 300px;
+  padding: 28px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 28px;
-  border: 1px solid var(--n-line);
-  border-radius: var(--n-radius-lg);
-  background: var(--n-surface);
+  border-radius: 28px;
+  background: var(--fk-surface);
+  color: var(--fk-ink);
   text-decoration: none;
-  transition:
-    border-color 0.2s ease,
-    background-color 0.2s ease;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
 }
 
 .service:hover {
-  border-color: var(--n-brand-strong);
+  transform: translateY(-8px);
+  box-shadow: 0 28px 56px rgba(49, 32, 110, 0.12);
+  color: var(--fk-ink);
 }
 
 .service--featured {
-  border-color: transparent;
-  background: var(--n-brand-panel);
-}
-
-.service--featured:hover {
-  border-color: var(--n-brand-panel-text);
-}
-
-.service-icon {
-  display: grid;
-  place-items: center;
-  width: 52px;
-  height: 52px;
-  margin-bottom: 28px;
-  border-radius: var(--n-radius-md);
-  background: var(--n-brand-soft);
-  color: var(--n-brand-strong);
-}
-
-.service--featured .service-icon {
-  background: var(--n-surface);
-}
-
-.service-icon :deep(svg) {
-  width: 26px;
-  height: 26px;
+  background: var(--fk-lilac);
 }
 
 .service-title {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0 0 10px;
-  font-size: 1.25rem;
+  margin: 0;
+  font-size: 24px;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--n-heading);
-}
-
-.service--featured .service-title {
-  color: var(--n-brand-panel-text);
+  letter-spacing: -0.03em;
+  color: var(--fk-title);
 }
 
 .service-tag {
-  padding: 2px 10px;
+  padding: 6px 12px;
   border-radius: 999px;
-  background: var(--n-cta);
-  font-size: 1rem;
+  background: #cf5c75;
+  font-size: 16px;
   font-weight: 600;
-  color: var(--n-on-cta);
+  letter-spacing: 0;
+  color: #ffffff;
 }
 
 .service-desc {
-  flex: 1;
-  margin: 0;
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  color: var(--n-copy-muted);
+  margin: 15px 0 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--fk-muted);
 }
 
-.service--featured .service-desc {
-  color: var(--n-brand-panel-muted);
+.service-foot {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
-.service-more {
-  display: inline-flex;
+.service-go {
+  width: 44px;
+  height: 44px;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  margin-top: 28px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--n-heading);
+  justify-content: center;
+  border-radius: 50%;
+  background: #f3f1f8;
+  color: #1d1a2b;
+  transition: background-color 0.25s, color 0.25s;
 }
 
-.service--featured .service-more {
-  color: var(--n-brand-panel-text);
+.service--featured .service-go {
+  background: #ffffff;
 }
 
-.service-arrow {
-  transition: transform 0.2s ease;
+.service:hover .service-go {
+  background: var(--fk-violet);
+  color: #ffffff;
 }
 
-.service:hover .service-arrow {
-  transform: translateX(4px);
+.service-go svg {
+  width: 20px;
+  height: 20px;
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   Partners — 마퀴 모션 유지 (리디자인 대상 아님, 기존 스타일 그대로)
-   ═══════════════════════════════════════════════════════════════════ */
-.shell {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding-inline: 24px;
+.service-icon {
+  display: block;
+  width: 84px;
+  height: 84px;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.eyebrow {
-  margin: 0 0 16px;
-  font-size: clamp(1.5rem, 2.6vw, 2rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.3;
-  color: var(--n-text);
+.service-icon :deep(svg) {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
-.section-title {
-  margin: 0;
-  font-size: 35px;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.25;
-  color: var(--n-text);
+.service:hover .service-icon {
+  transform: translateY(-6px) rotate(-6deg) scale(1.06);
 }
 
-.section-head {
-  max-width: 640px;
-  margin-bottom: 56px;
-}
-
+/* ── Partners ─────────────────────────────────────────────────── */
 .partners {
-  padding: 170px 0;
-  background: var(--n-bg);
+  padding: 140px 0;
   overflow: hidden;
+  background-color: #1d1a2b;
+  background-image:
+    radial-gradient(640px circle at 18% 0%, rgba(187, 142, 199, 0.42), rgba(187, 142, 199, 0) 70%),
+    radial-gradient(720px circle at 85% 100%, rgba(149, 136, 223, 0.45), rgba(149, 136, 223, 0) 70%),
+    linear-gradient(160deg, #2a2540 0%, #1d1a2b 55%, #251f3d 100%);
+}
+
+.partners-title {
+  margin: 0;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  text-align: center;
+}
+
+.partners-title span {
+  color: #d9c6f2;
 }
 
 .marquee {
-  overflow: hidden;
-  /* 양끝 페이드 */
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent,
-    #000 8%,
-    #000 92%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    90deg,
-    transparent,
-    #000 8%,
-    #000 92%,
-    transparent
-  );
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 144px;
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 30s linear infinite;
+  animation: marquee 60s linear infinite;
 }
 
-/* gap 대신 아이템 margin 을 써서 두 벌의 폭이 정확히 같아지도록 한다.
-   (트랙에 gap 이 있으면 translateX(-50%) 지점에서 이음새가 튄다) */
-.partner {
-  flex-shrink: 0;
-  margin-right: 40px;
+.marquee-track--rev {
+  animation-duration: 66s;
+  animation-direction: reverse;
 }
 
-.partner-img {
-  display: block;
-  width: 152px;
-  height: 82px;
-  padding: 12px 20px;
-  object-fit: contain;
-  border: 1px solid var(--n-border);
-  border-radius: var(--n-radius-md);
-  /* 은행 로고는 흰 배경을 전제로 만들어진 이미지라 다크모드에서도 흰색을
-     유지한다. 토큰(--n-bg)을 쓰면 로고가 어두운 배경에 묻힌다. */
-  background: #fff;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.partner-img:hover {
-  transform: scale(1.03);
-  border-color: var(--n-border-strong);
+.marquee-track:hover {
+  animation-play-state: paused;
 }
 
 @keyframes marquee {
-  0% {
-    transform: translateX(0);
+  to { transform: translateX(-50%); }
+}
+
+.partner {
+  flex-shrink: 0;
+  width: 184px;
+  height: 92px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 22px;
+  background: #ffffff;
+}
+
+.partner img {
+  width: 132px;
+  height: 44px;
+  object-fit: contain;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Motion 줄이기
+   ═══════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .kw-track,
+  .marquee-track {
+    animation: none;
   }
-  100% {
-    transform: translateX(-50%);
+
+  .reveal,
+  .step-card.reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 
@@ -889,103 +882,70 @@ const getBankLogo = (bankName) =>
    Responsive
    ═══════════════════════════════════════════════════════════════════ */
 @media (max-width: 1100px) {
-  .hero-panel {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 56px;
-    padding: 88px 32px 96px;
+  .hero-inner {
+    flex-direction: column;
+    min-height: 0;
   }
 
-  .hero-sub {
-    max-width: 640px;
+  .rec-card {
+    align-self: stretch;
+    width: auto;
+    max-width: 480px;
   }
 
-  .mockup-wrap {
-    max-width: 640px;
+  .quick {
+    margin: -40px 24px 0;
+    flex-wrap: wrap;
+  }
+
+  .qs {
+    flex-basis: calc(50% - 5px);
+  }
+
+  .quick-go {
+    flex-basis: 100%;
+    height: 60px;
   }
 
   .service-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 768px) {
-  .h-shell {
-    padding-inline: 20px;
-  }
-
-  .hero-panel {
-    padding: 56px 20px 64px;
+  .hero-inner {
+    padding: 48px 20px 80px;
   }
 
   .hero-title {
-    font-size: 1.875rem;
+    font-size: 34px;
   }
 
   .hero-actions {
-    flex-direction: column;
+    flex-wrap: wrap;
   }
 
-  .h-btn {
-    width: 100%;
+  .h-title {
+    font-size: 32px;
   }
 
-  .mockup-wrap {
-    /* 모바일에서는 패럴랙스를 끈다 */
-    transform: none;
+  .steps,
+  .services,
+  .partners {
+    padding: 80px 0;
   }
 
-  .mockup {
-    padding: 20px 16px;
-  }
-
-  .mk-row {
-    padding: 14px 10px;
-  }
-
-  .mk-badge {
-    width: 38px;
-    height: 38px;
-  }
-
-  .mk-sim {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-  }
-
-  .process {
-    padding: 88px 0;
-  }
-
-  .process-title {
-    margin-bottom: 40px;
-  }
-
-  .process-steps {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 12px;
-  }
-
-  /* 세로로 쌓이면 화살표도 아래를 향한다 */
-  .step-arrow svg {
-    transform: rotate(90deg);
-  }
-
-  .step {
-    gap: 12px;
-    padding: 28px 24px;
-  }
-
-  .step-title {
-    font-size: 1.375rem;
-  }
-
-  .services {
-    padding: 88px 0;
+  .step-grid {
+    grid-template-columns: 1fr;
   }
 
   .services-head {
-    margin-bottom: 40px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .services-lead {
+    text-align: left;
   }
 
   .service-grid {
@@ -993,28 +953,20 @@ const getBankLogo = (bankName) =>
   }
 
   .service {
-    padding: 28px 24px;
+    height: auto;
+    min-height: 220px;
   }
 
-  .partners {
-    padding: 80px 0;
+  .partners-title {
+    font-size: 34px;
   }
-}
 
-/* ═══════════════════════════════════════════════════════════════════
-   Dark mode
-   토큰이 대부분 처리하므로 예외만 보정한다.
-   ═══════════════════════════════════════════════════════════════════ */
+  .marquee {
+    margin-top: 64px;
+  }
 
-/* 은행 로고는 대부분 흰 배경을 전제로 제작된 이미지라
-   다크모드에서도 타일 배경을 밝게 유지한다.
-   배경이 밝으므로 테두리도 어두운 톤 대신 밝은 톤에 맞춘다. */
-[data-theme='dark'] .partner-img {
-  background: #f5f5f4;
-  border-color: #e7e5e4;
-}
-
-[data-theme='dark'] .partner-img:hover {
-  border-color: #d6d3d1;
+  .qs {
+    flex-basis: 100%;
+  }
 }
 </style>

@@ -1,18 +1,18 @@
 <template>
   <div class="product-detail-page">
-    <!-- Hero — 상품 제목 영역 (메인 히어로와 같은 그라데이션) -->
-    <section class="detail-hero">
-      <div class="container">
-        <!-- Back Button -->
-        <RouterLink :to="{ name: 'ProductView' }" class="back-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 18l-6-6 6-6"/>
-          </svg>
-          상품 목록으로
-        </RouterLink>
+    <div class="container">
+      <!-- Back Button -->
+      <RouterLink :to="{ name: 'ProductView' }" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5"/>
+          <path d="M12 19l-7-7 7-7"/>
+        </svg>
+        상품 목록으로
+      </RouterLink>
 
+      <div v-if="product" class="product-detail-container">
         <!-- Header Card -->
-        <div v-if="product" class="product-header-card">
+        <div class="product-header-card">
           <div class="product-bank-info">
             <div class="bank-logo-large">
               <img
@@ -25,13 +25,7 @@
             </div>
           </div>
           
-          <div class="product-title-area">
-            <div class="product-badge-row">
-              <span class="product-type-badge" :class="route.params.type">{{ route.params.type === 'saving' ? '적금' : '예금' }}</span>
-              <span class="product-bank-chip">{{ product.kor_co_nm }}</span>
-            </div>
-            <h1 class="product-title">{{ product.fin_prdt_nm }}</h1>
-          </div>
+          <h1 class="product-title">{{ product.fin_prdt_nm }}</h1>
 
           <!-- Action Buttons -->
           <div class="action-buttons">
@@ -65,11 +59,7 @@
             </button>
           </div>
         </div>
-      </div>
-    </section>
 
-    <div class="container">
-      <div v-if="product" class="product-detail-container">
         <!-- Details Card — 헤더 카드 밖 독립 카드로 분리 -->
         <div class="details-card">
           <h2 class="card-title">
@@ -284,393 +274,365 @@ onMounted(() => {
 
 <style scoped>
 /* ═══════════════════════════════════════════════════════════════════
-   상품 상세 — 제목 영역은 메인 히어로 그라데이션, 본문 카드는
-   흰 면 + 그림자. 보더를 쓰지 않는다.
+   상품 상세 — 무채색. 그림자 대신 보더로 카드를 구분한다.
    ═══════════════════════════════════════════════════════════════════ */
 .product-detail-page {
   min-height: calc(100vh - 72px);
-  background: var(--fk-bg);
+  padding: 48px 24px 80px;
+  background: var(--n-bg);
 }
 
 .container {
-  max-width: 960px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 48px 24px 120px;
 }
 
-/* ── Hero ─────────────────────────────────────────────────────── */
-.detail-hero {
-  background: var(--fk-hero);
-}
-
-.detail-hero .container {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding-top: 40px;
-  padding-bottom: 60px;
-}
-
+/* ── 뒤로가기 ────────────────────────────────────────────────────── */
 .back-link {
-  align-self: flex-start;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  height: 44px;
-  margin-left: -14px;
-  padding: 0 14px;
-  border-radius: 12px;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--fk-muted);
+  gap: 8px;
+  margin-bottom: 24px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
   text-decoration: none;
-  transition: background-color 0.2s, color 0.2s;
+  transition: color 0.18s ease;
 }
 
 .back-link:hover {
-  background: rgba(255, 255, 255, 0.7);
-  color: var(--fk-ink);
+  color: var(--n-text);
 }
 
 .back-link svg {
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
+  transition: transform 0.18s ease;
 }
 
+.back-link:hover svg {
+  transform: translateX(-3px);
+}
+
+/* ── 헤더 카드 ───────────────────────────────────────────────────── */
 .product-header-card {
+  margin-bottom: 20px;
+  padding: 28px;
+  border: 1px solid var(--n-border);
+  border-radius: var(--n-radius-md);
+  background: var(--n-bg);
+  box-shadow: none;
+}
+
+.product-badge-row {
   display: flex;
-  align-items: center;
-  gap: 28px;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.product-type-badge,
+.product-join-badge {
+  padding: 4px 11px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--n-border);
+  border-radius: var(--n-radius-sm);
+  background: var(--n-bg-subtle);
+  color: var(--n-text-body);
+}
+
+.product-type-badge.saving {
+  border-color: var(--n-accent-wash);
+  background: var(--n-accent-wash);
+  color: var(--n-accent);
 }
 
 .product-bank-info {
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .bank-logo-large {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 132px;
-  height: 96px;
-  padding: 20px 18px;
-  box-sizing: border-box;
-  border-radius: 28px;
-  background: #ffffff;   /* 로고 이미지가 흰 바탕 전제 */
-  box-shadow: 0 18px 40px rgba(49, 32, 110, 0.12);
+  width: 90px;
+  height: 30px;
 }
 
-.bank-logo-img-large {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.product-title-area {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.product-badge-row {
-  display: flex;
-  gap: 6px;
-}
-
-.product-type-badge {
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: #ffffff;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--fk-violet);
-}
-
-.product-type-badge.saving {
-  color: #8a5aa0;
-}
-
-.product-bank-chip {
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.7);
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--fk-muted);
+.bank-name-large {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
 }
 
 .product-title {
-  margin: 0;
-  font-size: 42px;
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: -0.035em;
-  color: var(--fk-title);
+  margin: 18px 0 40px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  color: var(--n-text);
 }
 
-/* ── 관심상품 / 은행 위치 ─────────────────────────────────────── */
+/* ── 액션 버튼 ───────────────────────────────────────────────────── */
 .action-buttons {
-  flex-shrink: 0;
   display: flex;
-  flex-direction: column;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .like-btn,
 .map-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: 56px;
-  padding: 0 22px;
-  border: 0;
-  border-radius: 16px;
-  font-size: 18px;
-  font-weight: 700;
-  white-space: nowrap;
+  gap: 8px;
+  height: 42px;
+  padding: 0 18px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border-radius: var(--n-radius-sm);
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
 }
 
-.like-btn:hover,
-.map-btn:hover {
-  transform: translateY(-2px);
-}
-
-.like-btn svg,
-.map-btn svg {
-  width: 20px;
-  height: 20px;
-}
-
-/* 관심등록 전 — 흰 버튼, 좋아요 레드 하트 */
 .like-btn {
-  background: #ffffff;
-  color: var(--fk-like-hover);
+  background: transparent;
+  color: var(--n-text);
+  border: 1px solid var(--n-border-strong);
 }
 
-/* 관심상품 — 좋아요 레드 */
+.like-btn:hover {
+  background: var(--n-bg-subtle);
+  border-color: var(--n-text-muted);
+}
+
 .like-btn.liked {
-  background: var(--fk-like);
-  color: #ffffff;
+  background: var(--n-accent);
+  border-color: var(--n-accent);
+  color: #fff;
 }
 
 .like-btn.liked:hover {
-  background: var(--fk-like-hover);
+  background: var(--n-accent-hover);
+  border-color: var(--n-accent-hover);
+}
+
+.like-btn svg {
+  width: 17px;
+  height: 17px;
 }
 
 .like-count {
-  padding: 2px 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
-  font-size: 16px;
-  font-weight: 700;
+  padding: 1px 7px;
+  font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
+  border-radius: var(--n-radius-sm);
+  background: rgba(255, 255, 255, 0.22);
 }
 
 .like-btn:not(.liked) .like-count {
-  background: #fdecee;
+  background: var(--n-bg-sunken);
+  color: var(--n-text-muted);
 }
 
 .map-btn {
-  background: #ffffff;
-  color: var(--fk-violet-hover);
+  background: transparent;
+  color: var(--n-text);
+  border: 1px solid var(--n-border-strong);
 }
 
 .map-btn:hover {
-  background: var(--fk-lilac);
+  background: var(--n-bg-subtle);
+  border-color: var(--n-text-muted);
 }
 
-/* ── 본문 카드 ─────────────────────────────────────────────────── */
-.product-detail-container {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+.map-btn svg {
+  width: 17px;
+  height: 17px;
 }
 
+/* ── 카드 ────────────────────────────────────────────────────────
+   헤더·상세·금리옵션 세 카드가 같은 규격으로 균등하게 쌓인다. */
 .details-card,
 .options-card {
-  padding: 40px;
-  border-radius: 28px;
-  background: var(--fk-card);
-  box-shadow: var(--fk-shadow);
+  margin-bottom: 20px;
+  padding: 28px;
+  border: 1px solid var(--n-border);
+  border-radius: var(--n-radius-md);
+  background: var(--n-bg);
+  box-shadow: none;
 }
 
 .card-title {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 0 0 24px;
-  font-size: 26px;
+  gap: 9px;
+  margin-bottom: 50px;
+  font-size: 20px;
   font-weight: 600;
-  letter-spacing: -0.03em;
-  color: var(--fk-title);
+  letter-spacing: -0.01em;
+  color: var(--n-text);
 }
 
 .card-title svg {
-  width: 44px;
-  height: 44px;
-  padding: 11px;
-  box-sizing: border-box;
-  border-radius: 14px;
-  background: var(--fk-surface);
-  color: var(--fk-ink);
+  width: 18px;
+  height: 18px;
+  color: var(--n-text-muted);
 }
 
-/* 상세정보 — 연한 면 타일 */
+/* ── 금리 옵션 표 ────────────────────────────────────────────────── */
+.options-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--n-border);
+  border-radius: var(--n-radius-md);
+}
+
+.options-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.options-table th {
+  padding: 12px 14px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
+  text-align: left;
+  white-space: nowrap;
+  background: var(--n-bg-subtle);
+  border-bottom: 1px solid var(--n-border);
+}
+
+.options-table td {
+  padding: 13px 14px;
+  font-size: 0.9375rem;
+  color: var(--n-text-body);
+  border-bottom: 1px solid var(--n-border);
+}
+
+.options-table tr:last-child td {
+  border-bottom: none;
+}
+
+.term-value {
+  font-size: 1rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--n-text);
+}
+
+.term-unit {
+  font-size: 0.875rem;
+  color: var(--n-text-muted);
+}
+
+.rate-cell {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--n-text);
+}
+
+.rate-cell.rate-max {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e94444;
+}
+
+/* ── 상세 정보 그리드 ────────────────────────────────────────────── */
 .detail-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
 }
 
 .detail-item {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 20px 24px;
-  border-radius: 20px;
-  background: var(--fk-surface);
+  gap: 16px;
 }
 
 .detail-full {
-  grid-column: 1 / -1;
+  grid-column: span 2;
 }
 
 .detail-label {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
-  color: var(--fk-muted);
+  color: var(--n-text);
 }
 
 .detail-value {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.7;
-  color: var(--fk-ink);
-  white-space: pre-line;
-}
-
-/* 금리 옵션 표 — 머리행만 면, 행은 hover 때 면 */
-.options-table-wrapper {
-  overflow-x: auto;
-}
-
-.options-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 4px;
-  text-align: center;
-}
-
-.options-table th {
-  padding: 14px 24px;
-  background: var(--fk-surface);
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--fk-muted);
-}
-
-.options-table th:first-child { border-radius: 16px 0 0 16px; }
-.options-table th:last-child { border-radius: 0 16px 16px 0; }
-
-.options-table td {
-  padding: 18px 24px;
   font-size: 18px;
-  font-weight: 500;
-  color: var(--fk-muted);
-  font-variant-numeric: tabular-nums;
-  transition: background-color 0.2s;
+  line-height: 1.65;
+  color: var(--n-text-body);
 }
 
-.options-table tbody tr:hover td {
-  background: var(--fk-surface);
-}
-
-.options-table td:first-child { border-radius: 16px 0 0 16px; }
-.options-table td:last-child { border-radius: 0 16px 16px 0; }
-
-.term-value {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--fk-ink);
-}
-
-.term-unit {
-  margin-left: 2px;
-  font-size: 16px;
-  color: var(--fk-muted);
-}
-
-.rate-cell {
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--fk-ink);
-}
-
-.rate-cell.rate-max {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--fk-red);
-}
-
-/* ── 로딩 ─────────────────────────────────────────────────────── */
+/* ── 로딩 ────────────────────────────────────────────────────────── */
 .loading-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 80px 0;
-  font-size: 18px;
-  color: var(--fk-muted);
+  text-align: center;
+  padding: 80px 24px;
+  color: var(--n-text-muted);
 }
 
 .loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid var(--fk-lilac);
-  border-top-color: var(--fk-violet);
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 16px;
+  border: 2px solid var(--n-border);
+  border-top-color: var(--n-text-muted);
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+  animation: spin 0.7s linear infinite;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
    Responsive
    ═══════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .product-header-card {
-    flex-wrap: wrap;
-    gap: 20px;
+  .product-detail-page {
+    padding: 32px 16px 64px;
+  }
+
+  .product-header-card,
+  .details-card,
+  .options-card {
+    padding: 22px;
   }
 
   .product-title {
-    font-size: 30px;
-  }
-
-  .action-buttons {
-    flex-direction: row;
-    width: 100%;
-  }
-
-  .like-btn,
-  .map-btn {
-    flex: 1;
-  }
-
-  .details-card,
-  .options-card {
-    padding: 24px;
+    font-size: 1.25rem;
+    margin-bottom: 28px;
   }
 
   .detail-grid {
     grid-template-columns: 1fr;
   }
+
+  .detail-full {
+    grid-column: span 1;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .like-btn,
+  .map-btn {
+    justify-content: center;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Dark mode — 은행 로고는 흰 배경 전제 이미지라 타일을 밝게 유지한다.
+   ═══════════════════════════════════════════════════════════════════ */
+[data-theme='dark'] .bank-logo-img-large {
+  padding: 2px 5px;
+  border-radius: var(--n-radius-sm);
+  background: #f5f5f4;
 }
 </style>

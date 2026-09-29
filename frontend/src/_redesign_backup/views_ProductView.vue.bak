@@ -4,7 +4,10 @@
     <header class="n-page-header">
       <div class="n-page-header-content">
         <div class="n-page-header-icon">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="40" width="34" height="11" rx="5.5" fill="#9588df"/><rect x="6" y="27" width="34" height="11" rx="5.5" fill="#bb8ec7"/><rect x="6" y="14" width="34" height="11" rx="5.5" fill="#9588df"/><circle cx="45" cy="42" r="14" fill="#1d1a2b"/><circle cx="40.5" cy="37.5" r="2.4" fill="#fff"/><circle cx="49.5" cy="46.5" r="2.4" fill="#fff"/><path d="M49.5 36.5 40.5 47.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v10M15 9.5c0-1.4-1.3-2.5-3-2.5s-3 1.1-3 2.3c0 1.2 1.2 1.9 3 2.2s3 1 3 2.3-1.3 2.2-3 2.2-3-.9-3-2.2"/>
+          </svg>
         </div>
         <div class="n-page-header-text">
           <h1 class="n-page-title">금융상품</h1>
@@ -265,90 +268,78 @@ const resetFilter = () => {
 
 <style scoped>
 /* ═══════════════════════════════════════════════════════════════════
-   금융상품 목록 — 메인 톤. 필터 카드가 헤더에 겹쳐 뜨고,
-   보더 대신 면(--fk-surface)과 그림자로 영역을 나눈다.
+   금융상품 목록 — 무채색. HomeView 의 카드/보더 언어를 따른다.
    ═══════════════════════════════════════════════════════════════════ */
 .products-page {
   min-height: calc(100vh - 72px);
-  background: var(--fk-bg);
-}
-
-/* 필터 카드가 겹쳐 뜰 자리만큼 헤더 아래 여백을 더 준다 */
-.n-page-header {
-  padding-bottom: 104px;
+  background: var(--n-bg);
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 48px 24px 120px;
+  padding: 28px 24px 72px;
 }
 
-/* ── 필터 카드 (헤더에 겹쳐 뜸) ─────────────────────────────── */
-.filter-zone {
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: -48px auto 0;
-  padding: 0 24px;
-}
+/* ── 필터 존 ─────────────────────────────────────────────────────
+   탭과 필터를 옅은 면으로 묶어 상단 블록을 만든다.
+   흰 상품 목록 영역과 갈라져 층위가 생긴다. */
+
 
 .filter-zone-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 28px;
-  border-radius: 28px;
-  background: var(--fk-card);
-  box-shadow: var(--fk-shadow-float);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 24px 20px;
 }
 
-/* ── 탭 (예금/적금) ─────────────────────────────────────────── */
+/* ── 탭 ──────────────────────────────────────────────────────────── */
 .tabs-container {
   display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .tabs-pill {
   display: inline-flex;
-  gap: 6px;
-  padding: 6px;
-  border-radius: 20px;
-  background: var(--fk-surface);
+  gap: 40px;
+  padding: 4px;
 }
 
 .tab {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  height: 52px;
-  padding: 0 28px;
-  border: 0;
-  border-radius: 15px;
-  background: transparent;
-  color: var(--fk-muted);
-  font-size: 20px;
-  font-weight: 600;
+  gap: 8px;
+  padding: 10px 24px;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--n-text-muted);
+  background: #f1f0f0;
+  border: none;
+  border-radius: var(--n-radius-sm);
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.18s ease, color 0.18s ease;
 }
 
 .tab:hover:not(.active) {
-  color: var(--fk-ink);
-  background: var(--fk-card);
+  color: var(--n-text);
+  background: var(--n-bg);
 }
 
 .tab.active {
-  background: var(--fk-orchid);
-  color: #fff;
+  background: var(--n-accent);
+  color: var(--n-on-accent);
+  border: 1px solid transparent;
+  box-shadow: none;
+  font-weight: 600;
 }
 
 .tab-icon {
-  width: 22px;
-  height: 22px;
+  width: 16px;
+  height: 16px;
 }
 
-/* ── 필터 입력 ────────────────────────────────────────────────
-   라벨과 값을 한 타일에 묶는다 (메인 빠른 추천 바와 같은 모양). */
+/* ── 필터 ────────────────────────────────────────────────────────
+   존 위에 카드를 또 띄우지 않는다. 입력 필드만 흰 면으로 떠오른다. */
 .filter-card {
   padding: 0;
 }
@@ -356,63 +347,57 @@ const resetFilter = () => {
 .filter-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr auto;
-  gap: 12px;
-  align-items: stretch;
+  gap: 14px;
+  align-items: end;
 }
 
 .filter-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 14px 22px;
-  border-radius: 20px;
-  background: var(--fk-surface);
-  transition: background-color 0.2s;
-}
-
-.filter-group:hover,
-.filter-group:focus-within {
-  background: var(--fk-lilac);
+  gap: 8px;
 }
 
 .filter-label {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--fk-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--n-text-muted);
 }
 
 .filter-icon {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
+  color: var(--n-text-muted);
 }
 
 .filter-select,
 .filter-input {
   width: 100%;
-  height: 33px;
-  padding: 0;
-  border: 0;
-  background: transparent;
+  padding: 10px 12px;
+  font-size: 0.9375rem;
+  color: var(--n-text);
+  background: var(--n-bg);
+  border: 1px solid var(--n-border);
+  border-radius: var(--n-radius-sm);
   outline: none;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--fk-ink);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
-.filter-select {
-  cursor: pointer;
+.filter-select:hover:not(:focus),
+.filter-input:hover:not(:focus) {
+  border-color: var(--n-border-strong);
 }
 
-.filter-input {
-  font-weight: 600;
+.filter-select:focus,
+.filter-input:focus {
+  border-color: var(--n-accent);
+  box-shadow: 0 0 0 3px var(--n-accent-wash);
 }
 
 .filter-input::placeholder {
-  color: var(--fk-faint);
-  font-weight: 500;
+  color: var(--n-text-muted);
 }
 
 .search-input-wrapper {
@@ -421,126 +406,120 @@ const resetFilter = () => {
 
 .search-clear {
   position: absolute;
-  right: 0;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
   padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: var(--fk-card);
+  background: var(--n-bg-sunken);
+  border: none;
+  border-radius: var(--n-radius-sm);
   cursor: pointer;
+  transition: background-color 0.18s ease;
+}
+
+.search-clear:hover {
+  background: var(--n-border);
 }
 
 .search-clear svg {
-  width: 14px;
-  height: 14px;
-  color: var(--fk-muted);
+  width: 12px;
+  height: 12px;
+  color: var(--n-text-muted);
 }
 
-/* 초기화 — 필터 타일과 같은 높이의 연보라 버튼 */
 .filter-group-reset {
-  padding: 0;
-  background: none;
+  justify-content: flex-end;
 }
 
-.filter-group-reset:hover,
-.filter-group-reset:focus-within {
-  background: none;
-}
-
+/* 전역 .btn-secondary 가 옛 팔레트라 이 화면에서만 무채색으로 덮는다 */
 .filter-group-reset :deep(.btn-secondary) {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: 100%;
-  min-height: 60px;
-  padding: 0 28px;
-  border: 0;
-  border-radius: 20px;
-  background: var(--fk-lilac);
-  color: var(--fk-violet-hover);
-  font-size: 19px;
-  font-weight: 700;
-  transition: background-color 0.2s;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: var(--n-radius-sm);
+  border: 1px solid var(--n-border-strong);
+  background: transparent;
+  color: var(--n-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 }
 
 .filter-group-reset :deep(.btn-secondary:hover) {
-  background: var(--fk-lilac-2);
+  background: var(--n-bg-subtle);
+  border-color: var(--n-text-muted);
   transform: none;
 }
 
 .btn-icon {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
 }
 
-/* ── 적용된 필터 ─────────────────────────────────────────────── */
+/* ── 적용된 필터 ─────────────────────────────────────────────────── */
 .active-filters {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--n-border);
   flex-wrap: wrap;
 }
 
 .active-filters-label {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--fk-muted);
+  font-size: 0.8125rem;
+  color: var(--n-text-muted);
 }
 
 .filter-tag {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  height: 36px;
-  padding: 0 6px 0 14px;
-  border-radius: 999px;
-  background: var(--fk-lilac);
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--fk-violet-hover);
+  gap: 6px;
+  padding: 5px 10px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--n-text-body);
+  background: var(--n-bg);
+  border-radius: var(--n-radius-sm);
 }
 
 .filter-tag-remove {
-  width: 26px;
-  height: 26px;
+  width: 16px;
+  height: 16px;
   padding: 0;
-  border: 0;
-  border-radius: 50%;
   background: transparent;
-  color: inherit;
-  font-size: 18px;
+  border: none;
+  color: var(--n-text-muted);
+  font-size: 1rem;
   line-height: 1;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: color 0.18s ease;
 }
 
 .filter-tag-remove:hover {
-  background: var(--fk-lilac-2);
+  color: var(--n-text);
 }
 
-/* ── 결과 수 ─────────────────────────────────────────────────── */
+/* ── 결과 수 ─────────────────────────────────────────────────────── */
 .results-info {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .results-count {
-  font-size: 20px;
-  font-weight: 500;
-  color: var(--fk-muted);
+  font-size: 0.875rem;
+  color: var(--n-text-muted);
 }
 
 .results-count strong {
-  font-weight: 700;
-  color: var(--fk-ink);
+  color: var(--n-text);
+  font-weight: 600;
 }
 
-/* ── 빈 상태 ─────────────────────────────────────────────────── */
+/* ── 빈 상태 ─────────────────────────────────────────────────────── */
 .empty-state {
   text-align: center;
   padding: 80px 24px;
@@ -549,48 +528,50 @@ const resetFilter = () => {
 .empty-icon {
   display: grid;
   place-items: center;
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   margin: 0 auto 20px;
-  border-radius: 20px;
-  background: var(--fk-surface);
+  border: 1px solid var(--n-border);
+  border-radius: var(--n-radius-md);
+  background: var(--n-bg-subtle);
 }
 
 .empty-icon svg {
-  width: 28px;
-  height: 28px;
-  color: var(--fk-muted);
+  width: 26px;
+  height: 26px;
+  color: var(--n-text-muted);
 }
 
 .empty-title {
-  margin-bottom: 8px;
-  font-size: 26px;
+  font-size: 1.125rem;
   font-weight: 600;
-  letter-spacing: -0.03em;
-  color: var(--fk-title);
+  letter-spacing: -0.015em;
+  color: var(--n-text);
+  margin-bottom: 8px;
 }
 
 .empty-description {
+  font-size: 0.9375rem;
+  color: var(--n-text-muted);
   margin-bottom: 24px;
-  font-size: 18px;
-  color: var(--fk-muted);
 }
 
 .empty-state :deep(.btn-primary) {
-  height: 52px;
-  padding: 0 24px;
-  border: 0;
-  border-radius: 16px;
-  background: var(--fk-violet);
+  height: 40px;
+  padding: 0 18px;
+  border-radius: var(--n-radius-sm);
+  background: var(--n-accent);
   background-image: none;
+  border: 1px solid var(--n-accent);
   color: #fff;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 0.875rem;
+  font-weight: 500;
   box-shadow: none;
 }
 
 .empty-state :deep(.btn-primary:hover) {
-  background: var(--fk-violet-hover);
+  background: var(--n-accent-hover);
+  border-color: var(--n-accent-hover);
   transform: none;
   box-shadow: none;
 }
@@ -603,23 +584,23 @@ const resetFilter = () => {
     grid-template-columns: 1fr 1fr;
   }
 
-  .filter-group-search,
+  .filter-group-search {
+    grid-column: span 2;
+  }
+
   .filter-group-reset {
     grid-column: span 2;
+    justify-content: center;
   }
 }
 
 @media (max-width: 600px) {
   .container {
-    padding: 32px 16px 72px;
-  }
-
-  .filter-zone {
-    padding: 0 16px;
+    padding: 24px 16px 56px;
   }
 
   .filter-zone-inner {
-    padding: 20px;
+    padding: 20px 16px 16px;
   }
 
   .filter-grid {
@@ -632,9 +613,8 @@ const resetFilter = () => {
   }
 
   .tab {
-    height: 44px;
-    padding: 0 18px;
-    font-size: 17px;
+    padding: 9px 18px;
+    font-size: 0.875rem;
   }
 }
 </style>

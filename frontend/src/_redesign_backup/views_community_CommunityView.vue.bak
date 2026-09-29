@@ -4,7 +4,9 @@
     <header class="n-page-header">
       <div class="n-page-header-content">
         <div class="n-page-header-icon">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="4" y="8" width="38" height="28" rx="11" fill="#9588df"/><path d="M12 32 10 44l12-9z" fill="#9588df"/><rect x="22" y="24" width="38" height="26" rx="11" fill="#bb8ec7"/><path d="M50 46l3 12-12-9z" fill="#bb8ec7"/><circle cx="33" cy="37" r="2.8" fill="#fff"/><circle cx="41" cy="37" r="2.8" fill="#fff"/><circle cx="49" cy="37" r="2.8" fill="#1d1a2b"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
+          </svg>
         </div>
         <div class="n-page-header-text">
           <h1 class="n-page-title">커뮤니티</h1>
@@ -391,43 +393,6 @@ const formatDate = (iso) => {
 }
 
 /* Responsive */
-/* ═══════════════════════════════════════════════════════════════════
-   F!NK 리디자인 — 게시판 (흰 카드 + 그림자, 행 구분은 hover 면)
-   페이지 번호는 그레이 계열.
-   ═══════════════════════════════════════════════════════════════════ */
-.community-page { background: var(--fk-bg); }
-.create-btn { height: 60px; padding: 0 28px; gap: 10px; border: 0; border-radius: 18px; background: var(--fk-violet); color: #fff; font-size: 19px; font-weight: 700; box-shadow: none; }
-.create-btn:hover { background: var(--fk-violet-hover); color: #fff; transform: translateY(-2px); }
-.create-btn svg { width: 20px; height: 20px; }
-.container { max-width: 1200px; padding: 48px 24px 120px; }
-.board-section { margin-bottom: 32px; }
-.board-card { display: flex; flex-direction: column; gap: 4px; padding: 16px; border: 0; border-radius: 28px; background: var(--fk-card); box-shadow: var(--fk-shadow); }
-.board-header { grid-template-columns: minmax(0, 1fr) 160px 160px 100px; padding: 16px 24px; border: 0; border-radius: 18px; background: var(--fk-surface); font-size: 16px; font-weight: 600; color: var(--fk-muted); }
-.board-body { max-height: none; overflow: visible; display: flex; flex-direction: column; gap: 4px; }
-.board-row { grid-template-columns: minmax(0, 1fr) 160px 160px 100px; padding: 20px 24px; border: 0; border-radius: 18px; }
-.board-row:hover { background: var(--fk-surface); }
-.board-row.notice { background: var(--fk-lilac); }
-.board-header .col-author,
-.board-header .col-date,
-.board-header .col-views,
-.board-row .col-author,
-.board-row .col-date,
-.board-row .col-views { text-align: center; }
-.article-title { font-size: 20px; font-weight: 500; color: var(--fk-ink); }
-.article-link:hover .article-title { color: var(--fk-muted); text-decoration: underline; }
-.comment-count { height: 28px; padding: 0 10px; gap: 4px; border-radius: 999px; background: var(--fk-lilac); font-size: 16px; font-weight: 700; color: var(--fk-violet); }
-.col-author { font-size: 18px; color: var(--fk-ink); }
-.col-date { font-size: 18px; color: var(--fk-muted); font-variant-numeric: tabular-nums; }
-.col-views { font-size: 18px; font-weight: 600; color: var(--fk-muted); font-variant-numeric: tabular-nums; }
-.empty-state p { font-size: 20px; color: var(--fk-ink); }
-.empty-state span { font-size: 16px; color: var(--fk-muted); }
-.page-btn,
-.page-num { min-width: 44px; height: 44px; border: 0; border-radius: 12px; background: var(--fk-surface); color: var(--fk-ink); font-size: 18px; font-weight: 700; }
-.page-num:hover,
-.page-btn:hover:not(:disabled) { background: var(--fk-surface-2); }
-.page-num.active { background: #6b6975; color: #fff; }
-.page-btn:disabled { color: var(--fk-faint); }
-
 @media (max-width: 768px) {
   .create-btn {
     width: 100%;
